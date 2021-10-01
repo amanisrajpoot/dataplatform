@@ -5,9 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Navigator from '../components/Navigator';
-import Content from '../components/Content';
-import Header from '../components/Header';
+import Navigator from '../components/navigator';
+import Content from '../components/content';
+import Header from '../components/header';
 
 function Copyright() {
   return (
