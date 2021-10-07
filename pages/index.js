@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import UseMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -168,7 +168,7 @@ const drawerWidth = 256;
 
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
+  const isSmUp = UseMediaQuery(theme.breakpoints.up('sm'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
