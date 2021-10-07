@@ -1,19 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import HelpIcon from '@mui/icons-material/Help';
-import IconButton from '@mui/material/IconButton';
-import Link from '@mui/material/Link';
-import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import PersonIcon from '@mui/icons-material/Person';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -22,84 +15,65 @@ function Header(props) {
 
   return (
     <React.Fragment>
-      <AppBar color="primary" position="sticky" elevation={0}>
-        <Toolbar>
-          <Grid container spacing={1} alignItems="center">
-            <Grid sx={{ display: { sm: 'none', xs: 'block' } }} item>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={onDrawerToggle}
-                edge="start"
-              >
-                <MenuIcon />
-              </IconButton>
-            </Grid>
-            <Grid item xs />
-            <Grid item>
-              <Link
-                href="/"
-                variant="body2"
-                sx={{
-                  textDecoration: 'none',
-                  color: lightColor,
-                  '&:hover': {
-                    color: 'common.white',
-                  },
-                }}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Go to docs
-              </Link>
-            </Grid>
-            <Grid item>
-              <Tooltip title="Alerts • No alerts">
-                <IconButton color="inherit">
-                  <NotificationsIcon />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid item>
-              <IconButton color="inherit" sx={{ p: 0.5 }}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-              </IconButton>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
+      
       <AppBar
         component="div"
         color="primary"
         position="static"
         elevation={0}
-        sx={{ zIndex: 0 }}
+        sx={{ zIndex: 0, minHeight: '12vh', display: 'flex', pl:11,
+            flexDirection:'row' , justifyContent: 'space-between'}}
       >
-        <Toolbar>
-          <Grid container alignItems="center" spacing={1}>
+        <Toolbar sx={{width:'50%'}}>
             <Grid item xs>
               <Typography color="inherit" variant="h5" component="h1">
-                My Signals
+                Data Platform
               </Typography>
             </Grid>
-            <Grid item>
+        </Toolbar>
+
+        <Toolbar component="nav" variant="dense" className="flex-row"
+          sx={{justifyContent:'space-between', width:'50%'}}>
+            <Grid item sx={{display:'flex', justifyContent: 'space-around' , width:'80%'}}>
               <Button
                 sx={{ borderColor: lightColor }}
-                variant="outlined"
                 color="inherit"
-                size="small"
+                size="large"
               >
-                Sign Out
+                MY SIGNALS
               </Button>
+              <Button
+                sx={{ borderColor: lightColor }}
+                color="inherit"
+                size="large"
+              >
+                EXPLORE
+              </Button>
+              <Button
+                sx={{ borderColor: lightColor }}
+                
+                color="inherit"
+                size="large"
+              >
+                SUPPORT
+              </Button>
+
+              <Grid item>
+                <div style={{fontSize:24}}>|
+                </div>
+             </Grid>
+
+             <div style={{display:"flex",flexDirection:'row', 
+                alignItems: 'center',}}>
+                      <PersonIcon />
+                      &nbsp;&nbsp;
+                      <p>Kaushik </p> 
+                      &nbsp;&nbsp;
+                      <ArrowDropDownIcon />
+                      
+              </div>
+
             </Grid>
-            <Grid item>
-              <Tooltip title="Help">
-                <IconButton color="inherit">
-                  <HelpIcon />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-          </Grid>
         </Toolbar>
       </AppBar>
       

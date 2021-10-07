@@ -1,13 +1,19 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Navigator from './navigator';
-import Content from './content';
-import Header from './header';
+import Toolbar from '@mui/material/Toolbar';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import CopyrightIcon from '@mui/icons-material/Copyright';
+import FacebookIcon from '@mui/icons-material/Facebook';
+
+const lightColor = 'rgba(255, 255, 255, 0.7)';
+
 
 function Copyright() {
   return (
@@ -177,8 +183,64 @@ export default function Footer() {
   return (
     <ThemeProvider theme={theme}>        
           
-          <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1' }}>
-            <Copyright />
+          <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1',zIndex: 0, pl:11,
+              minHeight: '12vh', display: 'flex', flexDirection:'row' , justifyContent: 'space-between' }}>
+
+          <Toolbar sx={{width:'50%'}}>
+            <Grid item xs>
+              
+              <Typography color="inherit" variant="h5" component="h5">
+              <CopyrightIcon fontSize={'small'}/>
+                &nbsp;
+                Data Platform
+              </Typography>
+            </Grid>
+        </Toolbar>
+        
+          <Toolbar component="nav" variant="dense" className="flex-row"
+          sx={{justifyContent:'space-between', width:'50%'}}>
+            <Grid item sx={{display:'flex', justifyContent: 'space-around' , width:'80%'}}>
+              <Button
+                sx={{ borderColor: lightColor }}
+                color="inherit"
+                size="medium"
+              >
+                Terms of Use
+              </Button>
+              <Button
+                sx={{ borderColor: lightColor }}
+                color="inherit"
+                size="medium"
+              >
+                Privacy Policy
+              </Button>
+              <Button
+                sx={{ borderColor: lightColor }}
+                
+                color="inherit"
+                size="medium"
+              >
+                Contact Support
+              </Button>
+
+              <Grid item>
+                <div style={{fontSize:24}}>|
+                </div>
+             </Grid>
+
+             <div style={{display:"flex",flexDirection:'row', 
+                alignItems: 'center',}}>
+                      <FacebookIcon />
+                      &nbsp;&nbsp;
+                      <TwitterIcon />
+                      &nbsp;&nbsp;
+                      <YouTubeIcon />
+                      
+              </div>
+
+
+            </Grid>
+        </Toolbar>
           </Box>
     </ThemeProvider>
           
