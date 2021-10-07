@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Header from '../components/header';
+import Header from './Header';
 
 
 let theme = createTheme({
