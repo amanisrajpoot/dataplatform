@@ -31,6 +31,8 @@ import TimerIcon from '@mui/icons-material/Timer';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import ArrowRightAltSharpIcon from '@mui/icons-material/ArrowRightAltSharp';
 import StorageIcon from '@mui/icons-material/Storage';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function Copyright() {
   return (
@@ -388,7 +390,10 @@ export default function Home() {
   };
 
   return (
+    
+
     <ThemeProvider theme={theme}>
+      <Navbar />
         <Box sx={{ display: 'flex', flexDirection:'column',py: 6, px: 14, bgcolor: 'gray'}}>
           <Box sx={{ display: 'flex', flexDirection:'row', py: 2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
             <Typography color="inherit" variant="h5" component="h1">
@@ -612,7 +617,7 @@ export default function Home() {
         </Box>
 
     </Box>  
-
+       <Footer />
     </ThemeProvider>
   );
 }

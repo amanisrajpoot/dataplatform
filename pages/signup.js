@@ -18,7 +18,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Data Platform
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -113,6 +113,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              
             >
               Sign Up
             </Button>
@@ -123,6 +124,8 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+            <Copyright sx={{ mt: 5 }} />
+
           </Box>
         </Box>
       </Container>

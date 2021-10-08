@@ -58,10 +58,10 @@ function Header(props) {
                 SUPPORT
               </Button>
 
-              <Grid item>
-                <div style={{fontSize:24}}>|
+              
+                <div style={{fontSize:24, paddingTop:8}}>|
                 </div>
-             </Grid>
+            
 
              <div style={{display:"flex",flexDirection:'row', 
                 alignItems: 'center',}}>
