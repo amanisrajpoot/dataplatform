@@ -7,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Link } from 'next/link';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -26,9 +27,14 @@ function Header(props) {
       >
         <Toolbar sx={{width:'50%'}}>
             <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
+            <Button
+                sx={{ borderColor: lightColor, fontSize:20}}
+                color="inherit"
+                size="large"
+                href="/"
+              >
                 Data Platform
-              </Typography>
+              </Button>
             </Grid>
         </Toolbar>
 
@@ -39,6 +45,7 @@ function Header(props) {
                 sx={{ borderColor: lightColor }}
                 color="inherit"
                 size="large"
+                href="/dashboard"
               >
                 MY SIGNALS
               </Button>

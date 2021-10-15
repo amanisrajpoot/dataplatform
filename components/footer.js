@@ -183,13 +183,13 @@ export default function Footer() {
   return (
     <ThemeProvider theme={theme}>        
           
-          <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1',zIndex: 0, pl:11,
-              minHeight: '12vh', display: 'flex', flexDirection:'row' , justifyContent: 'space-between' }}>
+          <Box component="footer" sx={{ p: 2, bgcolor: '#3e3e33',zIndex: 0, pl:11,
+              minHeight: '8vh', display: 'flex', flexDirection:'row' , justifyContent: 'space-between' }}>
 
           <Toolbar sx={{width:'50%'}}>
             <Grid item xs>
               
-              <Typography color="inherit" variant="h5" component="h5">
+              <Typography color="#BCBCBC" variant="h5" component="h5">
               <CopyrightIcon fontSize={'small'}/>
                 &nbsp;
                 Data Platform
@@ -199,7 +199,7 @@ export default function Footer() {
         
           <Toolbar component="nav" variant="dense" className="flex-row"
           sx={{justifyContent:'space-between', width:'50%'}}>
-            <Grid item sx={{display:'flex', justifyContent: 'space-around' , width:'80%'}}>
+            <Grid item sx={{display:'flex', justifyContent: 'space-around' , width:'91%', color:'#BCBCBC'}}>
               <Button
                 sx={{ borderColor: lightColor }}
                 color="inherit"
