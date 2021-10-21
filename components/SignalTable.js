@@ -15,24 +15,31 @@ export default function SignalTable(props) {
     const columns = [
         { id: 'status', label: '', minWidth: 130 },
         { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+        { id: 'Features', label: 'Features', minWidth: 50 },
         {
-          id: 'population',
-          label: 'Population',
+          id: 'time',
+          label: 'Time',
           minWidth: 170,
           align: 'right',
           format: (value) => value.toLocaleString('en-US'),
         },
         {
-          id: 'size',
-          label: 'Size\u00a0(km\u00b2)',
+          id: 'geography',
+          label: 'Geography',
           minWidth: 170,
           align: 'right',
           format: (value) => value.toLocaleString('en-US'),
         },
         {
-          id: 'density',
-          label: 'Density',
+          id: 'dateupdated',
+          label: 'Date Updated',
+          minWidth: 170,
+          align: 'right',
+          format: (value) => value.toFixed(2),
+        },
+        {
+          id: 'modified',
+          label: 'Modified',
           minWidth: 170,
           align: 'right',
           format: (value) => value.toFixed(2),
@@ -40,18 +47,14 @@ export default function SignalTable(props) {
         { id: 'settings', label: '', minWidth: 50 },
       ];
       
-      function createData(status, name, code, population, size, settings) {
-        const density = population / size;
-        return { status, name, code, population, size, density, settings };
+      function createData(status, name, Features, time, geography, dateupdated, modified, settings) {
+        return { status, name, Features, time, geography, dateupdated, modified,settings };
       }
       
       const rows = [
-        createData('Ready','India', 'IN', 1324171354, 3287263,'settings'),
-        createData('Processing','China', 'CN', 1403500365, 9596961,'settings'),
-        createData('Error','Italy', 'IT', 60483973, 301340,'settings'),
-        createData('Ready','United States', 'US', 327167434, 9833520,'settings'),
-        createData('Ready','Canada', 'CA', 37602103, 9984670,'settings'),,
-        createData('Processing','Australia', 'AU', 25475400, 7692024,'settings'),
+        createData('Ready','Cancer Patient', '03', "Quarter", "Zip","26/10/2021","26/10/2021",'settings'),
+        createData('Processing','Covid Recovery', '10', "Month", "State","26/10/2021","17/10/2021",'settings'),
+        createData('Error','Survival Rate', '11', "Day", "Country","26/10/2021","10/10/2021",'settings'),
         
       ];
   

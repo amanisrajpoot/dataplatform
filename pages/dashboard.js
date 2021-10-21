@@ -84,13 +84,13 @@ export default function Dashboard() {
             <Typography color="inherit" variant="h5" component="h1">
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
                     color:'white',justifyContent:'space-around'}}>
-                    <div>MY SIGNALS &nbsp;</div>
+                    <div>MY DATASETS &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
             </Typography>
 
             <Button variant="contained" size="large" startIcon={<AddIcon />} onClick={handleOpen}>
-            Create a Signal</Button>
+            Create a Dataset</Button>
 
                 <Modal
                   open={open}
@@ -103,33 +103,40 @@ export default function Dashboard() {
                         <Box sx={{display:'flex', flexDirection:"row", fontSize:20, fontWeight:600,
                             justifyContent:'space-between'}}>
                             <Box>
-                                CHOOSE A SIGNAL TYPE
+                                CHOOSE A DATASET TYPE
                             </Box>
                             <Box>
                                 X
                             </Box>
                         </Box>
 
-                        <div style={{display:"flex", flexDirection:'row', maxHeight:'325px', width:"100%",
-                          justifyContent:'space-around',backgroundColor:'#fff', marginBottom:16 }}>
+                        <div style={{display:"flex", flexDirection:'row', maxHeight:'375px', width:"100%",
+                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16 }}>
                                
-                                <div style={{border:5, borderColor:"#000", textAlign:'center'}}>
+                                <Link href="/createsignalfirst">
+                                <Box sx={{border:2, borderColor:"#000000", 
+                                    mx:4,my:4,py:2,px:4, textAlign:'center'}}>
                                   <AddBoxIcon style={{fontSize:125}}/>
                                   <p><b>From Scratch</b><br></br>
-                                     Create a new Signal<br></br>
-                                     combining the date<br></br>
-                                     sources you want.</p>
-                                </div>
+                                     Create a new Custom<br></br>
+                                     Dataset combining the<br></br>
+                                     data sources you want.</p>
+                                </Box>
+                                </Link>
+                                
 
                                 <Divider variant="middle" orientation="vertical" />
                               
-                                <div style={{border:5, borderColor:"#000", textAlign:'center'}}>
+                                <Link href="/createsignalsecond">
+                                  <Box sx={{border:2, borderColor:"#000", 
+                                    mx:4,my:4,py:2,px:4,textAlign:'center'}}>
                                   <ContentCopyOutlinedIcon style={{fontSize:125}}/>
                                   <p><b>From Template</b><br></br>
-                                     Create a new Signal<br></br>
-                                     based on pre-<br></br>
-                                     defined models.</p>
-                                </div>
+                                     Create a new Custom<br></br>
+                                     Dateset based on<br></br>
+                                     predefined models.</p>
+                                </Box>
+                                </Link>
                                 
                       </div>
                       </Grid>
@@ -181,14 +188,12 @@ export default function Dashboard() {
                         onChange={handleChangeIndustry}
                         sx={{ bgcolor: '#ffffff'}}
                       >
-                        <MenuItem value={"Select Industry"}>---Select Industry---</MenuItem>
-                        <MenuItem value={'B2B Sales'}>B2B Sales</MenuItem>
-                        <MenuItem value={'CPG'}>CPG</MenuItem>
-                        <MenuItem value={'Healthcare'}>Healthcare</MenuItem>
-                        <MenuItem value={'Insurance'}>Insurance</MenuItem>
-                        <MenuItem value={'Real Estate'}>Real Estate</MenuItem>
-                        <MenuItem value={'Retail'}>Retail</MenuItem>
-                        <MenuItem value={'Others'}>Others</MenuItem>
+                      <MenuItem value={10}>---Select Industry---</MenuItem>
+                      <MenuItem value={20}>Drugs</MenuItem>
+                      <MenuItem value={30}>Physician Practices</MenuItem>
+                      <MenuItem value={40}>Healthcare</MenuItem>
+                      <MenuItem value={50}>Insurance</MenuItem>
+                      <MenuItem value={60}>Other</MenuItem>
                       </Select>
                     </FormControl>
                   </Box>
@@ -250,10 +255,58 @@ export default function Dashboard() {
 
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
-                <FeatureCard />
-                <FeatureCard />
-                <FeatureCard />
-                <FeatureCard />
+                <FeatureCard 
+                  popular="1"
+                  title="Insurance Companies LEIE    "
+                  description="List of Excluded Individuals/Entities (LEIE)"
+                  description2="Information to the health care industry, patients and the public regarding individuals and 
+                  entities"
+                  geo="Country - USA"
+                  date=""
+                  available="" />
+                <FeatureCard 
+                  popular="1"
+                  title="PECARN "
+                  description="PECARN, the Pediatric Emergency Care"
+                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
+                  management of acute illnesses."
+                  geo="Country - USA"
+                  date=""
+                  available=""/>
+                <FeatureCard 
+                  popular="1"
+                  title="Drugs at FDA"
+                  description="Information about FDA-approved "
+                  description2="Information about FDA-approved human drugs and biological therapeutic products."
+                  geo="Country - Mexico"
+                  date=""
+                  available=""/>
+                <FeatureCard 
+                  popular="0"
+                  title="Insurance Companies LEIE    "
+                  description="List of Excluded Individuals/Entities (LEIE)"
+                  description2="Information to the health care industry, patients and the public regarding individuals and 
+                  entities"
+                  geo="Country - UK"
+                  date=""
+                  available="" />
+                <FeatureCard 
+                  popular="0"
+                  title="PECARN "
+                  description="PECARN, the Pediatric Emergency Care"
+                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
+                  management of acute illnesses."
+                  geo="Country - Mexico"
+                  date=""
+                  available=""/>
+                <FeatureCard 
+                  popular="0"
+                  title="Drugs at FDA"
+                  description="Information about FDA-approved "
+                  description2="Information about FDA-approved human drugs and biological therapeutic products."
+                  geo="Country - USA"
+                  date=""
+                  available=""/>
 
           </Box>
           
@@ -282,8 +335,8 @@ export default function Dashboard() {
                     alignItems:'center', justifyContent:'space-between', alignSelf:'center' }}>
              <HelpCenterCard 
                 title={"GETTING STARTED"}
-                description={"Learn about how Ready Signal works. Information for new users."}
-                linkText={'How to Create a Signal'}
+                description={"Learn about how Data Platform works. Information for new users."}
+                linkText={'How to Create a Custom Dataset?'}
                 link={'#'}
                 all={'See all articles'}/>
 

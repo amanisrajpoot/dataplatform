@@ -16,7 +16,7 @@ export default function HomepageCardsLeft(props){
                     <p>{props.description} You can customize signals anyway you need by choosing:</p>
                     
                     <ol>
-                        <li>We source the control data including economic, weather, demographic, and population data sets;</li>
+                        <li>We source controlled Healthcare data sets;</li>
                         <li>We organize and curate the data by adjusting for time and geographic granularity;</li>
                         <li>We apply a variety of data science treatments; and</li>
                         <li>We simplify data ingestion through automated processes.</li>
@@ -30,7 +30,7 @@ export default function HomepageCardsLeft(props){
                     
                 </Box>
 
-                <Box sx={{display:"flex", flexDirection:'row', justifyContent:'space-between', alignItems:'center',
+                {/* <Box sx={{display:"flex", flexDirection:'row', justifyContent:'space-between', alignItems:'center',
                     py:6, flexWrap:'wrap'}}>
                     <Box sx={{display:"flex", flexDirection:'column', width:'45%',py:6, flexWrap:'wrap',boxShadow:1}}>
 
@@ -41,18 +41,24 @@ export default function HomepageCardsLeft(props){
                     
                     <p>{props.description}STEP 2</p>
                     <h2>{props.title}Creating or Customizing a Signal</h2>
-                    <p>{props.description} Our Features or datasets are categorized by Economic, Weather, Demographic, an COVID-19.</p>
+                    <p>{props.description} Our Features or datasets are variety of Healthcare COVID-19.</p>
                     <p>{props.description} You can also use our search to explore the Features.</p>
 
                     </Box>
 
-                 </Box>
+                </Box> */}
 
-                 <Box sx={{display:"flex", flexDirection:'row', justifyContent:'space-between',alignItems:'center',
+                <Box sx={{display:"flex", flexDirection:'row', justifyContent:'space-between',alignItems:'center',
                     py:6}}>
+                    
+                    <Box sx={{display:"flex", flexDirection:'column', width:'45%', py:6, boxShadow:1}}>
+
+                        <img src={"https://www.readysignal.com/wp-content/uploads/2021/04/slide-4.png"} />
+                    </Box>
+
                     <Box sx={{ flexDirection:'column', width:'50%', py:6,}}>
                      
-                    <p>{props.description}STEP 3</p>
+                    <p>{props.description}STEP 2</p>
                     <h2>{props.title}Data Science Treatments</h2>
                     <p>{props.description} In order to make the Features more beneficial to you, we include 15 data science treatments in the Platform including:</p>
                     
@@ -69,24 +75,18 @@ export default function HomepageCardsLeft(props){
 
                     </Box>
 
-                    <Box sx={{display:"flex", flexDirection:'column', width:'45%', py:6, boxShadow:1}}>
-
-                        <img src={"https://www.readysignal.com/wp-content/uploads/2021/04/slide-4.png"} />
-                    </Box>
+                    
 
                     
                 </Box>
 
                 <Box sx={{display:"flex", flexDirection:'row', justifyContent:'space-between',alignItems:'center',
                     py:6}}>
-                    <Box sx={{display:"flex", flexDirection:'column', width:'45%',py:6,boxShadow:1}}>
-
-                    <img src={"https://www.readysignal.com/wp-content/uploads/2021/04/slide-5-Copy.jpg"} />
-                    </Box>
+                    
                     
                     <Box sx={{ flexDirection:'column', width:'50%',py:6}}>
                     
-                    <p>{props.description}STEP 4</p>
+                    <p>{props.description}STEP 3</p>
                     <h2>{props.title}Data Output</h2>
                     <p>{props.description} As mentioned, we simplify the data ingestion process delivering your data to you using a variety of manual and automated delivery connectors.</p>
                     <p>{props.description} Manually download to Excel or CSV.</p>
@@ -97,6 +97,11 @@ export default function HomepageCardsLeft(props){
                     <Button variant="contained" size="large"
                             sx={{fontSize:20, color:'#eeeeee', width:'35%'}}>
                         Sign up Now</Button>
+                    </Box>
+
+                    <Box sx={{display:"flex", flexDirection:'column', width:'45%',py:6,boxShadow:1}}>
+
+                    <img src={"https://www.readysignal.com/wp-content/uploads/2021/04/slide-5-Copy.jpg"} />
                     </Box>
 
                  </Box>

@@ -79,14 +79,14 @@ export default function CreateSignalFirst() {
     <Box>
       <Navbar />
       
-      <Box sx={{ width: '100%', px:16,py:8,}}>
+      <Box sx={{ width: '100%', px:16,py:2,}}>
           <p>Step 1 of 2</p>
           <LinearProgress variant="determinate" value={progress} sx={{height:'2vh'}} />
       </Box>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
                     color:'gray', fontSize:24,pl:16, py:2}}>
-                    <div>CREATE SIGNAL &nbsp;</div>
+                    <div>CREATE DATASET &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
                 
@@ -126,7 +126,7 @@ export default function CreateSignalFirst() {
                     <div style={{fontSize:12, paddingTop:4}}>*Used to recommend features and data treatment techniques to consider</div>
                 </Box>
                 
-                <Box sx={{display:'flex',flexDirection:'row',px:15, pb:4,
+                <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                     <FormControl variant="outlined" sx={{ minWidth: '50%' }}>
@@ -141,14 +141,11 @@ export default function CreateSignalFirst() {
                       label="Name"
                     >
                       <MenuItem value={10}>---Select Industry---</MenuItem>
-                      <MenuItem value={20}>Automotive</MenuItem>
-                      <MenuItem value={30}>B2B Sales</MenuItem>
-                      <MenuItem value={30}>CPG</MenuItem>
-                      <MenuItem value={30}>Healthcare</MenuItem>
-                      <MenuItem value={30}>Insurance</MenuItem>
-                      <MenuItem value={30}>Real Estate</MenuItem>
-                      <MenuItem value={30}>Retail</MenuItem>
-                      <MenuItem value={30}>Other</MenuItem>
+                      <MenuItem value={20}>Drugs</MenuItem>
+                      <MenuItem value={30}>Physician Practices</MenuItem>
+                      <MenuItem value={40}>Healthcare</MenuItem>
+                      <MenuItem value={50}>Insurance</MenuItem>
+                      <MenuItem value={60}>Other</MenuItem>
 
                     </Select>
                     </FormControl>
@@ -181,7 +178,7 @@ export default function CreateSignalFirst() {
                     <div style={{fontSize:12, paddingTop:4}}>{"*Select the desired geographic and time grain of your data output. Learn more about data grain treatments & limitations"}</div>
                 </Box>
 
-                <Box sx={{display:'flex',flexDirection:'row',px:15, pb:4,
+                <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                     <FormControl variant="outlined" sx={{ minWidth: '50%' }}>
@@ -206,7 +203,7 @@ export default function CreateSignalFirst() {
                 </Box>
 
                 
-                <Box sx={{display:'flex',flexDirection:'row',px:15,
+                <Box sx={{display:'flex',flexDirection:'row',px:16,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                     
@@ -259,7 +256,7 @@ export default function CreateSignalFirst() {
                     <div style={{fontSize:12, paddingTop:4}}>{"Limit the size of your signal by filtering down to a specific geography"}</div>
                 </Box>
 
-                <Box sx={{display:'flex',flexDirection:'row',px:15,
+                <Box sx={{display:'flex',flexDirection:'row',px:16,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                     <FormControl sx={{ minWidth: '50%' }}>
@@ -323,7 +320,7 @@ export default function CreateSignalFirst() {
                     <div style={{fontSize:12, paddingTop:4}}>{"The setting determines how often the data in your signal will be refreshed and thus data points that will be used. Learn about data point usage"}</div>
                 </Box>
 
-                <Box sx={{display:'flex',flexDirection:'row',px:15, pb:4,
+                <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                     <FormControl sx={{ minWidth: '50%' }}>
@@ -347,16 +344,14 @@ export default function CreateSignalFirst() {
                     </FormControl>
                 </Box>
 
-      <Box sx={{ display: 'flex', bgcolor:'#eaeff1',pt:2}}>
+      <Box sx={{ display: 'flex',pt:2}}>
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
-          mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',px:14}}>
+          mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
             <Button variant="contained" size="large" sx={{mx:2, py:4}}
-                startIcon={<CheckIcon />} onClick={handleOpen}>
-                {"Save & Process"}</Button>
-            <Button variant="contained" size="large" sx={{mx:2, py:4}}
-                startIcon={<ExitToAppIcon />} onClick={handleOpen}>
-                Output</Button>
+                endIcon={<CheckIcon />} href="/createsignalsecond">
+                {"Continue"}</Button>
+  
         </Box>
       </Box>
     

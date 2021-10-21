@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 export default function SignalCard(props){
     return (
         <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',}}>
-          <p style={{paddingLeft:54}}>SIGNAL OVERVIEW</p>
+          <p style={{paddingLeft:54}}>DATASET OVERVIEW</p>
           <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', 
             justifyContent:'space-around', paddingRight:84 }}>
               
@@ -21,14 +21,14 @@ export default function SignalCard(props){
               <div style={{display:'flex', alignItems:'center', 
                   justifyContent:'space-between', width:"25%"}}>
                   
-                  <p><b>Name:</b> Automotive Forecasting<br></br><br></br>
-                  <b>Description:</b> Automotive Forecasting Signal based on state / monthly data since 1/1/2019 with no end date and updated when new data is available. For those features with data science treatments, both the raw and treated data is included in the Signal output.</p>
+                  <p><b>Name:</b> Covid Cases Forecasting<br></br><br></br>
+                  <b>Description:</b> Automotive Forecasting Dataset based on state / monthly data since 1/1/2019 with no end date and updated when new data is available. For those features with data science treatments, both the raw and treated data is included in the Dataset output.</p>
               </div>
               <div style={{display:'flex', }}>
                 <p>{props.description}<b>Status:</b> <Button variant="contained" size="large" sx={{mx:2, py:4}}
                                        startIcon={<EditOutlinedIcon />} >
                                       {"Processing"}</Button><br></br>
-                    <b>Signal:</b> 417</p>
+                    <b>Dataset:</b> 417</p>
               </div>
               <div>
                 <p>{props.description}<b>Rows:</b> 1,768<br></br>
@@ -48,7 +48,7 @@ export default function SignalCard(props){
               <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
               
                 <p>{props.description}<b>ANALYSIS</b><br></br><br></br>
-                    Industry: Automotive<br></br><br></br>
+                    Industry: Healthcare<br></br><br></br>
                     Model Type: Forecasting</p>
               </div>
 

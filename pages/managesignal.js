@@ -77,7 +77,7 @@ export default function ManageSignal() {
             <Typography color="inherit" variant="h5" component="h1">
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
                     color:'white',justifyContent:'space-around'}}>
-                    <div>MANAGE SIGNAL &nbsp;</div>
+                    <div>MANAGE DATASET &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
                 
@@ -92,10 +92,10 @@ export default function ManageSignal() {
         
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
               mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',}}>
-                <Button variant="contained" size="large" sx={{mx:2, py:4}}
+                <Button href="/dashboard" variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<CheckIcon />} onClick={handleOpen}>
                     {"Save & Process"}</Button>
-                <Button variant="contained" size="large" sx={{mx:2, py:4}}
+                <Button href="/signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>
                     Output</Button>
             </Box>
@@ -120,7 +120,7 @@ export default function ManageSignal() {
               </Typography>
           </Box>
 
-          <Box sx={{ minWidth: 275, bgcolor: '#eaeff1', display:'flex', flexDirection:'column',py: 6, px: 14, 
+          <Box sx={{ minWidth: 275, bgcolor: '#eaeff1', display:'flex', flexDirection:'column',pt: 6, px: 14, 
               alignItems:'center' }}>
                 <FeatureDetails />
                 <FeatureDetails />
@@ -137,10 +137,10 @@ export default function ManageSignal() {
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',px:14}}>
-            <Button variant="contained" size="large" sx={{mx:2, py:4}}
+            <Button href="/dashboard" variant="contained" size="large" sx={{mx:2, py:4}}
                 startIcon={<CheckIcon />} onClick={handleOpen}>
                 {"Save & Process"}</Button>
-            <Button variant="contained" size="large" sx={{mx:2, py:4}}
+            <Button href="signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
                 startIcon={<ExitToAppIcon />} onClick={handleOpen}>
                 Output</Button>
         </Box>

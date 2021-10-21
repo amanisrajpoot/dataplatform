@@ -1,230 +1,239 @@
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Divider from '@mui/material/Divider';
 import { Button } from 'react-bootstrap';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import { FormControl } from '@mui/material';
+import { InputLabel } from '@mui/material';
+import { Select } from '@mui/material';
+import { MenuItem } from '@mui/material';
+import { TextField } from '@mui/material';
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import CircleIcon from '@mui/icons-material/Circle';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 
 export default function SelectFeatures(props){
+  const [checked, setChecked] = React.useState([true, false]);
+  const [industry, setIndustry] = React.useState('');
+  const [analysis, setAnalysis] = React.useState('');
+
+
+  const handleChangeIndustry = (event) => {
+    setIndustry(event.target.value);
+  };
+
+  const handleChangeAnalysis = (event) => {
+    setAnalysis(event.target.value);
+  };
+
+  const handleChange1 = (event) => {
+    setChecked([event.target.checked, event.target.checked]);
+  };
+
+  const handleChange2 = (event) => {
+    setChecked([event.target.checked, checked[1]]);
+  };
+
+  const handleChange3 = (event) => {
+    setChecked([checked[0], event.target.checked]);
+  };
+
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
     return (
         <div style={{width:"100%",display:"flex", flexDirection:'column',color:'#fff'}}>
-          <p style={{paddingLeft:54}}>SIGNAL OVERVIEW</p>
-          <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', 
-            justifyContent:'space-around', paddingRight:84 }}>
-              
-              
-              <div style={{display:'flex', alignItems:'center', 
-                  justifyContent:'space-between', width:"25%"}}>
-                  
-                  <p><b>Name:</b> Automotive Forecasting<br></br><br></br></p> 
-              </div>
-              <div style={{display:'flex', }}>
-                <p>{props.description}<b>Status:</b> <Button variant="contained" size="large" sx={{mx:2, py:4}}
-                                       startIcon={<EditOutlinedIcon />} >
-                                      {"Processing"}</Button><br></br>
-                    <b>Signal:</b> 417</p>
-              </div>
-              <div>
-                <p>{props.description}<b>Rows:</b> 1,768<br></br>
-                    <b>Data Points:</b> 26,520asd</p>
-              </div>
-              <div style={{display:"flex",flexDirection:'column',}}>
-                  <div><EditOutlinedIcon />&nbsp;Edit</div>
-                  <div><DeleteIcon />&nbsp;Delete</div><br></br>
-                   
-              </div>
+          <div style={{display:"flex", }}>
+            <div style={{width:"25%"}}>
+              <p style={{paddingLeft:54, }}>SIGNAL OVERVIEW</p>
             </div>
-
-            <Divider variant="middle" />
-
-            <div style={{display:"flex", flexDirection:'row', maxHeight:'125px', 
-            justifyContent:'space-around', marginBottom:16 }}>
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-              
-                <p>{props.description}<b>ANALYSIS</b><br></br><br></br>
-                    Industry: Automotive<br></br><br></br>
-                    Model Type: Forecasting</p>
-              </div>
-
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-              
-                <p>{props.description}<b>OUTPUT GRAIN</b><br></br><br></br>
-                    Geo Grain: State<br></br><br></br>
-                    Time Grain: Month</p>
-              </div>
-
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-              
-                <p>{props.description}<b>TIME FRAME</b><br></br><br></br>
-                    Start Date: 01/01/2019<br></br><br></br>
-                    End Date: -</p>
-              </div>
-
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-              
-                <p>{props.description}<b>DATA REFRESH</b><br></br><br></br>
-                    Frequency: When New Data Available<br></br><br></br>
-                    Last Refresh: -</p>
-              </div>
-            </div>
-        </div>
-
-
-    //   <Box sx={{ bgcolor:"#ffffff"}}>
-    //       <Box sx={{py:2, px:4,bgcolor:"#ffffff"}}>
-    //         <h3 style={{}}>SIGNAL OVERVIEW</h3>
-    //       <Box sx={{ width: '100%', 
-    //                 minheight:275, my:1, bgcolor: '#ffffff', display:'flex', flexDirection:'row',
-    //                 alignItems:'center', justifyContent:'space-between', alignItems:'center', }}>
-                
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', 
-    //                     flexDirection:'column', maxWidth:"25%"}}>            
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} color="text.secondary" gutterBottom>
-    //                         Name: Automotive Forecasting
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         Description: Automotive Forecasting Signal based on state / monthly data since 1/1/2019 with no end date and updated when new data is available. For those features with data science treatments, both the raw and treated data is included in the Signal output.
-    //                         </Typography>
-    //                     </Box>  
-
-    //                 </Box>
-
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', flexDirection:'column',
-    //                         justifyContent:'start',
-    //                         alignItems:'start', maxWidth:"25%"}}> 
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} color="text.secondary" gutterBottom>
-    //                       Status: <Button variant="contained" size="large" sx={{mx:2, py:4}}
-    //                                   startIcon={<EditOutlinedIcon />} >
-    //                                   {"Processing"}</Button>
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         Signal: 417
-    //                         </Typography>
-    //                     </Box>  
-
-    //                 </Box>
-
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', 
-    //                     flexDirection:'column', maxWidth:"25%"}}> 
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} color="text.secondary" gutterBottom>
-    //                         Rows: 1,768
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         Data Points: 26,520
-    //                         </Typography>
-    //                     </Box>  
-
-    //                 </Box>
-
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', 
-    //                     flexDirection:'column', maxWidth:"25%"}}> 
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} 
-    //                           gutterBottom>
-    //                           <EditOutlinedIcon />&nbsp;
-    //                           Edit 
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} 
-    //                           gutterBottom>
-    //                         <DeleteIcon />&nbsp;
-    //                           Delete
-    //                         </Typography>
-    //                     </Box> 
-
-    //                 </Box>
-                    
-                    
-    //              </Box>
-    //           </Box>
-        
-    //       <Box sx={{ width: '100%', my:1, px:4,  bgColor:"#fff",display:'flex', flexDirection:'row', 
-    //                  alignItems:'center', justifyContent:'space-between', alignItems:'center', }}>    
-    //           <Divider variant="middle" />
-    //       </Box>
-    //           <Box sx={{ width: '100%', 
-    //                 minheight:275, my:1, px:4, pb:2,bgcolor: '#ffffff', display:'flex', flexDirection:'row',
-    //                 alignItems:'center', justifyContent:'space-between', alignItems:'center', }}>
-                
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', 
-    //                     flexDirection:'column', maxWidth:"30%"}}> 
-      
-    //                     <h3>Analysis</h3>
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} color="text.secondary" gutterBottom>
-    //                         Industry: Automotive
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         Model Type: Forecasting
-    //                         </Typography>
-    //                     </Box>  
-
-    //                 </Box>
-                    
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', 
-    //                     flexDirection:'column', maxWidth:"30%"}}> 
-      
-    //                     <h3>OUTPUT GRAIN</h3>
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} color="text.secondary" gutterBottom>
-    //                         Geo Grain: State
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         Time Grain: Month
-    //                         </Typography>
-    //                     </Box>  
-
-    //                 </Box>
-
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', 
-    //                     flexDirection:'column', maxWidth:"30%"}}> 
-      
-    //                     <h3>TIME FRAME</h3>
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} color="text.secondary" gutterBottom>
-    //                         Start Date: 01/01/2019s
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         End Date: -
-    //                         </Typography>
-    //                     </Box>  
-
-    //                 </Box>
-
-    //                 <Box
-    //                     sx={{ display: 'inline-block',display:'flex', 
-    //                     flexDirection:'column', maxWidth:"30%"}}> 
-      
-    //                     <h3>DATA REFRESH</h3>
-    //                     <Box>
-    //                       <Typography sx={{ fontSize: 14 , fontWeight:'bold'}} color="text.secondary" gutterBottom>
-    //                         Frequency: When New Data Available
-    //                         </Typography>
-    //                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         Last Refresh: -
-    //                         </Typography>
-    //                     </Box>  
-
-    //                 </Box>
-
-    //              </Box>
           
-    //   </Box>
-    
+            <div style={{display:"flex", flexDirection:'column', width:'100%'}}>
+              <div style={{display:'flex',flexDirection:'column', }}>
+
+                <FormGroup sx={{width:'21%',paddingLeft:2}}>
+                  <FormControlLabel control={<Checkbox defaultChecked />} label="Diseases" />
+                </FormGroup>
+                
+                <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', width:'100%',
+                    justifyContent:'space-around', }}>
+                  
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Diabetes" />
+                    <FormControlLabel control={<Checkbox />} label="Hyper Tension" />
+                    <FormControlLabel control={<Checkbox />} label="Disabled" />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                    <FormControlLabel control={<Checkbox />} label="Cancer" />
+                    <FormControlLabel control={<Checkbox />} label="Aids" />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                    <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                    <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                    <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
+                  </FormGroup>
+                
+                </div>
+              </div>
+
+              <Divider variant="middle" sx={{bgColor:"#bcbcbc"}}/>
+
+              <div style={{display:'flex',flexDirection:'column', }}>
+
+                <FormGroup sx={{width:'21%',paddingLeft:2}}>
+                  <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                </FormGroup>
+
+                  <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', width:'100%',
+                      justifyContent:'start', paddingLeft:42}}>
+                    
+                    <FormGroup sx={{width:'21%'}}>
+                      <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                    </FormGroup>
+
+                    <FormGroup sx={{width:'20%'}}>
+                      <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                    </FormGroup>
+
+                  </div>
+              </div>
+
+              <Divider variant="middle" sx={{bgColor:"#bcbcbc"}}/>
+
+              <div style={{display:'flex',flexDirection:'column', }}>
+
+                <FormGroup sx={{width:'21%',paddingLeft:2}}>
+                  <FormControlLabel control={<Checkbox defaultChecked />} label="Drugs" />
+                </FormGroup>
+
+                <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', width:'100%',
+                    justifyContent:'start', paddingLeft:42}}>
+                  
+                  <FormGroup sx={{width:'21%'}}>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Regular" />
+                  </FormGroup>
+
+                  <FormGroup sx={{width:'21%'}}>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Experimental" />
+                  </FormGroup>
+
+                  <FormGroup sx={{width:'21%'}}>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                  </FormGroup>
+
+                  <FormGroup sx={{width:'21%'}}>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                  </FormGroup>
+
+                </div>
+              </div>
+
+              <Divider variant="middle" sx={{bgColor:"#bcbcbc"}}/>
+
+              <div style={{display:'flex',flexDirection:'column', }}>
+
+                <FormGroup sx={{width:'21%',paddingLeft:2}}>
+                  <FormControlLabel control={<Checkbox defaultChecked />} label="COVID-19" />
+                </FormGroup>
+              </div>
+
+            </div>
+          </div>
+
+          <Box sx={{display:"flex",pt:4 }}>
+            <div style={{width:"20%"}}>
+              <p style={{paddingLeft:54, }}>RECOMMEND BASED ON</p>
+            </div>
+          
+            <div style={{display:'flex', flexDirection:'column', width:'80%'}}>
+              <div style={{display:"flex", flexDirection:'row', width:'50%',paddingBottom:18}}>
+                <Box sx={{ minWidth: '49%',px:2 }}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-filled-label">Industry</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-filled-label"
+                        id="demo-simple-select-filled-label"
+                        value={industry}
+                        label="Industry"
+                        onChange={handleChangeIndustry}
+                        sx={{ bgcolor: '#ffffff'}}
+                      >
+                      <MenuItem value={10}>---Select Industry---</MenuItem>
+                      <MenuItem value={20}>Drugs</MenuItem>
+                      <MenuItem value={30}>Physician Practices</MenuItem>
+                      <MenuItem value={40}>Healthcare</MenuItem>
+                      <MenuItem value={50}>Insurance</MenuItem>
+                      <MenuItem value={60}>Other</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+
+                  <Box sx={{  minWidth: "49%", px:2}}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-filled-label" >Analysis</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-filled-label"
+                        id="demo-simple-select-filled-label"
+                        value={analysis}
+                        label="Analysis"
+                        onChange={handleChangeAnalysis}
+                        sx={{ bgcolor: '#ffffff'}}
+                      >
+                        <MenuItem value={"Select Analysis"}>---Select Analysis---</MenuItem>
+                        <MenuItem value={'Cassification'}>Cassification</MenuItem>
+                        <MenuItem value={'Forecasting'}>Forecasting</MenuItem>
+                        <MenuItem value={'Impact Analysis'}>Impact Analysis</MenuItem>
+                        <MenuItem value={'Scoring'}>Scoring</MenuItem>
+                        <MenuItem value={'Others'}>Others</MenuItem>
+
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </div>
+
+              </div>
+          </Box>
+
+
+          <Box sx={{display:"flex",pt:4 }}>
+            <div style={{width:"20%"}}>
+              <p style={{paddingLeft:54, }}>KEYWORD SEARCH</p>
+            </div>
+          
+            <div style={{display:'flex', flexDirection:'column', width:'80%'}}>
+              <div style={{display:"flex", flexDirection:'row', width:'50%',paddingBottom:18}}>
+                  <Box component="main" sx={{  minWidth: '49%', px:2}}>
+                      <TextField fullWidth id="outlined-basic" variant="outlined" label="Enter Keyword" 
+                      sx={{ bgcolor: '#ffffff'}}/>
+                  </Box>
+
+                  <Box sx={{ display:'flex', minWidth: "100%", px:2}}> 
+                        <FormControlLabel control={<Checkbox {...label} icon={<CircleOutlinedIcon />} 
+                            checkedIcon={<CheckCircleIcon />} />} label="Sort Favorites First" />
+                        <FormControlLabel control={<Checkbox {...label} icon={<CircleOutlinedIcon />} 
+                            checkedIcon={<CheckCircleIcon />} />} label="Sort User-Generated First" />
+                  </Box>
+                </div>
+
+              </div>
+          </Box>
+
+      </div>
+
     )
 
 }

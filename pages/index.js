@@ -63,7 +63,7 @@ export default function Home() {
         <Box sx={{ display: 'flex', flexDirection:'column', 
               py: 6, px: 14, height:'90vh', bgcolor: '#3e3e33', 
               alignItems:'center', justifyContent:'center', color:'#eeeeee', 
-              backgroundImage: `url(${'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'})`,
+              //backgroundImage: `url(${'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
               }} >
         
             <Box sx={{pt:8,pb: 6,}}>
@@ -92,10 +92,10 @@ export default function Home() {
                 </Typography>
             </Box>
 
-            <Box>
+            {/* <Box>
               <img src='https://giphy.com/embed/vkCZgsnix2JcjL3ZF6' />
 
-            </Box>
+            </Box> */}
       
         </Box>
 
@@ -109,7 +109,7 @@ export default function Home() {
                 <Typography color="inherit" variant="h4" component="h1" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',py:0, my:0, 
                         borderBottom:'1px #d2202f solid', }}>
-                    Welcome to Ready Signal  
+                    Welcome to Data Platform  
                 </Typography>
             </Box>
 
@@ -121,7 +121,7 @@ export default function Home() {
 
             <Box sx={{pb:1, fontSize:20}}>
                 <ol>
-                  <li>We source the control data including economic, weather, demographic, and population data sets;</li>
+                  <li>We source controlled Healthcare data sets;</li>
                   <li>We organize and curate the data by adjusting for time and geographic granularity;</li>
                   <li>We apply a variety of data science treatments; and</li>
                   <li>We simplify data ingestion through automated processes.</li>
@@ -158,7 +158,7 @@ export default function Home() {
       </Box>
 
       <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-around', px:7, pb:4}}>
-        <Box sx={{display:'flex', flexDirection:'column', width:'10%'}}>
+        {/* <Box sx={{display:'flex', flexDirection:'column', width:'10%'}}>
             <h2>Economic</h2>
             <img src='https://www.readysignal.com/wp-content/uploads/2021/01/Economic.svg' />
         </Box>
@@ -166,7 +166,7 @@ export default function Home() {
         <Box sx={{display:'flex', flexDirection:'column', width:'10%'}}>
             <h2>Weather</h2>
             <img src='https://www.readysignal.com/wp-content/uploads/2021/01/Weather.svg' />
-        </Box>
+        </Box> */}
 
         <Box sx={{display:'flex', flexDirection:'column', width:'10%'}}>
             <h2>Demographic</h2>
@@ -174,12 +174,12 @@ export default function Home() {
         </Box>
 
         <Box sx={{display:'flex', flexDirection:'column', width:'10%'}}>
-            <h2>COVID</h2>
+            <h2>Diseases</h2>
             <img src='https://www.readysignal.com/wp-content/uploads/2021/01/COVID.svg' />
         </Box>
 
         <Box sx={{display:'flex', flexDirection:'column', width:'10%'}}>
-            <h2>Population</h2>
+            <h2>Drugs</h2>
             <img src='https://www.readysignal.com/wp-content/uploads/2021/01/Population.svg' />
         </Box>
 
@@ -202,11 +202,16 @@ export default function Home() {
       </Box>
 
       <Box sx={{ display: 'flex', flexDirection:'column', 
-               py:4, px: 14, bgcolor: '#fff', 
+               py:0, px: 14,bgcolor: '#fff', 
                justifyContent:'center', color:'#000', 
               backgroundImage:'../components/homepage-banner.jpeg'
               }}>
-                <img style={{width:'120ch'}} src='https://www.readysignal.com/wp-content/uploads/2021/01/Ready-Signal-Diagram.svg' />
+              <Box sx={{backgroundColor:'#fff',}}>
+                {/* <img style={{width:'120ch',}} 
+                src="../components/homepage-banner.jpeg" />
+                {// src='https://www.readysignal.com/wp-content/uploads/2021/01/Ready-Signal-Diagram.svg'}
+                } */}
+              </Box>
       </Box>
 
       <Box sx={{ display: 'flex', flexDirection:'column', 
@@ -230,8 +235,8 @@ export default function Home() {
           <img style={{width:"15%"}} src="https://www.readysignal.com/wp-content/uploads/2021/01/Individual.svg"/>
           <h2 style={{borderBottom:'1px #d2202f solid' }}>Individual</h2>
           <p>Test new features fast. Change geographic aggregation instantly. Features are updated automatically.</p>
-          <p>As an analyst, economist, researcher, or data enthusiast, you will save time, 
-            effort and energy by leveraging the power of the Ready Signal platform. 
+          <p>As an analyst, researcher, or data enthusiast, you will save time, 
+            effort and energy by leveraging the power of the Healthcare Data platform. 
             The software allows you to aggregate thousands of data sets, 
             standardize the data based on your desired time and 
             geographic granularities and apply automated data science treatments all with the few clicks.</p>
@@ -242,8 +247,8 @@ export default function Home() {
           <h2 style={{borderBottom:'1px #d2202f solid' }}>Team</h2>
           <p>Instantly share features across your team. Automate data science workflows.</p>
           <p>For teams of analysts building predictive models, 
-            the shared Signal platform allows for collaboration, 
-            more robust Signal characteristics including adding many more features simultaneously. 
+            the shared Data platform allows for collaboration, 
+            more robust Dataset characteristics including adding many more features simultaneously. 
             Full automation including data updates and application of data science treatments 
             included directly in enterprise data science work flows through R, Python, Domo, or API.</p>
         </Box>
@@ -344,7 +349,7 @@ export default function Home() {
         
             <Box sx={{pt:8, px:14,}}>
                 <Box sx={{width:'85%'}}>
-                  <p style={{fontSize:32, color:'#bcbcbc'}}>Data Signal</p>
+                  <p style={{fontSize:32, color:'#bcbcbc'}}>Data Platform</p>
                 </Box>
 
                 <Box sx={{textAlign:'right', color:'#BCBCBC'}}>
@@ -362,7 +367,7 @@ export default function Home() {
 
             <Box sx={{pt:8, px:14,pb:4}}>
                 <Box sx={{width:'90%', color:'#BCBCBC'}}>
-                  <p>contact@readysignal.com </p>
+                  <p>contact@dataplatform.com </p>
                   <p>330 E. Liberty St. Ann Arbor, MI 48104</p>
                 </Box>
             </Box>
