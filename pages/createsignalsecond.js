@@ -92,8 +92,8 @@ export default function CreateSignalSecond() {
             
               <Box sx={{display:'flex', justifyContent:'space-between'}}>
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
-                    color:'white',justifyContent:'start', pl:6}}>
-                    <div>ADD FEATURES &nbsp;</div>
+                    color:'white',justifyContent:'start', pl:6, fontSize:22}}>
+                    <div>ADD CATALOGS &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
 
@@ -129,7 +129,7 @@ export default function CreateSignalSecond() {
           <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1', width:'100%'}}>
                   <Box sx={{ display: 'flex',flexDirection:'row',
                   justifyContent:'space-between',font:'roboto',px:10}}>
-                      <div style={{width:'50%', fontSize: 22}}>MATCHING FEATURES &nbsp;</div>
+                      <div style={{width:'50%', fontSize: 22}}>MATCHING CATALOGS &nbsp;</div>
                       <Box style={{ display: 'flex',flexDirection:'row', fontSize:14,
                           font:'roboto', width:'50%', alignItems:'end', justifyContent:'end' }}>
                           <div style={{display:'flex',width:"25%", alignItems:'center',justifyContent:'center'}}>
@@ -215,12 +215,12 @@ export default function CreateSignalSecond() {
               
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
                     color:'white',justifyContent:'start', fontSize:20}}>
-                    <div>SELECTED FEATURES &nbsp;</div>
+                    <div>SELECTED CATALOGS &nbsp;</div>
                 </Box>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
                     color:'white',justifyContent:'start', pl:6,fontSize:14}}>
-                    <div>0 of Unlimited Possible Features Selected (UPGRADE)</div>
+                    <div>0 of Unlimited Possible Catalogs Selected (UPGRADE)</div>
                 </Box>
           </Box>
           

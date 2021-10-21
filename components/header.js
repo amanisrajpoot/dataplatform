@@ -53,12 +53,13 @@ function Header(props) {
                 sx={{ borderColor: lightColor }}
                 color="inherit"
                 size="large"
+                href="/explore"
               >
                 EXPLORE
               </Button>
               <Button
                 sx={{ borderColor: lightColor }}
-                
+                href="/helpcenter"
                 color="inherit"
                 size="large"
               >

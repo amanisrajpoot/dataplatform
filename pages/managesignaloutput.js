@@ -17,6 +17,8 @@ import { Grid } from '@material-ui/core';
 import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FeatureDetails from '../components/FeatureDetails';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import Output from '../components/output';
 
 
 function Copyright() {
@@ -45,7 +47,7 @@ const style = {
   p: 4,
 };
 
-export default function ManageSignal() {
+export default function ManageSignalOutput() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [industry, setIndustry] = React.useState('');
   const [analysis, setAnalysis] = React.useState('');
@@ -92,12 +94,15 @@ export default function ManageSignal() {
         
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
               mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',}}>
-                <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
+                <Button href="/dashboard" variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<CheckIcon />} onClick={handleOpen}>
-                    {"Save & Process"}</Button>
-                <Button href="/signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
+                    {"Refresh Data"}</Button>
+                <Button variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>
                     Output</Button>
+                <Button variant="contained" size="large" sx={{mx:2, py:4}}
+                    startIcon={<AssessmentIcon />} onClick={handleOpen}>
+                    Visualize</Button>
             </Box>
             </Box>
           </Box>
@@ -137,15 +142,34 @@ export default function ManageSignal() {
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',px:14}}>
-            <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
-                startIcon={<CheckIcon />} onClick={handleOpen}>
-                {"Save & Process"}</Button>
-            <Button href="signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
-                startIcon={<ExitToAppIcon />} onClick={handleOpen}>
-                Output</Button>
+            <Button href="/dashboard" variant="contained" size="large" sx={{mx:2, py:4}}
+                    startIcon={<CheckIcon />} onClick={handleOpen}>
+                    {"Refresh Data"}</Button>
+            <Button variant="contained" size="large" sx={{mx:2, py:4}}
+                    startIcon={<ExitToAppIcon />} onClick={handleOpen}>
+                    Output</Button>
+            <Button variant="contained" size="large" sx={{mx:2, py:4}}
+                    startIcon={<AssessmentIcon />} onClick={handleOpen}>
+                    Visualize</Button>
         </Box>
       </Box>
-    
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+      <Box sx={{ position: 'absolute', bgColor:'#fff',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width:'70%'}}>  
+        <Output />
+      </Box>
+      </Modal>
+
+
       
        <Footer />
     </Box>

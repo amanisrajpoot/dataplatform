@@ -9,7 +9,6 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 
-
 export default function SignalCard(props){
     return (
         <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',}}>

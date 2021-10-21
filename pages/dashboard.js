@@ -24,7 +24,7 @@ import { Grid } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
-
+import Templates from '../components/templates';
 
 function Copyright() {
   return (
@@ -58,6 +58,8 @@ export default function Dashboard() {
   const [analysis, setAnalysis] = React.useState('');
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+  const [open2, setOpen2] = React.useState(false);
+  const handleOpen2 = () => setOpen2(true);
   const handleClose = () => setOpen(false);
 
   const handleChangeIndustry = (event) => {
@@ -127,16 +129,17 @@ export default function Dashboard() {
 
                                 <Divider variant="middle" orientation="vertical" />
                               
-                                <Link href="/createsignalsecond">
+                                
                                   <Box sx={{border:2, borderColor:"#000", 
-                                    mx:4,my:4,py:2,px:4,textAlign:'center'}}>
+                                    mx:4,my:4,py:2,px:4,textAlign:'center'}}
+                                    onClick={()=>handleOpen2}>
                                   <ContentCopyOutlinedIcon style={{fontSize:125}}/>
                                   <p><b>From Template</b><br></br>
                                      Create a new Custom<br></br>
                                      Dateset based on<br></br>
                                      predefined models.</p>
                                 </Box>
-                                </Link>
+                                <Templates open2={open2} handleOpen2={handleOpen2}/>
                                 
                       </div>
                       </Grid>
@@ -159,7 +162,7 @@ export default function Dashboard() {
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
             <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                      <div>EXPLORE FEATURES &nbsp;</div>
+                      <div>EXPLORE CATALOGS &nbsp;</div>
                       <div><HelpOutlineIcon /></div>
                   </Box>
               </Typography>
@@ -247,7 +250,7 @@ export default function Dashboard() {
           <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
              <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                      <div>POPULAR FEATURES &nbsp;</div>
+                      <div>POPULAR CATALOGS &nbsp;</div>
                  
                   </Box>
               </Typography>

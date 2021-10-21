@@ -7,33 +7,12 @@ import Button from '@mui/material/Button';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import FeatureCard from '../components/FeatureCard';
-import SignalCard from '../components/SignalCard';
-import HelpCenterCard from '../components/HelpCenterCard';
-import AddIcon from '@mui/icons-material/Add';
-import Modal from '@mui/material/Modal';
-import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
-import { Grid } from '@material-ui/core';
+import FeatureCard from '../components/FeatureCard';``
 import CheckIcon from '@mui/icons-material/Check';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import FeatureDetails from '../components/FeatureDetails';
 import SelectFeatures from '../components/selectFeatures';
 import LinearProgress from '@mui/material/LinearProgress';
 import PersonIcon from '@mui/icons-material/Person';
 import StarIcon from '@mui/icons-material/Star';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import { Select } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
-import CircularProgress from '@mui/material/CircularProgress';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-
 
 function Copyright() {
   return (
@@ -94,36 +73,29 @@ export default function Explore() {
     <Box>
       <Navbar />
 
-      
-
-        <Box sx={{ display: 'flex', flexDirection:'column', px: 14, bgcolor: '#3e3e33'}}>
-          <Box sx={{ display: 'flex', flexDirection:'column', py: 2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
-              <Box sx={{ width: '100%', px:6,bgcolor: '#3e3e33',color:"#fff",pb:4}}>
-              <p>Step 2 of 2</p>
-              <LinearProgress variant="determinate" value={100} sx={{height:'2vh'}} />
-               </Box>
-            
+        <Box sx={{ display: 'flex', flexDirection:'column', pl: 14, bgcolor: '#3e3e33'}}>
+          <Box sx={{ display: 'flex', flexDirection:'column', py: 2, bgcolor: 'gray-900', 
+              justifyContent:'space-between'}}>
               
-                <Typography color="inherit" variant="h5" component="h1">
-                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
-                    color:'white',justifyContent:'start', pl:6}}>
-                    <div>MANAGE SIGNAL &nbsp;</div>
+                <Box sx={{ display: 'flex', flexDirection:'row', 
+                    font:'roboto', fontSize:26, 
+                    color:'white',justifyContent:'start', pl:6, py:2}}>
+                    <div>EXPLORE FEATURES &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
                 
-            </Typography>
-
           </Box>
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
-          <Box>
-            <Box><SelectFeatures /></Box>
+          <Box sx={{width:'100%'}}>
+            <SelectFeatures />
             <Box sx={{ display: 'flex',pt:4}}>
         
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
-              mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:4}}>
-                <Button variant="contained" size="large" sx={{mx:2, py:4}}
-                    startIcon={<CheckIcon />} onClick={handleOpen}>
+              mb:4, maxHeight:'8vh', minWidth:'24ch',
+              px:32}}>
+                <Button variant="contained" size="large" sx={{mx:2,px:4, py:4}}
+                     onClick={handleOpen}>
                     {"Explore"}</Button>
 
             </Box>

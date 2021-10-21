@@ -101,9 +101,9 @@ export default function SignInSide() {
               <Button
                 type="submit"
                 fullWidth
+                href="/dashboard"
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                href="/"
               >
                 Sign In
               </Button>

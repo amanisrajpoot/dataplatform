@@ -81,7 +81,7 @@ export default function Home() {
             </Box>
 
             <Box sx={{pb:1}}>
-                <Button variant="contained" size="large" onClick={handleOpen}
+                <Button variant="contained" size="large" href="/signup" color="primary"
                 sx={{fontSize:24, color:'#eeeeee'}}>
             Sign up Free</Button>
             </Box>

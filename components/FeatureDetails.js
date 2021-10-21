@@ -12,75 +12,84 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 export default function FeatureDetails(props){
     return (
-      <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',
-      marginBottom:16}}>
-      <p style={{paddingLeft:60}}>SIGNAL OVERVIEW</p>
+      <div style={{width:"100%",display:"flex", 
+          flexDirection:'column',backgroundColor:'#fff',
+          marginBottom:16}}>
+          <div style={{display:'flex', alignItems:'center', 
+            paddingLeft:56, paddingTop:8}}>
+              <p><b>Feature:</b> Vehicle Sales, Seas Adj Annual Rate</p>
+          </div>
       <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', 
-        justifyContent:'space-around', paddingRight:84 }}>
-          
+        justifyContent:'space-around', paddingRight:128 }}>
           
           <div style={{display:'flex', alignItems:'center', 
               justifyContent:'space-between', width:"45%"}}>
               
-              <p><b>Feature:</b> Vehicle Sales, Seas Adj Annual Rate<br></br><br></br>
-              <b>Export Name:</b> vehicle-sales-seas-adj-annual-rate-diff</p><EditOutlinedIcon sx={{fontSize:18, mt:4}}/>
+              <p><b>Export Name:</b> Vehicle Sales, Seas Adj Annual Rate<EditOutlinedIcon sx={{fontSize:18, mx:2}}/><br></br><br></br>
+              <b>Available Through:</b> 08/31/2021</p>
           </div>
           <div>
             <p>{props.description}<b>Publisher:</b> FRED<br></br>
                 <b>Product:</b> Retail Sales</p>
           </div>
-          <div style={{display:"flex",flexDirection:'column',}}>
-              <div><EditOutlinedIcon />&nbsp;Edit</div>
-              <div><DeleteIcon />&nbsp;Delete</div><br></br>
-              <div><ContentCopyIcon />&nbsp;Duplicate</div><br></br>
+          <div style={{display:"flex",flexDirection:'column',paddingBottom:4}}>
+              <div style={{dispplay:'flex', alignItems:'center'}}><EditOutlinedIcon />&nbsp;Edit</div>
+              <div style={{dispplay:'flex', alignItems:'center', paddingTop:8}}><DeleteIcon />&nbsp;Delete</div><br></br>
+              <div style={{dispplay:'flex', alignItems:'center', paddingTop:8}}><ContentCopyIcon />&nbsp;Duplicate</div><br></br>
                
           </div>
         </div>
 
         <Divider variant="middle" />
 
-        <div style={{display:"flex", flexDirection:'row', maxHeight:'125px', fontSize:12,
-        justifyContent:'space-around',backgroundColor:'#fff', marginBottom:16, marginLeft:48 }}>
+        <div style={{display:"flex", flexDirection:'row', maxHeight:'125px', fontSize:14,
+        justifyContent:'space-around',backgroundColor:'#fff', marginBottom:16, marginLeft:25 }}>
           <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
           
-            <p>{props.description}<b>ANALYSIS</b><br></br><br></br>
-                Industry: Automotive<br></br><br></br>
-                Model Type: Forecasting</p>
+            <p>{props.description}<b>Lead/Lag</b><br></br><br></br>
+            None</p>
           </div>
 
           <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
           
-            <p>{props.description}<b>OUTPUT GRAIN</b><br></br><br></br>
-                Geo Grain: State<br></br><br></br>
-                Time Grain: Month</p>
+            <p>{props.description}<b>Decay</b><br></br><br></br>
+                None</p>
           </div>
 
           <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
           
-            <p>{props.description}<b>TIME FRAME</b><br></br><br></br>
-                Start Date: 01/01/2019<br></br><br></br>
-                End Date: -</p>
+            <p>{props.description}<b>Difference</b><br></br><br></br>
+                None</p>
           </div>
 
           <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
           
-            <p>{props.description}<b>DATA REFRESH</b><br></br><br></br>
-                Frequency: When New<br></br><br></br>
-                Last Refresh: -</p>
+            <p>{props.description}<b>SSNL Diff</b><br></br><br></br>
+                None</p>
           </div>
 
           <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
           
-            <p>{props.description}<b>DATA REFRESH</b><br></br><br></br>
-                Frequency: When <br></br><br></br>
-                Last Refresh: -</p>
+            <p>{props.description}<b>Ladder</b><br></br><br></br>
+                None</p>
           </div>
 
           <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
           
-            <p>{props.description}<b>DATA REFRESH</b><br></br><br></br>
-                Frequency: When New Data Available<br></br><br></br>
-                Last Refresh: -</p>
+            <p>{props.description}<b>Indexing</b><br></br><br></br>
+                None</p>
+          </div>
+
+          <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+          
+            <p>{props.description}<b>Geo Grain</b><br></br><br></br>
+                Data Source</p>
+          </div>
+
+          <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+          
+            <p>{props.description}<b>Time Grain</b><br></br><br></br>
+                Data Source</p>
           </div>
         </div>
     </div>
