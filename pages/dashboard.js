@@ -52,6 +52,18 @@ const style = {
   p: 4,
 };
 
+const style2 = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 900,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function Dashboard() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [industry, setIndustry] = React.useState('');
@@ -59,15 +71,18 @@ export default function Dashboard() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const [open2, setOpen2] = React.useState(false);
-  const handleOpen2 = () => setOpen2(true);
+  const handleOpen2 = () => {                               
+                              setOpen(false);
+                              setOpen2(true);}
   const handleClose = () => setOpen(false);
 
   const handleChangeIndustry = (event) => {
     setIndustry(event.target.value);
   };
 
-  const handleChangeAnalysis = (event) => {
-    setAnalysis(event.target.value);
+  const handleClose2 = (event) => {
+    setOpen2(false);
+    setOpen(false);
   };
 
   const handleDrawerToggle = () => {
@@ -105,7 +120,7 @@ export default function Dashboard() {
                         <Box sx={{display:'flex', flexDirection:"row", fontSize:20, fontWeight:600,
                             justifyContent:'space-between'}}>
                             <Box>
-                                CHOOSE A DATASET TYPE
+                                CHOOSE A METHOD
                             </Box>
                             <Box>
                                 X
@@ -118,7 +133,7 @@ export default function Dashboard() {
                                 <Link href="/createsignalfirst">
                                 <Box sx={{border:2, borderColor:"#000000", 
                                     mx:4,my:4,py:2,px:4, textAlign:'center'}}>
-                                  <AddBoxIcon style={{fontSize:125}}/>
+                                  <AddBoxIcon style={{fontSize:96}}/>
                                   <p><b>From Scratch</b><br></br>
                                      Create a new Custom<br></br>
                                      Dataset combining the<br></br>
@@ -129,17 +144,119 @@ export default function Dashboard() {
 
                                 <Divider variant="middle" orientation="vertical" />
                               
-                                
                                   <Box sx={{border:2, borderColor:"#000", 
                                     mx:4,my:4,py:2,px:4,textAlign:'center'}}
-                                    onClick={()=>handleOpen2}>
-                                  <ContentCopyOutlinedIcon style={{fontSize:125}}/>
-                                  <p><b>From Template</b><br></br>
-                                     Create a new Custom<br></br>
+                                    onClick={handleOpen2}>
+                                  <ContentCopyOutlinedIcon style={{fontSize:96}}/>
+                                  <p><b>From Predefined Models</b><br></br>
+                                      Create a new<br></br>
                                      Dateset based on<br></br>
-                                     predefined models.</p>
+                                     predefined domain models.</p>
                                 </Box>
-                                <Templates open2={open2} handleOpen2={handleOpen2}/>
+
+                                
+                      </div>
+                      </Grid>
+                  </Box>
+                </Modal>
+
+                <Modal
+                  open={open2}
+                  onClose={handleClose2}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style2}>
+                      <Grid sx={{display:'flex', flexDirection:'column', width:'100%' }}>
+                        <Box sx={{display:'flex', flexDirection:"row", fontSize:20, fontWeight:600,
+                            justifyContent:'space-between'}}>
+                            <Box>
+                                CHOOSE A MODEL
+                            </Box>
+                            <Box>
+                                X
+                            </Box>
+                        </Box>
+
+                        <div style={{display:"flex", flexDirection:'row', maxHeight:'325px', width:"100%",
+                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16, fontSize:14 }}>
+                               
+                               <Link href="/managesignal">
+                               <Box sx={{border:2, borderColor:"#000", 
+                                    mx:4,my:2,py:2,px:4,textAlign:'center'}}
+                                    onClick={()=>handleOpen2} >
+                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
+                                  <p><b>From Predefined Models</b><br></br>
+                                      Create a new<br></br>
+                                     Dateset based on<br></br>
+                                     predefined domain models.</p>
+                                  </Box>
+                                </Link>
+
+                                <Link href="/managesignal">                        
+                                  <Box sx={{border:2, borderColor:"#000", 
+                                    mx:4,my:2,py:2,px:4,textAlign:'center'}}
+                                    onClick={()=>handleOpen2}>
+                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
+                                  <p><b>From Predefined Models</b><br></br>
+                                      Create a new<br></br>
+                                     Dateset based on<br></br>
+                                     predefined domain models.</p>
+                                  </Box>
+                                </Link>
+                              
+                              <Link href="/managesignal">                        
+                                <Box sx={{border:2, borderColor:"#000", 
+                                  mx:4,my:2,py:2,px:4,textAlign:'center'}}
+                                  onClick={()=>handleOpen2}>
+                                <ContentCopyOutlinedIcon style={{fontSize:75}}/>
+                                <p><b>From Predefined Models</b><br></br>
+                                    Create a new<br></br>
+                                  Dateset based on<br></br>
+                                  predefined domain models.</p>
+                                </Box>
+                              </Link>
+                                
+                      </div>
+
+                      <div style={{display:"flex", flexDirection:'row', maxHeight:'325px', width:"100%",
+                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16, fontSize:14 }}>
+                               
+                               <Link href="/managesignal">
+                               <Box sx={{border:2, borderColor:"#000", 
+                                    mx:4,my:2,py:2,px:4,textAlign:'center'}}
+                                    onClick={()=>handleOpen2} >
+                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
+                                  <p><b>From Predefined Models</b><br></br>
+                                      Create a new<br></br>
+                                     Dateset based on<br></br>
+                                     predefined domain models.</p>
+                                  </Box>
+                                </Link>
+
+                                <Link href="/managesignal">                        
+                                  <Box sx={{border:2, borderColor:"#000", 
+                                    mx:4,my:2,py:2,px:4,textAlign:'center'}}
+                                    onClick={()=>handleOpen2}>
+                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
+                                  <p><b>From Predefined Models</b><br></br>
+                                      Create a new<br></br>
+                                     Dateset based on<br></br>
+                                     predefined domain models.</p>
+                                  </Box>
+                                </Link>
+                              
+                              <Link href="/managesignal">                        
+                                <Box sx={{border:2, borderColor:"#000", 
+                                  mx:4,my:2,py:2,px:4,textAlign:'center'}}
+                                  onClick={()=>handleOpen2}>
+                                <ContentCopyOutlinedIcon style={{fontSize:75}}/>
+                                <p><b>From Predefined Models</b><br></br>
+                                    Create a new<br></br>
+                                  Dateset based on<br></br>
+                                  predefined domain models.</p>
+                                </Box>
+                              </Link>
                                 
                       </div>
                       </Grid>
@@ -162,7 +279,7 @@ export default function Dashboard() {
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
             <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                      <div>EXPLORE CATALOGS &nbsp;</div>
+                      <div>Explore Healthcare Data Platform &nbsp;</div>
                       <div><HelpOutlineIcon /></div>
                   </Box>
               </Typography>
@@ -182,7 +299,7 @@ export default function Dashboard() {
             <Box component="main" sx={{ bgcolor: '#eaeff1',minWidth: '25vw', px:2 }}>
                 <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-filled-label">Industry</InputLabel>
+                      <InputLabel id="demo-simple-select-filled-label">Topic</InputLabel>
                       <Select
                         labelId="demo-simple-select-filled-label"
                         id="demo-simple-select-filled-label"
@@ -201,7 +318,7 @@ export default function Dashboard() {
                     </FormControl>
                   </Box>
             </Box>
-            <Box component="main" sx={{  bgcolor: '#eaeff1',minWidth: '25vw', px:2 }}>
+            {/* <Box component="main" sx={{  bgcolor: '#eaeff1',minWidth: '25vw', px:2 }}>
                 <Box sx={{  }}>
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-filled-label" >Analysis</InputLabel>
@@ -223,7 +340,7 @@ export default function Dashboard() {
                       </Select>
                     </FormControl>
                   </Box>
-            </Box>
+            </Box> */}
 
             <Box>
                 <Box sx={{minWidth:'55px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
@@ -250,7 +367,7 @@ export default function Dashboard() {
           <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
              <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                      <div>POPULAR CATALOGS &nbsp;</div>
+                      <div>Popular Data Sources &nbsp;</div>
                  
                   </Box>
               </Typography>
@@ -361,6 +478,8 @@ export default function Dashboard() {
         </Box>
     </Box>  
        <Footer />
+
+       
     </Box>
   );
 }

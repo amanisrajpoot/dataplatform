@@ -14,32 +14,26 @@ import SettingsIcon from '@mui/icons-material/Settings';
 export default function SignalTable(props) {
     const columns = [
         { id: 'status', label: '', minWidth: 130 },
-        { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'Features', label: 'Features', minWidth: 50 },
+        { id: 'name', label: 'Dataset Name', minWidth: 170 },
+        { id: 'Features', label: 'Data Sources', minWidth: 50 },
+        { id: 'Features', label: 'No. of Rows', minWidth: 110 },
         {
           id: 'time',
-          label: 'Time',
-          minWidth: 170,
-          align: 'right',
-          format: (value) => value.toLocaleString('en-US'),
-        },
-        {
-          id: 'geography',
-          label: 'Geography',
-          minWidth: 170,
+          label: 'Time Grain',
+          minWidth: 110,
           align: 'right',
           format: (value) => value.toLocaleString('en-US'),
         },
         {
           id: 'dateupdated',
-          label: 'Date Updated',
+          label: 'Start Date',
           minWidth: 170,
           align: 'right',
           format: (value) => value.toFixed(2),
         },
         {
           id: 'modified',
-          label: 'Modified',
+          label: 'End Date',
           minWidth: 170,
           align: 'right',
           format: (value) => value.toFixed(2),
@@ -54,7 +48,7 @@ export default function SignalTable(props) {
       const rows = [
         createData('Ready','Cancer Patient', '03', "Quarter", "Zip","26/10/2021","26/10/2021",'settings'),
         createData('Processing','Covid Recovery', '10', "Month", "State","26/10/2021","17/10/2021",'settings'),
-        createData('Error','Survival Rate', '11', "Day", "Country","26/10/2021","10/10/2021",'settings'),
+        createData('Ready','Survival Rate', '11', "Day", "Country","26/10/2021","10/10/2021",'settings'),
         
       ];
   

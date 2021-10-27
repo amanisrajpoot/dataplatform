@@ -8,7 +8,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FeatureCard from '../components/FeatureCard';
-import SignalCard from '../components/SignalCard';
+import SignalCardOut from '../components/SignalCardOut';
 import HelpCenterCard from '../components/HelpCenterCard';
 import AddIcon from '@mui/icons-material/Add';
 import Modal from '@mui/material/Modal';
@@ -89,7 +89,7 @@ export default function ManageSignalOutput() {
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
           <Box>
-            <Box><SignalCard /></Box>
+            <Box><SignalCardOut /></Box>
             <Box sx={{ display: 'flex',pt:4}}>
         
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 

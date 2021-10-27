@@ -147,9 +147,9 @@ export default function SelectFeatures(props){
             </div>
           
               <div style={{display:"flex", flexDirection:'row', width:'80%',paddingBottom:18}}>
-                <div style={{ minWidth: '25%',paddingLeft:4, paddingRight:8}}>
+                <div style={{ minWidth: '38%',paddingLeft:4, paddingRight:8}}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-filled-label">Industry</InputLabel>
+                      <InputLabel id="demo-simple-select-filled-label">Topic</InputLabel>
                       <Select
                         labelId="demo-simple-select-filled-label"
                         id="demo-simple-select-filled-label"
@@ -168,7 +168,7 @@ export default function SelectFeatures(props){
                     </FormControl>
                   </div>
 
-                  <div style={{  minWidth: "25%", paddingLeft:4, paddingRight:8}}>
+                  {/* <div style={{  minWidth: "25%", paddingLeft:4, paddingRight:8}}>
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-filled-label" >Analysis</InputLabel>
                       <Select
@@ -188,7 +188,7 @@ export default function SelectFeatures(props){
 
                       </Select>
                     </FormControl>
-                  </div>
+                  </div> */}
                 </div>
 
           </div>
@@ -203,7 +203,7 @@ export default function SelectFeatures(props){
             <div style={{display:'flex', flexDirection:'column', width:'80%'}}>
               <div style={{display:"flex", flexDirection:'row', width:'100%',
                   paddingBottom:18}}>
-                  <div component="main" style={{  minWidth: '25%', paddingLeft:4, 
+                  <div component="main" style={{  minWidth: '38%', paddingLeft:4, 
                       paddingRight:8}}>
                       <TextField fullWidth id="outlined-basic" variant="outlined" label="Enter Keyword" 
                       sx={{ bgcolor: '#ffffff'}}/>

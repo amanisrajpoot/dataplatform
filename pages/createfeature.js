@@ -59,7 +59,7 @@ export default function CreateFeature() {
       
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
                     color:'gray', fontSize:24,pl:16, py:4}}>
-                    <div>CREATE NEW FEATURE &nbsp;</div>
+                    <div>CREATE NEW CATALOG &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
                 
@@ -217,7 +217,7 @@ export default function CreateFeature() {
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
             <Button variant="contained" size="large" sx={{mx:2, py:4}}
                 endIcon={<CheckIcon />} href="/createsignalsecond">
-                {"Create New Feature"}</Button>
+                {"Create New CATALOG"}</Button>
   
         </Box>
       </Box>

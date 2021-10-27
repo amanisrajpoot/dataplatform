@@ -100,7 +100,7 @@ export default function CreateSignalSecond() {
                 <Button variant="contained" size="large" sx={{mx:2, py:2}}
                     startIcon={<AddIcon />} onClick={handleOpen}
                     href='/createfeature'>
-                    {"Create New Feature"}</Button>
+                    {"Create New Catalog"}</Button>
               </Box>
 
           </Box>
@@ -267,9 +267,9 @@ export default function CreateSignalSecond() {
                     <div><b>Data Points:</b> &nbsp;</div> <div style={{width:122}}>To be calculated</div>
                 </Box>
 
-                <Box sx={{display:'flex',flexDirection:'column',px:15,
+                {/* <Box sx={{display:'flex',flexDirection:'column',px:15,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
+                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
                     <FormControl component="fieldset">
                         <FormLabel component="legend">
                             <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
@@ -289,7 +289,7 @@ export default function CreateSignalSecond() {
                      {"Note: You can add & edit features and treatments associated to a signal, after creation"}
                      </div>
                    
-                </Box>
+                </Box> */}
 
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', bgColor:'#fff',
                     py:4,px:13, maxHeight:'14vh', minWidth:'24ch',justifyContent:'start',}}>

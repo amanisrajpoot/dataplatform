@@ -122,7 +122,7 @@ export default function CreateSignalFirst() {
 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2}}>
-                    <div>ANALYSIS &nbsp;</div>
+                    <div>TOPIC &nbsp;</div>
                     <div style={{fontSize:12, paddingTop:4}}>*Used to recommend features and data treatment techniques to consider</div>
                 </Box>
                 
@@ -130,7 +130,7 @@ export default function CreateSignalFirst() {
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                     <FormControl variant="outlined" sx={{ minWidth: '50%' }}>
-                    <InputLabel htmlFor="demo-simple-select-filled">Industry:</InputLabel>
+                    <InputLabel htmlFor="demo-simple-select-filled">Topic:</InputLabel>
                       <Select
                       labelId="demo-simple-select-filled-label"
                       id="demo-simple-select-filled"
@@ -140,7 +140,7 @@ export default function CreateSignalFirst() {
                       //startAdornment={<InputAdornment position="start">$</InputAdornment>}
                       label="Name"
                     >
-                      <MenuItem value={10}>---Select Industry---</MenuItem>
+                      <MenuItem value={10}>---Select Topic---</MenuItem>
                       <MenuItem value={20}>Drugs</MenuItem>
                       <MenuItem value={30}>Physician Practices</MenuItem>
                       <MenuItem value={40}>Healthcare</MenuItem>
@@ -150,7 +150,7 @@ export default function CreateSignalFirst() {
                     </Select>
                     </FormControl>
 
-                    <FormControl variant="outlined" sx={{ width: '50%' }}>
+                    {/* <FormControl variant="outlined" sx={{ width: '50%' }}>
                     <InputLabel htmlFor="demo-simple-select-filled">Analysis:</InputLabel>
                       <Select
                       labelId="demo-simple-select-filled-label"
@@ -168,7 +168,7 @@ export default function CreateSignalFirst() {
                       <MenuItem value={30}>Other</MenuItem>
 
                     </Select>
-                    </FormControl>
+                    </FormControl> */}
 
                 </Box>
 
@@ -259,7 +259,7 @@ export default function CreateSignalFirst() {
                 <Box sx={{display:'flex',flexDirection:'row',px:16,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
-                    <FormControl sx={{ minWidth: '50%' }}>
+                    {/* <FormControl sx={{ minWidth: '50%' }}>
                     <InputLabel id="demo-simple-select-helper-label">Specify Geography:</InputLabel>
                       <Select
                       labelId="demo-simple-select-helper-label"
@@ -275,7 +275,7 @@ export default function CreateSignalFirst() {
                       <MenuItem value={20}>Filter by States</MenuItem>
                       <MenuItem value={30}>Filter by Zips</MenuItem>
                     </Select>
-                    </FormControl>
+                    </FormControl> */}
 
                     {false?
                     <FormControl sx={{ minWidth: '50%' }}>
@@ -298,7 +298,7 @@ export default function CreateSignalFirst() {
                     </FormControl>
                     :true?
                     <FormControl variant="filled" sx={{ minWidth: '50%' }}>
-                      <InputLabel >Enter the zip codes or paste the codes.</InputLabel>
+                      <InputLabel >Enter Keywords</InputLabel>
                       <TextField
                       
                       sx={{color:'#fff',bgColor:"red",pb:2,width:'95%',}}

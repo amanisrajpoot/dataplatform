@@ -17,7 +17,7 @@ export default function FeatureDetails(props){
           marginBottom:16}}>
           <div style={{display:'flex', alignItems:'center', 
             paddingLeft:56, paddingTop:8}}>
-              <p><b>Feature:</b> Vehicle Sales, Seas Adj Annual Rate</p>
+              <p><b>Feature:</b> Covid Vaccine, Seas Adj Annual Rate</p>
           </div>
       <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', 
         justifyContent:'space-around', paddingRight:128 }}>
@@ -25,7 +25,7 @@ export default function FeatureDetails(props){
           <div style={{display:'flex', alignItems:'center', 
               justifyContent:'space-between', width:"45%"}}>
               
-              <p><b>Export Name:</b> Vehicle Sales, Seas Adj Annual Rate<EditOutlinedIcon sx={{fontSize:18, mx:2}}/><br></br><br></br>
+              <p><b>Export Name:</b> Covid Vaccine Sales, Seas Adj Annual Rate<EditOutlinedIcon sx={{fontSize:18, mx:2}}/><br></br><br></br>
               <b>Available Through:</b> 08/31/2021</p>
           </div>
           <div>
