@@ -46,7 +46,7 @@ export default function Output() {
                   <div sx={{ display: 'flex',flexDirection:'column', 
                       justifyContent:'space-between',font:'roboto',
                       fontSize:24, width:'100%' }}>
-                      <div style={{paddingLeft:14}}><div style={{fontSize:24, }}>OUTPUT OPTIONS</div> &nbsp;
+                      <div style={{paddingLeft:14}}><div style={{fontSize:24 }}>OUTPUT OPTIONS</div> &nbsp;
                       <>Last time exported at 10/21/2021 15:10 pm</></div>
                       
                       <div>
@@ -63,11 +63,11 @@ export default function Output() {
           </div>
            
           <div style={{ paddingTop: 18,display: 'flex', flexDirection: 'column', 
-            width:'65%', paddingLeft:56, }}>
+            width:'65%', paddingLeft:56 }}>
               
               <div style={{display:'flex', flexDirection:'row', 
                   width:'100%', height:'100%', justifyContent:'end',paddingBottom:12}}>
-                <div style={{fontSize:14,}}>DOCUMENTATION</div>
+                <div style={{fontSize:14}}>DOCUMENTATION</div>
               </div>
 
               <div style={{display:'flex', flexDirection:'column', 
