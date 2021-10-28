@@ -1,7 +1,6 @@
-import {useState, } from 'react';
+import {useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
@@ -33,27 +32,8 @@ const style = {
 };
 
 export default function Output() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [industry, setIndustry] = React.useState('');
-  const [analysis, setAnalysis] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const handleChangeIndustry = (event) => {
-    setIndustry(event.target.value);
-  };
-
-  const handleChangeAnalysis = (event) => {
-    setAnalysis(event.target.value);
-  };
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   
   return (
     
