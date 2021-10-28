@@ -3,11 +3,16 @@ export const CONTACT_EMAIL = '';
 export const adminRoute = ['/admin/hil', '/admin/drugs'];
 export const nonAuthRoutes = [
 	'/',
+	'/dashboard',
 	'/login',
 	'/signup',
-	'/forgotpassword',
-	'/offline',
-	'/reconfirm',
+	'/forgetpassword',
+	'/createsignalfirst',
+	'/createsignalsecond',
+	'/managesignal',
+	'/managesignaloutput',
+	'/helpcenter',
+	'/explore',
 ];
 export const nonDashboardRoute = nonAuthRoutes + adminRoute;
 
