@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['https://opri.sg'],
+    domains: ['www.readysignal.com'],
   },
   reactStrictMode: true,
   

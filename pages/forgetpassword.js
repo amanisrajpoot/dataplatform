@@ -77,7 +77,6 @@ export default function ForgetPassword() {
                   <Typography component="body1" variant="subtitle2">
                       {"Make sure you're entering the correct email address which was used while registering the account."}
                     </Typography>
-                  
               </Grid>
               
               
