@@ -63,7 +63,7 @@ export default function Output() {
           </div>
            
           <div style={{ paddingTop: 18,display: 'flex', flexDirection: 'column', 
-            width:'65%', mb:4, paddingLeft:56, }}>
+            width:'65%', paddingLeft:56, }}>
               
               <div style={{display:'flex', flexDirection:'row', 
                   width:'100%', height:'100%', justifyContent:'end',paddingBottom:12}}>
