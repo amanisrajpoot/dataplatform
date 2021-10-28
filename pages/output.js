@@ -1,11 +1,8 @@
 import {useState, useEffect} from 'react';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-
 
 function Copyright() {
   return (

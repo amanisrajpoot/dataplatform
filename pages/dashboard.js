@@ -19,12 +19,10 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import SignalTable from '../components/SignalTable';
 import Modal from '@mui/material/Modal';
-import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import { Grid } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
-import Templates from '../components/templates';
 
 function Copyright() {
   return (
