@@ -1,18 +1,9 @@
-import {useState, useEffect} from 'react';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import UseMediaQuery from '@mui/material/useMediaQuery';
+import {useState, } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import HomepageCards from '../components/HomepageCards';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-
-
-
 
 export default function ServiceTerms() {
   const [mobileOpen, setMobileOpen] = useState(false);

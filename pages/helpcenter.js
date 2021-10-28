@@ -1,10 +1,8 @@
-import {useState, useEffect} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HelpCenterCard from '../components/HelpCenterCard';
@@ -18,8 +16,6 @@ import PropTypes from 'prop-types';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Stack from '@mui/material/Stack';
-
-
 
 function Copyright() {
   return (

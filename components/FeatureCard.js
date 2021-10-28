@@ -1,14 +1,7 @@
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import TimerIcon from '@mui/icons-material/Timer';
-import StorageIcon from '@mui/icons-material/Storage';
-import ArrowRightAltSharpIcon from '@mui/icons-material/ArrowRightAltSharp';
 import AddIcon from '@mui/icons-material/Add';
-import { PeopleOutlineSharp } from '@mui/icons-material';
 
 export default function FeatureCard(props){
     return (

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -8,7 +8,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HomepageCards from '../components/HomepageCards';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-
 
 function Copyright() {
   return (
@@ -328,7 +327,7 @@ export default function Home() {
               }} >
 
             <Box sx={{pb:1}}>
-                <Button variant="contained" size="large" onClick={handleOpen}
+                <Button variant="contained" size="large" 
                 sx={{fontSize:24, color:'#eeeeee'}}>
             Sign up Free</Button>
             </Box>

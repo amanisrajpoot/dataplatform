@@ -1,13 +1,8 @@
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Divider from '@mui/material/Divider';
 import { Button } from 'react-bootstrap';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 
 export default function SignalCardOut(props){
     return (

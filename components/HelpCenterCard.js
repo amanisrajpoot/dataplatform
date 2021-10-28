@@ -1,4 +1,3 @@
-import Box from '@material-ui/core/Box';
 import TimerIcon from '@mui/icons-material/Timer';
 import ArrowRightAltSharpIcon from '@mui/icons-material/ArrowRightAltSharp';
 import DateRangeIcon from '@mui/icons-material/DateRange';

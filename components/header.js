@@ -4,10 +4,8 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { Link } from 'next/link';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 

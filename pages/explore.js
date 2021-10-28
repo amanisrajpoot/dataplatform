@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -8,9 +8,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FeatureCard from '../components/FeatureCard';``
-import CheckIcon from '@mui/icons-material/Check';
 import SelectFeatures from '../components/selectFeatures';
-import LinearProgress from '@mui/material/LinearProgress';
 import PersonIcon from '@mui/icons-material/Person';
 import StarIcon from '@mui/icons-material/Star';
 
@@ -80,7 +78,7 @@ export default function Explore() {
                 <Box sx={{ display: 'flex', flexDirection:'row', 
                     font:'roboto', fontSize:26, 
                     color:'white',justifyContent:'start', pl:6, py:2}}>
-                    <div>EXPLORE FEATURES &nbsp;</div>
+                    <div>EXPLORE CATALOGS &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
                 
@@ -110,7 +108,7 @@ export default function Explore() {
           <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1', width:'100%'}}>
                   <Box sx={{ display: 'flex',flexDirection:'row',
                   justifyContent:'space-between',font:'roboto',px:10}}>
-                      <div style={{width:'50%', fontSize: 22}}>MATCHING FEATURES &nbsp;</div>
+                      <div style={{width:'50%', fontSize: 22}}>MATCHING CATALOGS &nbsp;</div>
                       <Box style={{ display: 'flex',flexDirection:'row', fontSize:14,
                           font:'roboto', width:'50%', alignItems:'end', justifyContent:'end' }}>
                           <div style={{display:'flex',width:"25%", alignItems:'center',justifyContent:'center'}}>

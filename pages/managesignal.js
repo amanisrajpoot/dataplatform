@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -7,17 +7,11 @@ import Button from '@mui/material/Button';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import FeatureCard from '../components/FeatureCard';
 import SignalCard from '../components/SignalCard';
-import HelpCenterCard from '../components/HelpCenterCard';
 import AddIcon from '@mui/icons-material/Add';
-import Modal from '@mui/material/Modal';
-import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
-import { Grid } from '@material-ui/core';
 import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FeatureDetails from '../components/FeatureDetails';
-
 
 function Copyright() {
   return (

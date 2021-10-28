@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -7,19 +7,14 @@ import Button from '@mui/material/Button';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import FeatureCard from '../components/FeatureCard';
 import SignalCardOut from '../components/SignalCardOut';
-import HelpCenterCard from '../components/HelpCenterCard';
 import AddIcon from '@mui/icons-material/Add';
 import Modal from '@mui/material/Modal';
-import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
-import { Grid } from '@material-ui/core';
 import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FeatureDetails from '../components/FeatureDetails';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import Output from '../components/output';
-
 
 function Copyright() {
   return (
@@ -94,8 +89,8 @@ export default function ManageSignalOutput() {
         
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
               mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',}}>
-                <Button href="/dashboard" variant="contained" size="large" sx={{mx:2, py:4}}
-                    startIcon={<CheckIcon />} onClick={handleOpen}>
+                <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
+                    startIcon={<CheckIcon />} >
                     {"Refresh Data"}</Button>
                 <Button variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>

@@ -3,7 +3,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Header from './Header';
 
-
 let theme = createTheme({
   palette: {
     primary: {

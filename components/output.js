@@ -1,5 +1,4 @@
-import {useState, useEffect} from 'react';
-import Box from '@mui/material/Box';
+import {useState, } from 'react';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import * as React from 'react';
