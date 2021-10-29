@@ -61,8 +61,8 @@ export default function Home() {
       <Navbar />
         <Box sx={{ display: 'flex', flexDirection:'column', 
               py: 6, px: 14, height:'90vh', bgcolor: '#3e3e33', 
-              alignItems:'center', justifyContent:'center', color:'#eeeeee', 
-              //backgroundImage: `url(${'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
+              alignItems:'center', justifyContent:'center', color:'#eeeeee', backgroundSize: 'auto',
+              backgroundImage: `url(${'https://wallpapertag.com/wallpaper/full/0/6/8/315901-science-background-1920x1080-windows-xp.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
               }} >
         
             <Box sx={{pt:8,pb: 6,}}>
