@@ -343,7 +343,8 @@ export default function Home() {
         <Box sx={{ display: 'flex', flexDirection:'column', 
               height:'55vh', bgcolor: '#3e3e33', 
                justifyContent:'center', color:'#000',  
-              backgroundImage:'../components/homepage-banner.jpeg', pb:4
+              backgroundImage:'https://wallpapertag.com/wallpaper/full/0/6/8/315901-science-background-1920x1080-windows-xp.jpg',
+               pb:4
               }}>
         
             <Box sx={{pt:8, px:14,}}>
