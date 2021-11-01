@@ -12,6 +12,10 @@ import Grid from '@mui/material/Grid';
 import ScreenLockPortraitOutlinedIcon from '@mui/icons-material/ScreenLockPortraitOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { withStyles } from '@material-ui/core/styles';
+import {signIn} from "../function/checkAuth";
 
 function Copyright(props) {
   return (
@@ -28,7 +32,38 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+const Login =() => {
+	const signingLoading = () => {
+		if (email !== '' && password !== '') {
+			setisLoading(true);
+			signIn();
+		}
+	};
+
+  const CustomCheckBox = withStyles({
+		root: {
+			color: '#0DB1A1',
+			'&$checked': {
+				color: '#0DB1A1',
+			},
+		},
+		checked: {},
+	})((props) => (
+		<Checkbox
+			color='default'
+			{...props}
+			style={{
+				background: 'white',
+				width: '30px',
+				height: '30px',
+				margin: '0px',
+				display: 'flex',
+				justifyContent: 'center',
+				marginTop: '6px',
+			}}
+		/>
+	));
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -39,6 +74,25 @@ export default function SignInSide() {
     });
   };
 
+    const router = useRouter()
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [isLoading, setisLoading] = useState(false);
+    async function signInF(){
+        const err = await signIn({email, password, token, setToken});
+        setisLoading(false);
+        if (err && err.code==="UserNotConfirmedException"){
+            await router.push("/reconfirm");
+        } else if (err){
+            setError(err.message);
+        } else {
+            setError("");
+            await router.push("/dashboard");
+        }
+    }
+
+  
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -83,6 +137,7 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -93,6 +148,7 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -101,9 +157,9 @@ export default function SignInSide() {
               <Button
                 type="submit"
                 fullWidth
-                href="/dashboard"
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={signingLoading}
               >
                 Sign In
               </Button>
@@ -127,3 +183,5 @@ export default function SignInSide() {
     </ThemeProvider>
   );
 }
+
+export default Login;

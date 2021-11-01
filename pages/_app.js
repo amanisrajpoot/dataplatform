@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {/*<Navbar />*/}
-      <Component {...pageProps} />
+      <Component role={role} setLocation={setLocation} token={token} location={location} setToken={setToken} {...pageProps} />
       {/* <Footer /> */}
     </>
   )

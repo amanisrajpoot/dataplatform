@@ -327,7 +327,7 @@ export default function Home() {
               }} >
 
             <Box sx={{pb:1}}>
-                <Button variant="contained" size="large" 
+                <Button variant="contained" size="large" href="/signup"
                 sx={{fontSize:24, color:'#eeeeee'}}>
             Sign up Free</Button>
             </Box>

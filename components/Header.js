@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Link from 'next/link';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -68,16 +69,16 @@ function Header(props) {
                 <div style={{fontSize:24, paddingTop:8}}>|
                 </div>
             
-
+            <Link href='/login'>
              <div style={{display:"flex",flexDirection:'row', 
-                alignItems: 'center',}}>
+                alignItems: 'center',cursor: 'pointer'}}>
                       <PersonIcon />
                       &nbsp;&nbsp;
                       <p>Kaushik </p> 
                       &nbsp;&nbsp;
                       <ArrowDropDownIcon />
-                      
               </div>
+            </Link>    
 
             </Grid>
         </Toolbar>
