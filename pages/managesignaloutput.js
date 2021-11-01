@@ -95,9 +95,6 @@ export default function ManageSignalOutput() {
                 <Button variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>
                     Output</Button>
-                <Button variant="contained" size="large" sx={{mx:2, py:4}}
-                    startIcon={<AssessmentIcon />} onClick={handleOpen}>
-                    Visualize</Button>
             </Box>
             </Box>
           </Box>
@@ -143,9 +140,6 @@ export default function ManageSignalOutput() {
             <Button variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>
                     Output</Button>
-            <Button variant="contained" size="large" sx={{mx:2, py:4}}
-                    startIcon={<AssessmentIcon />} onClick={handleOpen}>
-                    Visualize</Button>
         </Box>
       </Box>
 

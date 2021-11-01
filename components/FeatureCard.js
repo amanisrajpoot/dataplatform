@@ -17,12 +17,11 @@ export default function FeatureCard(props){
                             {props.description2?props.description2:"Historic Weather"}</p>
                     </div>
                     <div style={{fontSize:14,}}>
-                      <p><b>Geo:</b>&nbsp;{props.geo?props.geo: "Historic Weather"}<br></br>
-                         <b>Date:</b>&nbsp;{props.date?props.date:"Day"}<br></br>
-                         <b>Available Through:</b>&nbsp;{props.available?props.available:"10/10/2021"}</p>
+                      <p><b>Tags:</b>&nbsp;{props.geo?"Drugs, Vaccines": "Historic Weather"}<br></br>
+                         <b>Data Points:</b>&nbsp;{props.available?props.available:"345"}</p>
                     </div>
-                    <div style={{display:"flex",flexDirection:'row', alignItems: 'center',}}>
-                        <AddIcon />
+                    <div style={{fontSize:14, cursor:'pointer'}}>
+                      <p><b>{props.geo?"View Details": "View Details"}</b></p>
                     </div>
           </div>
     )

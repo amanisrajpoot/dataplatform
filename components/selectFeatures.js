@@ -43,8 +43,8 @@ export default function SelectFeatures(props){
     return (
         <div style={{width:"100%",display:"flex", 
             flexDirection:'column',color:'#fff'}}>
-          <div style={{display:"flex", width:'100%' }}>
-            <div style={{width:"19%"}}>
+          {/*<div style={{display:"flex", width:'100%' }}>
+             <div style={{width:"19%"}}>
               <p style={{paddingLeft:54, }}>SIGNAL OVERVIEW</p>
             </div>
           
@@ -135,7 +135,7 @@ export default function SelectFeatures(props){
               </div>
 
             </div>
-          </div>
+          </div> */}
 
           <div style={{display:"flex",pt:4, flexDirection:"row", 
               width:"100%", paddingTop:4}}>
@@ -206,13 +206,13 @@ export default function SelectFeatures(props){
                       sx={{ bgcolor: '#ffffff'}}/>
                   </div>
 
-                  <div style={{ display:'flex', minWidth: "100%", paddingLeft:4, 
+                  {/* <div style={{ display:'flex', minWidth: "100%", paddingLeft:4, 
                       paddingRight:8}}> 
                         <FormControlLabel control={<Checkbox {...label} icon={<CircleOutlinedIcon />} 
                             checkedIcon={<CheckCircleIcon />} />} label="Sort Favorites First" />
                         <FormControlLabel control={<Checkbox {...label} icon={<CircleOutlinedIcon />} 
                             checkedIcon={<CheckCircleIcon />} />} label="Sort User-Generated First" />
-                  </div>
+                  </div> */}
                 </div>
 
               </div>

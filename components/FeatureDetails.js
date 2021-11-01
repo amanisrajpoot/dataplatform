@@ -10,31 +10,29 @@ export default function FeatureDetails(props){
           flexDirection:'column',backgroundColor:'#fff',
           marginBottom:16}}>
           <div style={{display:'flex', alignItems:'center', 
-            paddingLeft:56, paddingTop:8}}>
-              <p><b>Feature:</b> Covid Vaccine, Seas Adj Annual Rate</p>
+            paddingLeft:50, paddingTop:8}}>
+              <p><b>Title:</b> Covid Vaccine, Seas Adj Annual Rate</p>
           </div>
-      <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', 
+      <div style={{display:"flex", flexDirection:'row', maxHeight:'25vh', 
         justifyContent:'space-around', paddingRight:128 }}>
           
           <div style={{display:'flex', alignItems:'center', 
               justifyContent:'space-between', width:"45%"}}>
               
-              <p><b>Export Name:</b> Covid Vaccine Sales, Seas Adj Annual Rate<EditOutlinedIcon sx={{fontSize:18, mx:2}}/><br></br><br></br>
-              <b>Available Through:</b> 08/31/2021</p>
+              <p><b>Description:</b> Covid Vaccine Sales, Seas Adj Annual Rate<EditOutlinedIcon sx={{fontSize:18, mx:2}}/><br></br><br></br>
+              </p>
           </div>
           <div>
-            <p>{props.description}<b>Publisher:</b> FRED<br></br>
-                <b>Product:</b> Retail Sales</p>
+            <p>{props.description}<b>No. of Rows:</b> 12<br></br>
+                <b>Columns(Features):</b> 234</p>
           </div>
-          <div style={{display:"flex",flexDirection:'column',paddingBottom:4}}>
-              <div style={{dispplay:'flex', alignItems:'center'}}><EditOutlinedIcon />&nbsp;Edit</div>
-              <div style={{dispplay:'flex', alignItems:'center', paddingTop:8}}><DeleteIcon />&nbsp;Delete</div><br></br>
-              <div style={{dispplay:'flex', alignItems:'center', paddingTop:8}}><ContentCopyIcon />&nbsp;Duplicate</div><br></br>
-               
+          <div>
+            <p>{props.description}<b>Range:</b> 12<br></br>
+                <b>Grains:</b> 234</p>
           </div>
         </div>
 
-        <Divider variant="middle" />
+        {/* <Divider variant="middle" />
 
         <div style={{display:"flex", flexDirection:'row', maxHeight:'125px', fontSize:14,
         justifyContent:'space-around',backgroundColor:'#fff', marginBottom:16, marginLeft:25 }}>
@@ -85,7 +83,7 @@ export default function FeatureDetails(props){
             <p>{props.description}<b>Time Grain</b><br></br><br></br>
                 Data Source</p>
           </div>
-        </div>
+        </div> */}
     </div>
       
     //   <Box sx={{width: '100%',  bgcolor:"#ffffff",}}>

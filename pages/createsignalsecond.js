@@ -91,10 +91,6 @@ export default function CreateSignalSecond() {
                     <div><HelpOutlineIcon /></div>
                 </Box>
 
-                <Button variant="contained" size="large" sx={{mx:2, py:2}}
-                    startIcon={<AddIcon />} onClick={handleOpen}
-                    href='/createfeature'>
-                    {"Create New Catalog"}</Button>
               </Box>
 
           </Box>
@@ -114,6 +110,53 @@ export default function CreateSignalSecond() {
             </Box>
             </Box>
           </Box>
+      </Box>
+
+      <Box sx={{ display: 'flex', flexDirection:'column', px: 22, bgcolor: '#3e3e33'}}>
+          <Box sx={{ display: 'flex', flexDirection:'row', pt: 4, 
+              bgcolor: 'gray-900', justifyContent:'space-between'}}>
+              
+                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
+                    color:'white',justifyContent:'start', fontSize:20}}>
+                    <div>SELECTED CATALOGS &nbsp;</div>
+                </Box>
+
+                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
+                    color:'white',justifyContent:'start', pl:6,fontSize:14}}>
+                    <div>0 of Unlimited Possible Catalogs Selected (UPGRADE)</div>
+                </Box>
+          </Box>
+          
+          <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column',py: 6, 
+              alignItems:'center' }}>
+                <FeatureCard 
+                  popular="1"
+                  title="Insurance Companies LEIE    "
+                  description="List of Excluded Individuals/Entities (LEIE)"
+                  description2="Information to the health care industry, patients and the public regarding individuals and 
+                  entities"
+                  geo="Country - USA"
+                  date=""
+                  available="" />
+                <FeatureCard 
+                  popular="1"
+                  title="PECARN "
+                  description="PECARN, the Pediatric Emergency Care"
+                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
+                  management of acute illnesses."
+                  geo="Country - USA"
+                  date=""
+                  available=""/>
+                <FeatureCard 
+                  popular="1"
+                  title="Drugs at FDA"
+                  description="Information about FDA-approved "
+                  description2="Information about FDA-approved human drugs and biological therapeutic products."
+                  geo="Country - USA"
+                  date=""
+                  available=""/>
+
+          </Box>    
       </Box>
 
       <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',pt:4, px:8}}>
@@ -201,53 +244,6 @@ export default function CreateSignalSecond() {
         </Box>
 
         
-      </Box>
-
-      <Box sx={{ display: 'flex', flexDirection:'column', px: 22, bgcolor: '#3e3e33'}}>
-          <Box sx={{ display: 'flex', flexDirection:'row', pt: 4, 
-              bgcolor: 'gray-900', justifyContent:'space-between'}}>
-              
-                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
-                    color:'white',justifyContent:'start', fontSize:20}}>
-                    <div>SELECTED CATALOGS &nbsp;</div>
-                </Box>
-
-                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
-                    color:'white',justifyContent:'start', pl:6,fontSize:14}}>
-                    <div>0 of Unlimited Possible Catalogs Selected (UPGRADE)</div>
-                </Box>
-          </Box>
-          
-          <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column',py: 6, 
-              alignItems:'center' }}>
-                <FeatureCard 
-                  popular="1"
-                  title="Insurance Companies LEIE    "
-                  description="List of Excluded Individuals/Entities (LEIE)"
-                  description2="Information to the health care industry, patients and the public regarding individuals and 
-                  entities"
-                  geo="Country - USA"
-                  date=""
-                  available="" />
-                <FeatureCard 
-                  popular="1"
-                  title="PECARN "
-                  description="PECARN, the Pediatric Emergency Care"
-                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
-                  management of acute illnesses."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-                <FeatureCard 
-                  popular="1"
-                  title="Drugs at FDA"
-                  description="Information about FDA-approved "
-                  description2="Information about FDA-approved human drugs and biological therapeutic products."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-
-          </Box>    
       </Box>
 
         <Box sx={{px:8}}>

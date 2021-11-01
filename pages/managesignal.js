@@ -89,9 +89,9 @@ export default function ManageSignal() {
                 <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<CheckIcon />} onClick={handleOpen}>
                     {"Save & Process"}</Button>
-                <Button href="/signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
+                {/* <Button href="/signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>
-                    Output</Button>
+                    Output</Button> */}
             </Box>
             </Box>
           </Box>
@@ -134,9 +134,9 @@ export default function ManageSignal() {
             <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
                 startIcon={<CheckIcon />} onClick={handleOpen}>
                 {"Save & Process"}</Button>
-            <Button href="signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
+            {/* <Button href="signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
                 startIcon={<ExitToAppIcon />} onClick={handleOpen}>
-                Output</Button>
+                Output</Button> */}
         </Box>
       </Box>
     

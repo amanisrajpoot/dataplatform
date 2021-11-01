@@ -37,16 +37,16 @@ export default function SignalCard(props){
 
             <Divider variant="middle" />
 
-            <div style={{display:"flex", flexDirection:'row', maxHeight:'125px', 
-            justifyContent:'space-around',backgroundColor:'#fff', marginBottom:16 }}>
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+            <div style={{display:"flex", flexDirection:'row', maxHeight:'125px'
+            ,backgroundColor:'#fff', marginBottom:16, paddingLeft:60, paddingRight:60 }}>
+              <div style={{display:'flex', alignItems:'center',justifyContent:'center', marginRight: 60}}>
               
                 <p>{props.description}<b>ANALYSIS</b><br></br><br></br>
-                    Industry: Healthcare<br></br><br></br>
-                    Model Type: Forecasting</p>
+                    Tags: Healthcare, Virus, Injection<br></br><br></br>
+                    Topic Type: Forecasting</p>
               </div>
 
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+              {/* <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
               
                 <p>{props.description}<b>OUTPUT GRAIN</b><br></br><br></br>
                     Geo Grain: State<br></br><br></br>
@@ -58,7 +58,7 @@ export default function SignalCard(props){
                 <p>{props.description}<b>TIME FRAME</b><br></br><br></br>
                     Start Date: 01/01/2019<br></br><br></br>
                     End Date: -</p>
-              </div>
+              </div> */}
 
               <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
               

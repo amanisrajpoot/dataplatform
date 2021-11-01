@@ -13,6 +13,7 @@ export const nonAuthRoutes = [
 	'/managesignaloutput',
 	'/helpcenter',
 	'/explore',
+	'/createfeature',
 ];
 export const nonDashboardRoute = nonAuthRoutes + adminRoute;
 

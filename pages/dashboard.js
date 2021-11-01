@@ -294,28 +294,6 @@ export default function Dashboard() {
             <Box component="main" sx={{  minWidth: '25vw', px:2}}>
                 <TextField fullWidth id="outlined-basic" variant="outlined" label="Keyword" sx={{ bgcolor: '#ffffff'}}/>
             </Box>
-            <Box component="main" sx={{ bgcolor: '#eaeff1',minWidth: '25vw', px:2 }}>
-                <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-filled-label">Topic</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled-label"
-                        value={industry}
-                        label="Industry"
-                        onChange={handleChangeIndustry}
-                        sx={{ bgcolor: '#ffffff'}}
-                      >
-                      <MenuItem value={10}>---Select Industry---</MenuItem>
-                      <MenuItem value={20}>Drugs</MenuItem>
-                      <MenuItem value={30}>Physician Practices</MenuItem>
-                      <MenuItem value={40}>Healthcare</MenuItem>
-                      <MenuItem value={50}>Insurance</MenuItem>
-                      <MenuItem value={60}>Other</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Box>
-            </Box>
             {/* <Box component="main" sx={{  bgcolor: '#eaeff1',minWidth: '25vw', px:2 }}>
                 <Box sx={{  }}>
                     <FormControl fullWidth>
@@ -341,10 +319,10 @@ export default function Dashboard() {
             </Box> */}
 
             <Box>
-                <Box sx={{minWidth:'55px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
+                <Button sx={{minWidth:'55px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',}}>
                     <SearchIcon sx={{ fontSize: 25, color:'white' }}/>
-                  </Box>
+                </Button>
 
             </Box>
           </Box>
@@ -356,9 +334,6 @@ export default function Dashboard() {
 
 
       <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
-        
-        <CssBaseline />
-
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
           
@@ -433,10 +408,7 @@ export default function Dashboard() {
         
       </Box>
     
-      <Box sx={{  minHeight: '23vh', }}>
-        
-        <CssBaseline />
-        
+      {/* <Box sx={{  minHeight: '23vh', }}>        
         <Box component="main" sx={{ flex: 1, pt:6, px: 4, bgcolor: '#ffffff' }}>
              <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
@@ -474,7 +446,7 @@ export default function Dashboard() {
 
             </Box>
         </Box>
-    </Box>  
+    </Box>   */}
        <Footer />
 
        

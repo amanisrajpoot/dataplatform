@@ -1,4 +1,3 @@
-import {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -10,17 +9,11 @@ import Footer from '../components/Footer';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import CheckIcon from '@mui/icons-material/Check';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import FeatureDetails from '../components/FeatureDetails';
 import LinearProgress from '@mui/material/LinearProgress';
-import { fontSize } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
-
-
-
 
 function Copyright() {
   return (
@@ -174,84 +167,6 @@ export default function CreateSignalFirst() {
 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2, pb:4}}>
-                    <div>DESIRED OUTPUT GRAIN &nbsp;</div>
-                    <div style={{fontSize:12, paddingTop:4}}>{"*Select the desired geographic and time grain of your data output. Learn more about data grain treatments & limitations"}</div>
-                </Box>
-
-                <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
-                  justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
-                    <FormControl variant="outlined" sx={{ minWidth: '50%' }}>
-                    <InputLabel htmlFor="outlined-adornment-amount">Geography Grain:</InputLabel>
-                      <Select
-                      labelId="demo-simple-select-filled-label"
-                      id="demo-simple-select-filled"
-                      value={age}
-                      onChange={handleChange}
-                      sx={{ bgColor:'#fff',pb:2, width:'97%',height:56}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Name"
-                    >
-                      <MenuItem value={10}>---Select Geography Grain---</MenuItem>
-                      <MenuItem value={20}>ZIP (ZCTA)</MenuItem>
-                      <MenuItem value={30}>City</MenuItem>
-                      <MenuItem value={30}>Country</MenuItem>
-                      <MenuItem value={30}>State</MenuItem>
-
-                    </Select>
-                    </FormControl>
-                </Box>
-
-                
-                <Box sx={{display:'flex',flexDirection:'row',px:16,
-                  justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
-                    
-                    <FormControl variant="outlined" sx={{ minWidth: '50%' }}>
-                    <InputLabel htmlFor="outlined-adornment-amount">Time Grain:</InputLabel>
-
-                      <Select
-                      labelId="demo-simple-select-filled-label"
-                      id="demo-simple-select-filled"
-                      value={age}
-                      onChange={handleChange}
-                      sx={{ bgColor:'#fff',pb:2, width:'97%',height:56}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Name"
-                    >
-                      <MenuItem value={10}>---Select Time Grain---</MenuItem>
-                      <MenuItem value={20}>Day</MenuItem>
-                      <MenuItem value={30}>Week</MenuItem>
-                      <MenuItem value={30}>Month</MenuItem>
-                      <MenuItem value={30}>Quarter</MenuItem>
-                      <MenuItem value={30}>Year</MenuItem>
-                    </Select>
-                    </FormControl>
-
-                    <Box sx={{display:'flex',flexDirection:'row', pb:4,
-                        justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
-                    <FormControl variant="filled" sx={{ minWidth: '50%' }}>
-                    <TextField
-                      sx={{color:'#fff',bgColor:"red",pb:2,width:'95%',}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      type="date"
-                    />
-                    </FormControl>
-
-                    <FormControl variant="filled" sx={{ width: '50%', }}>
-                    <TextField
-                      sx={{color:'#fff',bgColor:"red",width:'95%'}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      type="date"
-                    />
-                    </FormControl>
-                    </Box>
-
-                </Box>
-
-                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
-                    color:'gray', fontSize:18,px:16, py:2, pb:4}}>
                     <div>FILTER RESULTS &nbsp;</div>
                     <div style={{fontSize:12, paddingTop:4}}>{"Limit the size of your signal by filtering down to a specific geography"}</div>
                 </Box>
@@ -311,7 +226,7 @@ export default function CreateSignalFirst() {
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',pb:4, 
                     color:'gray', fontSize:14,px:16,}}>
-                    <div>Estimated Row Count: &nbsp;</div> <div style={{width:122}}><CircularProgress /></div>
+                    <div>Estimated Row Count: &nbsp;</div> <div style={{width:122}}>{123?123:<CircularProgress />}</div>
                 </Box>
 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
@@ -349,7 +264,7 @@ export default function CreateSignalFirst() {
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
             <Button variant="contained" size="large" sx={{mx:2, py:4}}
-                endIcon={<CheckIcon />} href="/createsignalsecond">
+                endIcon={<CheckIcon />} href="/createfeature">
                 {"Continue"}</Button>
   
         </Box>
