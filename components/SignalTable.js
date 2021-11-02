@@ -10,6 +10,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Link from 'next/link';
+import IconButton from '@mui/material/IconButton';
 
 
 export default function SignalTable(props) {
@@ -87,7 +88,8 @@ export default function SignalTable(props) {
                                     size="small">{value}</Button>: 
                                  value==='Error' ? <Button variant="contained" startIcon={<CancelOutlinedIcon />}
                                     color="error" size="small">{value}</Button>:
-                                 value==='settings' ? <div href="" style={{cursor:'pointer'}}><SettingsIcon fontSize='small'/></div>:
+                                 value==='settings' ? <IconButton href="/managesignaloutput">
+                                      <SettingsIcon fontSize='small'/></IconButton>:
                                 column.format && typeof value === 'number'
                                   ? column.format(value)
                                   : value}
