@@ -50,10 +50,7 @@ export default function Output() {
                       <>Last time exported at 10/21/2021 15:10 pm</></div>
                       
                       <div>
-                        <Button variant="outlined" size="large" 
-                        sx={{mx:2, width:'100%', py:2, mt:4}}
-                          startIcon={<FileDownloadOutlinedIcon />} onClick={handleOpen}>
-                          Download Excel</Button>
+                        
                           <Button variant="outlined" size="large" 
                         sx={{mx:2, width:'100%', py:2, my:4}}
                           startIcon={<FileDownloadOutlinedIcon />} onClick={handleOpen}>
@@ -61,8 +58,10 @@ export default function Output() {
                       </div>
                   </div>
           </div>
+
+          
            
-          <div style={{ paddingTop: 18, display: 'flex', flexDirection: 'column', width:'65%', paddingLeft:56 }}>
+          {/* <div style={{ paddingTop: 18, display: 'flex', flexDirection: 'column', width:'65%', paddingLeft:56 }}>
               
               <div style={{display:'flex', flexDirection:'row', 
                   width:'100%', height:'100%', justifyContent:'end',paddingBottom:12}}>
@@ -105,7 +104,7 @@ export default function Output() {
                   
                 </div>
               </div>
-          </div>
+          </div> */}
     </div>
 
   );

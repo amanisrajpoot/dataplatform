@@ -60,9 +60,10 @@ export default function Home() {
     <Box>
       <Navbar />
         <Box sx={{ display: 'flex', flexDirection:'column', 
-              py: 6, px: 14, height:'90vh', bgcolor: '#3e3e33', 
-              alignItems:'center', justifyContent:'center', color:'#eeeeee', backgroundSize: 'auto',
-              backgroundImage: `url(${'https://wallpapertag.com/wallpaper/full/0/6/8/315901-science-background-1920x1080-windows-xp.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
+              py: 6, px: 14, height:'88vh', bgcolor: '#94bbe9', 
+              alignItems:'center', justifyContent:'center', color:'#eeeeee',  
+              backgroundSize: 'cover',
+              backgroundImage: `url(${'https://wallpapercave.com/wp/wp7704711.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
               }} >
         
             <Box sx={{pt:8,pb: 6,}}>
@@ -81,7 +82,7 @@ export default function Home() {
 
             <Box sx={{pb:1}}>
                 <Button variant="contained" size="large" href="/signup" color="primary"
-                sx={{fontSize:24, color:'#eeeeee'}}>
+                sx={{fontSize:24, color:'#eeeeee', backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}>
             Sign up Free</Button>
             </Box>
 
@@ -328,7 +329,9 @@ export default function Home() {
 
             <Box sx={{pb:1}}>
                 <Button variant="contained" size="large" href="/signup"
-                sx={{fontSize:24, color:'#eeeeee'}}>
+                sx={{fontSize:24, color:'#eeeeee',
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'
+                }}>
             Sign up Free</Button>
             </Box>
 

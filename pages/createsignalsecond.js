@@ -81,7 +81,9 @@ export default function CreateSignalSecond() {
           <Box sx={{ display: 'flex', flexDirection:'column', py: 2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
               <Box sx={{ width: '100%', px:6,bgcolor: '#3e3e33',color:"#fff",pb:4}}>
                   <p>Step 2 of 2</p>
-                  <LinearProgress variant="determinate" value={100} sx={{height:'2vh'}} />
+                  <LinearProgress variant="determinate" value={100} sx={{height:'2vh',
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+                color:'linear-gradient(to right,#094a98, #4e0c98)'}} />
               </Box>
             
               <Box sx={{display:'flex', justifyContent:'space-between'}}>
@@ -103,7 +105,8 @@ export default function CreateSignalSecond() {
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
               mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',
               pl:30}}>
-                <Button variant="contained" size="large" sx={{mx:2, py:4}}
+                <Button variant="contained" size="large" sx={{mx:2, py:4,
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                     startIcon={<CheckIcon />} onClick={handleOpen}>
                     {"Explore"}</Button>
 
@@ -284,7 +287,8 @@ export default function CreateSignalSecond() {
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', bgColor:'#fff',
                     py:4,px:13, maxHeight:'14vh', minWidth:'24ch',justifyContent:'start',}}>
                       
-                      <Link href="/managesignal"><Button variant="contained" size="large" sx={{mx:2, py:2}}
+                      <Link href="/managesignal"><Button variant="contained" size="large" sx={{mx:2, py:2,
+                        backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)', width:175,height:64,}}
                           endIcon={<ArrowForwardIosIcon />} onClick={handleOpen}>
                           Finish</Button>
                       </Link>

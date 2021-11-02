@@ -162,32 +162,53 @@ export default function CreateFeature() {
                     <div style={{fontSize:12, paddingTop:4}}>{"*Download our template and fill it with you custom data"}</div>
                 </Box>
 
-                <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
+                <Box sx={{display:'flex',flexDirection:'column',px:16, pb:4,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
-                    <FormControl sx={{ minWidth: '50%' }}>
-                    <InputLabel id="demo-simple-select-helper-label">File Upload</InputLabel>
-                      <Select
+                      <Button
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
                       value={age}
                       label="Name"
                       onChange={handleChange}
-                      sx={{ bgColor:'#fff',pb:2, width:'97%',height:56}}
+                      sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+                      width:'50%', height:56, marginBottom:2, color:'#fff',}}
+                      
                       //inputProps={{ 'aria-label': 'Without label' }}
                       //startAdornment={<InputAdornment position="start">$</InputAdornment>}
                     >
-                      <MenuItem value={10}>---Select File to Upload</MenuItem>
-                    </Select>
-                    </FormControl>
+                      Select File to Upload
+                    </Button>
+                    <Button
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={age}
+                      label="Name"
+                      onChange={handleChange}
+                      sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+                      width:'50%', height:56, marginBottom:2,color:'#fff',}}
+                      
+                      //inputProps={{ 'aria-label': 'Without label' }}
+                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    >
+                      Select File to Upload
+                    </Button>
+                    <Button
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={age}
+                      label="Name"
+                      onChange={handleChange}
+                      sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+                      width:'50%', height:56, marginBottom:2,color:'#fff',}}
+                      
+                      //inputProps={{ 'aria-label': 'Without label' }}
+                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    >
+                      Select File to Upload
+                    </Button>
 
-                    <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
-                       maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',}}>
-                        <Button variant="contained" size="large" sx={{}}
-                            startIcon={<FileDownloadIcon />} href="/createsignalsecond">
-                            {"Download Template File"}</Button>
-  
-                    </Box>
+                    
                 </Box>
 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
@@ -212,7 +233,8 @@ export default function CreateFeature() {
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
-            <Button variant="contained" size="large" sx={{mx:2, py:4}}
+            <Button variant="contained" size="large" sx={{mx:2, py:4,
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                 endIcon={<CheckIcon />} href="/createsignalsecond">
                 {"CONTINUE"}</Button>
   

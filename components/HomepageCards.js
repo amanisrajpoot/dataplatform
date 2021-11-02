@@ -94,7 +94,7 @@ export default function HomepageCardsLeft(props){
                     
 
                     <Button variant="contained" size="large"
-                            sx={{fontSize:20, color:'#eeeeee', width:'35%'}}>
+                            sx={{fontSize:20, color:'#eeeeee', width:'35%',backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}>
                         Sign up Now</Button>
                     </Box>
 

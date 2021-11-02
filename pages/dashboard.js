@@ -104,7 +104,8 @@ export default function Dashboard() {
                 </Box>
             </Typography>
 
-            <Button variant="contained" size="large" startIcon={<AddIcon />} onClick={handleOpen}>
+            <Button variant="contained" size="large" sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                startIcon={<AddIcon />} onClick={handleOpen}>
             Create a Dataset</Button>
 
                 <Modal
@@ -130,7 +131,7 @@ export default function Dashboard() {
                                
                                 <Link href="/createsignalfirst">
                                 <Box sx={{border:2, borderColor:"#000000", 
-                                    mx:4,my:4,py:2,px:4, textAlign:'center'}}>
+                                    mx:4,my:4,py:2,px:4, textAlign:'center',}}>
                                   <AddBoxIcon style={{fontSize:96}}/>
                                   <p><b>From Scratch</b><br></br>
                                      Create a new Custom<br></br>
@@ -320,7 +321,8 @@ export default function Dashboard() {
 
             <Box>
                 <Button sx={{minWidth:'55px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
-                alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',}}>
+                alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}>
                     <SearchIcon sx={{ fontSize: 25, color:'white' }}/>
                 </Button>
 

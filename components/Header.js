@@ -22,7 +22,8 @@ function Header(props) {
         position="static"
         elevation={0}
         sx={{ zIndex: 0, minHeight: '12vh', display: 'flex', pl:11,
-            flexDirection:'row' , justifyContent: 'space-between'}}
+            flexDirection:'row' , justifyContent: 'space-between',
+            backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',}}
       >
         <Toolbar sx={{width:'50%'}}>
             <Grid item xs>

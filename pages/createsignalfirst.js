@@ -74,7 +74,9 @@ export default function CreateSignalFirst() {
       
       <Box sx={{ width: '100%', px:16,py:2,}}>
           <p>Step 1 of 2</p>
-          <LinearProgress variant="determinate" value={progress} sx={{height:'2vh'}} />
+          <LinearProgress variant="determinate" value={progress} sx={{height:'2vh', 
+          backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+          color:'linear-gradient(to right,#094a98, #4e0c98)'}} />
       </Box>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
@@ -263,7 +265,8 @@ export default function CreateSignalFirst() {
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
-            <Button variant="contained" size="large" sx={{mx:2, py:4}}
+            <Button variant="contained" size="large" sx={{mx:2, py:4,
+            backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                 endIcon={<CheckIcon />} href="/createfeature">
                 {"Continue"}</Button>
   

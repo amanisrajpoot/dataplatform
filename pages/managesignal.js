@@ -86,7 +86,8 @@ export default function ManageSignal() {
         
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
               mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',}}>
-                <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
+                <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4,
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                     startIcon={<CheckIcon />} onClick={handleOpen}>
                     {"Save & Process"}</Button>
                 {/* <Button href="/signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
@@ -107,7 +108,8 @@ export default function ManageSignal() {
              <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',font:'roboto',px:10}}>
                       <div>SELECTED CATALOGS &nbsp;</div>
-                      <Button variant="contained" size="large" sx={{mx:2, py:2}}
+                      <Button variant="contained" size="large" sx={{mx:2, py:2,
+                      backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                           startIcon={<AddIcon />} onClick={handleOpen}>
                           Add Catalog</Button>
                   </Box>
@@ -131,7 +133,8 @@ export default function ManageSignal() {
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',px:14}}>
-            <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
+            <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4,
+            backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                 startIcon={<CheckIcon />} onClick={handleOpen}>
                 {"Save & Process"}</Button>
             {/* <Button href="signaloutput" variant="contained" size="large" sx={{mx:2, py:4}}
