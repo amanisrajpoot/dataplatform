@@ -198,6 +198,7 @@ export default function CreateSignalSecond() {
               alignItems:'center' }}>
                 {selectedDataSources.map((data)=><FeatureCard 
                   popular={data.popular}
+                  key={data.title}
                   title={data.title}
                   description={data.description}
                   description2={data.description2}
