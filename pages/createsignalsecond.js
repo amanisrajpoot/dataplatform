@@ -240,6 +240,7 @@ export default function CreateSignalSecond() {
                 {matchingDataSources.map((data)=><FeatureCard 
                   popular={data.popular}
                   title={data.title}
+                  key={data.title}
                   description={data.description}
                   description2={data.description2}
                   geo={data.geo}
