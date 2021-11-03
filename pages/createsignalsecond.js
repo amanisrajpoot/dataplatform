@@ -67,16 +67,80 @@ export default function CreateSignalSecond() {
     setMobileOpen(!mobileOpen);
   };
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [selectedDataSources, setSelectedDataSources] = React.useState([
+    { popular:"1",
+    title:"Insurance Companies LEIE    ",
+    description:"List of Excluded Individuals/Entities (LEIE)",
+    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
+    geo:"Country - USA",
+    date:"",
+    available:"" },
+    { popular:"1",
+    title:"PECARN ",
+    description:"PECARN, the Pediatric Emergency Care",
+    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
+    geo:"Country - USA",
+    date:"",
+    available:"", },
+    { popular:"1",
+    title:"Drugs at FDA",
+    description:"Information about FDA-approved ",
+    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
+    geo:"Country - Mexico",
+    date:"",
+    available:"", },
+    
+  ]);
+
+  const [matchingDataSources, setMatchingDataSources] = React.useState([
+    { popular:"1",
+    title:"Insurance Companies LEIE    ",
+    description:"List of Excluded Individuals/Entities (LEIE)",
+    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
+    geo:"Country - USA",
+    date:"",
+    available:"" },
+    { popular:"1",
+    title:"PECARN ",
+    description:"PECARN, the Pediatric Emergency Care",
+    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
+    geo:"Country - USA",
+    date:"",
+    available:"", },
+    { popular:"1",
+    title:"Drugs at FDA",
+    description:"Information about FDA-approved ",
+    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
+    geo:"Country - Mexico",
+    date:"",
+    available:"", },
+    { popular:"0",
+    title:"Insurance Companies LEIE    ",
+    description:"List of Excluded Individuals/Entities (LEIE)",
+    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
+    geo:"Country - USA",
+    date:"",
+    available:"" },
+    { popular:"0",
+    title:"PECARN ",
+    description:"PECARN, the Pediatric Emergency Care",
+    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
+    geo:"Country - USA",
+    date:"",
+    available:"", },
+    { popular:"0",
+    title:"Drugs at FDA",
+    description:"Information about FDA-approved ",
+    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
+    geo:"Country - Mexico",
+    date:"",
+    available:"", }
+  ]);
   
   return (
     
     <Box>
       <Navbar />
-
-      
-
         <Box sx={{ display: 'flex', flexDirection:'column', px: 14, bgcolor: '#3e3e33'}}>
           <Box sx={{ display: 'flex', flexDirection:'column', py: 2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
               <Box sx={{ width: '100%', px:6,bgcolor: '#3e3e33',color:"#fff",pb:4}}>
@@ -132,33 +196,15 @@ export default function CreateSignalSecond() {
           
           <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column',py: 6, 
               alignItems:'center' }}>
-                <FeatureCard 
-                  popular="1"
-                  title="Insurance Companies LEIE    "
-                  description="List of Excluded Individuals/Entities (LEIE)"
-                  description2="Information to the health care industry, patients and the public regarding individuals and 
-                  entities"
-                  geo="Country - USA"
-                  date=""
-                  available="" />
-                <FeatureCard 
-                  popular="1"
-                  title="PECARN "
-                  description="PECARN, the Pediatric Emergency Care"
-                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
-                  management of acute illnesses."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-                <FeatureCard 
-                  popular="1"
-                  title="Drugs at FDA"
-                  description="Information about FDA-approved "
-                  description2="Information about FDA-approved human drugs and biological therapeutic products."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-
+                {selectedDataSources.map((data)=><FeatureCard 
+                  popular={data.popular}
+                  title={data.title}
+                  description={data.description}
+                  description2={data.description2}
+                  geo={data.geo}
+                  date={data.date}
+                  available={data.available} />)}
+            
           </Box>    
       </Box>
 
@@ -190,59 +236,15 @@ export default function CreateSignalSecond() {
 
           <Box sx={{ minWidth: 275, bgcolor: '#eaeff1', display:'flex', flexDirection:'column',py: 6, px: 14, 
               alignItems:'center' }}>
-                <FeatureCard 
-                  popular="1"
-                  title="Insurance Companies LEIE    "
-                  description="List of Excluded Individuals/Entities (LEIE)"
-                  description2="Information to the health care industry, patients and the public regarding individuals and 
-                  entities"
-                  geo="Country - USA"
-                  date=""
-                  available="" />
-                <FeatureCard 
-                  popular="1"
-                  title="PECARN "
-                  description="PECARN, the Pediatric Emergency Care"
-                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
-                  management of acute illnesses."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-                <FeatureCard 
-                  popular="1"
-                  title="Drugs at FDA"
-                  description="Information about FDA-approved "
-                  description2="Information about FDA-approved human drugs and biological therapeutic products."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-                  <FeatureCard 
-                  popular="0"
-                  title="Insurance Companies LEIE    "
-                  description="List of Excluded Individuals/Entities (LEIE)"
-                  description2="Information to the health care industry, patients and the public regarding individuals and 
-                  entities"
-                  geo="Country - USA"
-                  date=""
-                  available="" />
-                <FeatureCard 
-                  popular="0"
-                  title="PECARN "
-                  description="PECARN, the Pediatric Emergency Care"
-                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
-                  management of acute illnesses."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-                <FeatureCard 
-                  popular="0"
-                  title="Drugs at FDA"
-                  description="Information about FDA-approved "
-                  description2="Information about FDA-approved human drugs and biological therapeutic products."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-
+                {matchingDataSources.map((data)=><FeatureCard 
+                  popular={data.popular}
+                  title={data.title}
+                  description={data.description}
+                  description2={data.description2}
+                  geo={data.geo}
+                  date={data.date}
+                  available={data.available} />)}
+                
           </Box>            
         </Box>
 
@@ -259,30 +261,6 @@ export default function CreateSignalSecond() {
                     color:'gray', fontSize:14,px:15,pb:2}}>
                     <div><b>Data Points:</b> &nbsp;</div> <div style={{width:122}}>To be calculated</div>
                 </Box>
-
-                {/* <Box sx={{display:'flex',flexDirection:'column',px:15,
-                  justifyContent:"space-between",width:"100%", bgColor:'#fff',}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                    <FormControl component="fieldset">
-                        <FormLabel component="legend">
-                            <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', 
-                                    color:'gray', fontSize:18, pt:4}}>
-                                    <div>APPLY RECOMMENDED DS TREATMENTS? &nbsp;</div>
-                                    <div><HelpOutlineIcon /></div>
-                                </Box>
-                                </FormLabel>
-                        <RadioGroup row aria-label="" name="row-radio-buttons-group">
-                          <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                          <FormControlLabel value="no" control={<Radio />} label="No" />
-                          
-                        </RadioGroup>
-                      </FormControl>
-
-                   <div style={{fontSize:14}}>
-                     {"Note: You can add & edit features and treatments associated to a signal, after creation"}
-                     </div>
-                   
-                </Box> */}
 
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', bgColor:'#fff',
                     py:4,px:13, maxHeight:'14vh', minWidth:'24ch',justifyContent:'start',}}>

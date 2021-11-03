@@ -38,8 +38,9 @@ export default function SignalCard(props){
             <Divider variant="middle" />
 
             <div style={{display:"flex", flexDirection:'row', maxHeight:'125px'
-            ,backgroundColor:'#fff', marginBottom:16, paddingLeft:60, paddingRight:60 }}>
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center', marginRight: 60}}>
+            ,backgroundColor:'#fff', marginBottom:16, paddingLeft:8, paddingRight:48 }}>
+              <div style={{display:'flex', alignItems:'center',justifyContent:'center', 
+              marginRight: 60, width:"30%"}}>
               
                 <p>{props.description}<b>ANALYSIS</b><br></br><br></br>
                     Tags: Healthcare, Virus, Injection<br></br><br></br>
@@ -60,7 +61,8 @@ export default function SignalCard(props){
                     End Date: -</p>
               </div> */}
 
-              <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+              <div style={{display:'flex', alignItems:'center',
+                paddingLeft:24,justifyContent:'center', width:"30%"}}>
               
                 <p>{props.description}<b>DATA REFRESH</b><br></br><br></br>
                     Frequency: When New Data Available<br></br><br></br>

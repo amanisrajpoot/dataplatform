@@ -64,8 +64,6 @@ const style2 = {
 
 export default function Dashboard() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [industry, setIndustry] = React.useState('');
-  const [analysis, setAnalysis] = React.useState('');
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const [open2, setOpen2] = React.useState(false);
@@ -73,22 +71,88 @@ export default function Dashboard() {
                               setOpen(false);
                               setOpen2(true);}
   const handleClose = () => setOpen(false);
-
   const handleChangeIndustry = (event) => {
     setIndustry(event.target.value);
   };
-
   const handleClose2 = (event) => {
     setOpen2(false);
     setOpen(false);
   };
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [dataSources, setDataSources] = React.useState([
+    { popular:"1",
+    title:"Insurance Companies LEIE    ",
+    description:"List of Excluded Individuals/Entities (LEIE)",
+    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
+    geo:"Country - USA",
+    date:"",
+    available:"" },
+    { popular:"1",
+    title:"PECARN ",
+    description:"PECARN, the Pediatric Emergency Care",
+    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
+    geo:"Country - USA",
+    date:"",
+    available:"", },
+    { popular:"1",
+    title:"Drugs at FDA",
+    description:"Information about FDA-approved ",
+    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
+    geo:"Country - Mexico",
+    date:"",
+    available:"", },
+    { popular:"0",
+    title:"Insurance Companies LEIE    ",
+    description:"List of Excluded Individuals/Entities (LEIE)",
+    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
+    geo:"Country - USA",
+    date:"",
+    available:"" },
+    { popular:"0",
+    title:"PECARN ",
+    description:"PECARN, the Pediatric Emergency Care",
+    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
+    geo:"Country - USA",
+    date:"",
+    available:"", },
+    { popular:"0",
+    title:"Drugs at FDA",
+    description:"Information about FDA-approved ",
+    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
+    geo:"Country - Mexico",
+    date:"",
+    available:"", }
+  ]);
+  
+  const [predefinedModels, setPredefinedModels] = React.useState([
+    { title:"From Predefined Models",
+      body:"Create a new Dateset based on predefined domain models.",
+      icon:"ContentCopyOutlinedIcon",
+    },
+    { title:"From Predefined Models",
+      body:"Create a new Dateset based on predefined domain models.",
+      icon:"ContentCopyOutlinedIcon",
+    },
+    { title:"From Predefined Models",
+      body:"Create a new Dateset based on predefined domain models.",
+      icon:"ContentCopyOutlinedIcon",
+    },
+    { title:"From Predefined Models",
+      body:"Create a new Dateset based on predefined domain models.",
+      icon:"ContentCopyOutlinedIcon",
+    },
+    { title:"From Predefined Models",
+      body:"Create a new Dateset based on predefined domain models.",
+      icon:"ContentCopyOutlinedIcon",
+    },
+    { title:"From Predefined Models",
+      body:"Create a new Dateset based on predefined domain models.",
+      icon:"ContentCopyOutlinedIcon",
+    },
+  ]);
   
   return (
     
@@ -151,9 +215,7 @@ export default function Dashboard() {
                                       Create a new<br></br>
                                      Dateset based on<br></br>
                                      predefined domain models.</p>
-                                </Box>
-
-                                
+                                </Box>  
                       </div>
                       </Grid>
                   </Box>
@@ -177,87 +239,21 @@ export default function Dashboard() {
                             </Box>
                         </Box>
 
-                        <div style={{display:"flex", flexDirection:'row', maxHeight:'325px', width:"100%",
-                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16, fontSize:14 }}>
+                        <div style={{display:"flex", flexDirection:'row', maxHeight:'650px', width:"100%",
+                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16, fontSize:14,
+                          flexWrap:"wrap" }}>
                                
-                               <Link href="/managesignal">
+                               {predefinedModels.map((model)=><Link href="/managesignal" style={{width:'33%'}}>
                                <Box sx={{border:2, borderColor:"#000", 
                                     mx:4,my:2,py:2,px:4,textAlign:'center'}}
                                     onClick={()=>handleOpen2} >
-                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
-                                  <p><b>From Predefined Models</b><br></br>
-                                      Create a new<br></br>
-                                     Dateset based on<br></br>
-                                     predefined domain models.</p>
+                                    <ContentCopyOutlinedIcon style={{fontSize:75}}/>
+                                  <p><b>{model.title}</b><br></br>
+                                      {model.body}</p>
                                   </Box>
-                                </Link>
-
-                                <Link href="/managesignal">                        
-                                  <Box sx={{border:2, borderColor:"#000", 
-                                    mx:4,my:2,py:2,px:4,textAlign:'center'}}
-                                    onClick={()=>handleOpen2}>
-                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
-                                  <p><b>From Predefined Models</b><br></br>
-                                      Create a new<br></br>
-                                     Dateset based on<br></br>
-                                     predefined domain models.</p>
-                                  </Box>
-                                </Link>
-                              
-                              <Link href="/managesignal">                        
-                                <Box sx={{border:2, borderColor:"#000", 
-                                  mx:4,my:2,py:2,px:4,textAlign:'center'}}
-                                  onClick={()=>handleOpen2}>
-                                <ContentCopyOutlinedIcon style={{fontSize:75}}/>
-                                <p><b>From Predefined Models</b><br></br>
-                                    Create a new<br></br>
-                                  Dateset based on<br></br>
-                                  predefined domain models.</p>
-                                </Box>
-                              </Link>
-                                
+                                </Link>)}
                       </div>
 
-                      <div style={{display:"flex", flexDirection:'row', maxHeight:'325px', width:"100%",
-                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16, fontSize:14 }}>
-                               
-                               <Link href="/managesignal">
-                               <Box sx={{border:2, borderColor:"#000", 
-                                    mx:4,my:2,py:2,px:4,textAlign:'center'}}
-                                    onClick={()=>handleOpen2} >
-                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
-                                  <p><b>From Predefined Models</b><br></br>
-                                      Create a new<br></br>
-                                     Dateset based on<br></br>
-                                     predefined domain models.</p>
-                                  </Box>
-                                </Link>
-
-                                <Link href="/managesignal">                        
-                                  <Box sx={{border:2, borderColor:"#000", 
-                                    mx:4,my:2,py:2,px:4,textAlign:'center'}}
-                                    onClick={()=>handleOpen2}>
-                                  <ContentCopyOutlinedIcon style={{fontSize:75}}/>
-                                  <p><b>From Predefined Models</b><br></br>
-                                      Create a new<br></br>
-                                     Dateset based on<br></br>
-                                     predefined domain models.</p>
-                                  </Box>
-                                </Link>
-                              
-                              <Link href="/managesignal">                        
-                                <Box sx={{border:2, borderColor:"#000", 
-                                  mx:4,my:2,py:2,px:4,textAlign:'center'}}
-                                  onClick={()=>handleOpen2}>
-                                <ContentCopyOutlinedIcon style={{fontSize:75}}/>
-                                <p><b>From Predefined Models</b><br></br>
-                                    Create a new<br></br>
-                                  Dateset based on<br></br>
-                                  predefined domain models.</p>
-                                </Box>
-                              </Link>
-                                
-                      </div>
                       </Grid>
                   </Box>
                 </Modal>
@@ -295,30 +291,7 @@ export default function Dashboard() {
             <Box component="main" sx={{  minWidth: '25vw', px:2}}>
                 <TextField fullWidth id="outlined-basic" variant="outlined" label="Keyword" sx={{ bgcolor: '#ffffff'}}/>
             </Box>
-            {/* <Box component="main" sx={{  bgcolor: '#eaeff1',minWidth: '25vw', px:2 }}>
-                <Box sx={{  }}>
-                    <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-filled-label" >Analysis</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-filled-label"
-                        id="demo-simple-select-filled-label"
-                        value={analysis}
-                        label="Analysis"
-                        onChange={handleChangeAnalysis}
-                        sx={{ bgcolor: '#ffffff'}}
-                      >
-                        <MenuItem value={"Select Analysis"}>---Select Analysis---</MenuItem>
-                        <MenuItem value={'Cassification'}>Cassification</MenuItem>
-                        <MenuItem value={'Forecasting'}>Forecasting</MenuItem>
-                        <MenuItem value={'Impact Analysis'}>Impact Analysis</MenuItem>
-                        <MenuItem value={'Scoring'}>Scoring</MenuItem>
-                        <MenuItem value={'Others'}>Others</MenuItem>
-
-                      </Select>
-                    </FormControl>
-                  </Box>
-            </Box> */}
-
+            
             <Box>
                 <Button sx={{minWidth:'55px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
@@ -350,59 +323,14 @@ export default function Dashboard() {
 
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
-                <FeatureCard 
-                  popular="1"
-                  title="Insurance Companies LEIE    "
-                  description="List of Excluded Individuals/Entities (LEIE)"
-                  description2="Information to the health care industry, patients and the public regarding individuals and 
-                  entities"
-                  geo="Country - USA"
-                  date=""
-                  available="" />
-                <FeatureCard 
-                  popular="1"
-                  title="PECARN "
-                  description="PECARN, the Pediatric Emergency Care"
-                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
-                  management of acute illnesses."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-                <FeatureCard 
-                  popular="1"
-                  title="Drugs at FDA"
-                  description="Information about FDA-approved "
-                  description2="Information about FDA-approved human drugs and biological therapeutic products."
-                  geo="Country - Mexico"
-                  date=""
-                  available=""/>
-                <FeatureCard 
-                  popular="0"
-                  title="Insurance Companies LEIE    "
-                  description="List of Excluded Individuals/Entities (LEIE)"
-                  description2="Information to the health care industry, patients and the public regarding individuals and 
-                  entities"
-                  geo="Country - UK"
-                  date=""
-                  available="" />
-                <FeatureCard 
-                  popular="0"
-                  title="PECARN "
-                  description="PECARN, the Pediatric Emergency Care"
-                  description2="Applied Research Network conducts high-priority, multi-institutional research on the prevention & 
-                  management of acute illnesses."
-                  geo="Country - Mexico"
-                  date=""
-                  available=""/>
-                <FeatureCard 
-                  popular="0"
-                  title="Drugs at FDA"
-                  description="Information about FDA-approved "
-                  description2="Information about FDA-approved human drugs and biological therapeutic products."
-                  geo="Country - USA"
-                  date=""
-                  available=""/>
-
+                {dataSources.map((data)=><FeatureCard 
+                  popular={data.popular}
+                  title={data.title}
+                  description={data.description}
+                  description2={data.description2}
+                  geo={data.geo}
+                  date={data.date}
+                  available={data.available} />)}
           </Box>
           
         </Box>

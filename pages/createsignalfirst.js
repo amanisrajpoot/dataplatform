@@ -169,7 +169,7 @@ export default function CreateSignalFirst() {
 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2, pb:4}}>
-                    <div>FILTER RESULTS &nbsp;</div>
+                    <div>ENTER KEYWORDS &nbsp;</div>
                     <div style={{fontSize:12, paddingTop:4}}>{"Limit the size of your signal by filtering down to a specific geography"}</div>
                 </Box>
 
@@ -231,7 +231,7 @@ export default function CreateSignalFirst() {
                     <div>Estimated Row Count: &nbsp;</div> <div style={{width:122}}>{123?123:<CircularProgress />}</div>
                 </Box>
 
-                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
+                {/* <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2, pb:4}}>
                     <div>DATA REFRESH FREQUENCY &nbsp;</div>
                     <div style={{fontSize:12, paddingTop:4}}>{"The setting determines how often the data in your signal will be refreshed and thus data points that will be used. Learn about data point usage"}</div>
@@ -239,7 +239,7 @@ export default function CreateSignalFirst() {
 
                 <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
+                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
                     <FormControl sx={{ minWidth: '50%' }}>
                     <InputLabel id="demo-simple-select-helper-label">Refresh Frequency Options:</InputLabel>
                       <Select
@@ -259,7 +259,7 @@ export default function CreateSignalFirst() {
                       <MenuItem value={30}>When New Data Available</MenuItem>
                     </Select>
                     </FormControl>
-                </Box>
+                </Box> */}
 
       <Box sx={{ display: 'flex',pt:2}}>
         
@@ -267,7 +267,7 @@ export default function CreateSignalFirst() {
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
             <Button variant="contained" size="large" sx={{mx:2, py:4,
             backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                endIcon={<CheckIcon />} href="/createfeature">
+                endIcon={<CheckIcon />} href="/createsignalsecond">
                 {"Continue"}</Button>
   
         </Box>
