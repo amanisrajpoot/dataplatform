@@ -241,7 +241,8 @@ export default function Dashboard() {
                                {predefinedModels.map((model)=><Link href="/managesignal" style={{width:'33%'}}>
                                <Box sx={{border:2, borderColor:"#000", 
                                     mx:4,my:2,py:2,px:4,textAlign:'center'}}
-                                    onClick={()=>handleOpen2} >
+                                    onClick={()=>handleOpen2}
+                                    key={model.title} >
                                     <ContentCopyOutlinedIcon style={{fontSize:75}}/>
                                   <p><b>{model.title}</b><br></br>
                                       {model.body}</p>
