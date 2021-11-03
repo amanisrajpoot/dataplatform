@@ -7,10 +7,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FeatureCard from '../components/FeatureCard';
@@ -204,7 +200,6 @@ export default function Dashboard() {
                                 </Box>
                                 </Link>
                                 
-
                                 <Divider variant="middle" orientation="vertical" />
                               
                                   <Box sx={{border:2, borderColor:"#000", 
@@ -326,6 +321,7 @@ export default function Dashboard() {
                 {dataSources.map((data)=><FeatureCard 
                   popular={data.popular}
                   title={data.title}
+                  key={data.title}
                   description={data.description}
                   description2={data.description2}
                   geo={data.geo}
