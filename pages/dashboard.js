@@ -238,7 +238,7 @@ export default function Dashboard() {
                           justifyContent:'center',backgroundColor:'#fff', marginBottom:16, fontSize:14,
                           flexWrap:"wrap" }}>
                                
-                               {predefinedModels.map((model)=><Link href="/managesignal" style={{width:'33%'}}>
+                               {predefinedModels.map((model)=><Link key={model.title} href="/managesignal" style={{width:'33%'}}>
                                <Box sx={{border:2, borderColor:"#000", 
                                     mx:4,my:2,py:2,px:4,textAlign:'center'}}
                                     onClick={()=>handleOpen2}
