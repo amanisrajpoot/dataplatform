@@ -70,7 +70,6 @@ const OTPForm = ({ error, email, otp, setOtp, confirmSignUp }) => {
                   fullWidth
                   id="otp"
                   label="otp"
-				  type='otp'
                   value={otp}
 				  onChange={(e) => setOtp(e.target.value)}
 				  required
