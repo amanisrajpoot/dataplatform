@@ -7,6 +7,8 @@ import Toolbar from '@mui/material/Toolbar';
 import PersonIcon from '@mui/icons-material/Person';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Link from 'next/link';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { signOut } from '../function/checkAuth';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -70,16 +72,19 @@ function Header(props) {
                 <div style={{fontSize:24, paddingTop:8}}>|
                 </div>
             
-            <Link href='/login'>
+            
              <div style={{display:"flex",flexDirection:'row', 
                 alignItems: 'center',cursor: 'pointer'}}>
+                     <Link href='/login'>
                       <PersonIcon />
+                    </Link>
                       &nbsp;&nbsp;
                       <p>Kaushik </p> 
                       &nbsp;&nbsp;
-                      <ArrowDropDownIcon />
+                      <div onClick={()=>signOut()}>
+                        <LogoutIcon />
+                      </div>
               </div>
-            </Link>    
 
             </Grid>
         </Toolbar>

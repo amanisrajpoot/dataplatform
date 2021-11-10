@@ -19,6 +19,8 @@ import { Grid } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
+import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
+
 
 function Copyright() {
   return (

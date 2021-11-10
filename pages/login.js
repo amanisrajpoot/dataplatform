@@ -80,7 +80,7 @@ const Login =() => {
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
     async function signInF(){
-        const err = await signIn({email, password, token, setToken});
+        const err = await signIn({email, password});
         setisLoading(false);
         if (err && err.code==="UserNotConfirmedException"){
             await router.push("/reconfirm");
@@ -92,7 +92,6 @@ const Login =() => {
         }
     }
 
-  
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -159,8 +158,8 @@ const Login =() => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={signingLoading}
-                href="/dashboard"
+                onClick={signInF}
+                // href="/dashboard"
               >
                 Sign In
               </Button>

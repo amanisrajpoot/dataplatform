@@ -35,12 +35,8 @@ const SignUpForm = ({
 	setconfirmpassword,
 	setname,
 	signUp,
-	afNum,
-	setafNum,
-	city,
-	setcity,
-	State,
-	setState,
+	orgName,
+	setOrgName,
 }) => {
 	const [mode, setmode] = useState(0);
 
@@ -55,7 +51,7 @@ const SignUpForm = ({
 			setError("Passwords don't match.");
 		} else {
 			setError(null);
-			setmode(1);
+			signUp();
 		}
 	}
 	function checkFields2() {
@@ -93,8 +89,8 @@ const SignUpForm = ({
 						/>
 					</div>
 					<h1>Sign up</h1>
-					{mode === 0 ? (
-						// User ID and Password
+					
+						{/* // User ID and Password */}
 						<form className={styles.input_fields}>
 							<input
 								type='text'
@@ -109,7 +105,7 @@ const SignUpForm = ({
 								placeholder='Organisation name'
 								className={styles.input}
 								value={name}
-								onChange={(e) => setname(e.target.value)}
+								onChange={(e) => setOrgName(e.target.value)}
 								required
 							/>
 							<input
@@ -153,15 +149,15 @@ const SignUpForm = ({
 							</button>
 
 						</form>
-					) : (
-						// Organisation/Clinic's information
+					
+						{/* // Organisation/Clinic's information
 						<>
 							<input
 								type='text'
-								placeholder='Affiliation number'
+								placeholder='Organisation Name'
 								className={styles.input}
-								value={afNum}
-								onChange={(e) => setafNum(e.target.value)}
+								value={orgName}
+								onChange={(e) => setOrgName(e.target.value)}
 								required
 							/>
 							<input
@@ -171,38 +167,19 @@ const SignUpForm = ({
 								value={'+1 ' + phone}
 								onChange={(e) => setphone(e.target.value.split('+1 ')[1] || '')}
 								required
-							/>
-							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-								<input
-									type='text'
-									placeholder='City'
-									className={styles.input}
-									value={city}
-									onChange={(e) => setcity(e.target.value)}
-									required
-								/>
-								<input
-									type='text'
-									placeholder='State'
-									className={styles.input}
-									value={State}
-									onChange={(e) => setState(e.target.value)}
-									required
-								/>
-							</div>
+							/> 
 
 							{error && <p className={styles.error}>{error}</p>}
 
 							<button
 								// onClick={checkFields}
 								// type='Submit'
-								onClick={checkFields2}
+								onClick={signUp()}
 								className={styles.button}
 							>
 								Sign up
 							</button>
-						</>
-					)}
+						)}*/}
 					<Link href={'/login'}>
 						<a style={{ marginLeft: '0.8em' }}>Already have an account?</a>
 					</Link>

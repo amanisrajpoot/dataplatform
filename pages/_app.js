@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
       })
   }, [])
 
-  useEffect(() => {checkAuth({token, setToken, role, setRole, setLocation}).then(r => {console.log("Set first time token")})}, [])
+  // useEffect(() => {checkAuth({token, setToken, role, setRole, setLocation}).then(r => {console.log("Set first time token")})}, [])
 
   useEffect(() => {
       if (token !== 0 && !token && !nonAuthRoutes.includes(router.pathname)){
