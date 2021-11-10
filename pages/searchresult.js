@@ -1,4 +1,4 @@
-import {useState, } from 'react';
+import {useState, useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -49,12 +49,15 @@ const style2 = {
   p: 4,
 };
 
-export default function Dashboard() {
+export default function searchresult() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [searching, setSearching] = useState('');
+  const [search, setSearch] = useState(false);
+  const [searching2, setSearching2] = useState([]);
+  const [searching3, setSearching3] = useState([]);
 
   const [dataSources, setDataSources] = React.useState([
     { popular:"1",
@@ -128,28 +131,40 @@ export default function Dashboard() {
     },
   ]);
 
-  const matchingresults = dataSources.filter(search=>{
-      if(search.description2.toLowerCase().search(searching.toLowerCase()) !== -1){
-       return search.description2.toLowerCase().search(searching.toLowerCase());
+  React.useEffect(() => {
+    let searchresults = [];
+    searchresults = dataSources.filter(search=>{
+        if(search.title.toLowerCase().includes(searching.toLowerCase())){
+          return search.title.toLowerCase().includes(searching.toLowerCase());
+        }
+        else return search.description.toLowerCase().includes(searching.toLowerCase());     
+      } 
+    );
+    setSearching2(searchresults);
+  
+    let matchingresults = [];
+    matchingresults = dataSources.filter(search=>{
+      if(search.description2.toLowerCase().includes(searching.toLowerCase()) !== -1){
+       return search.description2.toLowerCase().includes(searching.toLowerCase());
       }
-      else if(search.geo.toLowerCase().search(searching.toLowerCase()) !== -1){
-       return search.geo.toLowerCase().search(searching.toLowerCase())!== -1
-      } else if(search.date.toLowerCase().search(searching.toLowerCase())!== -1){
-        return search.date.toLowerCase().search(searching.toLowerCase())!== -1 
-       } else return search.available.toLowerCase().search(searching.toLowerCase())!== -1;      
+      else if(search.geo.toLowerCase().includes(searching.toLowerCase())){
+       return search.geo.toLowerCase().includes(searching.toLowerCase())
+      } else if(search.date.toLowerCase().includes(searching.toLowerCase())){
+        return search.date.toLowerCase().includes(searching.toLowerCase()) 
+       } else return search.available.toLowerCase().includes(searching.toLowerCase());      
     } 
   );
+  setSearching3(matchingresults);
+  console.log("searching")
+  }, [searching,search]);
 
-  const searchresults = dataSources.filter(search=>{
-    if(search.title.toLowerCase().search(searching.toLowerCase()) !== -1){
-      return search.title.toLowerCase().search(searching.toLowerCase()) !== -1;
-     }
-     else return search.description.toLowerCase().search(searching.toLowerCase()) !== -1;     
-   } 
-);
-  
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      console.log('do validate')
+      setSearch(!search)}
+    }
+
   return (
-    
     <Box>
       <Navbar />
         
@@ -175,13 +190,15 @@ export default function Dashboard() {
             <Box component="main" sx={{  minWidth: '50vw', px:1}}>
                 <TextField fullWidth id="outlined-basic" variant="outlined" 
                 value={searching} onChange={(e) => setSearching(e.target.value)}
-                label="Keyword" sx={{ bgcolor: '#ffffff'}}/>
+                label="Keyword" sx={{ bgcolor: '#ffffff'}}
+                onKeyDown={handleKeyDown}/>
             </Box>
             
             <Box>
                 <Button sx={{minWidth:'75px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}>
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                  onClick={()=>setSearch(!search)}>
                     <SearchIcon sx={{ fontSize: 25, color:'white' }}/>
                 </Button>
 
@@ -206,7 +223,7 @@ export default function Dashboard() {
 
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
-                {searchresults.map((data)=><FeatureCard 
+                {searching2.map((data)=><FeatureCard 
                   popular={data.popular}
                   title={data.title}
                   key={data.title}
@@ -235,7 +252,7 @@ export default function Dashboard() {
 
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
-                {matchingresults.map((data)=><FeatureCard 
+                {searching3.map((data)=><FeatureCard 
                   popular={data.popular}
                   title={data.title}
                   key={data.title}
