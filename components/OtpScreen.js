@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
+import { confirmSignUp } from '../function/checkAuth';
 
 function Copyright(props) {
 	return (
@@ -28,6 +29,16 @@ function Copyright(props) {
 const theme = createTheme();
 
 const OTPForm = ({ error, email, otp, setOtp, confirmSignUp }) => {
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		// const data = new FormData(event.currentTarget);
+		confirmSignUp();
+		// console.log({
+		//   email: data.get('email'),
+		//   password: data.get('password'),
+		// });
+	  };
+
 	return (
 	<ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -47,7 +58,7 @@ const OTPForm = ({ error, email, otp, setOtp, confirmSignUp }) => {
 		  	<h1>Account Verification</h1>
 			<p>Enter the OTP you must have recieved on your email </p>
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -85,7 +96,7 @@ const OTPForm = ({ error, email, otp, setOtp, confirmSignUp }) => {
               // href="/login"
               variant="contained"
               sx={{ mt: 3, mb: 2, py:2 }}
-              onClick={confirmSignUp}
+              onClick={handleSubmit}
               
             >Confirm Signup</Button>
 		</Box>
