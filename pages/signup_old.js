@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { confirmSignUp, signIn, signUp } from '../function/checkAuth';
 import SignUpForm from '../components/SignUpForm_bdr';
-import OTPForm from '../components/OtpScreen_bdr';
+import OTPForm from '../components/OtpScreenOld';
 import { createDoctorProfile } from '../function/doctor';
 import { useRouter } from 'next/router';
 import Link from '@mui/material/Link';
@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 
-const SignUp = ({ token, location, setToken }) => {
+const SignUp3 = ({ token, location, setToken }) => {
 	const router = useRouter();
 	const [email, setemail] = useState('');
 	const [password, setpassword] = useState('');
