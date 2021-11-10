@@ -49,7 +49,7 @@ const style2 = {
   p: 4,
 };
 
-export default function searchresult() {
+export default function Searchresult() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
