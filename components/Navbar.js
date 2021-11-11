@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Header from './Header';
 
-export default function Navbar() {
+export default function Navbar({token, setToken, setUser, user}) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -9,7 +9,7 @@ export default function Navbar() {
   };
 
   return (
-          <Header onDrawerToggle={handleDrawerToggle} />
+          <Header token={token} setToken={setToken} onDrawerToggle={handleDrawerToggle} />
            
   );
 }

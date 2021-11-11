@@ -6,10 +6,6 @@ export const nonAuthRoutes = [
 	'/login',
 	'/signup',
 	'/forgetpassword',
-	'/createsignalfirst',
-	'/createsignalsecond',
-	'/managesignal',
-	'/managesignaloutput',
 	'/helpcenter',
 	'/explore',
 	'/createfeature',
@@ -24,7 +20,7 @@ export const adminUsers = [
 
 export const NOCORS = 'https://heruko-nocors.herokuapp.com/';
 // export const BASE_BACKEND = "https://5dblw3od51.execute-api.us-east-2.amazonaws.com/dev"
-export const BASE_BACKEND = process.env.NEXT_PUBLIC_BACKED_URL;
+export const BASE_BACKEND = "https://3i489l9f1c.execute-api.us-east-1.amazonaws.com/dev";
 	// 'https://bye6meiro4.execute-api.us-east-2.amazonaws.com/Dev';
 
 export const EMAIL_VALIDATOR =

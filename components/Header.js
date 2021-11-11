@@ -9,11 +9,20 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Link from 'next/link';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { signOut } from '../function/checkAuth';
+import { getUser } from '../function/doctor';
+import { useState, useEffect } from 'react'
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
-function Header(props) {
-  const { onDrawerToggle } = props;
+function Header({token,setToken,onDrawerToggle}) {
+  
+  const [user, setuser] = useState(null);
+	useEffect(async () => {
+    console.log('user call token', token);
+		const userP = await getUser(token);
+		setuser(userP);
+		console.log('userP', userP);
+	}, [token]);
 
   return (
     <React.Fragment>
@@ -79,7 +88,7 @@ function Header(props) {
                       <PersonIcon />
                     </Link>
                       &nbsp;&nbsp;
-                      <p>Kaushik </p> 
+                      <p>{user && user.firstname ? user.firstname : 'Account'} </p> 
                       &nbsp;&nbsp;
                       <div onClick={()=>signOut()}>
                         <LogoutIcon />

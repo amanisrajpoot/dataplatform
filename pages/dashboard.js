@@ -20,7 +20,8 @@ import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
-
+import DataSourcesDetails from '../components/datasourcedetails';
+import { useRouter } from 'next/router';
 
 function Copyright() {
   return (
@@ -60,7 +61,7 @@ const style2 = {
   p: 4,
 };
 
-export default function Dashboard() {
+export default function Dashboard({token,setToken,user,setUser}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -80,49 +81,100 @@ export default function Dashboard() {
     setMobileOpen(!mobileOpen);
   };
 
+  const [openDetails, setOpenDetails] = useState(false);
+  const [dsDetails, setDSDetails] = useState([]);
+  const handleOpenDetails = (data) => {
+    setOpenDetails(true);
+    setDSDetails(data);
+  };
+  const handleCloseDetails = () => {
+    setOpenDetails(false);
+  };
+
   const [dataSources, setDataSources] = React.useState([
-    { popular:"1",
-    title:"Insurance Companies LEIE    ",
+    {   
+        dataset_id:"24",
+        user_email:'',
+        title:"Insurance Companies LEIE ",
+        description:"List of Excluded Individuals/Entities (LEIE)",
+        features:"",
+        row_count:'68',
+        data_points:'369',
+        address:'',
+        base_adress:'',
+        ranges: '',
+        data_sources:'',  
+        template_id:'',
+        refreshed_at:'6 Oct',
+   },
+    { dataset_id:"25",
+    user_email:'',
+    title:"Insurance Companies LEIE ",
     description:"List of Excluded Individuals/Entities (LEIE)",
-    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
-    geo:"Country - USA",
-    date:"",
-    available:"" },
-    { popular:"1",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'6 Oct',
+   },
+    { dataset_id:"29",
+    user_email:'',
+    title:"Insurance Companies LEIE ",
+    description:"List of Excluded Individuals/Entities (LEIE)",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'6 Oct',
+   },
+    { dataset_id:"29",
+    user_email:'',
     title:"PECARN ",
     description:"PECARN, the Pediatric Emergency Care",
-    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
-    geo:"Country - USA",
-    date:"",
-    available:"", },
-    { popular:"1",
-    title:"Drugs at FDA",
-    description:"Information about FDA-approved ",
-    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
-    geo:"Country - Mexico",
-    date:"",
-    available:"", },
-    { popular:"0",
-    title:"Insurance Companies LEIE    ",
-    description:"List of Excluded Individuals/Entities (LEIE)",
-    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
-    geo:"Country - USA",
-    date:"",
-    available:"" },
-    { popular:"0",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'9 Oct',
+    },
+    { dataset_id:"29",
+    user_email:'',
     title:"PECARN ",
     description:"PECARN, the Pediatric Emergency Care",
-    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
-    geo:"Country - USA",
-    date:"",
-    available:"", },
-    { popular:"0",
-    title:"Drugs at FDA",
-    description:"Information about FDA-approved ",
-    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
-    geo:"Country - Mexico",
-    date:"",
-    available:"", }
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'9 Oct', },
+    { dataset_id:"29",
+    user_email:'',
+    title:"PECARN ",
+    description:"PECARN, the Pediatric Emergency Care",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'9 Oct', }
   ]);
   
   const [predefinedModels, setPredefinedModels] = React.useState([
@@ -155,7 +207,7 @@ export default function Dashboard() {
   return (
     
     <Box>
-      <Navbar />
+      <Navbar token={token} setToken={setToken}/>
         <Box sx={{ display: 'flex', flexDirection:'column',py: 6, px: 14, bgcolor: '#3e3e33'}}>
           <Box sx={{ display: 'flex', flexDirection:'row', py: 2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
             <Typography color="inherit" variant="h5" component="h1">
@@ -166,8 +218,11 @@ export default function Dashboard() {
                 </Box>
             </Typography>
 
-            <Button variant="contained" size="large" sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                startIcon={<AddIcon />} onClick={handleOpen}>
+            <Button variant="contained" size="large" 
+                sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                href="/createsignalfirst"
+                startIcon={<AddIcon />}>
+                {/* onClick={handleOpen}> */}
             Create a Dataset</Button>
 
                 <Modal
@@ -183,7 +238,7 @@ export default function Dashboard() {
                             <Box>
                                 CHOOSE A METHOD
                             </Box>
-                            <Box>
+                            <Box onClick={()=>handleClose()}>
                                 X
                             </Box>
                         </Box>
@@ -263,6 +318,12 @@ export default function Dashboard() {
       
       </Box>
 
+      <Modal open={openDetails} onClose={handleCloseDetails}>
+          <Box sx={style2}>            
+              <DataSourcesDetails handleCloseDetails={handleCloseDetails}
+              data={dsDetails}/>
+          </Box>                  
+       </Modal>
 
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -322,14 +383,11 @@ export default function Dashboard() {
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
                 {dataSources.map((data)=><FeatureCard 
-                  popular={data.popular}
-                  title={data.title}
-                  key={data.title}
-                  description={data.description}
-                  description2={data.description2}
-                  geo={data.geo}
-                  date={data.date}
-                  available={data.available} />)}
+                  key={data.dataset_id}
+                  data={data}
+                  openDetails={openDetails}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails}/>)}
           </Box>
           
         </Box>

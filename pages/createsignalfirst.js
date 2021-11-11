@@ -41,7 +41,7 @@ const style = {
   p: 4,
 };
 
-export default function CreateSignalFirst() {
+export default function CreateSignalFirst({token, setToken}) {
   const handleOpen = () => setOpen(true);
   const [progress, setProgress] = React.useState(50);
   const [age, setAge] = React.useState('');
@@ -70,11 +70,11 @@ export default function CreateSignalFirst() {
   return (
     
     <Box>
-      <Navbar />
+      <Navbar token={token} setToken={setToken}/>
       
       <Box sx={{ width: '100%', px:16,py:2,}}>
-          <p>Step 1 of 2</p>
-          <LinearProgress variant="determinate" value={progress} sx={{height:'2vh', 
+          <p>Step 1 of 3</p>
+          <LinearProgress variant="determinate" value={33} sx={{height:'2vh', 
           backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
           color:'linear-gradient(to right,#094a98, #4e0c98)'}} />
       </Box>
@@ -115,15 +115,15 @@ export default function CreateSignalFirst() {
 
                 </Box>
 
-                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
+                {/*<Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2}}>
                     <div>TOPIC &nbsp;</div>
                     <div style={{fontSize:12, paddingTop:4}}>*Used to recommend features and data treatment techniques to consider</div>
                 </Box>
                 
-                <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
+                 <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
                   justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
+                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
                     <FormControl variant="outlined" sx={{ minWidth: '50%' }}>
                     <InputLabel htmlFor="demo-simple-select-filled">Topic:</InputLabel>
                       <Select
@@ -145,7 +145,7 @@ export default function CreateSignalFirst() {
                     </Select>
                     </FormControl>
 
-                    {/* <FormControl variant="outlined" sx={{ width: '50%' }}>
+                    <FormControl variant="outlined" sx={{ width: '50%' }}>
                     <InputLabel htmlFor="demo-simple-select-filled">Analysis:</InputLabel>
                       <Select
                       labelId="demo-simple-select-filled-label"
@@ -163,9 +163,9 @@ export default function CreateSignalFirst() {
                       <MenuItem value={30}>Other</MenuItem>
 
                     </Select>
-                    </FormControl> */}
+                    </FormControl> 
 
-                </Box>
+                </Box> */}
 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2, pb:4}}>
@@ -226,10 +226,10 @@ export default function CreateSignalFirst() {
                     
                 </Box>
 
-                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',pb:4, 
+                {/* <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',pb:4, 
                     color:'gray', fontSize:14,px:16,}}>
                     <div>Estimated Row Count: &nbsp;</div> <div style={{width:122}}>{123?123:<CircularProgress />}</div>
-                </Box>
+                </Box> */}
 
                 {/* <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2, pb:4}}>
@@ -267,7 +267,7 @@ export default function CreateSignalFirst() {
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
             <Button variant="contained" size="large" sx={{mx:2, py:4,
             backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                endIcon={<CheckIcon />} href="/createsignalsecond">
+                endIcon={<CheckIcon />} href="/searchresult">
                 {"Continue"}</Button>
   
         </Box>

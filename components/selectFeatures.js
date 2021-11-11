@@ -139,12 +139,12 @@ export default function SelectFeatures(props){
 
           <div style={{display:"flex",pt:4, flexDirection:"row", 
               width:"100%", paddingTop:4}}>
-            <div style={{width:"20%"}}>
+            <div style={{width:"30%"}}>
               <p style={{paddingLeft:54, }}>RECOMMEND BASED ON</p>
             </div>
           
               <div style={{display:"flex", flexDirection:'row', width:'80%',paddingBottom:18}}>
-                <div style={{ minWidth: '38%',paddingLeft:4, paddingRight:8}}>
+                {/*<div style={{ minWidth: '38%',paddingLeft:4, paddingRight:8}}>
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-filled-label">Topic</InputLabel>
                       <Select
@@ -165,7 +165,7 @@ export default function SelectFeatures(props){
                     </FormControl>
                   </div>
 
-                  {/* <div style={{  minWidth: "25%", paddingLeft:4, paddingRight:8}}>
+                   <div style={{  minWidth: "25%", paddingLeft:4, paddingRight:8}}>
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-filled-label" >Analysis</InputLabel>
                       <Select

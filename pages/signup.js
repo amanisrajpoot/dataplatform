@@ -36,13 +36,14 @@ export default function SignUp({token, setToken}) {
   const router = useRouter();
 	const [email, setemail] = useState('');
 	const [password, setpassword] = useState('');
-	const [name, setname] = useState('');
+	const [firstname, setfirstname] = useState('');
+  const [lastname, setlastname] = useState('');
 	const [confirmpassword, setconfirmpassword] = useState('');
 	const [phone, setphone] = useState('');
 	const [error, seterror] = useState(null);
 	const [otpScreen, setOtpScreen] = useState(false);
 	const [otp, setOtp] = useState('');
-	const [orgName, setOrgName] = useState('');
+	const [company, setcompany] = useState('');
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -59,9 +60,8 @@ export default function SignUp({token, setToken}) {
 			email,
 			//phone: '+1' + phone,
 			password,
-			name,
-			role: 'admin',
-			orgName,
+			firstname,
+      lastname,
 			
 		});
 		if (erro === null) {
@@ -138,16 +138,29 @@ export default function SignUp({token, setToken}) {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="fname"
+                  autoComplete="firstname"
                   name="firstName"
                   required
                   fullWidth
-                  id="name"
-                  label="Name"
-                  value={name}
-								  onChange={(e) => setname(e.target.value)}
+                  id="firstname"
+                  label="First Name"
+                  value={firstname}
+								  onChange={(e) => setfirstname(e.target.value)}
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="lastname"
+                  name="lastname"
+                  required
+                  fullWidth
+                  id="lastname"
+                  label="Last Name"
+                  value={lastname}
+								  onChange={(e) => setlastname(e.target.value)}
                   autoFocus
                 />
               </Grid>
@@ -160,8 +173,8 @@ export default function SignUp({token, setToken}) {
                   label="Company Associated With"
                   name="company"
                   autoComplete="company"
-                  value={orgName}
-								  onChange={(e) => setOrgName(e.target.value)}
+                  value={company}
+								  onChange={(e) => setcompany(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>

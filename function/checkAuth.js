@@ -14,6 +14,7 @@ export async function checkAuth({
 		if (user) {
 			const too = user.getSignInUserSession().getIdToken().getJwtToken();
 			setToken(too);
+			console.log("token",too)
 			// const response = await fetchAuth(too, '/users');
 			// setRole(response.type);
 			// setLocation(response.location.split(',')[0]);

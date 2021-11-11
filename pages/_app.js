@@ -29,7 +29,11 @@ function MyApp({ Component, pageProps }) {
       })
   }, [])
 
-  // useEffect(() => {checkAuth({token, setToken, role, setRole, setLocation}).then(r => {console.log("Set first time token")})}, [])
+  useEffect(()=>{
+    console.log("app token",token)
+  })
+
+  useEffect(() => {checkAuth({token, setToken, role, setRole, setLocation}).then(r => {console.log("Set first time token")})}, [])
 
   useEffect(() => {
       if (token !== 0 && !token && !nonAuthRoutes.includes(router.pathname)){
@@ -52,10 +56,41 @@ function MyApp({ Component, pageProps }) {
       }
   }, [])
 
+  const [dataset, setDataset] = useState({
+        user_email:'',
+        title:'',
+        description:'',
+        topic:'',
+        refresh_rate:'',
+        row_count:'',
+        data_points:'',
+        data_sources:'',  
+        status:'',
+        template:'',
+        refreshed_at:'',
+        catalog:[]
+  });
+  const addDataset = (data) => {
+        setDataset({...dataset,data});
+        console.log("dataset",dataset)
+    };
+  const addDatasetcatalog = (data) => {
+        setDataset({...dataset,catalog:[...dataset.catalog,{...data}]});
+        console.log("dataset",dataset)
+    };
+  const removeDataset = (data) => {
+        const filtered = [dataset.catalog].filter(item => item.id !== data.id);
+        setDataset({...dataset,catalog:filtered});
+        console.log("dataset",dataset)
+    };
+
   return (
     <>
       {/*<Navbar />*/}
-      <Component role={role} setLocation={setLocation} token={token} location={location} setToken={setToken} {...pageProps} />
+      <Component role={role} setLocation={setLocation} token={token} location={location} 
+          setToken={setToken} 
+          dataset={dataset} addDataset={addDataset} removeDataset={removeDataset} addDatasetcatalog={addDatasetcatalog}
+          {...pageProps} />
       {/* <Footer /> */}
     </>
   )

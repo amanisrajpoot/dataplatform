@@ -10,6 +10,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FeatureCard from '../components/FeatureCard';
 import SearchIcon from '@mui/icons-material/Search';
+import LinearProgress from '@mui/material/LinearProgress';
+import Modal from '@mui/material/Modal';
+import DataSourcesDetails from '../components/datasourcedetails';
+
+
 
 function Copyright() {
   return (
@@ -49,7 +54,7 @@ const style2 = {
   p: 4,
 };
 
-export default function Searchresult() {
+export default function Searchresult({token, setToken,dataset,addDataset,removeDataset,addDatasetcatalog}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -58,50 +63,93 @@ export default function Searchresult() {
   const [search, setSearch] = useState(false);
   const [searching2, setSearching2] = useState([]);
   const [searching3, setSearching3] = useState([]);
+  const [searching4, setSearching4] = useState([dataset.catalog]);
+
 
   const [dataSources, setDataSources] = React.useState([
-    { popular:"1",
-    title:"Insurance Companies LEIE    ",
+    {   
+        dataset_id:"24",
+        user_email:'',
+        title:"Insurance Companies LEIE ",
+        description:"List of Excluded Individuals/Entities (LEIE)",
+        features:"",
+        row_count:'68',
+        data_points:'369',
+        address:'',
+        base_adress:'',
+        ranges: '',
+        data_sources:'',  
+        template_id:'',
+        refreshed_at:'6 Oct',
+   },
+    { dataset_id:"25",
+    user_email:'',
+    title:"Insurance Companies LEIE ",
     description:"List of Excluded Individuals/Entities (LEIE)",
-    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
-    geo:"Country - USA",
-    date:"",
-    available:"" },
-    { popular:"1",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'6 Oct',
+   },
+    { dataset_id:"29",
+    user_email:'',
+    title:"Insurance Companies LEIE ",
+    description:"List of Excluded Individuals/Entities (LEIE)",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'6 Oct',
+   },
+    { dataset_id:"29",
+    user_email:'',
     title:"PECARN ",
     description:"PECARN, the Pediatric Emergency Care",
-    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
-    geo:"Country - USA",
-    date:"",
-    available:"", },
-    { popular:"1",
-    title:"Drugs at FDA",
-    description:"Information about FDA-approved ",
-    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
-    geo:"Country - Mexico",
-    date:"",
-    available:"", },
-    { popular:"0",
-    title:"Insurance Companies LEIE    ",
-    description:"List of Excluded Individuals/Entities (LEIE)",
-    description2:"Information to the health care industry, patients and the public regarding individuals and entities",
-    geo:"Country - USA",
-    date:"",
-    available:"" },
-    { popular:"0",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'9 Oct',
+    },
+    { dataset_id:"29",
+    user_email:'',
     title:"PECARN ",
     description:"PECARN, the Pediatric Emergency Care",
-    description2:"Applied Research Network conducts high-priority, multi-institutional research on the prevention & management of acute illnesses.",
-    geo:"Country - USA",
-    date:"",
-    available:"", },
-    { popular:"0",
-    title:"Drugs at FDA",
-    description:"Information about FDA-approved ",
-    description2:"Information about FDA-approved human drugs and biological therapeutic products.",
-    geo:"Country - Mexico",
-    date:"",
-    available:"", }
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'9 Oct', },
+    { dataset_id:"29",
+    user_email:'',
+    title:"PECARN ",
+    description:"PECARN, the Pediatric Emergency Care",
+    features:"",
+    row_count:'68',
+    data_points:'369',
+    address:'',
+    base_adress:'',
+    ranges: '',
+    data_sources:'',  
+    template_id:'',
+    refreshed_at:'9 Oct', }
   ]);
   
   const [predefinedModels, setPredefinedModels] = React.useState([
@@ -131,7 +179,7 @@ export default function Searchresult() {
     },
   ]);
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     let searchresults = [];
     searchresults = dataSources.filter(search=>{
         if(search.title.toLowerCase().includes(searching.toLowerCase())){
@@ -144,8 +192,8 @@ export default function Searchresult() {
   
     let matchingresults = [];
     matchingresults = dataSources.filter(search=>{
-      if(search.description2.toLowerCase().includes(searching.toLowerCase()) !== -1){
-       return search.description2.toLowerCase().includes(searching.toLowerCase());
+      if(search.topic.toLowerCase().includes(searching.toLowerCase()) !== -1){
+       return search.topics.toLowerCase().includes(searching.toLowerCase());
       }
       else if(search.geo.toLowerCase().includes(searching.toLowerCase())){
        return search.geo.toLowerCase().includes(searching.toLowerCase())
@@ -156,7 +204,7 @@ export default function Searchresult() {
   );
   setSearching3(matchingresults);
   console.log("searching")
-  }, [searching,search]);
+  }, [,searching,search]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -164,19 +212,38 @@ export default function Searchresult() {
       setSearch(!search)}
     }
 
+    const [openDetails, setOpenDetails] = useState(false);
+    const [dsDetails, setDSDetails] = useState([]);
+    const handleOpenDetails = (data) => {
+      setOpenDetails(true);
+      setDSDetails(data);
+    };
+    const handleCloseDetails = () => {
+      setOpenDetails(false);
+    };
+
   return (
     <Box>
-      <Navbar />
+      <Navbar token={token} setToken={setToken}/>
         
       <Box sx={{ display: 'flex' }}>        
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <Box component="main" sx={{ flex: 1, pt:4, px: 4, bgcolor: '#eaeff1' }}>
+          
+          <Box component="main" sx={{ flex: 1, px: 4, bgcolor: '#eaeff1' }}>
+            <Box sx={{ width: '100%', px:10,py:2,pb:4}}>
+              <p>Step 2 of 3</p>
+              <LinearProgress variant="determinate" value={66} sx={{height:'2vh', 
+              backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+              color:'linear-gradient(to right,#094a98, #4e0c98)'}} />
+            </Box>
+
             <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
                       <div>Explore Healthcare Data Platform &nbsp;</div>
                       <div><HelpOutlineIcon /></div>
                   </Box>
               </Typography>
+              
           <Box
             component="form"
             sx={{
@@ -187,7 +254,8 @@ export default function Searchresult() {
             noValidate
             autoComplete="off"
           >
-            <Box component="main" sx={{  minWidth: '50vw', px:1}}>
+            
+            <Box component="main" sx={{  minWidth: '68vw', px:1}}>
                 <TextField fullWidth id="outlined-basic" variant="outlined" 
                 value={searching} onChange={(e) => setSearching(e.target.value)}
                 label="Keyword" sx={{ bgcolor: '#ffffff'}}
@@ -195,18 +263,29 @@ export default function Searchresult() {
             </Box>
             
             <Box>
-                <Button sx={{minWidth:'75px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
+              <Link href="/createsignalsecond">
+                <Button sx={{minWidth:'225px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
                 backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                  onClick={()=>setSearch(!search)}>
-                    <SearchIcon sx={{ fontSize: 25, color:'white' }}/>
+                href='/createsignalsecond'>
+                  {/*onClick={()=>setSearch(!search)}*/}
+                    {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
+                    <div style={{color:'#fff',fontSize:18}}>Continue</div>
                 </Button>
+              </Link>
 
             </Box>
           </Box>
           </Box>
         </Box>
       </Box>
+
+      <Modal open={openDetails} onClose={handleCloseDetails}>
+          <Box sx={style2}>            
+              <DataSourcesDetails handleCloseDetails={handleCloseDetails}
+              data={dsDetails}/>
+          </Box>                  
+       </Modal>
 
       <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
         
@@ -224,14 +303,15 @@ export default function Searchresult() {
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
                 {searching2.map((data)=><FeatureCard 
-                  popular={data.popular}
-                  title={data.title}
-                  key={data.title}
-                  description={data.description}
-                  description2={data.description2}
-                  geo={data.geo}
-                  date={data.date}
-                  available={data.available} />)}
+                  openDetails={openDetails}
+                  data={data}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails} 
+                  dataset={dataset}
+                  addDataset={addDataset}
+                  removeDataset={removeDataset}
+                  addDatasetcatalog={addDatasetcatalog}
+                  />)}
           </Box>
           
         </Box>
@@ -252,15 +332,15 @@ export default function Searchresult() {
 
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
-                {searching3.map((data)=><FeatureCard 
-                  popular={data.popular}
-                  title={data.title}
-                  key={data.title}
-                  description={data.description}
-                  description2={data.description2}
-                  geo={data.geo}
-                  date={data.date}
-                  available={data.available} />)}
+                {searching4.map((data)=><FeatureCard 
+                  openDetails={openDetails}
+                  data={data}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails} 
+                  dataset={dataset}
+                  addDataset={addDataset}
+                  removeDataset={removeDataset}
+                  addDatasetcatalog={addDatasetcatalog} />)}
           </Box>
         </Box>
       </Box>

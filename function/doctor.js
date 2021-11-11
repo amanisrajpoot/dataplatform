@@ -1,6 +1,6 @@
 import {BASE_BACKEND} from "./constants";
 
-export async function getDoctor({token}){
+export async function getUser(token){
     // const {data, error} = useSWR(`/getDoctor?&Token=${token}`, fetchAuth)
 
     // if (error) return null
