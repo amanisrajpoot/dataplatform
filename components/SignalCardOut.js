@@ -21,9 +21,9 @@ export default function SignalCardOut({token, data}){
     useEffect(() => {console.log("DATATATA",data)})
     return (
         <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',}}>
-          <p style={{paddingLeft:54}}>DATASET OVERVIEW</p>
+          <p style={{paddingLeft:36}}>DATASET OVERVIEW</p>
           <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', 
-            justifyContent:'space-around', paddingRight:84 }}>
+            justifyContent:'space-around', paddingRight:76 ,paddingLeft: '1.5ch'}}>
               
               
               <div style={{display:'flex', alignItems:'center', 
@@ -68,7 +68,7 @@ export default function SignalCardOut({token, data}){
                                             }}>
 
                 <div>
-                <p><b>Features:</b>{data.features?data.features:""}<br></br><br></br>
+                <p><b>Features:</b>{data.features?data.features.substring(0,100):""}<br></br><br></br>
                     </p>
               </div>
               </div>

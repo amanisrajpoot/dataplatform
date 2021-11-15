@@ -14,6 +14,7 @@ import DataSourcesDetails from '../../components/datasourcedetails';
 import { getPublicDatasetsTopics} from '../../function/users';
 import TopicsCard from '../../components/TopicsCard';
 import { useRouter } from 'next/router'
+import AddedFeatureCard from '../../components/AddedFeatureCard';
 
 
 function Copyright() {
@@ -183,7 +184,7 @@ export default function Topic({token,
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
                 {searching4 !== null && searching4 !== undefined && searching4.length > 0 &&
-                searching4.map((data)=><FeatureCard 
+                searching4.map((data)=><AddedFeatureCard 
                   openDetails={openDetails}
                   data={data}
                   handleOpenDetails={handleOpenDetails}

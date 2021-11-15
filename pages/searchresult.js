@@ -66,6 +66,7 @@ export default function Searchresult({
   setDataSources,
   setDataset,
   setUserdatasets, 
+  // title, setTitle, description, setDe 
   userdatasets,
   addDatasetcatalog,
   removeDatasetcatalog,
@@ -297,7 +298,7 @@ export default function Searchresult({
       <Modal open={openDetails} onClose={handleCloseDetails}>
           <Box sx={style2}>            
               <DataSourcesDetails handleCloseDetails={handleCloseDetails}
-              data={dsDetails}/>
+              data={dsDetails} addDatasetcatalog={addDatasetcatalog}/>
           </Box>                  
        </Modal>
 

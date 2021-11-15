@@ -20,7 +20,7 @@ import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
-import DataSourcesDetails from '../components/datasourcedetails';
+import DataSourcesDetails from '../components/dataSourceDetails';
 import { useRouter } from 'next/router';
 import { getPublicDatasets,getDatasets } from '../function/users';
 import DatasetCard from '../components/DatasetCard';
@@ -109,6 +109,7 @@ export default function Dashboard({
   const [keyword, setKeyword] = useState('');
   const handleKeywordSearch = async (event) => {
       if(token!==null){
+        console.log("SEARCH", keyword)
           const data = await getPublicDatasets(
           token,keyword
         );

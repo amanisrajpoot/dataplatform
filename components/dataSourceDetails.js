@@ -52,6 +52,24 @@ export default function DataSourcesDetails(props){
                                   <label><b>Description</b></label>
                                   {props.data.description}
                                 </div>
+                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
+                                                            alignItems: 'flex-start', minWidth: '40%', 
+                                                            maxWidth:'40%',margin: '1.2rem 1rem 1.2rem 0'}}>
+                                  <label><b>No. of Features</b></label>
+                                  {props.data.features.split(',').length}
+                                </div>
+                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
+                                                            alignItems: 'flex-start', minWidth: '40%', 
+                                                            maxWidth:'40%',margin: '1.2rem 1rem 1.2rem 0'}}>
+                                  <label><b>No. of Rows</b></label>
+                                  {props.data.row_count}
+                                </div>
+                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
+                                                            alignItems: 'flex-start', minWidth: '40%', 
+                                                            maxWidth:'40%',margin: '1.2rem 1rem 1.2rem 0'}}>
+                                  <label><b>Topics</b></label>
+                                  {props.data.topic}
+                                </div>
                                 {/* <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
                                                             alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
                                   <label><b>Start Date</b></label>
@@ -126,6 +144,7 @@ export default function DataSourcesDetails(props){
                                   style={{ width: '30%', height: '2.5rem', 
                                   backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)', 
                                   color: 'white',  }}
+                                  onClick={() => props.addDatasetcatalog(props.data)}
                                 >
                                   Add to Dataset
                                 </button>}

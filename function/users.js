@@ -44,7 +44,11 @@ export async function getPublicDatasets(token,keywords){
             },
         };
         try {
-            const res = await fetch(BASE_BACKEND+"/public/datasets?keyword="+keywords, req)
+            if (keywords === undefined) {
+                const res = await fetch(BASE_BACKEND+"/public/datasets?topic=", req)
+                return res.json()
+            }
+            const res = await fetch(BASE_BACKEND+"/public/datasets?topic="+keywords, req)
             return res.json()
         } catch (e) {
             console.log("Error:", e)

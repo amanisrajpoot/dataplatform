@@ -15,6 +15,8 @@ function MyApp({ Component, pageProps }) {
     const [token, setToken] = useState(0);
     const [location, setLocation] = useState("");
     const [role, setRole] = useState("")
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
 
     useEffect(() => {
       Hub.listen('auth', (data) => {
@@ -107,6 +109,7 @@ function MyApp({ Component, pageProps }) {
           setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
           setUserdatasets={setUserdatasets} removeDatasetcatalog={removeDatasetcatalog} 
           addDatasetcatalog={addDatasetcatalog} dataSources={dataSources} setDataSources={setDataSources}
+          title={title} description={description} setTitle={setTitle} setDescription={setDescription}
           {...pageProps} />
       {/* <Footer /> */}
     </>
