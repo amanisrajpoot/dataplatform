@@ -42,7 +42,15 @@ const style = {
   p: 4,
 };
 
-export default function ManageSignalOutput() {
+export default function ManageSignalOutput({
+  token,
+  setToken,
+  user,
+  dataset,
+  userdatasets,
+  dataSources,
+  setDataSources,
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [industry, setIndustry] = React.useState('');
   const [analysis, setAnalysis] = React.useState('');
@@ -84,13 +92,14 @@ export default function ManageSignalOutput() {
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
           <Box>
-            <Box><SignalCardOut /></Box>
+            <Box><SignalCardOut data={userdatasets && userdatasets}/></Box>
             <Box sx={{ display: 'flex',pt:4}}>
         
             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
-              mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',}}>
-                <Button href="/managesignaloutput" variant="contained" size="large" sx={{mx:2, py:4,
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+              mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',color:"#fff"}}>
+                <Button href="/managesignaloutput" variant="contained" size="large" 
+                sx={{mx:2, py:4,backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                disabled
                     startIcon={<CheckIcon />} >
                     {"Refresh Data"}</Button>
                 <Button variant="contained" size="large" sx={{mx:2, py:4,
@@ -104,7 +113,7 @@ export default function ManageSignalOutput() {
       
       </Box>
 
-      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',pt:4}}>
+      {/* <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',pt:4}}>
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
           
@@ -146,7 +155,7 @@ export default function ManageSignalOutput() {
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>
                     Output</Button>
         </Box>
-      </Box>
+      </Box> */}
 
       <Modal
         open={open}

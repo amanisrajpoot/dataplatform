@@ -49,8 +49,6 @@ export default function SignalTable(props) {
       
       const rows = [
         createData('Ready','Cancer Patient', '03', "Quarter", "Zip","26/10/2021","26/10/2021",'settings'),
-        createData('Processing','Covid Recovery', '10', "Month", "State","26/10/2021","17/10/2021",'settings'),
-        createData('Ready','Survival Rate', '11', "Day", "Country","26/10/2021","10/10/2021",'settings'),
         
       ];
   

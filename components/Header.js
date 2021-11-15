@@ -9,7 +9,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Link from 'next/link';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { signOut } from '../function/checkAuth';
-import { getUser } from '../function/doctor';
+import { getUser } from '../function/users';
 import { useState, useEffect } from 'react'
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
@@ -65,6 +65,7 @@ function Header({token,setToken,onDrawerToggle}) {
                 color="inherit"
                 size="large"
                 href="/explore"
+                disabled
               >
                 EXPLORE
               </Button>
@@ -73,6 +74,7 @@ function Header({token,setToken,onDrawerToggle}) {
                 href="/helpcenter"
                 color="inherit"
                 size="large"
+                disabled
               >
                 SUPPORT
               </Button>

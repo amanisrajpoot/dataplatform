@@ -11,9 +11,8 @@ import FormControl from '@mui/material/FormControl';
 import CheckIcon from '@mui/icons-material/Check';
 import LinearProgress from '@mui/material/LinearProgress';
 import TextField from '@mui/material/TextField';
-import { Select } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import CircularProgress from '@mui/material/CircularProgress';
+import { useState,useEffect } from 'react';
+import { getPublicDatasets,createUserDataset } from '../function/users';
 
 function Copyright() {
   return (
@@ -41,10 +40,19 @@ const style = {
   p: 4,
 };
 
-export default function CreateSignalFirst({token, setToken}) {
+export default function CreateSignalFirst({
+  token, 
+  setToken, 
+  dataset, 
+  setDataset,
+  setUserdatasets, 
+  userdatasets}) {
   const handleOpen = () => setOpen(true);
-  const [progress, setProgress] = React.useState(50);
-  const [age, setAge] = React.useState('');
+  const [title, setTitle] = React.useState('');
+  const [description, setDescription] = React.useState('');
+  const [topic, setTopic] = React.useState('');
+  const [keywords, setKeywords] = React.useState('');
+  const [localdataset, setLocaldataset] = React.useState({title: '', description: '', topic: ''});
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -66,6 +74,20 @@ export default function CreateSignalFirst({token, setToken}) {
   //   };
   // }, []);
 
+  const handleAddData = async () => {
+    setLocaldataset({title, description, topic});
+    setDataset({...dataset,...localdataset});
+
+      if(token!==null){
+        const data = await createUserDataset({
+          token,
+          dataset
+        });
+        setUserdatasets(data);
+        console.log("created dataset",data);
+      }
+    console.log("added details",dataset);
+  };
   
   return (
     
@@ -88,7 +110,7 @@ export default function CreateSignalFirst({token, setToken}) {
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2}}>
                     <div>BASIC INFO &nbsp;</div>
-                    <div style={{fontSize:12, paddingTop:4}}>*Enter a name and description for your signal.</div>
+                    <div style={{fontSize:12, paddingTop:4}}>*Enter a title and description for your signal.</div>
                 </Box>
 
                 <Box sx={{display:'flex',px:16, width:"100%", bgColor:'#fff',color:'#fff'}}>
@@ -96,76 +118,35 @@ export default function CreateSignalFirst({token, setToken}) {
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                     <TextField
                       variant="outlined"
-                      value={""}
+                      value={title}
+                      onChange={(event)=>setTitle(event.target.value)}
                       sx={{color:'#fff', bgColor:'#fff',pb:2}}
                       //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Name"
+                      label="Title"
                     />
 
                     <TextField
                       variant="outlined"
-                      value={""}
+                      value={description}
+                      onChange={(event)=>setDescription(event.target.value)}
                       sx={{color:'#fff',pb:2}}
                       rows={4}
                       //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Description"
+                      label="What this data will be doing for you?"
                       multiline
+                    />
+
+                    <TextField
+                      variant="outlined"
+                      value={topic}
+                      onChange={(event) => setTopic(event.target.value)}
+                      sx={{color:'#fff', bgColor:'#fff',pb:2}}
+                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                      label="Topic"
                     />
                   </FormControl>
 
                 </Box>
-
-                {/*<Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
-                    color:'gray', fontSize:18,px:16, py:2}}>
-                    <div>TOPIC &nbsp;</div>
-                    <div style={{fontSize:12, paddingTop:4}}>*Used to recommend features and data treatment techniques to consider</div>
-                </Box>
-                
-                 <Box sx={{display:'flex',flexDirection:'row',px:16, pb:4,
-                  justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                    <FormControl variant="outlined" sx={{ minWidth: '50%' }}>
-                    <InputLabel htmlFor="demo-simple-select-filled">Topic:</InputLabel>
-                      <Select
-                      labelId="demo-simple-select-filled-label"
-                      id="demo-simple-select-filled"
-                      value={age}
-                      onChange={handleChange}
-                      sx={{ bgColor:'#fff',pb:2, width:'97%',height:56}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Name"
-                    >
-                      <MenuItem value={10}>---Select Topic---</MenuItem>
-                      <MenuItem value={20}>Drugs</MenuItem>
-                      <MenuItem value={30}>Physician Practices</MenuItem>
-                      <MenuItem value={40}>Healthcare</MenuItem>
-                      <MenuItem value={50}>Insurance</MenuItem>
-                      <MenuItem value={60}>Other</MenuItem>
-
-                    </Select>
-                    </FormControl>
-
-                    <FormControl variant="outlined" sx={{ width: '50%' }}>
-                    <InputLabel htmlFor="demo-simple-select-filled">Analysis:</InputLabel>
-                      <Select
-                      labelId="demo-simple-select-filled-label"
-                      id="demo-simple-select-filled"
-                      value={age}
-                      onChange={handleChange}
-                      sx={{ bgColor:'#fff',pb:2, width:'97%',height:56}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Name"
-                    >
-                      <MenuItem value={10}>---Select Analysis---</MenuItem>
-                      <MenuItem value={20}>Classification</MenuItem>
-                      <MenuItem value={30}>Impact Analysis</MenuItem>
-                      <MenuItem value={30}>Scoring</MenuItem>
-                      <MenuItem value={30}>Other</MenuItem>
-
-                    </Select>
-                    </FormControl> 
-
-                </Box> */}
 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
                     color:'gray', fontSize:18,px:16, py:2, pb:4}}>
@@ -173,58 +154,20 @@ export default function CreateSignalFirst({token, setToken}) {
                     <div style={{fontSize:12, paddingTop:4}}>{"Limit the size of your signal by filtering down to a specific geography"}</div>
                 </Box>
 
-                <Box sx={{display:'flex',flexDirection:'row',px:16,
-                  justifyContent:"space-between",width:"100%", bgColor:'#fff',color:'#fff'}}>
+                <Box sx={{display:'flex',px:16, width:"100%", bgColor:'#fff',color:'#fff'}}>
+                <FormControl fullWidth sx={{ }}>
                     {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
-                    {/* <FormControl sx={{ minWidth: '50%' }}>
-                    <InputLabel id="demo-simple-select-helper-label">Specify Geography:</InputLabel>
-                      <Select
-                      labelId="demo-simple-select-helper-label"
-                      id="demo-simple-select-helper"
-                      value={age}
-                      label="Name"
-                      onChange={handleChange}
-                      sx={{ bgColor:'#fff',pb:2, width:'97%',height:56}}
-                      //inputProps={{ 'aria-label': 'Without label' }}
+                    <TextField
+                      variant="outlined"
+                      value={keywords}
+                      onChange={(event)=>setKeywords(event.target.value)}
+                      sx={{color:'#fff', bgColor:'#fff',pb:2}}
                       //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                    >
-                      <MenuItem value={10}>All Available</MenuItem>
-                      <MenuItem value={20}>Filter by States</MenuItem>
-                      <MenuItem value={30}>Filter by Zips</MenuItem>
-                    </Select>
-                    </FormControl> */}
-
-                    {false?
-                    <FormControl sx={{ minWidth: '50%' }}>
-                    <InputLabel id="demo-simple-select-helper-label">Select States:</InputLabel>
-                      <Select
-                      labelId="demo-simple-select-helper-label"
-                      id="demo-simple-select-helper"
-                      value={age}
-                      label="Name"
-                      onChange={handleChange}
-                      sx={{ bgColor:'#fff',pb:2, width:'97%',height:56}}
-                      //inputProps={{ 'aria-label': 'Without label' }}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                    >
-                      <MenuItem value={10}>Alabama</MenuItem>
-                      <MenuItem value={20}>Alaska</MenuItem>
-                      <MenuItem value={30}>Arizona</MenuItem>
-                      <MenuItem value={30}>Indiana</MenuItem>
-                    </Select>
-                    </FormControl>
-                    :true?
-                    <FormControl variant="filled" sx={{ minWidth: '50%' }}>
-                      <InputLabel >Enter Keywords</InputLabel>
-                      <TextField
-                      
-                      sx={{color:'#fff',bgColor:"red",pb:2,width:'95%',}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                      label="Keywords"
                     />
-                    </FormControl>
-                    :""}
-                    
+                  </FormControl>
                 </Box>
+
 
                 {/* <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',pb:4, 
                     color:'gray', fontSize:14,px:16,}}>
@@ -265,11 +208,15 @@ export default function CreateSignalFirst({token, setToken}) {
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'start',px:14}}>
-            <Button variant="contained" size="large" sx={{mx:2, py:4,
-            backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                endIcon={<CheckIcon />} href="/searchresult">
-                {"Continue"}</Button>
-  
+            <Link  >
+              <a>
+                <Button variant="contained" size="large" sx={{mx:2,py:3,px:4,
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                    endIcon={<CheckIcon />}
+                    onClick={()=>handleAddData()}>
+                    {"Continue"}</Button>
+              </a>
+            </Link>
         </Box>
       </Box>
     

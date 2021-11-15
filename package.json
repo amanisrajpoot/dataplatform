@@ -28,5 +28,12 @@
   "devDependencies": {
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2"
-  }
+  },
+  "browser": {
+    "crypto": false,
+    "fs": false,
+    "path": false
 }
+
+}
+

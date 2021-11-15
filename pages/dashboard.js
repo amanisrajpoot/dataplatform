@@ -1,4 +1,4 @@
-import {useState, } from 'react';
+import {useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -22,6 +22,9 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import DataSourcesDetails from '../components/datasourcedetails';
 import { useRouter } from 'next/router';
+import { getPublicDatasets,getDatasets } from '../function/users';
+import DatasetCard from '../components/DatasetCard';
+import HeaderDatasetCard from '../components/HeaderDatasetCard';
 
 function Copyright() {
   return (
@@ -61,11 +64,23 @@ const style2 = {
   p: 4,
 };
 
-export default function Dashboard({token,setToken,user,setUser}) {
+export default function Dashboard({
+  token,
+  setToken,
+  user,
+  dataset,
+  userdatasets,
+  dataSources,
+  setDataSources,
+  
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const [open2, setOpen2] = React.useState(false);
+  const router = useRouter()
+  const [localdataset, setLocaldataset] = useState([]);
+
   const handleOpen2 = () => {                               
                               setOpen(false);
                               setOpen2(true);}
@@ -90,120 +105,19 @@ export default function Dashboard({token,setToken,user,setUser}) {
   const handleCloseDetails = () => {
     setOpenDetails(false);
   };
+  
+  const [keyword, setKeyword] = useState('');
+  const handleKeywordSearch = async (event) => {
+      if(token!==null){
+          const data = await getPublicDatasets(
+          token,keyword
+        );
+          setDataSources(data);
+          console.log("fetched data",data);
+          console.log("fetched data",userdatasets);
+      }
+  };
 
-  const [dataSources, setDataSources] = React.useState([
-    {   
-        dataset_id:"24",
-        user_email:'',
-        title:"Insurance Companies LEIE ",
-        description:"List of Excluded Individuals/Entities (LEIE)",
-        features:"",
-        row_count:'68',
-        data_points:'369',
-        address:'',
-        base_adress:'',
-        ranges: '',
-        data_sources:'',  
-        template_id:'',
-        refreshed_at:'6 Oct',
-   },
-    { dataset_id:"25",
-    user_email:'',
-    title:"Insurance Companies LEIE ",
-    description:"List of Excluded Individuals/Entities (LEIE)",
-    features:"",
-    row_count:'68',
-    data_points:'369',
-    address:'',
-    base_adress:'',
-    ranges: '',
-    data_sources:'',  
-    template_id:'',
-    refreshed_at:'6 Oct',
-   },
-    { dataset_id:"29",
-    user_email:'',
-    title:"Insurance Companies LEIE ",
-    description:"List of Excluded Individuals/Entities (LEIE)",
-    features:"",
-    row_count:'68',
-    data_points:'369',
-    address:'',
-    base_adress:'',
-    ranges: '',
-    data_sources:'',  
-    template_id:'',
-    refreshed_at:'6 Oct',
-   },
-    { dataset_id:"29",
-    user_email:'',
-    title:"PECARN ",
-    description:"PECARN, the Pediatric Emergency Care",
-    features:"",
-    row_count:'68',
-    data_points:'369',
-    address:'',
-    base_adress:'',
-    ranges: '',
-    data_sources:'',  
-    template_id:'',
-    refreshed_at:'9 Oct',
-    },
-    { dataset_id:"29",
-    user_email:'',
-    title:"PECARN ",
-    description:"PECARN, the Pediatric Emergency Care",
-    features:"",
-    row_count:'68',
-    data_points:'369',
-    address:'',
-    base_adress:'',
-    ranges: '',
-    data_sources:'',  
-    template_id:'',
-    refreshed_at:'9 Oct', },
-    { dataset_id:"29",
-    user_email:'',
-    title:"PECARN ",
-    description:"PECARN, the Pediatric Emergency Care",
-    features:"",
-    row_count:'68',
-    data_points:'369',
-    address:'',
-    base_adress:'',
-    ranges: '',
-    data_sources:'',  
-    template_id:'',
-    refreshed_at:'9 Oct', }
-  ]);
-  
-  const [predefinedModels, setPredefinedModels] = React.useState([
-    { title:"From Predefined Models",
-      body:"Create a new Dateset based on predefined domain models.",
-      icon:"ContentCopyOutlinedIcon",
-    },
-    { title:"From Predefined Models",
-      body:"Create a new Dateset based on predefined domain models.",
-      icon:"ContentCopyOutlinedIcon",
-    },
-    { title:"From Predefined Models",
-      body:"Create a new Dateset based on predefined domain models.",
-      icon:"ContentCopyOutlinedIcon",
-    },
-    { title:"From Predefined Models",
-      body:"Create a new Dateset based on predefined domain models.",
-      icon:"ContentCopyOutlinedIcon",
-    },
-    { title:"From Predefined Models",
-      body:"Create a new Dateset based on predefined domain models.",
-      icon:"ContentCopyOutlinedIcon",
-    },
-    { title:"From Predefined Models",
-      body:"Create a new Dateset based on predefined domain models.",
-      icon:"ContentCopyOutlinedIcon",
-    },
-  ]);
-  
   return (
     
     <Box>
@@ -218,12 +132,16 @@ export default function Dashboard({token,setToken,user,setUser}) {
                 </Box>
             </Typography>
 
-            <Button variant="contained" size="large" 
-                sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                href="/createsignalfirst"
-                startIcon={<AddIcon />}>
-                {/* onClick={handleOpen}> */}
-            Create a Dataset</Button>
+            <Link>
+              <a>
+                <Button variant="contained" size="large" 
+                  sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                  startIcon={<AddIcon />}
+                  onClick={() => router.push('/searchresult')}>
+                  {/* onClick={handleOpen}> */}
+              Create a Dataset</Button>
+              </a>
+            </Link>
 
                 <Modal
                   open={open}
@@ -273,7 +191,7 @@ export default function Dashboard({token,setToken,user,setUser}) {
                   </Box>
                 </Modal>
 
-                <Modal
+                {/* <Modal
                   open={open2}
                   onClose={handleClose2}
                   aria-labelledby="modal-modal-title"
@@ -309,12 +227,24 @@ export default function Dashboard({token,setToken,user,setUser}) {
 
                       </Grid>
                   </Box>
-                </Modal>
+                </Modal> */}
 
           </Box>
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
-            <SignalTable />
+            {/* <SignalTable /> */}
+            <HeaderDatasetCard data={[]}/>
+            <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'column', 
+              justifyContent:"center",alignItems:'center', }}>
+                {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
+                  userdatasets.map((data)=><DatasetCard 
+                  key={data.dataset_id}
+                  data={data}
+                  openDetails={openDetails}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails}/>): null
+                  }
+          </Box>
       
       </Box>
 
@@ -347,14 +277,17 @@ export default function Dashboard({token,setToken,user,setUser}) {
             noValidate
             autoComplete="off"
           >
-            <Box component="main" sx={{  minWidth: '25vw', px:2}}>
-                <TextField fullWidth id="outlined-basic" variant="outlined" label="Keyword" sx={{ bgcolor: '#ffffff'}}/>
+            <Box component="main" sx={{  minWidth: '50vw', px:2}}>
+                <TextField fullWidth id="outlined-basic" variant="outlined" 
+                value={keyword} onChange={(event)=>setKeyword(event.target.value)}
+                label="Keyword" sx={{ bgcolor: '#ffffff'}}/>
             </Box>
             
             <Box>
-                <Button sx={{minWidth:'55px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
+                <Button sx={{minWidth:'75px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}>
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                onClick={()=>handleKeywordSearch()}>
                     <SearchIcon sx={{ fontSize: 25, color:'white' }}/>
                 </Button>
 
@@ -382,7 +315,7 @@ export default function Dashboard({token,setToken,user,setUser}) {
 
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', px:14 }}>
-                {dataSources.map((data)=><FeatureCard 
+                {dataSources && dataSources.map((data)=><FeatureCard 
                   key={data.dataset_id}
                   data={data}
                   openDetails={openDetails}

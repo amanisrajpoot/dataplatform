@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import CallMadeIcon from '@mui/icons-material/CallMade';
 
 
 function Copyright() {
@@ -32,30 +33,47 @@ const style = {
   p: 4,
 };
 
-export default function Output() {
+export default function Output({downloadLink}) {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => window.open(downloadLink, '_blank');
   
   return (
     
     <div style={{ paddingTop: 32, paddingLeft: 8, paddingRight: 8, paddingBottom: 8,
         backgroundColor: '#fff',width:'100%', display:'flex',  }}>
           
-          <div style={{paddingTop: 8, paddingLeft: 24, paddingRight: 4, paddingBottom: 8,
-             bgcolor: '#eaeff1',width:'30%' }}>
+          <div style={{paddingTop: 8, paddingLeft: 24, paddingRight: 8, paddingBottom: 8,
+             bgcolor: '#eaeff1', width:'100%'}}>
                   <div sx={{ display: 'flex',flexDirection:'column', 
                       justifyContent:'space-between',font:'roboto',
                       fontSize:24, width:'100%' }}>
                       <div style={{paddingLeft:14}}><div style={{fontSize:24 }}>OUTPUT OPTIONS</div> &nbsp;
                       <>Last time exported at 10/21/2021 15:10 pm</></div>
                       
-                      <div>
+                      <div style={{display:'flex', flexDirection:'row', width:'100%'}}>
                         
                           <Button variant="outlined" size="large" 
-                        sx={{mx:2, width:'100%', py:2, my:4}}
+                        sx={{mx:2, width:'30%', py:2, my:4}}
                           startIcon={<FileDownloadOutlinedIcon />} onClick={handleOpen}>
                           Download CSV</Button>
+
+                          <Button variant="outlined" size="large" 
+                        sx={{mx:2, width:'30%', py:2, my:4}}
+                          startIcon={<FileDownloadOutlinedIcon />} 
+                          onClick={handleOpen}
+                          disabled>
+                          Download XLS</Button>
+
+                          <Button variant="outlined" size="large" 
+                        sx={{mx:2, width:'30%', py:2, my:4}}
+                          startIcon={<CallMadeIcon />} 
+                          onClick={handleOpen}
+                          disabled>
+                          Connect API</Button>
+
+                          
                       </div>
+                      
                   </div>
           </div>
 

@@ -15,7 +15,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import {useState, useEffect} from 'react';
 import { confirmSignUp, signIn, signUp } from '../function/checkAuth';
+import {createUser} from '../function/users';
 import OTPForm from '../components/OtpScreen';
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function Copyright(props) {
   return (
@@ -73,7 +78,11 @@ export default function SignUp({token, setToken}) {
 	async function confirmSignUpF() {
 		const erro = await confirmSignUp({ email,otp,token, setToken  });
 		if (erro === null) {
-			await router.push('/dashboard');
+      await signIn({email, password, token, setToken});
+      // sleep(2000);
+      // const ret = await createUser({email,firstname,lastname,company,token});
+      // sleep(1000);
+			// await router.push('/dashboard');
 			// await signIn({ email, password, token, setToken: createDoctor });
 		}
 		seterror(erro);
@@ -115,6 +124,7 @@ export default function SignUp({token, setToken}) {
 				email={email}
 				setOtp={setOtp}
 				confirmSignUp={confirmSignUpF}
+      
 			/>
 		);
 	} else {

@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {nonAuthRoutes, adminUsers, adminRoute} from "../function/constants";
 import {useRouter} from "next/router";
 import {checkAuth} from "../function/checkAuth";
+import { getDatasets, getPublicDatasets } from '../function/users';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -61,35 +62,51 @@ function MyApp({ Component, pageProps }) {
         title:'',
         description:'',
         topic:'',
-        refresh_rate:'',
-        row_count:'',
+        row_count:0,
         data_points:'',
-        data_sources:'',  
+        data_sources:0,  
         status:'',
-        template:'',
-        refreshed_at:'',
+        template:false,
         catalog:[]
   });
-  const addDataset = (data) => {
-        setDataset({...dataset,data});
-        console.log("dataset",dataset)
-    };
-  const addDatasetcatalog = (data) => {
-        setDataset({...dataset,catalog:[...dataset.catalog,{...data}]});
-        console.log("dataset",dataset)
-    };
-  const removeDataset = (data) => {
-        const filtered = [dataset.catalog].filter(item => item.id !== data.id);
-        setDataset({...dataset,catalog:filtered});
-        console.log("dataset",dataset)
-    };
+
+    const [userdatasets, setUserdatasets] = useState([]);
+    useEffect(async () => {
+            const data = await getDatasets(
+                token
+            );
+            setUserdatasets(data);
+        console.log("fetched datasets",data);
+    }, [token]);
+
+    const addDatasetcatalog = (data) => {
+            setDataset({...dataset,catalog:[...dataset.catalog,data]});
+            console.log("dataset",dataset)
+        };
+    const removeDatasetcatalog = (data) => {
+            const filtered = dataset.catalog.filter(item => item.ID !== data.ID);
+            setDataset({...dataset,catalog:filtered});
+            console.log("dataset",dataset)
+        };
+
+    const [dataSources, setDataSources] = useState([]);
+    useEffect(async () => {
+		if(token!==null){
+      const data = await getPublicDatasets(
+			token
+		);
+			setDataSources(data);
+      console.log("fetched data",data);
+      }
+  }, [token]);
 
   return (
     <>
       {/*<Navbar />*/}
       <Component role={role} setLocation={setLocation} token={token} location={location} 
-          setToken={setToken} 
-          dataset={dataset} addDataset={addDataset} removeDataset={removeDataset} addDatasetcatalog={addDatasetcatalog}
+          setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
+          setUserdatasets={setUserdatasets} removeDatasetcatalog={removeDatasetcatalog} 
+          addDatasetcatalog={addDatasetcatalog} dataSources={dataSources} setDataSources={setDataSources}
           {...pageProps} />
       {/* <Footer /> */}
     </>

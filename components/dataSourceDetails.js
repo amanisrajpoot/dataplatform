@@ -12,7 +12,8 @@ export default function DataSourcesDetails(props){
     return (
                         <div style={{flex: 1, height: '70%', margin: '1rem', maxWidth: '100%',
                         backgroundColor:'white', }}>
-                            <div onClick={()=>props.handleCloseDetails()}>
+                            <div style={{display:'flex', justifyContent:'end', cursor:'pointer'}}
+                                 onClick={()=>props.handleCloseDetails()}>
                               <p>X</p>
                             </div>
                             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center',
@@ -30,59 +31,73 @@ export default function DataSourcesDetails(props){
                                 </div>
                               )} */}
                             </div>
-                            <div style={{display:'flex', maxWidth:'80%', maxHeight:'80%', flexDirection:'column', 
+                            <div style={{display:'flex', maxWidth:'100%', maxHeight:'70%', flexDirection:'column', 
                                     justifyContent:'space-around'}}>
                               <div >
                                 {/* <p>{props.data.title}</p> */}
                               </div>
                               <div style={{display: 'flex', flexDirection: 'row',
                                                 justifyContent: 'space-between',
-                                                flexWrap: 'wrap',alignItems: 'center',
+                                                flexWrap: 'wrap',
                                                     margin: "1rem 0",}}>
                                 <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
-                                                            alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
-                                  <label><b>Provider</b></label>
+                                                            alignItems: 'flex-start', minWidth: '40%', 
+                                                            maxWidth:'40%',margin: '1.2rem 1rem 1.2rem 0'}}>
+                                  <label><b>Title</b></label>
                                   {props.data.title}
                                 </div>
                                 <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
-                                                            alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
+                                                            alignItems: 'flex-start', minWidth: '40%', 
+                                                            maxWidth:'40%',margin: '1.2rem 1rem 1.2rem 0'}}>
                                   <label><b>Description</b></label>
                                   {props.data.description}
                                 </div>
-                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
-                                                            alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
-                                  <label><b>Topics</b></label>
-                                  {props.data.topics}
-                                </div>
-                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
-                                                            alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
-                                  <label><b>Tags</b></label>
-                                  {props.data.tags}
-                                </div>
-                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
-                                                            alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
-                                  <label><b>Geographic Granule</b></label>
-                                  {props.data.geo}
-                                </div>
-                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
-                                                            alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
-                                  <label><b>Time Granule</b></label>
-                                  {props.data.time}
-                                </div>
-                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
-                                                            alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
-                                  <label><b>Data Points</b></label>
-                                  {props.data.datapoints}
-                                </div>
-                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
+                                {/* <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
                                                             alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
                                   <label><b>Start Date</b></label>
-                                  {props.data.startdate}
+                                  {props.data.startdate?props.data.startdate.split('T')[0]:'27/01/2021'}
                                 </div>
                                 <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
                                                             alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
                                   <label><b>End Date</b></label>
-                                  {props.data.enddate}
+                                  {props.data.enddate?props.data.enddate:"27/10/2021"}
+                                </div> */}
+                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
+                                            width:'100%', alignItems: 'flex-start', minWidth: '40%', margin: '1.2rem 1rem 1.2rem 0'}}>
+                                  <p><b>Features: </b>{props.data.features?props.data.features.substring(0,30):"7"} </p>
+                                  
+                                </div>
+                                <div style={{display: 'flex',flexDirection: 'column',justifyContent: 'space-around',
+                                            width:'100%', alignItems: 'flex-start', minWidth: '100%', 
+                                            }}>
+                                    <table style={{width:'100%',}}>
+                                        <tbody style={{width:'100%',}}>
+                                            {props.data.range !== null && props.data.range.length !==0 ? <tr style={{width:'100%',}}>
+                                                <td style={{width:'33%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
+                                                    <p><b>Name </b></p>
+                                                </td>
+                                                <td style={{width:'33%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
+                                                    <p><b>Granularity </b></p>
+                                                </td>
+                                                <td style={{width:'33%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
+                                                    <p><b>Range </b></p>
+                                                </td>
+                                            </tr>:null}
+
+                                            {props.data.range !== null && props.data.range.length !==0 ? props.data.range.map((rang, i)=><tr key={""+i} style={{width:'100%',}}>
+                                                <td style={{width:'33%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
+                                                    <p>{rang.name} </p>
+                                                </td>
+                                                <td style={{width:'33%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
+                                                    <p>{rang.grain} </p>
+                                                </td>
+                                                <td style={{width:'33%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
+                                                    <p>{rang.range} </p>
+                                                </td>
+                                            </tr>):null}
+                                        </tbody>
+                                    </table>
+                                                              
                                 </div>
                                 
                               </div>
@@ -102,6 +117,7 @@ export default function DataSourcesDetails(props){
                                   backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)', 
                                   color: 'white',}}
                                   href="/createsignalfirst"
+                                  onClick={() => router.push('/searchresult')}
                                 >
                                   Create Dataset to Explore More
                                 </button>:router.pathname.includes('/createsignalsecond')?"":

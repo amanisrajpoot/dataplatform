@@ -62,32 +62,34 @@ export default function Home() {
         <Box sx={{ display: 'flex', flexDirection:'column', 
               py: 6, px: 14, height:'88vh', bgcolor: '#94bbe9', 
               alignItems:'center', justifyContent:'center', color:'#eeeeee',  
-              backgroundSize: 'cover',
-              backgroundImage: `url(${'https://wallpapercave.com/wp/wp7704711.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
+              backgroundSize: 'cover', opacity: '0.8',
+              backgroundImage: `url(${'/home-background02.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
               }} >
         
             <Box sx={{pt:8,pb: 6,}}>
                 <Typography color="inherit" variant="h2" component="h1" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',
-                        textAlign:'center',py:0, my:0}}>
+                        textAlign:'center',py:0, my:0, color:'#fff'}}>
                     Harness the Most Powerful Open Source Data in Minutes  
                 </Typography>
             </Box>
 
             <Box sx={{pb: 6,}}>
-                <Typography color="inherit" variant="h4" component="h1" sx={{display:'flex', }}>
+                <Typography color="inherit" variant="h4" component="h1" 
+                sx={{display:'flex',color:'#fff' }}>
                 Delivered in the Platform of Your Choice       
                 </Typography>
             </Box>
 
             <Box sx={{pb:1}}>
                 <Button variant="contained" size="large" href="/signup" color="primary"
-                sx={{fontSize:24, color:'#eeeeee', backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}>
+                sx={{fontSize:24, color:'#eeeeee', 
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',color:'#fff'}}>
             Sign up Free</Button>
             </Box>
 
             <Box sx={{pb: 6,}}>
-                <Typography color="inherit" variant="h6" component="h1" sx={{display:'flex', }}>
+                <Typography color="inherit" variant="h6" component="h1" sx={{display:'flex',color:'#fff' }}>
                 NO CREDIT CARD NEEDED      
                 </Typography>
             </Box>
