@@ -60,25 +60,6 @@ function Header({token,setToken,onDrawerToggle}) {
               >
                 MY DATASETS
               </Button>
-              <Button
-                sx={{ borderColor: lightColor }}
-                color="inherit"
-                size="large"
-                href="/explore"
-                disabled
-              >
-                EXPLORE
-              </Button>
-              <Button
-                sx={{ borderColor: lightColor }}
-                href="/helpcenter"
-                color="inherit"
-                size="large"
-                disabled
-              >
-                SUPPORT
-              </Button>
-
               
                 <div style={{fontSize:24, paddingTop:8}}>|
                 </div>
