@@ -44,7 +44,7 @@ export default function SignalCardOut({token, data}){
               
               <div style={{display:"flex",flexDirection:'column',}}>
                   <div style={{paddingTop:8, paddingBottom:8, width:64}}>
-                      <Button variant="contained" size="small" 
+                      <Button disabled variant="contained" size="small" 
                       starIcon={<EditOutlinedIcon />}>Edit</Button>
                   </div>
                     <div>

@@ -13,7 +13,7 @@ import AddedFeatureCard from '../components/AddedFeatureCard';
 import SearchIcon from '@mui/icons-material/Search';
 import LinearProgress from '@mui/material/LinearProgress';
 import Modal from '@mui/material/Modal';
-import DataSourcesDetails from '../components/datasourcedetails';
+import DataSourcesDetails from '../components/dataSourceDetails';
 import { getPublicDatasets,createUserDataset } from '../function/users';
 import TopicsCard from '../components/TopicsCard';
 import FormControl from '@mui/material/FormControl';
