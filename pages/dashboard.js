@@ -234,7 +234,7 @@ export default function Dashboard({
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
             {/* <SignalTable /> */}
-            <HeaderDatasetCard data={[]}/>
+            {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?<HeaderDatasetCard data={[]}/>:null}
             <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'column', 
               justifyContent:"center",alignItems:'center', }}>
                 {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?

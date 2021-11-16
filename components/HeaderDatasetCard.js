@@ -27,7 +27,7 @@ export default function HeaderDatasetCard(props){
 
     return (
 
-          <div style={{display:"flex", flexDirection:'row', minHeight:'7vh',maxHeight:'7vh', width:"100%",
+          <div style={{display:"flex", flexDirection:'row', minHeight:'7vh',maxHeight:'5vh', width:"100%",
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', marginBottom:2,
               textOverflow:'clip',  }}>
       
@@ -35,11 +35,11 @@ export default function HeaderDatasetCard(props){
                       <p style={{textOverflow:'clip', overflow:'hidden',}}><b>{props.data.title?props.data.title: "Title"}</b><br></br>
                             </p>
                     </div>
-                    <div style={{fontSize:14, width:"12%"}}>
+                    <div style={{fontSize:14, width:"14%"}}>
                     <p><b>&nbsp;{props.data.features?props.data.features: "Description"}</b><br></br>
                         </p>
                     </div>
-                    <div style={{fontSize:14,width:"9%"}}>
+                    <div style={{fontSize:14,width:"12%"}}>
                       <p><b>&nbsp;{props.data.row_count?props.data.row_count: "Data"}</b><br></br>
                          </p>
                     </div>
@@ -51,11 +51,11 @@ export default function HeaderDatasetCard(props){
                       <p><b>&nbsp;{props.data.address?props.data.address: "Features"}</b><br></br>
                          </p>
                     </div> */}
-                    <div style={{fontSize:14,width:"8%"}}>
+                    <div style={{fontSize:14,width:"7%"}}>
                       <p><b>&nbsp;{props.data.address?props.data.address: "Datasources"}</b><br></br>
                          </p>
                     </div>
-                    <div style={{fontSize:14,width:"5%"}}>
+                    <div style={{fontSize:14,width:"4%"}}>
                       <p><b>&nbsp;{props.data.address?props.data.address: "Operations"}</b><br></br>
                          </p>
                     </div>

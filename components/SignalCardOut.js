@@ -3,16 +3,28 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { deleteUserDataset } from "../function/users"
+import { deleteUserDataset, updateUserDataset } from "../function/users"
 import { useRouter } from 'next/router';
+import TextField from '@mui/material/TextField';
 
-export default function SignalCardOut({token, data}){
+export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
+    localTitle, setLocalTitle, localDescription, setLocalDescription, userdatasets, setUserDatasets,
+}){
 
     const router = useRouter();
 
     async function deteleF(dataF){
         console.log(dataF)
         const data = await deleteUserDataset({token, data:dataF});
+        if(data){
+            window.open("/dashboard", "_self")
+        }
+    }
+
+    async function updateF(dataF){
+        setUserDatasets({...userdatasets, [dataF.id]:{...dataF, title:localTitle, description:localDescription}})
+        console.log(dataF)
+        const data = await updateUserDataset({token, data:dataF});
         if(data){
             window.open("/dashboard", "_self")
         }
@@ -29,24 +41,38 @@ export default function SignalCardOut({token, data}){
               <div style={{display:'flex', alignItems:'center', 
                   justifyContent:'space-between', width:"25%"}}>
                   
-                  <p><b>Title:</b> {data.title?data.title:""}<br></br><br></br>
-                  <b>Description:</b>{data.description?data.description:""} </p>
+                  {datasetMode === 0? 
+                    <p><b>Title:</b> {data.title?data.title:""}<br></br><br></br>
+                    <b>Description:</b>{data.description?data.description:""} </p>
+                    : datasetMode === 1?
+                    <p><TextField value={data.title} size="small" onChange={(e)=>{setLocalTitle(e.target.value)}}
+                    label="Title" variant="outlined" /><br></br><br></br>
+                    <b></b><TextField value={data.description} size="small" onChange={(e)=>{setLocalDescription(e.target.value)}}
+                    label="Outlined" variant="outlined"/></p>
+                    : null}
+
+
               </div>
-              <div style={{display:'flex', }}>
-                <p><b>Topics:</b>{data.topic?data.topic:""} <br></br><br></br>
+              <div style={{display:'flex',width:'25%' }}>
+                <p><b>Topics:</b>{data.topic?data.topic.substring(0,40):""} <br></br><br></br>
                     <b>Datasources:</b> {data.catalog?data.catalog.length:"0"}</p>
               </div>
-              <div>
+              <div style={{display:'flex',width:'25%' }}>
                 <p><b>No. of Rows:</b>{data.row_count?data.row_count:"0"}<br></br><br></br>
                     <b>Data Points:</b> {data.data_points?data.data_points:""}</p>
               </div>
 
-              
-              <div style={{display:"flex",flexDirection:'column',}}>
-                  <div style={{paddingTop:8, paddingBottom:8, width:64}}>
-                      <Button disabled variant="contained" size="small" 
-                      starIcon={<EditOutlinedIcon />}>Edit</Button>
+              <div style={{display:"flex",flexDirection:'column',width:'7%'}}>
+                  {datasetMode=== 0? <div style={{paddingTop:8, paddingBottom:8, width:64}}>
+                      <Button variant="contained" size="small" onClick={() => setDatasetMode(1)}
+                      starIcon={<EditOutlinedIcon />}>{"Edit"}</Button>
                   </div>
+                : datasetMode=== 1?
+                <div style={{paddingTop:8, paddingBottom:8, width:64}}>
+                      <Button variant="contained" size="small" onClick={() => {updateF(data)}}
+                      starIcon={<EditOutlinedIcon />}>{"Update"}</Button>
+                  </div>: null}
+
                     <div>
                       <Button variant="contained" size="small"  onClick={() => {deteleF(data)}}
                       starIcon={<DeleteIcon />}>Delete</Button>
@@ -54,11 +80,7 @@ export default function SignalCardOut({token, data}){
                    
               </div>
             </div>
-
             {/* <Divider variant="middle" /> */}
-
-            
-
             <div style={{display:"flex", flexDirection:'row', maxHeight:'30vh', 
             justifyContent:'space-around', paddingRight:84 }}>
               
@@ -71,41 +93,8 @@ export default function SignalCardOut({token, data}){
                 <p><b>Features:</b>{data.features?data.features.substring(0,100):""}<br></br><br></br>
                     </p>
               </div>
-              </div>
-                                    {/* <table style={{width:'96%',paddingLeft:42}}>
-                                        <tbody style={{width:'100%',}}>
-                                            <tr style={{width:'100%',}}>
-                                                <td style={{width:'20%', border:'1px solid',borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>Title </b>{props.data.datasourcetype}</p>
-                                                </td>
-                                                <td style={{width:'20%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>Granularity </b>{props.data.datasourceformat}</p>
-                                                </td>
-                                                <td style={{width:'20%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>Range </b>{props.data.datasourceformat}</p>
-                                                </td>
-                                                <td style={{width:'20%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>Range </b>{props.data.datasourceformat}</p>
-                                                </td>
-                                            </tr>
-                                            <tr style={{width:'100%',}}>
-                                                <td style={{width:'20%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>Geography </b>{props.data.datasourcetype}</p>
-                                                </td>
-                                                <td style={{width:'20%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>Country </b>{props.data.datasourceformat}</p>
-                                                </td>
-                                                <td style={{width:'20%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>USA </b>{props.data.datasourceformat}</p>
-                                                </td>
-                                                <td style={{width:'20%', border:'1px solid', borderColor:'#3f4544', textAlign:'center'}}>
-                                                    <p><b>USA </b>{props.data.datasourceformat}</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table> */}
-                                                              
-                                </div>
+              </div>                                          
+                </div>
 
         </div>
    

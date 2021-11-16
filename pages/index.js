@@ -67,16 +67,16 @@ export default function Home() {
               }} >
         
             <Box sx={{pt:8,pb: 6,}}>
-                <Typography color="inherit" variant="h2" component="h1" 
+                <Typography color="inherit" variant="h2" component="h2" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',
-                        textAlign:'center',py:0, my:0, color:'#fff'}}>
+                        textAlign:'center',py:0, my:0, color:'#000', fontWeight:'bold',}}>
                     Harness the Most Powerful Open Source Data in Minutes  
                 </Typography>
             </Box>
 
             <Box sx={{pb: 6,}}>
                 <Typography color="inherit" variant="h4" component="h1" 
-                sx={{display:'flex',color:'#fff' }}>
+                sx={{display:'flex',color:'#000', fontWeight:'bold' }}>
                 Delivered in the Platform of Your Choice       
                 </Typography>
             </Box>
@@ -89,7 +89,8 @@ export default function Home() {
             </Box>
 
             <Box sx={{pb: 6,}}>
-                <Typography color="inherit" variant="h6" component="h1" sx={{display:'flex',color:'#fff' }}>
+                <Typography color="inherit" variant="h6" component="h1" 
+                sx={{display:'flex',color:'#000',fontWeight:'bold' }}>
                 NO CREDIT CARD NEEDED      
                 </Typography>
             </Box>
@@ -125,7 +126,6 @@ export default function Home() {
                 <ol>
                   <li>We source controlled Healthcare data sets;</li>
                   <li>We organize and curate the data by adjusting for time and geographic granularity;</li>
-                  <li>We apply a variety of data science treatments; and</li>
                   <li>We simplify data ingestion through automated processes.</li>
                 </ol>
             </Box>

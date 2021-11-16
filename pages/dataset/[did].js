@@ -8,16 +8,15 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import SignalCardOut from '../../components/SignalCardOut';
-import AddIcon from '@mui/icons-material/Add';
+import FeatureCard from '../../components/FeatureCard';
+import EditFeatureCard from '../../components/EditFeatureCard';
 import Modal from '@mui/material/Modal';
 import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import FeatureDetails from '../../components/FeatureDetails';
-import AssessmentIcon from '@mui/icons-material/Assessment';
 import Output from '../../components/output';
 import {useRouter} from 'next/router';
 import { getDatasetsId, downloadDatasetsId } from '../../function/users';
-import { Theme } from '@mui/material';
+import DataSourcesDetails from '../../components/dataSourceDetails';
 
 function Copyright() {
   return (
@@ -45,6 +44,17 @@ const style = {
   p: 4,
 };
 
+const style2 = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 900,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 export default function ManageDataset({
   token,
   setToken,
@@ -55,49 +65,57 @@ export default function ManageDataset({
   // setUserDatasets,
   dataSources,
   setDataSources,
+  addDatasetcatalog,
+  removeDatasetcatalog
 }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [industry, setIndustry] = React.useState('');
-  const [analysis, setAnalysis] = React.useState('');
+  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {setOpen(true); handleDownloadButton();};
   const handleClose = () => setOpen(false);
   const [userdatasets, setUserDatasets] = useState([]);
-
-  const handleChangeIndustry = (event) => {
-    setIndustry(event.target.value);
-  };
-
-  const handleChangeAnalysis = (event) => {
-    setAnalysis(event.target.value);
-  };
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [datasetMode, setDatasetMode] = useState(0);
   const [downloadLink, setDownloadLink] = React.useState('');
   const router = useRouter();
   const dataset_id = router.query.did;
+  const [addCatalogMode, setAddCatalogMode] = useState(false);
+  const [localTitle, setLocalTitle] = useState('');
+  const [localDescription, setLocalDescription] = useState('');
   
   useEffect(async ()=>{
     const dataset = await getDatasetsId(token, dataset_id);
     setUserDatasets(dataset);
+    if(dataset !== null && dataset !== undefined){
+      setLocalTitle(dataset.title);
+      setLocalDescription(dataset.description);
+    }
     console.log("fetched dataset data",userdatasets);
   }, [token, dataset_id]);
-
-  const styles = theme => ({
-    disabledButton: {
-      backgroundColor: 'white'
-    }
-  });
 
   const handleDownloadButton = async() => {
     const downloadLink = await downloadDatasetsId(token, dataset_id);
     setDownloadLink(downloadLink.url);
   }
+
+  const addLocalDatasetcatalog = (data) => {
+    setUserDatasets({...userdatasets,catalog:[...userdatasets.catalog,data]});
+    console.log("catalog added",userdatasets)
+  };
+const removeLocalDatasetcatalog = (data) => {
+    const filtered = userdatasets.catalog.filter(item => item.ID !== data.ID);
+    setUserDatasets({...userdatasets,catalog:filtered});
+    console.log("catalog removed",userdatasets)
+  };
+
+
+  const [openDetails, setOpenDetails] = useState(false);
+    const [dsDetails, setDSDetails] = useState([]);
+    const handleOpenDetails = (data) => {
+      setOpenDetails(true);
+      setDSDetails(data);
+    };
+    const handleCloseDetails = () => {
+      setOpenDetails(false);
+    };
 
   return (
     
@@ -121,55 +139,90 @@ export default function ManageDataset({
             <Box>{
               userdatasets !== null && userdatasets !== undefined
               && <SignalCardOut token={token}
-              data={userdatasets}/>
+              data={userdatasets} datasetMode={datasetMode} setDatasetMode={setDatasetMode} 
+              localTitle={localTitle} setLocalTitle={setLocalTitle}
+              localDescription={localDescription} setLocalDescription={setLocalDescription}
+              userdatasets={userdatasets} setUserDatasets={setUserDatasets}
+              />
             }
             </Box>
               
-            <Box sx={{ display: 'flex',pt:4}}>
+            {datasetMode === 0 ?<Box sx={{ display: 'flex',pt:4}}>
           
-        
-            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
-              mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',color:"#fff"}}>
-                <Button href="/managesignaloutput" variant="contained" size="large" 
-                sx={{mx:2, py:4,backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
-                    }}
-                disabled
-                classes={{ disabled: styles }}
-                    startIcon={<CheckIcon />} >
-                    {"Refresh Data"}</Button>
-                <Button variant="contained" size="large" sx={{mx:2, py:4,
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                    startIcon={<ExitToAppIcon />} onClick={handleOpen}>
-                    Output</Button>
-            </Box>
-            </Box>
+              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
+                mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',color:"#fff"}}>
+                  <Button href="/managesignaloutput" variant="contained" size="large" 
+                  sx={{mx:2, py:4,backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+                      }}
+                  disabled
+                  
+                      startIcon={<CheckIcon />} >
+                      {"Refresh Data"}</Button>
+                  <Button variant="contained" size="large" sx={{mx:2, py:4,
+                  backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                      startIcon={<ExitToAppIcon />} onClick={handleOpen}>
+                      Output</Button>
+                </Box>
+            </Box>:null}
           </Box>
-          
-      
       </Box>
 
-      {/* <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',pt:4}}>
+      <Modal open={openDetails} onClose={handleCloseDetails}>
+          <Box sx={style2}>            
+              <DataSourcesDetails handleCloseDetails={handleCloseDetails} datasetMode={datasetMode}
+              data={dsDetails} addDatasetcatalog={addDatasetcatalog} 
+              removeDatasetcatalog={removeDatasetcatalog}/>
+          </Box>                  
+       </Modal>
+
+      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',pt:4, width:'100%'}}>
         
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%'}}>
           
-          <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
+          <Box component="main" sx={{display:'flex', justifyContent:'space-between', 
+              py: 2, px: 4, bgcolor: '#eaeff1', width:'100%', pr:12 }}>
              <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',font:'roboto',px:10}}>
-                      <div>SELECTED CATALOGS &nbsp;</div>
-                      <Button variant="contained" size="large" sx={{mx:2, py:2,
-                      backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                          startIcon={<AddIcon />} onClick={handleOpen}>
-                          Add Catalog</Button>
+                      <div>{datasetMode === 0? "INCLUDED ":'SELECTED ' }CATALOGS &nbsp;</div>
                   </Box>
               </Typography>
+
+              {datasetMode ===1 ?<Button variant="contained" size="large" sx={{mx:2, py:2.5,
+            backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                    startIcon={<CheckIcon />} onClick={()=>setAddCatalogMode(!addCatalogMode)}>
+                    {"Add Catalog"}</Button>:null}
+              
           </Box>
 
-          <Box sx={{ minWidth: 275, bgcolor: '#eaeff1', display:'flex', flexDirection:'column',pt: 6, px: 14, 
+          <Box sx={{ minWidth: 275, bgcolor: '#eaeff1', display:'flex', flexDirection:'column', pt:1,px: 8, 
               alignItems:'center' }}>
-                <FeatureDetails />
-                <FeatureDetails />
-                <FeatureDetails />
-                <FeatureDetails />
+                <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
+              justifyContent:"center",alignItems:'center', px:6 }}>
+                {datasetMode === 0 ? userdatasets !== null && userdatasets !== undefined && 
+                  userdatasets.catalog !== null && userdatasets.catalog !== undefined &&
+                  userdatasets.catalog.map((data)=><FeatureCard 
+                  key={data.dataset_id}
+                  data={data}
+                  datasetMode={datasetMode}
+                  dataset={userdatasets}
+                  openDetails={openDetails}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails}/>)
+                : datasetMode === 1 ?
+                  userdatasets !== null && userdatasets !== undefined &&
+                  userdatasets.catalog !== null && userdatasets.catalog !== undefined &&
+                  userdatasets.catalog.map((data)=><EditFeatureCard 
+                  key={data.dataset_id}
+                  data={data}
+                  datasetMode={datasetMode}
+                  dataset={userdatasets}
+                  openDetails={openDetails}
+                  addLocalDatasetcatalog={addLocalDatasetcatalog}
+                  removeLocalDatasetcatalog={removeLocalDatasetcatalog}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails}/>)
+                : null}
+          </Box>
 
           </Box>            
         </Box>
@@ -177,20 +230,52 @@ export default function ManageDataset({
         
       </Box>
 
-      <Box sx={{ display: 'flex', bgcolor:'#eaeff1',}}>
+      {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
+        
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
+          
+          <Box component="main" sx={{ display:'flex',flexDirection:'row',
+            flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
+             <Typography color="inherit" variant="h5" component="h1">
+                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
+                      <div>Matching Data Sources &nbsp;</div>
+                 
+                  </Box>
+              </Typography>
+
+          </Box>
+
+          <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
+              justifyContent:"center",alignItems:'center', px:14 }}>
+                {dataSources && dataSources.map((data)=><FeatureCard 
+                  openDetails={openDetails}
+                  data={data}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails} 
+                  dataset={userdatasets.catalog}
+                  dataSources={dataSources}
+                  removeDatasetcatalog={removeLocalDatasetcatalog}
+                  addDatasetcatalog={addLocalDatasetcatalog}
+                  />)}
+          </Box>
+          
+        </Box>
+      </Box>:null}
+
+      {datasetMode === 0 ?<Box sx={{ display: 'flex', bgcolor:'#eaeff1',}}>
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', 
           mb:4, maxHeight:'8vh', minWidth:'24ch',justifyContent:'end',px:14}}>
             <Button href="/dashboard" variant="contained" size="large" sx={{mx:2, py:4,
             backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                    startIcon={<CheckIcon />} onClick={handleOpen}>
+                    startIcon={<CheckIcon />} onClick={handleOpen} disabled>
                     {"Refresh Data"}</Button>
             <Button variant="contained" size="large" sx={{mx:2, py:4,
             backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                     startIcon={<ExitToAppIcon />} onClick={handleOpen}>
                     Output</Button>
         </Box>
-      </Box> */}
+      </Box>:null}
 
       <Modal
         open={open}

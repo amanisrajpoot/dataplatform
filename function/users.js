@@ -146,6 +146,19 @@ export async function createUserDataset({token, dataset}){
     return res.json()
 }
 
+export async function updateUserDataset({token, dataset}){
+    const req = {
+        method:"PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        },
+        body: JSON.stringify(dataset)
+    };
+    const res = await fetch(BASE_BACKEND+"/datasets", req)
+    return res.json()
+}
+
 export async function deleteUserDataset({token, data}){
     const req = {
         method:"POST",

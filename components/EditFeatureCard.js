@@ -21,17 +21,17 @@ export default function FeatureCard(props){
     const[added, setAdded] = React.useState(false);
     const handleAdd = () => {
         if(added === false){
-          props.addDatasetcatalog(props.data);
+          props.addLocalDatasetcatalog(props.data);
           setAdded(true);
           
         } else {
-            props.removeDatasetcatalog(props.data);
+            props.removeLocalDatasetcatalog(props.data);
             setAdded(false);
         }
     }
 
     const handleRemove = () => {
-          props.removeDatasetcatalog(props.data);
+          props.removeLocalDatasetcatalog(props.data);
   }
 
     const [changingIcon, setChangingIcon] = React.useState(<AddIcon />);
@@ -43,8 +43,8 @@ export default function FeatureCard(props){
               textOverflow:'clip',  }}>
       
                     <div style={{fontSize:14, maxWidth:"19%", overflow:'hidden'}}>
-                      <p style={{textOverflow:'clip', overflow:'hidden',}}><b>{props.data.title?props.data.title: "FDA Approved Drugs"}</b><br></br>
-                            {props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</p>
+                      <p style={{textOverflow:'clip', overflow:'hidden',}}><b>{props.data.title?props.data.title: "Historic Weather"}</b><br></br>
+                            {props.data.description?props.data.description.substring(0,40):"Historic Weather"}</p>
                     </div>
                     <div style={{fontSize:14, width:"12%"}}>
                     <p><b>No. of Features:</b>&nbsp;{props.data.features?props.data.features.split(",").length: "0"}<br></br>
@@ -63,11 +63,11 @@ export default function FeatureCard(props){
                       <p><b>{props.geo?"View Details": "View Details"}</b></p>
                     </div>
                     {router.pathname.includes('/dashboard')?"":
-                        
-                    <div style={{fontSize:14, cursor:'pointer'}} 
-                        onClick={()=>handleAdd()}>
-                      <p>{searchInArray(props.dataset, props.data.ID)? <DoneIcon />: <AddIcon />}</p>
-                    </div>}
+                        router.pathname.includes('/dataset')?
+                        <div style={{fontSize:14, cursor:'pointer'}} 
+                        onClick={()=>handleRemove()}>
+                      <p>{searchInArray(props.dataset, props.data.ID)? <DoneIcon />: <ClearIcon />}</p>
+                    </div>:null}
         
           </div>
     )

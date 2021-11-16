@@ -25,6 +25,7 @@ export default function DatasetCard(props){
           props.removeDatasetcatalog(props.data);
   }
 
+    console.log("fetched dataset",props.data);
     return (
 
           <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:64, width:"100%",
@@ -40,7 +41,7 @@ export default function DatasetCard(props){
                           
                         </p>
                     </div>
-                    <div style={{fontSize:14,width:"12%"}}>
+                    <div style={{fontSize:14,width:"18%"}}>
                       <p><b>Row Count:&nbsp;{props.data.row_count?props.data.row_count: "123"}</b><br></br>
                       <b>Data Points:&nbsp;{props.data.data_points?props.data.data_points: "567"}</b></p>
                     </div>
@@ -52,9 +53,9 @@ export default function DatasetCard(props){
                       <p><b>&nbsp;{props.data.address?props.data.address: "Features"}</b><br></br>
                       <b>Time Granule:&nbsp;{props.data.data_points?props.data.data_points: "Monthly"}</b></p>
                     </div> */}
-                    <div style={{fontSize:14,width:"12%"}}>
-                      <p><b>Datasources:&nbsp;{props.data.row_count?props.data.row_count: "123"}</b><br></br>
-                      <b>Topics:&nbsp;{props.data.data_points?props.data.data_points: "6"}</b></p>
+                    <div style={{fontSize:14,width:"14%"}}>
+                      <p><b>Datasources:&nbsp;{props.data.data_sources?props.data.data_sources: "123"}</b><br></br>
+                      <b>Topics:&nbsp;{props.data.topic?props.data.topic.split(",").length: "6"}</b></p>
                     </div>
                     
                     
@@ -68,7 +69,7 @@ export default function DatasetCard(props){
                         onClick={()=>handleRemove()}>
                           <p><ClearIcon /></p>
                         </div>:
-                    <div style={{fontSize:14, cursor:'pointer', width:"5%"}} 
+                    <div style={{fontSize:14, cursor:'pointer', width:"2%"}} 
                         onClick={()=>router.push('/dataset/'+props.data.ID)}>
                       <p><SettingsIcon /></p>
                     </div>}
