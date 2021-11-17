@@ -19,6 +19,9 @@ import {useRouter} from 'next/router';
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import CheckIcon from '@mui/icons-material/Check';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 function Copyright() {
   return (
@@ -170,11 +173,20 @@ export default function Searchresult({
             </Box> */}
             
             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', bgcolor:"#fff",
-                        color:'gray', fontSize:24, py:2,px:4}}>
+                        color:'gray', fontSize:24, py:2,px:4,}}>
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', bgcolor:"#fff",
-                        color:'gray', fontSize:24,pl:10, py:2}}>
-                        <div>CREATE DATASET &nbsp;</div>
-                        <div><HelpOutlineIcon /></div>
+                        color:'gray', justifyContent:'space-between',fontSize:24,pl:10, py:2, pr:10}}>
+                        <div style={{display:"flex"}}>
+                          <div>CREATE DATASET &nbsp;</div>
+                          <div><HelpOutlineIcon /></div>
+                        </div>
+
+                        <Button variant="contained" size="medium" sx={{px:2, py:2.5,
+              backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                      startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
+                      {"Back to Dashboard"}</Button>
+
+
                 </Box>
                 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 

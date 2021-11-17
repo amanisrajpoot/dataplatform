@@ -18,6 +18,8 @@ import {useRouter} from 'next/router';
 import { getDatasetsId, downloadDatasetsId } from '../../function/users';
 import DataSourcesDetails from '../../components/dataSourceDetails';
 import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 function Copyright() {
@@ -127,11 +129,11 @@ const removeLocalDatasetcatalog = (data) => {
             </Typography>
             {datasetMode ===1 ?<Button variant="contained" size="large" sx={{px:7, py:2.5,
             backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                    startIcon={<CheckIcon />} onClick={()=>setDatasetMode(0)}>
+                    startIcon={<ArrowBackIcon />} onClick={()=>setDatasetMode(0)}>
                     {"Back"}</Button>:
-            datasetMode ===0 ?<Button variant="contained" size="medium" sx={{px:7, py:2.5,
+            datasetMode ===0 ?<Button variant="contained" size="medium" sx={{px:2, py:2.5,
               backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                      startIcon={<CheckIcon />} onClick={()=>router.push('/dashboard')}>
+                      startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
                       {"Back to Dashboard"}</Button>:null}
 
           </Box>

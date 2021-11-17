@@ -134,7 +134,7 @@ export default function Dashboard({
             </Typography>
 
                 <Button variant="contained" size="large" 
-                  sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                  sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)', py:2, px:2}}
                   startIcon={<AddIcon />}
                   onClick={() => router.push('/searchresult')}>
                   {/* onClick={handleOpen}> */}
