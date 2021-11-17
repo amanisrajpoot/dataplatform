@@ -11,18 +11,18 @@ export default function HomepageCardsLeft(props){
                     <Box sx={{ flexDirection:'column', width:'50%', py:6,}}>
                      
                     <p>{props.description}STEP 1</p>
-                    <h2>{props.title}Start from scratch or using one of our templates.</h2>
-                    <p>{props.description} You can customize signals anyway you need by choosing:</p>
+                    <h2>{props.title}Start from absolute scratch</h2>
+                    <p>{props.description} You can customize datasets anyway you need by choosing:</p>
                     
                     <ol>
-                        <li>We source controlled Healthcare data sets;</li>
-                        <li>We organize and curate the data by adjusting for time and geographic granularity;</li>
+                        <li>We source controlled Healthcare Catalogs;</li>
+                        <li>We organize and curate the data sources by adjusting the time and geographic granularity;</li>
                         <li>We simplify data ingestion through automated processes.</li>
                     </ol>
                     </Box>
 
                     <Box sx={{display:"flex", flexDirection:'column', width:'45%', boxShadow:1}}>
-                        <img src={"https://www.readysignal.com/wp-content/uploads/2021/10/0.2-Onboarding-Image.jpg"} />
+                        <img src={"/Onboarding-Image.jpg"} />
                     </Box>
 
                     

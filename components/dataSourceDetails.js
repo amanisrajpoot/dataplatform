@@ -138,7 +138,7 @@ export default function DataSourcesDetails(props){
                                   onClick={() => router.push('/searchresult')}
                                 >
                                   Create Dataset to Explore More
-                                </button>:router.pathname.includes('/createsignalsecond')?"":
+                                </button>:router.pathname.includes('/dataset')?"":
                                 <button
                                   // onClick={disposeFunc}
                                   style={{ width: '30%', height: '2.5rem', 

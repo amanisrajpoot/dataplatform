@@ -133,16 +133,12 @@ export default function Dashboard({
                 </Box>
             </Typography>
 
-            <Link>
-              <a>
                 <Button variant="contained" size="large" 
                   sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                   startIcon={<AddIcon />}
                   onClick={() => router.push('/searchresult')}>
                   {/* onClick={handleOpen}> */}
               Create a Dataset</Button>
-              </a>
-            </Link>
 
                 <Modal
                   open={open}

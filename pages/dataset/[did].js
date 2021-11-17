@@ -17,6 +17,8 @@ import Output from '../../components/output';
 import {useRouter} from 'next/router';
 import { getDatasetsId, downloadDatasetsId } from '../../function/users';
 import DataSourcesDetails from '../../components/dataSourceDetails';
+import AddIcon from '@mui/icons-material/Add';
+
 
 function Copyright() {
   return (
@@ -126,7 +128,11 @@ const removeLocalDatasetcatalog = (data) => {
             {datasetMode ===1 ?<Button variant="contained" size="large" sx={{px:7, py:2.5,
             backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                     startIcon={<CheckIcon />} onClick={()=>setDatasetMode(0)}>
-                    {"Back"}</Button>:null}
+                    {"Back"}</Button>:
+            datasetMode ===0 ?<Button variant="contained" size="medium" sx={{px:7, py:2.5,
+              backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                      startIcon={<CheckIcon />} onClick={()=>router.push('/dashboard')}>
+                      {"Back to Dashboard"}</Button>:null}
 
           </Box>
 
@@ -183,8 +189,8 @@ const removeLocalDatasetcatalog = (data) => {
 
               {datasetMode ===1 ?<Button variant="contained" size="large" sx={{mx:2, py:2.5,
             backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                    startIcon={<CheckIcon />} onClick={()=>setAddCatalogMode(!addCatalogMode)}>
-                    {"Add Catalog"}</Button>:null}
+                    startIcon={addCatalogMode ?<CheckIcon />:<AddIcon />} onClick={()=>setAddCatalogMode(!addCatalogMode)}>
+                    {addCatalogMode ?"Done":"Add Catalog"}</Button>:null}
               
           </Box>
 

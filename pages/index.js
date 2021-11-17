@@ -62,21 +62,21 @@ export default function Home() {
         <Box sx={{ display: 'flex', flexDirection:'column', 
               py: 6, px: 14, height:'88vh', bgcolor: '#94bbe9', 
               alignItems:'center', justifyContent:'center', color:'#eeeeee',  
-              backgroundSize: 'cover', opacity: '0.8',
-              backgroundImage: `url(${'/home-background02.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
+              backgroundSize: 'cover', backgroundSize: "140% 130%", backgroundPosition: "bottom",
+              backgroundImage: `url(${'/home-background04.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
               }} >
         
             <Box sx={{pt:8,pb: 6,}}>
                 <Typography color="inherit" variant="h2" component="h2" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',
-                        textAlign:'center',py:0, my:0, color:'#000', fontWeight:'bold',}}>
+                        textAlign:'center',py:0, my:0, color:'#fff',}}>
                     Harness the Most Powerful Open Source Data in Minutes  
                 </Typography>
             </Box>
 
             <Box sx={{pb: 6,}}>
                 <Typography color="inherit" variant="h4" component="h1" 
-                sx={{display:'flex',color:'#000', fontWeight:'bold' }}>
+                sx={{display:'flex',color:'#fff',  }}>
                 Delivered in the Platform of Your Choice       
                 </Typography>
             </Box>
@@ -90,7 +90,7 @@ export default function Home() {
 
             <Box sx={{pb: 6,}}>
                 <Typography color="inherit" variant="h6" component="h1" 
-                sx={{display:'flex',color:'#000',fontWeight:'bold' }}>
+                sx={{display:'flex',color:'#fff', }}>
                 NO CREDIT CARD NEEDED      
                 </Typography>
             </Box>
@@ -272,7 +272,7 @@ export default function Home() {
             </Box> 
       </Box>
 
-      <Box sx={{px:10, display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+      <Box sx={{px:10,my:2, display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
         <Box sx={{width:"30%", bgcolor:'#eaeff1',p:4,}}>
           <img style={{width:"55%"}} src="https://www.readysignal.com/wp-content/uploads/2021/01/Deliver-Better-Results.svg"/>
           <h2 style={{borderBottom:'1px #d2202f solid' }}>Deliver Better Results</h2>
@@ -295,7 +295,7 @@ export default function Home() {
         </Box>
       </Box>
       
-      <Box sx={{py:4,px:14, display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+      {/* <Box sx={{py:4,px:14, display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
         <Box sx={{width:"30%",py:4,}}>
           <FormatQuoteIcon style={{fontSize:128}}/>
           
@@ -321,12 +321,12 @@ export default function Home() {
           <p style={{fontSize:28}}>Municipal Data Scientist</p>
           <img src="https://www.readysignal.com/wp-content/uploads/2021/01/Domo.png" />
         </Box>
-      </Box>
+      </Box> */}
 
       <Box sx={{ display: 'flex', flexDirection:'column', 
               py: 6, px: 14, height:'35vh', bgcolor: '#3e3e33', 
-              alignItems:'center', justifyContent:'center', color:'#eeeeee', 
-              backgroundImage: `url(${'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'})`,
+              alignItems:'center', justifyContent:'center', color:'#eeeeee', backgroundPosition:'top right',
+              backgroundImage: `url(${'/home-background02.jpg'})`,
               }} >
 
             <Box sx={{pb:1}}>
@@ -373,7 +373,7 @@ export default function Home() {
             <Box sx={{pt:8, px:14,pb:4}}>
                 <Box sx={{width:'90%', color:'#BCBCBC'}}>
                   <p>contact@dataplatform.com </p>
-                  <p>330 E. Liberty St. Ann Arbor, MI 48104</p>
+                  <p>212, Sector-43</p>
                 </Box>
             </Box>
           </Box>
