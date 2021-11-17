@@ -36,8 +36,8 @@ export default function DatasetCard(props){
                       <p style={{textOverflow:'clip', overflow:'hidden',}}><b>{props.data.title?props.data.title: "Sample Dataset"+props.data.ID}</b><br></br>
                             </p>
                     </div>
-                    <div style={{fontSize:14, width:"14%"}}>
-                    <p><b>&nbsp;{props.data.description?props.data.description: "Dataset Description"}</b><br></br>
+                    <div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word"}}>
+                    <p><b>&nbsp;{props.data.description?props.data.description.substring(0,99): "Dataset Description"}</b><br></br>
                           
                         </p>
                     </div>
@@ -53,7 +53,7 @@ export default function DatasetCard(props){
                       <p><b>&nbsp;{props.data.address?props.data.address: "Features"}</b><br></br>
                       <b>Time Granule:&nbsp;{props.data.data_points?props.data.data_points: "Monthly"}</b></p>
                     </div> */}
-                    <div style={{fontSize:14,width:"14%"}}>
+                    <div style={{fontSize:14,width:"12%"}}>
                       <p><b>Datasources:&nbsp;{props.data.data_sources?props.data.data_sources: "123"}</b><br></br>
                       <b>Topics:&nbsp;{props.data.topic?props.data.topic.split(",").length: "6"}</b></p>
                     </div>
@@ -69,7 +69,7 @@ export default function DatasetCard(props){
                         onClick={()=>handleRemove()}>
                           <p><ClearIcon /></p>
                         </div>:
-                    <div style={{fontSize:14, cursor:'pointer', width:"2%"}} 
+                    <div style={{fontSize:14, cursor:'pointer', width:"3%"}} 
                         onClick={()=>router.push('/dataset/'+props.data.ID)}>
                       <p><SettingsIcon /></p>
                     </div>}

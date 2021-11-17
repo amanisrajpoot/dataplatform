@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }) {
         description:'',
         topic:'',
         row_count:0,
-        data_points:'',
+        data_points:0,
         data_sources:0,  
         status:'',
         template:false,
@@ -90,6 +90,11 @@ function MyApp({ Component, pageProps }) {
             setDataset({...dataset,catalog:filtered});
             console.log("dataset",dataset)
         };
+
+    useEffect( () => {
+            setDataset({...dataset,title,description});
+            console.log("added details",dataset);
+          }, [title, description,token]);
 
     const [dataSources, setDataSources] = useState([]);
     useEffect(async () => {

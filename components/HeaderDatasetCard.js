@@ -27,7 +27,7 @@ export default function HeaderDatasetCard(props){
 
     return (
 
-          <div style={{display:"flex", flexDirection:'row', minHeight:'7vh',maxHeight:'5vh', width:"100%",
+          <div style={{display:"flex", flexDirection:'row', minHeight:'3vh',maxHeight:'4vh', width:"100%",
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', marginBottom:2,
               textOverflow:'clip',  }}>
       

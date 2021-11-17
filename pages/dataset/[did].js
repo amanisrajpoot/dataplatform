@@ -78,16 +78,10 @@ export default function ManageDataset({
   const router = useRouter();
   const dataset_id = router.query.did;
   const [addCatalogMode, setAddCatalogMode] = useState(false);
-  const [localTitle, setLocalTitle] = useState('');
-  const [localDescription, setLocalDescription] = useState('');
   
   useEffect(async ()=>{
     const dataset = await getDatasetsId(token, dataset_id);
     setUserDatasets(dataset);
-    if(dataset !== null && dataset !== undefined){
-      setLocalTitle(dataset.title);
-      setLocalDescription(dataset.description);
-    }
     console.log("fetched dataset data",userdatasets);
   }, [token, dataset_id]);
 
@@ -105,7 +99,6 @@ const removeLocalDatasetcatalog = (data) => {
     setUserDatasets({...userdatasets,catalog:filtered});
     console.log("catalog removed",userdatasets)
   };
-
 
   const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
@@ -129,8 +122,11 @@ const removeLocalDatasetcatalog = (data) => {
                     <div>MANAGE DATASET &nbsp;</div>
                     <div><HelpOutlineIcon /></div>
                 </Box>
-                
             </Typography>
+            {datasetMode ===1 ?<Button variant="contained" size="large" sx={{px:7, py:2.5,
+            backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                    startIcon={<CheckIcon />} onClick={()=>setDatasetMode(0)}>
+                    {"Back"}</Button>:null}
 
           </Box>
 
@@ -140,8 +136,6 @@ const removeLocalDatasetcatalog = (data) => {
               userdatasets !== null && userdatasets !== undefined
               && <SignalCardOut token={token}
               data={userdatasets} datasetMode={datasetMode} setDatasetMode={setDatasetMode} 
-              localTitle={localTitle} setLocalTitle={setLocalTitle}
-              localDescription={localDescription} setLocalDescription={setLocalDescription}
               userdatasets={userdatasets} setUserDatasets={setUserDatasets}
               />
             }

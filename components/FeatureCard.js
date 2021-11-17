@@ -62,8 +62,10 @@ export default function FeatureCard(props){
                         onClick={()=>props.handleOpenDetails(props.data)}>
                       <p><b>{props.geo?"View Details": "View Details"}</b></p>
                     </div>
+                    
                     {router.pathname.includes('/dashboard')?"":
-                        
+                    router.pathname.includes('/dataset') && props.datasetMode === 0 ?"":
+                    router.pathname.includes('/dataset') && props.datasetMode === 1 ?"":
                     <div style={{fontSize:14, cursor:'pointer'}} 
                         onClick={()=>handleAdd()}>
                       <p>{searchInArray(props.dataset, props.data.ID)? <DoneIcon />: <AddIcon />}</p>
