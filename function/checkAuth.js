@@ -1,5 +1,8 @@
 import { Auth } from 'aws-amplify';
 import { fetchAuth } from './fetchAuth';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
 export async function checkAuth({
 	token,
@@ -18,6 +21,10 @@ export async function checkAuth({
 			// const response = await fetchAuth(too, '/users');
 			// setRole(response.type);
 			// setLocation(response.location.split(',')[0]);
+			mixpanel.track('Logged In', {
+				'source': "Data Platform Login Page",
+				'signed in': true,
+			  });
 		} else {
 			setToken(null);
 		}
@@ -74,6 +81,12 @@ export async function signUp({
 		});
 		/* Once the user successfully signs in, update the form state to show the signed in state */
 		// await checkAuth({token, setToken})
+		mixpanel.track('Signed Up', {
+			'source': "Create Account Page",
+			'signed in': false,
+			'signed up': true,
+			'action': "account created",
+		  });
 		return null;
 	} catch (err) {
 		console.log({ err });
@@ -86,6 +99,12 @@ export async function confirmSignUp({ email, otp, token, setToken }) {
 		await Auth.confirmSignUp(email, otp);
 		/* Once the user successfully signs in, update the form state to show the signed in state */
 		// await checkAuth({token, setToken})
+		mixpanel.track('Confirm Sign Up', {
+			'source': "Create Account Page",
+			'signed in': true,
+			'signed up': true,
+			'action': "account verified successfully",
+		  });
 		return null;
 	} catch (err) {
 		console.log({ err });
@@ -98,6 +117,12 @@ export async function recieveOTP({ email }) {
 		await Auth.resendSignUp(email);
 		/* Once the user successfully signs in, update the form state to show the signed in state */
 		// await checkAuth({token, setToken})
+		mixpanel.track('OTP Recieved', {
+			'source': "OTP Verification Page",
+			'signed in': false,
+			'signed up': true,
+			'action': "OTP Recieved",
+		  });
 		return null;
 	} catch (err) {
 		console.log({ err });
@@ -129,9 +154,15 @@ export async function forgotPasswordSubmit({ email, otp, password }) {
 	}
 }
 
-export async function signOut() {
+export async function signOut({path}) {
 	try {
 		await Auth.signOut();
+		mixpanel.track('Signed Out', {
+			'source': path,
+			'signed in': false,
+			'signed up': true,
+			'action': "signed out",
+		  });
 	} catch (error) {
 		console.log('error signing out: ', error);
 	}

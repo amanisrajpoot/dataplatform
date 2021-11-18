@@ -2,6 +2,9 @@ import React from 'react';
 import styles from '../styles/LoginForm.module.css';
 import Image from 'next/image';
 import { Grid } from '@material-ui/core';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 const ForgotForm = ({
 	error,

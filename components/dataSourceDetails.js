@@ -5,6 +5,9 @@ import AddIcon from '@mui/icons-material/Add';
 import { Modal } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 export default function DataSourcesDetails(props){
     const router = useRouter();
@@ -144,7 +147,16 @@ export default function DataSourcesDetails(props){
                                   style={{ width: '30%', height: '2.5rem', 
                                   backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)', 
                                   color: 'white',  }}
-                                  onClick={() => props.addDatasetcatalog(props.data)}
+                                  onClick={() => {
+                                    props.addDatasetcatalog(props.data)
+                                    mixpanel.track('Catalog Card Operations', {
+                                      'source': "Create Dataset Page",
+                                      'action': "clicked on Add to Dataset button",
+                                      'dataset': props.data.ID,
+                                    })
+                                  
+                                  }
+                                }
                                 >
                                   Add to Dataset
                                 </button>}

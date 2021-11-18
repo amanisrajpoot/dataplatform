@@ -5,6 +5,9 @@ import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from 'next/router';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 function searchInArray(array, search) {
   for (var i = 0; i < array.length; i++) {
@@ -20,13 +23,20 @@ export default function FeatureCard(props){
     const router = useRouter();
     const[added, setAdded] = React.useState(false);
     const handleAdd = () => {
-        if(added === false){
+        if(!searchInArray(props.dataset, props.data.ID)){
           props.addDatasetcatalog(props.data);
-          setAdded(true);
-          
+          mixpanel.track('Catalog Added to the Dataset', {
+            'source': "Create Dataset Page",
+            'action': "catalog added",
+            'catalog': props.data.ID,
+          })
         } else {
             props.removeDatasetcatalog(props.data);
-            setAdded(false);
+            mixpanel.track('Catalog Removed from the Dataset', {
+              'source': "Create Dataset Page",
+              'action': "catalog removed",
+              'catalog': props.data.ID,
+            })
         }
     }
 
@@ -59,7 +69,15 @@ export default function FeatureCard(props){
                          </p>
                     </div>
                     <div style={{fontSize:14, cursor:'pointer',width:"9%"}} 
-                        onClick={()=>props.handleOpenDetails(props.data)}>
+                        onClick={()=>{
+                          props.handleOpenDetails(props.data)
+                          mixpanel.track('Catalog Card View Details', {
+                            'source': router.pathname,
+                            'action': "clicked on view details on catalog card",
+                            'catalog': props.data.ID,
+                           }) 
+                          }
+                        }>
                       <p><b>{props.geo?"View Details": "View Details"}</b></p>
                     </div>
                     

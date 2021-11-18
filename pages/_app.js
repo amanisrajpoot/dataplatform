@@ -94,7 +94,7 @@ function MyApp({ Component, pageProps }) {
     useEffect( () => {
             setDataset({...dataset,title,description});
             console.log("added details",dataset);
-          }, [title, description,token]);
+          }, [title, description,token,router]);
 
     const [dataSources, setDataSources] = useState([]);
     useEffect(async () => {

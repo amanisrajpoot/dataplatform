@@ -19,6 +19,7 @@
     "@mui/material": "^5.0.2",
     "aws-amplify": "^4.3.3",
     "draft-js": "^0.11.7",
+    "mixpanel-browser": "^2.42.0",
     "next": "11.1.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.4",

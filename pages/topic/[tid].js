@@ -15,7 +15,9 @@ import { getPublicDatasetsTopics} from '../../function/users';
 import TopicsCard from '../../components/TopicsCard';
 import { useRouter } from 'next/router'
 import AddedFeatureCard from '../../components/AddedFeatureCard';
+import mixpanel from 'mixpanel-browser';
 
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 function Copyright() {
   return (

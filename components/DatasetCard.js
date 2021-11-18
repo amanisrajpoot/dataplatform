@@ -6,6 +6,9 @@ import { useRouter } from 'next/router';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import SettingsIcon from '@mui/icons-material/Settings';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 export default function DatasetCard(props){
     const [show, setShow] = React.useState(false);
@@ -70,7 +73,15 @@ export default function DatasetCard(props){
                           <p><ClearIcon /></p>
                         </div>:
                     <div style={{fontSize:14, cursor:'pointer', width:"3%"}} 
-                        onClick={()=>router.push('/dataset/'+props.data.ID)}>
+                        onClick={()=>{
+                          router.push('/dataset/'+props.data.ID)
+                          mixpanel.track('Clicked on Dataset Operations', {
+                            'source': "Data Platform Dashboard",
+                            'action': "keyword search",
+                            'dataset': props.data.ID,
+                          });
+                          }
+                        }>
                       <p><SettingsIcon /></p>
                     </div>}
         

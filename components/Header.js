@@ -11,10 +11,15 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { signOut } from '../function/checkAuth';
 import { getUser } from '../function/users';
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
+
+
 function Header({token,setToken,onDrawerToggle}) {
+  
+  const router = useRouter();
   
   const [user, setuser] = useState(null);
 	useEffect(async () => {
@@ -73,7 +78,7 @@ function Header({token,setToken,onDrawerToggle}) {
                       &nbsp;&nbsp;
                       <p>{user && user.firstname ? user.firstname : 'Account'} </p> 
                       &nbsp;&nbsp;
-                      <div onClick={()=>signOut()}>
+                      <div onClick={()=>signOut({path:router.pathname})}>
                         <LogoutIcon />
                       </div>
               </div>

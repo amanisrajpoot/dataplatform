@@ -17,6 +17,14 @@ import {useState, useEffect} from 'react';
 import { confirmSignUp, signIn, signUp } from '../function/checkAuth';
 import {createUser} from '../function/users';
 import OTPForm from '../components/OtpScreen';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
+
+mixpanel.track('Sign Up', {
+  'source': "Pat's affiliate site",
+  'Opted out of email': true,
+});
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

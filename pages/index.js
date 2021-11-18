@@ -8,6 +8,9 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HomepageCards from '../components/HomepageCards';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 function Copyright() {
   return (

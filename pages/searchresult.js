@@ -16,12 +16,11 @@ import { getPublicDatasets,createUserDataset } from '../function/users';
 import TopicsCard from '../components/TopicsCard';
 import FormControl from '@mui/material/FormControl';
 import {useRouter} from 'next/router';
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import mixpanel from 'mixpanel-browser';
 
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
 function Copyright() {
   return (
@@ -150,13 +149,6 @@ export default function Searchresult({
     console.log("added details",dataset);
   }, [dataset]);
 
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
-  useEffect(() => {
-    console.log(editorState);
-  }, [editorState]);
-
   return (
     <Box>
       <Navbar token={token} setToken={setToken}/>
@@ -218,17 +210,6 @@ export default function Searchresult({
                       multiline
                     />
 
-                    <div style={{color:"black", backgroundColor:'white'}}>
-                          <h1>React Editors</h1>
-                          <h2>Start editing to see some magic happen!</h2>
-                          <div style={{ border: "1px solid black", padding: '2px', minHeight: '400px' }}>
-                            <Editor
-                              editorState={editorState}
-                              onEditorStateChange={setEditorState}
-                            />
-                          </div>
-                        </div>
-
                     {/* <TextField
                       variant="outlined"
                       value={topic}
@@ -261,8 +242,6 @@ export default function Searchresult({
                     />
                   </FormControl>
                 </Box> */}
-
-
 
             <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:14,pt:4}}>

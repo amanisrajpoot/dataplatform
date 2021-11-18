@@ -13,7 +13,6 @@ import FeatureCard from '../components/FeatureCard';
 import HelpCenterCard from '../components/HelpCenterCard';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
-import SignalTable from '../components/SignalTable';
 import Modal from '@mui/material/Modal';
 import { Grid } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
@@ -25,6 +24,9 @@ import { useRouter } from 'next/router';
 import { getPublicDatasets,getDatasets } from '../function/users';
 import DatasetCard from '../components/DatasetCard';
 import HeaderDatasetCard from '../components/HeaderDatasetCard';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 function Copyright() {
   return (
@@ -109,7 +111,12 @@ export default function Dashboard({
   const [keyword, setKeyword] = useState('');
   const handleKeywordSearch = async (event) => {
       if(token!==null){
-        console.log("SEARCH", keyword)
+          console.log("SEARCH", keyword)
+          mixpanel.track('Keyword Search for Catalogs', {
+            'source': "Data Platform Dashboard",
+            'action': "keyword search",
+            'keyword': keyword,
+          });
           const data = await getPublicDatasets(
           token,keyword
         );
@@ -136,7 +143,13 @@ export default function Dashboard({
                 <Button variant="contained" size="large" 
                   sx={{backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)', py:2, px:2}}
                   startIcon={<AddIcon />}
-                  onClick={() => router.push('/searchresult')}>
+                  onClick={() => {
+                    router.push('/searchresult');
+                    mixpanel.track('Clicked on Create Dataset', {
+                      'source': "Data Platform Dashboard",
+                      'scrolled first': true,
+                    });
+                  }}>
                   {/* onClick={handleOpen}> */}
               Create a Dataset</Button>
 
