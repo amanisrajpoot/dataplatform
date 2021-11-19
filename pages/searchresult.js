@@ -173,7 +173,7 @@ export default function Searchresult({
                           <div><HelpOutlineIcon /></div>
                         </div>
 
-                        <Button variant="contained" size="medium" sx={{px:2, py:2.5,
+                        <Button variant="contained" size="small" sx={{px:2, py:2.5,
               backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                       startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
                       {"Back to Dashboard"}</Button>
@@ -182,7 +182,7 @@ export default function Searchresult({
                 </Box>
                 
                 <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
-                    color:'gray', fontSize:18,px:10, py:2}}>
+                    color:'gray', fontSize:18,px:10,pb:2}}>
                     <div>BASIC INFO &nbsp;</div>
                     <div style={{fontSize:12, paddingTop:4}}>*Enter a title and description for your signal.</div>
                 </Box>

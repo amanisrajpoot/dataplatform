@@ -138,7 +138,14 @@ export default function DataSourcesDetails(props){
                                   backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)', 
                                   color: 'white',}}
                                   href="/createsignalfirst"
-                                  onClick={() => router.push('/searchresult')}
+                                  onClick={() => {router.push('/searchresult')
+                                  mixpanel.track('Catalog Details Card Operations', {
+                                    'source': "Dashboard",
+                                    'action': "clicked on Create a Dataset button",
+                                    'dataset': props.data.ID,
+                                  })
+                                }
+                                }
                                 >
                                   Create Dataset to Explore More
                                 </button>:router.pathname.includes('/dataset')?"":
@@ -154,6 +161,7 @@ export default function DataSourcesDetails(props){
                                       'action': "clicked on Add to Dataset button",
                                       'dataset': props.data.ID,
                                     })
+                                    props.handleCloseDetails()
                                   
                                   }
                                 }

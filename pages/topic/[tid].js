@@ -120,7 +120,8 @@ export default function Topic({token,
       <Box sx={{ display: 'flex' }}>        
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           
-          <Box component="main" sx={{ flex: 1, px: 4, py:2,bgcolor: '#eaeff1' }}>
+          <Box component="main" sx={{ display:'flex',flexDirection:"row",
+          justifyContent: 'space-between',px: 4, py:2,bgcolor: '#eaeff1' }}>
             
             <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
@@ -128,6 +129,16 @@ export default function Topic({token,
                       {/* <div><HelpOutlineIcon /></div> */}
                   </Box>
               </Typography>
+
+              <Button sx={{minWidth:'225px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
+                alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
+                mr:10}}
+                onClick={() => router.back()}>
+                  {/*onClick={()=>setSearch(!search)}*/}
+                    {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
+                    <div style={{color:'#fff',fontSize:18}}>Back</div>
+                </Button>
               
           </Box>
         </Box>
@@ -161,7 +172,8 @@ export default function Topic({token,
                   data={data}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails} 
-                  dataset={dataset}
+                  dataset={dataset.catalog}
+                  dataSources={topicDatasources}
                   removeDatasetcatalog={removeDatasetcatalog}
                   addDatasetcatalog={addDatasetcatalog}
                   />)}

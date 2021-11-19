@@ -281,7 +281,7 @@ export default function Dashboard({
             component="form"
             sx={{
               '& > :not(style)': { m: 1}, 
-              display: 'flex', flexDirection: 'row', flex:'1', py: 2, px: 8, bgcolor: '#eaeff1'
+              display: 'flex', flexDirection: 'row', flex:'1', px: 8, bgcolor: '#eaeff1'
 
             }}
             noValidate
