@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import Link from 'next/link';
+import Button from '@mui/material/Button';
 
 export default function TopicsCard(props){
     const [show, setShow] = React.useState(false);
@@ -31,8 +32,14 @@ export default function TopicsCard(props){
               justifyContent:'space-around', alignItems:'center', marginBottom:16,  }}
               href="/topicbrowser">
       
-                    <div style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}>
+                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
+                        paddingRight:8, marginLeft:8}}
+                        onClick={()=>
+                          mixpanel.track('Topics Button', {
+                            'source': "Create dataset Page",
+                            'action': "clicked on FDA icon",
+                            'dataset': props.data.ID,
+                          })}>
                         <Link href="/topic/FDA" >
                       <a style={{width:'19%', textAlign:'center'}}>
                         <p><b>{props.data.title?props.data.title: "FDA"}</b><br></br>
@@ -40,10 +47,16 @@ export default function TopicsCard(props){
 
                        </a>
                     </Link>
-                         </div>
+                         </Button>
 
-                    <div style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}>
+                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
+                        paddingRight:8, marginLeft:8}}
+                        onClick={()=>
+                          mixpanel.track('Topics Button', {
+                            'source': "Create dataset Page",
+                            'action': "clicked on Physician icon",
+                            'dataset': props.data.ID,
+                          })}>
                         <Link href="/topic/Physician">
                       <a style={{width:'19%',textAlign:'center'}}>
                         <p><b>{props.data.title?props.data.title: "Physician"}</b><br></br>
@@ -51,10 +64,16 @@ export default function TopicsCard(props){
 
                        </a>
                     </Link>
-                         </div>
+                         </Button>
 
-                    <div style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}>
+                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
+                        paddingRight:8, marginLeft:8}}
+                        onClick={()=>
+                          mixpanel.track('Topics Button', {
+                            'source': "Create dataset Page",
+                            'action': "clicked on Drugs icon",
+                            'dataset': props.data.ID,
+                          })}>
                         <Link href="/topic/Drugs" >
                       <a style={{width:'19%',textAlign:'center'}}>
                         <p><b>{props.data.title?props.data.title: "Drugs"}</b><br></br>
@@ -62,10 +81,16 @@ export default function TopicsCard(props){
 
                        </a>
                     </Link>
-                         </div>
+                         </Button>
 
-                    <div style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}>
+                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
+                        paddingRight:8, marginLeft:8}}
+                        onClick={()=>
+                          mixpanel.track('Topics Button', {
+                            'source': "Create dataset Page",
+                            'action': "clicked on Insurance Companies icon",
+                            'dataset': props.data.ID,
+                          })}>
                         <Link href="/topic/Insurance Companies" >
                       <a style={{width:'19%', textAlign:'center'}}>
                         <p><b>{props.data.title?props.data.title: "Insurance Companies"}</b><br></br>
@@ -73,7 +98,7 @@ export default function TopicsCard(props){
 
                        </a>
                     </Link>
-                         </div>
+                         </Button>
 
 
           </div>
