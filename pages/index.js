@@ -73,14 +73,14 @@ export default function Home() {
                 <Typography color="inherit" variant="h2" component="h2" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',
                         textAlign:'center',py:0, my:0, color:'#fff',}}>
-                    Harness the Most Powerful Open Source Data in Minutes  
+                    {"Harness the Most Powerful Open Source Data in Minutes"}  
                 </Typography>
             </Box>
 
             <Box sx={{pb: 6,}}>
                 <Typography color="inherit" variant="h4" component="h1" 
                 sx={{display:'flex',color:'#fff',  }}>
-                Delivered in the Platform of Your Choice       
+                {"Delivered in the Platform of Your Choice"}    
                 </Typography>
             </Box>
 
@@ -88,13 +88,13 @@ export default function Home() {
                 <Button variant="contained" size="large" href="/signup" color="primary"
                 sx={{fontSize:24, color:'#eeeeee', 
                 backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',color:'#fff'}}>
-            Sign up Free</Button>
+            {"Sign up Free"}</Button>
             </Box>
 
             <Box sx={{pb: 6,}}>
                 <Typography color="inherit" variant="h6" component="h1" 
                 sx={{display:'flex',color:'#fff', }}>
-                NO CREDIT CARD NEEDED      
+                {"NO CREDIT CARD NEEDED"}      
                 </Typography>
             </Box>
 
@@ -115,13 +115,13 @@ export default function Home() {
                 <Typography color="inherit" variant="h4" component="h1" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',py:0, my:0, 
                         borderBottom:'1px #d2202f solid', }}>
-                    Welcome to Data Platform  
+                    {"Welcome to Data Platform"}  
                 </Typography>
             </Box>
 
             <Box sx={{}}>
                 <Typography color="inherit" variant="h5" component="h1" sx={{display:'flex', }}>
-                Here is what we do for you:       
+                {"Here is what we do for you:"}       
                 </Typography>
             </Box>
 
