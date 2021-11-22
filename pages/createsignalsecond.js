@@ -16,7 +16,7 @@ import StarIcon from '@mui/icons-material/Star';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AddIcon from '@mui/icons-material/Add';
 import Modal from '@mui/material/Modal';
-import DataSourcesDetails from '../components/datasourcedetails';
+import DataSourcesDetails from '../components/datasourcesdetails';
 import { getPublicDatasets,createUserDataset } from '../function/users';
 
 function Copyright() {

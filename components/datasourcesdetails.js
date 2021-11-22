@@ -1,7 +1,4 @@
 import React from 'react';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import AddIcon from '@mui/icons-material/Add';
 import { Modal } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
@@ -9,7 +6,7 @@ import mixpanel from 'mixpanel-browser';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
-export default function DataSourcesDetails(props){
+export default function datasourcesdetails(props){
     const router = useRouter();
 
     return (
