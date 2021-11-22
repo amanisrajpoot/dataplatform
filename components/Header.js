@@ -15,12 +15,10 @@ import { useRouter } from 'next/router';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
-
-
 function Header({token,setToken,onDrawerToggle}) {
   
   const router = useRouter();
-  
+
   const [user, setuser] = useState(null);
 	useEffect(async () => {
     console.log('user call token', token);

@@ -142,11 +142,17 @@ export async function recieveForgotOTP({ email }) {
 	}
 }
 
-export async function forgotPasswordSubmit({ email, otp, password }) {
+export async function forgotPasswordSubmit({ email, otp, password, path }) {
 	try {
 		await Auth.forgotPasswordSubmit(email, otp, password);
 		/* Once the user successfully signs in, update the form state to show the signed in state */
 		// await checkAuth({token, setToken})
+		mixpanel.track('Forgot Password', {
+			'source': path,
+			'signed in': false,
+			'signed up': true,
+			'action': "clicked on forgot password",
+		  });
 		return null;
 	} catch (err) {
 		console.log({ err });

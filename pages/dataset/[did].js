@@ -16,7 +16,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Output from '../../components/output';
 import {useRouter} from 'next/router';
 import { getDatasetsId, downloadDatasetsId } from '../../function/users';
-import DataSourcesDetails from '../../components/dataSourceDetails';
+import DataSourcesDetails from '../../components/datasourcesdetails';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import mixpanel from 'mixpanel-browser';

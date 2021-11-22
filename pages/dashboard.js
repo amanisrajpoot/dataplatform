@@ -19,7 +19,7 @@ import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
-import DataSourcesDetails from '../components/dataSourceDetails';
+import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
 import { getPublicDatasets,getDatasets } from '../function/users';
 import DatasetCard from '../components/DatasetCard';

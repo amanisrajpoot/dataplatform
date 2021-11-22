@@ -10,7 +10,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import FeatureCard from '../../components/FeatureCard';
 import Modal from '@mui/material/Modal';
-import DataSourcesDetails from '../../components/datasourcedetails';
+import DataSourcesDetails from '../../components/datasourcesdetails';
 import { getPublicDatasetsTopics} from '../../function/users';
 import TopicsCard from '../../components/TopicsCard';
 import { useRouter } from 'next/router'
