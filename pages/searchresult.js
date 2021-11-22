@@ -134,6 +134,10 @@ export default function Searchresult({
           dataset
         });
         setUserdatasets(data);
+        mixpanel.track('Clicked on Create', {
+          'source': "Create Dataset Page",
+          'scrolled first': true,
+        })
         console.log("created dataset",data);
         router.push('/dataset/'+data.ID);
       }

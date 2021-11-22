@@ -22,6 +22,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import mixpanel from 'mixpanel-browser';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -113,6 +114,13 @@ const removeLocalDatasetcatalog = (data) => {
     const handleCloseDetails = () => {
       setOpenDetails(false);
     };
+
+  useEffect(async ()=>{
+      mixpanel.track('Viewed Dataset', {
+        'source': "Dataset Details Page",
+        'scrolled first': true,
+      })
+    }, [token, dataset_id]);
 
   return (
     

@@ -37,7 +37,13 @@ const style = {
 
 export default function Output({downloadLink}) {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => window.open(downloadLink, '_blank');
+  const handleOpen = () => {
+    window.open(downloadLink, '_blank');
+    mixpanel.track('Dataset Download', {
+      'source': "Clicked on Download",
+      'scrolled first': true,
+    })
+  }
   
   return (
     
