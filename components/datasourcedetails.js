@@ -6,7 +6,7 @@ import mixpanel from 'mixpanel-browser';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
-export default function DataSourceDetails(props){
+export default function DataSourceDetails2(props){
     const router = useRouter();
 
     return (
