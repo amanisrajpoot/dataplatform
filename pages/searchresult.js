@@ -13,7 +13,7 @@ import AddedFeatureCard from '../components/AddedFeatureCard';
 import Modal from '@mui/material/Modal';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import { getPublicDatasets,createUserDataset } from '../function/users';
-import TopicsCard from '../components/TopicsCard';
+import TopicsCard from '../components/topicsCard';
 import FormControl from '@mui/material/FormControl';
 import {useRouter} from 'next/router';
 import CheckIcon from '@mui/icons-material/Check';
