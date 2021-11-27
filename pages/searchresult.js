@@ -275,7 +275,7 @@ export default function Searchresult({
             </Box>
             
             <Box>
-                <Button sx={{minWidth:'225px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
+                <Button sx={{minWidth:'225px', height:'55px',  display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
                 backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                 onClick={()=>handleKeywordSearch()}>
@@ -290,7 +290,7 @@ export default function Searchresult({
             <Box>
               <Link >
                 <a>
-                <Button sx={{minWidth:'225px', height:'55px', bgcolor:'#fff', 
+                <Button sx={{minWidth:'225px', height:'55px',
                 display:'flex', bgcolor: '#009BE5', mr:5,
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
                 backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
@@ -457,7 +457,7 @@ export default function Searchresult({
           >
           <Box>
               
-                <Button sx={{minWidth:'225px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
+                <Button sx={{minWidth:'225px', height:'55px', display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
                 backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                 onClick={()=>handleSendData()}>

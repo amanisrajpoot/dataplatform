@@ -64,36 +64,36 @@ export default function Home() {
       <Navbar />
         <Box sx={{ display: 'flex', flexDirection:'column', 
               py: 6, px: 14, height:'88vh', bgcolor: '#94bbe9', 
-              alignItems:'center', justifyContent:'center', color:'#eeeeee',  
-              backgroundSize: 'cover', backgroundSize: "140% 130%", backgroundPosition: "bottom",
+              alignItems:'center', justifyContent:'center', color:'#eeeeee',
+              backgroundSize: "140% 130%", backgroundPosition: "bottom",
               backgroundImage: `url(${'/home-background04.jpg'/*'https://www.readysignal.com/wp-content/uploads/2021/01/homepage-banner.jpg'*/})`,
               }} >
         
-            <Box sx={{pt:8,pb: 6,}}>
+            <Box sx={{pt:8,pb: 6}}>
                 <Typography color="inherit" variant="h2" component="h2" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',
-                        textAlign:'center',py:0, my:0, color:'#fff',}}>
+                        textAlign:'center',py:0, my:0, color:'#fff'}}>
                     {"Harness the Most Powerful Open Source Data in Minutes"}  
                 </Typography>
             </Box>
 
-            <Box sx={{pb: 6,}}>
+            <Box sx={{pb: 6}}>
                 <Typography color="inherit" variant="h4" component="h1" 
-                sx={{display:'flex',color:'#fff',  }}>
+                sx={{display:'flex',color:'#fff'}}>
                 {"Delivered in the Platform of Your Choice"}    
                 </Typography>
             </Box>
 
             <Box sx={{pb:1}}>
                 <Button variant="contained" size="large" href="/signup" color="primary"
-                sx={{fontSize:24, color:'#eeeeee', 
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',color:'#fff'}}>
+                sx={{fontSize:24, color:'#eeeeee',
+                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}>
             {"Sign up Free"}</Button>
             </Box>
 
-            <Box sx={{pb: 6,}}>
+            <Box sx={{pb: 6}}>
                 <Typography color="inherit" variant="h6" component="h1" 
-                sx={{display:'flex',color:'#fff', }}>
+                sx={{display:'flex',color:'#fff' }}>
                 {"NO CREDIT CARD NEEDED"}      
                 </Typography>
             </Box>
@@ -114,13 +114,13 @@ export default function Home() {
             <Box sx={{pt:8,pb: 2}}>
                 <Typography color="inherit" variant="h4" component="h1" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',py:0, my:0, 
-                        borderBottom:'1px #d2202f solid', }}>
+                        borderBottom:'1px #d2202f solid'}}>
                     {"Welcome to Data Platform"}  
                 </Typography>
             </Box>
 
             <Box sx={{}}>
-                <Typography color="inherit" variant="h5" component="h1" sx={{display:'flex', }}>
+                <Typography color="inherit" variant="h5" component="h1" sx={{display:'flex' }}>
                 {"Here is what we do for you:"}       
                 </Typography>
             </Box>
@@ -150,13 +150,13 @@ export default function Home() {
             <Box sx={{pb: 2}}>
                 <Typography color="inherit" variant="h4" component="h1" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',py:0, my:0, 
-                        borderBottom:'1px #d2202f solid', }}>
+                        borderBottom:'1px #d2202f solid' }}>
                     Take Into Account External Factors Impacting the Accuracy of Your Predictive Models
                 </Typography>
             </Box>
 
             <Box sx={{}}>
-                <Typography color="inherit" variant="h6" component="h1" sx={{display:'flex', }}>
+                <Typography color="inherit" variant="h6" component="h1" sx={{display:'flex'}}>
                 Data Continually Updated as New Information is Released and Delivered in Several Ways.    
                 </Typography>
             </Box>
@@ -200,7 +200,7 @@ export default function Home() {
             <Box sx={{pb: 2}}>
                 <Typography color="inherit" variant="h4" component="h1" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',py:0, my:0, 
-                        borderBottom:'1px #d2202f solid', }}>
+                        borderBottom:'1px #d2202f solid'}}>
                     Download or Integrate All Our Data Sets Through Excel, CSV, FTP, RESTful API, or Pre-built Connectors, Including Domo.
                 </Typography>
             </Box> 
@@ -211,7 +211,7 @@ export default function Home() {
                justifyContent:'center', color:'#000', 
               backgroundImage:'../components/homepage-banner.jpeg'
               }}>
-              <Box sx={{backgroundColor:'#fff',}}>
+              <Box sx={{backgroundColor:'#fff'}}>
                 {/* <img style={{width:'120ch',}} 
                 src="../components/homepage-banner.jpeg" />
                 {// src='https://www.readysignal.com/wp-content/uploads/2021/01/Ready-Signal-Diagram.svg'}
@@ -229,7 +229,7 @@ export default function Home() {
             <Box sx={{pb: 2}}>
                 <Typography color="inherit" variant="h4" component="h1" 
                     sx={{display:'flex', flexDirection:'column', maxWidth: '800px',py:0, my:0, 
-                        borderBottom:'1px #d2202f solid', }}>
+                        borderBottom:'1px #d2202f solid' }}>
                     Data-Driven Decision Makers
                 </Typography>
             </Box> 

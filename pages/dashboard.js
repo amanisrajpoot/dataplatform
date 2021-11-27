@@ -294,7 +294,7 @@ export default function Dashboard({
             </Box>
             
             <Box>
-                <Button sx={{minWidth:'75px', height:'55px', bgcolor:'#fff', display:'flex', bgcolor: '#009BE5',
+                <Button sx={{minWidth:'75px', height:'55px', display:'flex', bgcolor: '#009BE5',
                 alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
                 backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                 onClick={()=>handleKeywordSearch()}>

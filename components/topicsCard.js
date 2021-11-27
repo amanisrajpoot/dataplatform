@@ -1,12 +1,10 @@
 import React from 'react';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import AddIcon from '@mui/icons-material/Add';
 import { useRouter } from 'next/router';
-import DoneIcon from '@mui/icons-material/Done';
-import ClearIcon from '@mui/icons-material/Clear';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
+import mixpanel from 'mixpanel-browser';
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
 export default function TopicsCard(props){
     const [show, setShow] = React.useState(false);
