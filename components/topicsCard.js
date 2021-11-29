@@ -30,8 +30,8 @@ export default function TopicsCard(props){
               justifyContent:'space-around', alignItems:'center', marginBottom:16,  }}
               href="/topicbrowser">
       
-                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}
+                    <Button style={{fontSize:14, width:"19%",backgroundColor:'#fff', paddingLeft:8,
+                        paddingRight:2, marginLeft:2}}
                         onClick={()=>
                           mixpanel.track('Topics Button', {
                             'source': "Create dataset Page",
@@ -47,8 +47,8 @@ export default function TopicsCard(props){
                     </Link>
                          </Button>
 
-                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}
+                    <Button style={{fontSize:14, width:"19%",backgroundColor:'#fff',
+                        paddingRight:2, marginLeft:2}}
                         onClick={()=>
                           mixpanel.track('Topics Button', {
                             'source': "Create dataset Page",
@@ -64,8 +64,8 @@ export default function TopicsCard(props){
                     </Link>
                          </Button>
 
-                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}
+                    <Button style={{fontSize:14, width:"19%",backgroundColor:'#fff', paddingLeft:8,
+                        paddingRight:2, marginLeft:2}}
                         onClick={()=>
                           mixpanel.track('Topics Button', {
                             'source': "Create dataset Page",
@@ -81,8 +81,8 @@ export default function TopicsCard(props){
                     </Link>
                          </Button>
 
-                    <Button style={{fontSize:14, width:"17%",backgroundColor:'#fff', paddingLeft:8,
-                        paddingRight:8, marginLeft:8}}
+                    <Button style={{fontSize:14, width:"19%",backgroundColor:'#fff', paddingLeft:0,
+                        paddingRight:0, marginLeft:0}}
                         onClick={()=>
                           mixpanel.track('Topics Button', {
                             'source': "Create dataset Page",
