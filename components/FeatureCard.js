@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AddIcon from '@mui/icons-material/Add';
@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import mixpanel from 'mixpanel-browser';
+import {getUser} from "../function/users";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -29,6 +30,7 @@ export default function FeatureCard(props){
             'source': "Create Dataset Page",
             'action': "catalog added",
             'catalog': props.data.ID,
+              'email': props.user.email
           })
         } else {
             props.removeDatasetcatalog(props.data);
@@ -36,6 +38,7 @@ export default function FeatureCard(props){
               'source': "Create Dataset Page",
               'action': "catalog removed",
               'catalog': props.data.ID,
+                'email': props.user.email
             })
         }
     }
@@ -75,6 +78,7 @@ export default function FeatureCard(props){
                             'source': router.pathname,
                             'action': "clicked on view details on catalog card",
                             'catalog': props.data.ID,
+                              'email': props.user.email
                            }) 
                           }
                         }>

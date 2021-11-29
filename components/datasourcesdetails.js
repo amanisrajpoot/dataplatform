@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Modal } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import mixpanel from 'mixpanel-browser';
+import {getUser} from "../function/users";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -140,6 +141,7 @@ export default function DataSourcesDetails(props){
                                     'source': "Dashboard",
                                     'action': "clicked on Create a Dataset button",
                                     'dataset': props.data.ID,
+                                      'email': props.user.email
                                   })
                                 }
                                 }
@@ -157,6 +159,7 @@ export default function DataSourcesDetails(props){
                                       'source': "Create Dataset Page",
                                       'action': "clicked on Add to Dataset button",
                                       'dataset': props.data.ID,
+                                        'email': props.user.email
                                     })
                                     props.handleCloseDetails()
                                   

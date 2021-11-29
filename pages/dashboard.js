@@ -21,7 +21,7 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
-import { getPublicDatasets,getDatasets } from '../function/users';
+import {getPublicDatasets, getDatasets, getUser} from '../function/users';
 import DatasetCard from '../components/DatasetCard';
 import HeaderDatasetCard from '../components/HeaderDatasetCard';
 import mixpanel from 'mixpanel-browser';
@@ -69,7 +69,6 @@ const style2 = {
 export default function Dashboard({
   token,
   setToken,
-  user,
   dataset,
   userdatasets,
   dataSources,
@@ -87,16 +86,18 @@ export default function Dashboard({
                               setOpen(false);
                               setOpen2(true);}
   const handleClose = () => setOpen(false);
-  const handleChangeIndustry = (event) => {
-    setIndustry(event.target.value);
-  };
-  const handleClose2 = (event) => {
-    setOpen2(false);
-    setOpen(false);
-  };
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+
+  const [user, setuser] = useState({});
+    useEffect(async () => {
+        console.log('user call token', token);
+        const userP = await getUser(token);
+        if(user === null){
+            setuser({});
+        }else{
+            setuser(userP)
+        }
+        console.log('userP', userP);
+    }, [token]);
 
   const [openDetails, setOpenDetails] = useState(false);
   const [dsDetails, setDSDetails] = useState([]);
@@ -116,6 +117,7 @@ export default function Dashboard({
             'source': "Data Platform Dashboard",
             'action': "keyword search",
             'keyword': keyword,
+              'email': user.email,
           });
           const data = await getPublicDatasets(
           token,keyword
@@ -145,9 +147,11 @@ export default function Dashboard({
                   startIcon={<AddIcon />}
                   onClick={() => {
                     router.push('/searchresult');
+                    mixpanel.time_event('Create Dataset');
                     mixpanel.track('Clicked on Create Dataset', {
                       'source': "Data Platform Dashboard",
                       'scrolled first': true,
+                        'email':user.email
                     });
                   }}>
                   {/* onClick={handleOpen}> */}
@@ -250,6 +254,7 @@ export default function Dashboard({
                   userdatasets.map((data)=><DatasetCard 
                   key={data.dataset_id}
                   data={data}
+                  token={token}
                   openDetails={openDetails}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails}/>): null
@@ -260,7 +265,7 @@ export default function Dashboard({
 
       <Modal open={openDetails} onClose={handleCloseDetails}>
           <Box sx={style2}>            
-              <DataSourcesDetails handleCloseDetails={handleCloseDetails}
+              <DataSourcesDetails user={user} handleCloseDetails={handleCloseDetails}
               data={dsDetails}/>
           </Box>                  
        </Modal>
@@ -328,6 +333,8 @@ export default function Dashboard({
                 {dataSources && dataSources.map((data)=><FeatureCard 
                   key={data.dataset_id}
                   data={data}
+                  token={token}
+                  user={user}
                   openDetails={openDetails}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails}/>)}

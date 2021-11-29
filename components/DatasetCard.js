@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AddIcon from '@mui/icons-material/Add';
@@ -7,6 +7,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import SettingsIcon from '@mui/icons-material/Settings';
 import mixpanel from 'mixpanel-browser';
+import {getUser} from "../function/users";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -79,6 +80,7 @@ export default function DatasetCard(props){
                             'source': "Data Platform Dashboard",
                             'action': "clicked on operations icon",
                             'dataset': props.data.ID,
+                              'email': props.user.email
                           });
                           }
                         }>

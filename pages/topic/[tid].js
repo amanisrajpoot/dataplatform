@@ -11,24 +11,12 @@ import Footer from '../../components/Footer';
 import FeatureCard from '../../components/FeatureCard';
 import Modal from '@mui/material/Modal';
 import DataSourcesDetails from '../../components/datasourcesdetails';
-import { getPublicDatasetsTopics} from '../../function/users';
+import {getPublicDatasetsTopics, getUser} from '../../function/users';
 import { useRouter } from 'next/router'
 import AddedFeatureCard from '../../components/AddedFeatureCard';
 import mixpanel from 'mixpanel-browser';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
 
 const drawerWidth = 256;
 
@@ -56,7 +44,7 @@ const style2 = {
   p: 4,
 };
 
-export default function Topic({token, 
+export default function Topic({token,
   setToken,
   dataset,
   setDataset,
@@ -101,6 +89,14 @@ export default function Topic({token,
   const handleKeywordSearch = (event) => {
     setKeywordSearch(!keywordSearch);
   };
+
+    const [user, setuser] = useState(null);
+    useEffect(async () => {
+        console.log('user call token', token);
+        const userP = await getUser(token);
+        setuser(userP);
+        console.log('userP', userP);
+    }, [token]);
 
   // useEffect(async () => {
 	// 	if(token!==null){
@@ -169,6 +165,7 @@ export default function Topic({token,
                 topicDatasources.map((data)=><FeatureCard 
                   openDetails={openDetails}
                   data={data}
+                  token={token}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails} 
                   dataset={dataset.catalog}
@@ -200,6 +197,7 @@ export default function Topic({token,
                 searching4.map((data)=><AddedFeatureCard 
                   openDetails={openDetails}
                   data={data}
+                  token={token}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails} 
                   dataset={dataset}

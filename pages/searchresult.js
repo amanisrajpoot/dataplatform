@@ -12,7 +12,7 @@ import FeatureCard from '../components/FeatureCard';
 import AddedFeatureCard from '../components/AddedFeatureCard';
 import Modal from '@mui/material/Modal';
 import DataSourcesDetails from '../components/datasourcesdetails';
-import { getPublicDatasets,createUserDataset } from '../function/users';
+import {getPublicDatasets, createUserDataset, getUser} from '../function/users';
 import TopicsCard from '../components/topicsCard';
 import FormControl from '@mui/material/FormControl';
 import {useRouter} from 'next/router';
@@ -20,33 +20,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import mixpanel from 'mixpanel-browser';
 
-mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
-
-const drawerWidth = 256;
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 700,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
 const style2 = {
   position: 'absolute',
@@ -92,11 +66,17 @@ export default function Searchresult({
     console.log("fetched dataset",searching4);
   }, [dataset]);
 
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      console.log('do validate')
-      setSearch(!search)}
-    }
+    const [user, setuser] = useState({});
+    useEffect(async () => {
+        console.log('user call token', token);
+        const userP = await getUser(token);
+        if(userP === null || userP === undefined ){
+            setuser({})
+        } else{
+            setuser(userP)
+        }
+        console.log('userP', userP);
+    }, [token]);
 
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
@@ -137,6 +117,7 @@ export default function Searchresult({
         mixpanel.track('Clicked on Create', {
           'source': "Create Dataset Page",
           'scrolled first': true,
+            'email':user.email,
         })
         console.log("created dataset",data);
         router.push('/dataset/'+data.ID);
@@ -310,7 +291,7 @@ export default function Searchresult({
 
       <Modal open={openDetails} onClose={handleCloseDetails}>
           <Box sx={style2}>            
-              <DataSourcesDetails handleCloseDetails={handleCloseDetails}
+              <DataSourcesDetails user={user} handleCloseDetails={handleCloseDetails}
               data={dsDetails} addDatasetcatalog={addDatasetcatalog}/>
           </Box>                  
        </Modal>
@@ -335,6 +316,8 @@ export default function Searchresult({
                 {dataSources && dataSources.map((data)=><FeatureCard 
                   openDetails={openDetails}
                   data={data}
+                  token={token}
+                  user={user}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails} 
                   dataset={dataset.catalog}
@@ -365,6 +348,8 @@ export default function Searchresult({
                 {dataSources && <TopicsCard 
                   openDetails={openDetails}
                   data={dataSources}
+                  token={token}
+                  user={user}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails} 
                   dataset={dataset.catalog}
@@ -396,6 +381,8 @@ export default function Searchresult({
                 {searching4.map((data)=><AddedFeatureCard 
                   openDetails={openDetails}
                   data={data}
+                  token={token}
+                  user={user}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails} 
                   dataset={dataset}

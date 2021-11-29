@@ -15,27 +15,13 @@ import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Output from '../../components/output';
 import {useRouter} from 'next/router';
-import { getDatasetsId, downloadDatasetsId } from '../../function/users';
+import {getDatasetsId, downloadDatasetsId, getUser} from '../../function/users';
 import DataSourcesDetails from '../../components/datasourcesdetails';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import mixpanel from 'mixpanel-browser';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
-
-const drawerWidth = 256;
 
 const style = {
   position: 'absolute',
@@ -63,7 +49,6 @@ const style2 = {
 export default function ManageDataset({
   token,
   setToken,
-  user,
   dataset,
   setDataset,
   // userdatasets,
@@ -115,10 +100,24 @@ const removeLocalDatasetcatalog = (data) => {
       setOpenDetails(false);
     };
 
+    const [user, setuser] = useState({});
+    useEffect(async () => {
+        console.log('user call token', token);
+        const userP = await getUser(token);
+        if(userP === null) {
+            setuser({})
+        }else {
+            setuser(userP);
+        }
+
+        console.log('userP', userP);
+    }, [token]);
+
   useEffect(async ()=>{
       mixpanel.track('Viewed Dataset', {
         'source': "Dataset Details Page",
         'scrolled first': true,
+          'email':user.email
       })
     }, [token, dataset_id]);
 
@@ -213,6 +212,8 @@ const removeLocalDatasetcatalog = (data) => {
                   userdatasets.catalog.map((data)=><FeatureCard 
                   key={data.dataset_id}
                   data={data}
+                  token={token}
+                  user={user}
                   datasetMode={datasetMode}
                   dataset={userdatasets}
                   openDetails={openDetails}
@@ -224,6 +225,8 @@ const removeLocalDatasetcatalog = (data) => {
                   userdatasets.catalog.map((data)=><EditFeatureCard 
                   key={data.dataset_id}
                   data={data}
+                  token={token}
+                  user={user}
                   datasetMode={datasetMode}
                   dataset={userdatasets}
                   openDetails={openDetails}
@@ -260,6 +263,8 @@ const removeLocalDatasetcatalog = (data) => {
                 {dataSources && dataSources.map((data)=><FeatureCard 
                   openDetails={openDetails}
                   data={data}
+                  token={token}
+                  user={user}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails} 
                   dataset={userdatasets.catalog}

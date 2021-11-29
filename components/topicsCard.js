@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import mixpanel from 'mixpanel-browser';
+import {getUser} from "../function/users";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -37,6 +38,7 @@ export default function TopicsCard(props){
                             'source': "Create dataset Page",
                             'action': "clicked on FDA icon",
                             'dataset': props.data.ID,
+                              'email': props.user.email
                           })}>
                         <Link href="/topic/FDA" >
                       <a style={{width:'19%', textAlign:'center'}}>
@@ -54,6 +56,7 @@ export default function TopicsCard(props){
                             'source': "Create dataset Page",
                             'action': "clicked on Physician icon",
                             'dataset': props.data.ID,
+                              'email': props.user.email
                           })}>
                         <Link href="/topic/Physician">
                       <a style={{width:'19%',textAlign:'center'}}>
@@ -71,6 +74,7 @@ export default function TopicsCard(props){
                             'source': "Create dataset Page",
                             'action': "clicked on Drugs icon",
                             'dataset': props.data.ID,
+                              'email': props.user.email
                           })}>
                         <Link href="/topic/Drugs" >
                       <a style={{width:'19%',textAlign:'center'}}>
@@ -88,6 +92,7 @@ export default function TopicsCard(props){
                             'source': "Create dataset Page",
                             'action': "clicked on Insurance Companies icon",
                             'dataset': props.data.ID,
+                              'email': props.user.email
                           })}>
                         <Link href="/topic/Insurance Companies" >
                       <a style={{width:'19%', textAlign:'center'}}>
