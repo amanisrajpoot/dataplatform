@@ -42,6 +42,7 @@ export default function Output({downloadLink}) {
     mixpanel.track('Dataset Download', {
       'source': "Clicked on Download",
       'scrolled first': true,
+
     })
   }
   

@@ -147,7 +147,7 @@ export default function Dashboard({
                   startIcon={<AddIcon />}
                   onClick={() => {
                     router.push('/searchresult');
-                    mixpanel.time_event('Create Dataset');
+                    // mixpanel.time_event('Create Dataset');
                     mixpanel.track('Clicked on Create Dataset', {
                       'source': "Data Platform Dashboard",
                       'scrolled first': true,
@@ -255,6 +255,7 @@ export default function Dashboard({
                   key={data.dataset_id}
                   data={data}
                   token={token}
+                  user={user}
                   openDetails={openDetails}
                   handleOpenDetails={handleOpenDetails}
                   handleCloseDetails={handleCloseDetails}/>): null

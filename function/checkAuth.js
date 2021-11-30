@@ -24,6 +24,7 @@ export async function checkAuth({
 			mixpanel.track('Logged In', {
 				'source': "Data Platform Login Page",
 				'signed in': true,
+				'email':user.email
 			  });
 		} else {
 			setToken(null);

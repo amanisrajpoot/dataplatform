@@ -98,6 +98,12 @@ export default function Searchresult({
 
   const handleKeywordSearch = async (event) => {
     if(token!==null){
+        mixpanel.track('Keyword Search for Catalogs', {
+            'source': "Create Dataset Page",
+            'action': "keyword search",
+            'keyword': keyword,
+            'email': user.email,
+        });
         const data = await getPublicDatasets(
         token,keyword
       );
