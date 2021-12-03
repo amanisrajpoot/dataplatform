@@ -7,7 +7,9 @@ import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import LockIcon from '@mui/icons-material/Lock';
 import EmailIcon from '@mui/icons-material/Email';
+import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import Divider from '@mui/material/Divider';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
@@ -56,8 +58,9 @@ function BrandName(props) {
 
 const theme = createTheme();
 
-const Login =() => {
-	const signingLoading = () => {
+const ForgotPassword =() => {
+
+    const signingLoading = () => {
 		if (email !== '' && password !== '') {
 			setisLoading(true);
 			signIn();
@@ -103,6 +106,9 @@ const Login =() => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
+    const [mode, setMode] = useState(0);
+    const [top, setTop] = useState(30);
+
     async function signInF(){
         const err = await signIn({email, password});
         setisLoading(false);
@@ -114,6 +120,12 @@ const Login =() => {
             setError("");
             await router.push("/dashboard");
         }
+    }
+
+    async function resetPassword(){
+
+        setMode(1);
+
     }
 
   return (
@@ -137,14 +149,11 @@ const Login =() => {
         />
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
             flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
-            <div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'end'}}>
-                <Link sx={{alignSelf:'end'}} href="/signup" variant="body2">
-                    {"Don't have an account?"} <div style={{color:"#5A00E2", display:"inline"}}>Sign Up</div>
-                </Link>
-            </div>
+
+            {mode===1?()=>setTop(4):null}
           <Box
             sx={{
-              pt: 18,
+              pt: top,
               display: 'flex',
               flexDirection: 'column',
               // justifyContent: 'center',
@@ -153,20 +162,33 @@ const Login =() => {
 
             }}
           >
-            {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>*/}
-            {/*  <ScreenLockPortraitOutlinedIcon />*/}
-            {/*</Avatar>*/}
-            <div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
+
+              {mode===0?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
                 <div style={{marginLeft:125}}>
-                    <div style={{fontSize:30}}>Log In</div>
-                    <div style={{fontSize:14}}>Welcome back, you’ve been missed!</div>
+                    <div style={{fontSize:30}}>Forgot Password?</div>
+                    <div style={{fontSize:14}}>Enter your email to send a link to reset your password</div>
                 </div>
             </div>
+                  :mode===1?<>
+
+                  <div style={{color:"#5A00E2", alignSelf:'center',marginBottom:35}}>
+                      <MarkEmailReadIcon sx={{transform: "scale(4)"}} />
+                  </div>
+
+                  <div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
+                          <div style={{marginLeft:125}}>
+                              <div style={{fontSize:30}}>Check Your Email</div>
+                              <div style={{fontSize:14}}>We've sent a reset link to your email address: user@Example.com
+                              </div>
+                          </div>
+                      </div>
+                  </>
+                      :null}
             <Box component="form" noValidate onSubmit={handleSubmit}
                  sx={{ pt: 1, display:'flex', flexDirection:'column', alignItems:'center',
                     width:'100%'}}>
 
-                <TextField
+                {mode===0?<TextField
                     margin="normal"
                     required
                     sx={{width:"65%"}}
@@ -182,68 +204,76 @@ const Login =() => {
                                 <EmailIcon />
                             </InputAdornment>
                         ),
-                        placeholder:"Email Address"
+                        placeholder:"Your Email"
                     }}
                   />
-                  <TextField
-                    margin="normal"
-                    required
-                    sx={{width:"65%"}}
-                    name="password"
-                    label="Enter Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <LockIcon />
-                            </InputAdornment>
-                        ),
-                        placeholder:"Enter Password"
-                    }}
-                  />
-                <div style={{paddingLeft:125,display:'flex', width:'100%',}}>
-                    <div style={{display:'flex', justifyContent:'space-around' }}>
-                        <div>
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                            sx={{alignSelf:'start', }}
-                        />
-                        </div>
 
-                        <div style={{paddingLeft:200}}>
-                            <Link href="/forgotpassword1" variant="body2">
-                                <a>Forgot password?</a>
-                            </Link>
-                        </div>
-                    </div>
+                    :null}
 
-                </div>
-
-              <Button
+                {mode===0?<Button
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
-                onClick={signInF}
+                onClick={resetPassword}
                 // href="/dashboard"
               >
-                Log In
+                Reset Password
               </Button>
+                    :mode===1?
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
+                            onClick={()=>router.push("/login")}
+                            // href="/dashboard"
+                        >
+                            Go Back to Log In
+                        </Button>
+                        :null}
 
-                <BrandName sx={{ pt: 1 }} />
+                {mode===0?<div style={{paddingTop:12,paddingRight:76,width:'100%',display:'flex',justifyContent:'start'}}>
+                    <Link  href="/login" variant="body2" >
+                        <a style={{display:'flex', alignItems:'center',
+                            justifyContent:'center', paddingLeft:128}}>
+                        <div style={{color:"#5A00E2", marginTop:4}}>{<ArrowBackIosNewIcon fontSize=''small/>}</div>
+                        <div style={{color:"#5A00E2", paddingLeft:4 }}>Back to Log In</div>
+                        </a>
+                    </Link>
+                </div>
+                    :mode===1?
+
+                <div style={{paddingTop:12,paddingRight:76,width:'100%',display:'flex',justifyContent:'center'}}>
+
+                        <div style={{display:'flex', alignItems:'center',
+                            justifyContent:'center', paddingLeft:75,cursor:'pointer'}}>
+
+                            {"Didn't receive an email? "}
+                            <div style={{color:"#5A00E2", paddingLeft:4 }}
+                            onClick={()=>setMode(0)}>Resend</div>
+                        </div>
+                </div>:null}
+
 
                 <Divider variant="middle" />
 
-                <div style={{width:'100%',display:'flex', paddingTop:150, fontSize:14,
+                {mode===0?<><div style={{width:'100%',display:'flex', paddingTop:225, fontSize:14,
                     justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
                     <div>Privacy Policy </div>
+
                 </div>
-                <Copyright sx={{ pt: 1 }} />
+                <Copyright sx={{ pt: 1 }} /></>
+                    :mode===1?<>
+                    <div style={{width:'100%',display:'flex', paddingTop:240, fontSize:14,
+                    justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
+                    <div>Terms of Service </div>
+                    <div>Terms of Use </div>
+                    <div>Privacy Policy </div>
+
+                    </div>
+                    <Copyright sx={{ pt: 1 }} /></>
+                    :null}
             </Box>
           </Box>
 
@@ -255,4 +285,4 @@ const Login =() => {
   );
 }
 
-export default Login;
+export default ForgotPassword;

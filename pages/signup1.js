@@ -7,6 +7,8 @@ import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import LockIcon from '@mui/icons-material/Lock';
 import EmailIcon from '@mui/icons-material/Email';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BusinessIcon from '@mui/icons-material/Business';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -21,6 +23,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
+import OtpInput from 'react-otp-input';
 import mixpanel from 'mixpanel-browser';
 
 
@@ -53,10 +56,9 @@ function BrandName(props) {
     );
 }
 
-
 const theme = createTheme();
 
-const Login =() => {
+const SignUp =() => {
 	const signingLoading = () => {
 		if (email !== '' && password !== '') {
 			setisLoading(true);
@@ -99,10 +101,18 @@ const Login =() => {
   };
 
     const router = useRouter()
+    const [name, setName] = useState("")
+    const [company, setCompany] = useState("")
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
+    const [topPadding, setTopPadding] = useState(6)
+    const [mode, setMode] = useState(0)
+    const [otp, setOtp] = useState(0)
+
+
     async function signInF(){
         const err = await signIn({email, password});
         setisLoading(false);
@@ -114,6 +124,12 @@ const Login =() => {
             setError("");
             await router.push("/dashboard");
         }
+    }
+
+    async function signInFK(){
+        setMode(1);
+        setTopPadding(36)
+
     }
 
   return (
@@ -137,14 +153,14 @@ const Login =() => {
         />
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
             flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
-            <div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'end'}}>
-                <Link sx={{alignSelf:'end'}} href="/signup" variant="body2">
-                    {"Don't have an account?"} <div style={{color:"#5A00E2", display:"inline"}}>Sign Up</div>
+            {mode===0?<div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'end'}}>
+                <Link sx={{alignSelf:'end'}} href="/login" variant="body2">
+                    {"Already have an account?"} <div style={{color:"#5A00E2", display:"inline"}}>Log In</div>
                 </Link>
-            </div>
+            </div>:mode===1?null:null}
           <Box
             sx={{
-              pt: 18,
+              pt: topPadding,
               display: 'flex',
               flexDirection: 'column',
               // justifyContent: 'center',
@@ -156,15 +172,61 @@ const Login =() => {
             {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>*/}
             {/*  <ScreenLockPortraitOutlinedIcon />*/}
             {/*</Avatar>*/}
-            <div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
+              {mode===0?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
                 <div style={{marginLeft:125}}>
-                    <div style={{fontSize:30}}>Log In</div>
-                    <div style={{fontSize:14}}>Welcome back, you’ve been missed!</div>
+                    <div style={{fontSize:30}}>Sign Up</div>
+                    <div style={{fontSize:14}}>Welcome, we're really excited to onboard you!</div>
                 </div>
-            </div>
+            </div>:mode===1?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
+                      <div style={{marginLeft:125}}>
+                          <div style={{fontSize:30}}>Verification Code</div>
+                          <div style={{fontSize:14}}>We've sent a verification code to your email address: user@Example.com
+                          </div>
+                      </div>
+                  </div>:null}
             <Box component="form" noValidate onSubmit={handleSubmit}
                  sx={{ pt: 1, display:'flex', flexDirection:'column', alignItems:'center',
                     width:'100%'}}>
+
+                {mode===0?<><TextField
+                    margin="normal"
+                    required
+                    sx={{width:"65%"}}
+                    id="email"
+                    label="Full Name"
+                    name="full-name"
+                    autoComplete="full-name"
+                    autoFocus
+                    onChange={(e) => setEmail(e.target.value)}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <AccountCircleIcon />
+                            </InputAdornment>
+                        ),
+                        placeholder:"Your Name"
+                    }}
+                  />
+
+                <TextField
+                    margin="normal"
+                    required
+                    sx={{width:"65%"}}
+                    id="company"
+                    label="Company Name"
+                    name="company"
+                    autoComplete="company"
+                    autoFocus
+                    onChange={(e) => setEmail(e.target.value)}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <BusinessIcon />
+                            </InputAdornment>
+                        ),
+                        placeholder:"Company Name"
+                    }}
+                />
 
                 <TextField
                     margin="normal"
@@ -184,7 +246,8 @@ const Login =() => {
                         ),
                         placeholder:"Email Address"
                     }}
-                  />
+                />
+
                   <TextField
                     margin="normal"
                     required
@@ -204,40 +267,73 @@ const Login =() => {
                         placeholder:"Enter Password"
                     }}
                   />
-                <div style={{paddingLeft:125,display:'flex', width:'100%',}}>
-                    <div style={{display:'flex', justifyContent:'space-around' }}>
-                        <div>
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                            sx={{alignSelf:'start', }}
-                        />
-                        </div>
 
-                        <div style={{paddingLeft:200}}>
-                            <Link href="/forgotpassword1" variant="body2">
-                                <a>Forgot password?</a>
-                            </Link>
-                        </div>
-                    </div>
-
-                </div>
+                <TextField
+                    margin="normal"
+                    required
+                    sx={{width:"65%"}}
+                    name="confirmPassword"
+                    label="Confirm Password"
+                    type="confirmPassword"
+                    id="confirmpassword"
+                    autoComplete="confirmPassword"
+                    onChange={(e) => setPassword(e.target.value)}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <LockIcon />
+                            </InputAdornment>
+                        ),
+                        placeholder:"Confirm Password"
+                    }}
+                />
 
               <Button
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
-                onClick={signInF}
+                onClick={signInFK}
                 // href="/dashboard"
               >
                 Log In
-              </Button>
+              </Button></>
+            :mode===1?<>
+                        <div style={{width:'100%', paddingLeft:125,paddingRight:100, paddingTop:12}}>
+                            <OtpInput
+                                inputStyle={{alignSelf:'center',display:'flex',
+                                    width:'60%', height:'7vh'}}
+                            value={otp}
+                            onChange={(otp)=>setOtp(otp)}
+                            numInputs={6}
+                            separator={<span></span>}
+                        />
+                        </div>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
+                            onClick={()=> {
+                                setMode(0)
+                                setTopPadding(6)
 
-                <BrandName sx={{ pt: 1 }} />
+                            }}
+                            // href="/dashboard"
+                        >
+                            Continue
+                        </Button>
+                        </>:null}
+
+                {mode===0?<BrandName sx={{ pt: 1 }} />
+                : mode===1?<div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'center'}}>
+                <Link sx={{alignSelf:'end'}} href="/login" variant="body2">
+                    {"Didn't receive code?"} <div style={{color:"#5A00E2", display:"inline"}}>Resend</div>
+                </Link>
+            </div>
+                :null}
 
                 <Divider variant="middle" />
 
-                <div style={{width:'100%',display:'flex', paddingTop:150, fontSize:14,
+                <div style={{width:'100%',display:'flex', paddingTop:45, fontSize:14,
                     justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
@@ -255,4 +351,4 @@ const Login =() => {
   );
 }
 
-export default Login;
+export default SignUp;
