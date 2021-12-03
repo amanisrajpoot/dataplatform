@@ -109,6 +109,7 @@ const SignUp =() => {
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
     const [topPadding, setTopPadding] = useState(6)
+    const [bottomTopPadding, setBottomTopPadding] = useState(45)
     const [mode, setMode] = useState(0)
     const [otp, setOtp] = useState(0)
 
@@ -128,7 +129,8 @@ const SignUp =() => {
 
     async function signInFK(){
         setMode(1);
-        setTopPadding(36)
+        setTopPadding(28)
+        setBottomTopPadding(202)
 
     }
 
@@ -177,13 +179,17 @@ const SignUp =() => {
                     <div style={{fontSize:30}}>Sign Up</div>
                     <div style={{fontSize:14}}>Welcome, we're really excited to onboard you!</div>
                 </div>
-            </div>:mode===1?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
+            </div>:mode===1?<>
+              <div style={{color:"#5A00E2", alignSelf:'center',marginBottom:35}}>
+                  <LockIcon sx={{transform: "scale(4)"}} />
+              </div>
+              <div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
                       <div style={{marginLeft:125}}>
                           <div style={{fontSize:30}}>Verification Code</div>
                           <div style={{fontSize:14}}>We've sent a verification code to your email address: user@Example.com
                           </div>
                       </div>
-                  </div>:null}
+                  </div></>:null}
             <Box component="form" noValidate onSubmit={handleSubmit}
                  sx={{ pt: 1, display:'flex', flexDirection:'column', alignItems:'center',
                     width:'100%'}}>
@@ -315,6 +321,7 @@ const SignUp =() => {
                             onClick={()=> {
                                 setMode(0)
                                 setTopPadding(6)
+                                setBottomTopPadding(45)
 
                             }}
                             // href="/dashboard"
@@ -324,7 +331,8 @@ const SignUp =() => {
                         </>:null}
 
                 {mode===0?<BrandName sx={{ pt: 1 }} />
-                : mode===1?<div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'center'}}>
+                : mode===1?<div style={{paddingTop:4,paddingRight:76,width:'100%',display:'flex',
+                            justifyContent:'center', paddingLeft:64}}>
                 <Link sx={{alignSelf:'end'}} href="/login" variant="body2">
                     {"Didn't receive code?"} <div style={{color:"#5A00E2", display:"inline"}}>Resend</div>
                 </Link>
@@ -333,7 +341,7 @@ const SignUp =() => {
 
                 <Divider variant="middle" />
 
-                <div style={{width:'100%',display:'flex', paddingTop:45, fontSize:14,
+                <div style={{width:'100%',display:'flex', paddingTop:bottomTopPadding, fontSize:14,
                     justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>

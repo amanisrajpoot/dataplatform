@@ -5,10 +5,14 @@ export const nonAuthRoutes = [
 	'/',
 	'/login',
 	'/signup',
-	'/forgetpassword',
+	'/signup1',
+	'/forgotpassword',
+	'/forgotpassword1',
+	'/resetpassword',
 	'/helpcenter',
 	'/explore',
 	'/createfeature',
+	'/accountcreated'
 ];
 export const nonDashboardRoute = nonAuthRoutes + adminRoute;
 
