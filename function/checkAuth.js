@@ -60,7 +60,7 @@ export async function signUp({
 	password,
 	name,
 	role,
-	afNum,
+	company,
 	city,
 	State,
 	token,

@@ -18,6 +18,7 @@ import { confirmSignUp, signIn, signUp } from '../function/checkAuth';
 import {createUser} from '../function/users';
 import OTPForm from '../components/OtpScreen';
 import mixpanel from 'mixpanel-browser';
+import {EMAIL_VALIDATOR} from "../function/constants";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -50,7 +51,7 @@ export default function SignUp({token, setToken}) {
 	const [email, setemail] = useState('');
 	const [password, setpassword] = useState('');
 	const [firstname, setfirstname] = useState('');
-  const [lastname, setlastname] = useState('');
+    const [lastname, setlastname] = useState('');
 	const [confirmpassword, setconfirmpassword] = useState('');
 	const [phone, setphone] = useState('');
 	const [error, seterror] = useState(null);
@@ -74,7 +75,7 @@ export default function SignUp({token, setToken}) {
 			//phone: '+1' + phone,
 			password,
 			firstname,
-      lastname,
+            lastname,
 			
 		});
 		if (erro === null) {

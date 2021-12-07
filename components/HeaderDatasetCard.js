@@ -27,15 +27,15 @@ export default function HeaderDatasetCard(props){
 
     return (
 
-          <div style={{display:"flex", flexDirection:'row', minHeight:'3vh',maxHeight:'4vh', width:"100%",
-              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', marginBottom:2,
-              textOverflow:'clip',  }}>
+          <div style={{display:"flex", flexDirection:'row', minHeight:'3vh',maxHeight:'4vh', width:"97.3%",
+              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#FAFAFB', marginBottom:2,
+              textOverflow:'clip',marginLeft:16, }}>
       
-                    <div style={{fontSize:14, width:"12%", overflow:'hidden'}}>
+                    <div style={{fontSize:14, width:"10%", overflow:'hidden'}}>
                       <p style={{textOverflow:'clip', overflow:'hidden',}}><b>{props.data.title?props.data.title: "Title"}</b><br></br>
                             </p>
                     </div>
-                    <div style={{fontSize:14, width:"14%"}}>
+                    <div style={{fontSize:14, width:"14%", textAlign:'left'}}>
                     <p><b>&nbsp;{props.data.features?props.data.features: "Description"}</b><br></br>
                         </p>
                     </div>
@@ -56,7 +56,7 @@ export default function HeaderDatasetCard(props){
                          </p>
                     </div>
                     <div style={{fontSize:14,width:"4%"}}>
-                      <p><b>&nbsp;{props.data.address?props.data.address: "Operations"}</b><br></br>
+                      <p><b>&nbsp;{props.data.address?props.data.address: "Action"}</b><br></br>
                          </p>
                     </div>
                     {/* <div style={{fontSize:14, cursor:'pointer',width:""}} 

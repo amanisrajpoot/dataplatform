@@ -56,7 +56,7 @@ function BrandName(props) {
 
 const theme = createTheme();
 
-const Login =() => {
+const Login =({token, setToken}) => {
 	const signingLoading = () => {
 		if (email !== '' && password !== '') {
 			setisLoading(true);
@@ -103,6 +103,7 @@ const Login =() => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
+
     async function signInF(){
         const err = await signIn({email, password});
         setisLoading(false);

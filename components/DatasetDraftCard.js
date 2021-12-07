@@ -10,10 +10,11 @@ import mixpanel from 'mixpanel-browser';
 import {getUser} from "../function/users";
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
-export default function DatasetCard(props){
+export default function DatasetDraftCard(props){
     const [show, setShow] = React.useState(false);
     const router = useRouter();
     const[added, setAdded] = React.useState(false);
@@ -33,30 +34,18 @@ export default function DatasetCard(props){
 
     console.log("fetched dataset",props.data);
     return (
-        <div style={{display:"flex", flexDirection:'column', width:"98%", borderRadius:9,paddingRight:9,
-             backgroundColor:"#E5E5E5",
+        <div style={{display:"flex", flexDirection:'column', minWidth:"38ch", paddingBottom:12,paddingRight:6,marginLeft:6,
               }}>
-          <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'14vh', width:"100%",
-              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
+          <div style={{display:"flex", flexDirection:'column', minHeight:'28vh',maxHeight:'36vh', borderRadius:9,
+              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', paddingLeft:12,
               textOverflow:'clip',  }}>
 
-                  <div style={{
-                      flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px'}}>
-
-                      <Button sx={{borderRadius:6,maxHeight:'38px',maxWidth:'12px',backgroundColor:"#5A00E2", color:"#fff"}}
-                              variant="outlined">{parseInt(props.index+1)}</Button>
-                  </div>
-
-                    <div style={{fontSize:14, width:"32%", overflow:'hidden',
+                    <div style={{fontSize:15, width:"100%", overflow:'hidden',
                         flexDirection:'column',display:'flex',justifyContent:'center', }}>
                       <div style={{textOverflow:'clip', overflow:'hidden',}}><b>{props.data.title?props.data.title: "Sample Dataset"+props.data.ID}</b><br></br>
                             </div>
                         <div>{props.data.description?props.data.description.substring(0,99): "Dataset Description"}</div>
-                        <div style={{fontSize:14,display:'flex', alignItems:'center'}}><div ><b>{"Topics:  "}</b></div>
-                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
-                                borderRadius:4, border:1, fontSize:10, fontWeight:"bold", marginTop:1,
-                                    marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small">{topic}</Button>)
-                            : "6"}</div>
+
                     </div>
                     {/*<div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word",*/}
                     {/*    flexDirection:'column',display:'flex',justifyContent:'center', }}>*/}
@@ -65,35 +54,31 @@ export default function DatasetCard(props){
                     {/*    </p>*/}
                     {/*</div>*/}
 
-                     <Divider orientation="vertical" flexItem variant="middle"/>
+                     <Divider  flexItem variant="middle"/>
 
-                    <div style={{fontSize:14,width:"7%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
-                      <div >Row Count:</div>
-                        <div style={{fontWeight:'bold', fontSize:18}}>{props.data.row_count?props.data.row_count: "123"}</div>
+              <div style={{display:'flex', flexDirection:"row", width:'100%'}}>
+                    <div style={{fontSize:12,width:"26%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
+                      <div >Row Count</div>
+                        <div style={{fontWeight:'bold', fontSize:15}}>{props.data.row_count?props.data.row_count: "123"}</div>
                     </div>
 
-                      <Divider orientation="vertical" flexItem variant="middle"/>
-
-                      <div style={{fontSize:14,width:"8%",flexDirection:'column',display:'flex',justifyContent:'center',}}>
-                          <div >Data Points:</div>
-                          <div style={{fontWeight:'bold', fontSize:18}}>{props.data.data_points?props.data.data_points: "567"}</div>
+                      <div style={{fontSize:12,width:"36%",flexDirection:'column',display:'flex',justifyContent:'center',}}>
+                          <div >Data Points</div>
+                          <div style={{fontWeight:'bold', fontSize:15}}>{props.data.data_points?props.data.data_points: "567"}</div>
                       </div>
 
-                    <Divider orientation="vertical" flexItem variant="middle"/>
+                      <div style={{fontSize:12,width:"28%",flexDirection:'column',display:'flex',justifyContent:'center',}}>
+                          <div >Data Source</div>
+                          <div style={{fontWeight:'bold', fontSize:15}}>{props.data.data_sources?props.data.data_sources: "123"}</div>
+                      </div>
 
-              <div style={{fontSize:14,width:"6%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18,}}>
-                  <div >Datasources:</div>
-                  <div style={{fontWeight:'bold', fontSize:18}}>{props.data.data_sources?props.data.data_sources: "123"}</div>
+                      <div style={{fontSize:12,width:"20%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
+                          <div >Topics</div>
+                          <div style={{fontWeight:'bold', fontSize:15}}>{props.data.topic?props.data.topic.split(",").length: "6"}</div>
+                      </div>
               </div>
 
-              <Divider orientation="vertical" flexItem variant="middle"/>
-
-              <div style={{fontSize:14,width:"3%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18, }}>
-                  <div>Topics:&nbsp;</div>
-                  <div style={{fontWeight:'bold', fontSize:18}}>{props.data.topic?props.data.topic.split(",").length: "6"}</div>
-              </div>
-
-              <Divider orientation="vertical" flexItem variant="middle"/>
+              <Divider flexItem variant="middle"/>
                     {/* <div style={{fontSize:14, cursor:'pointer',width:"12%"}} 
                         onClick={()=>props.handleOpenDetails(props.data)}>
                       <p><b>{props.geo?"View Details": "View Details"}</b></p>
@@ -104,8 +89,8 @@ export default function DatasetCard(props){
                         onClick={()=>handleRemove()}>
                           <p><ClearIcon /></p>
                         </div>:
-                    <div style={{display:'flex',justifyContent:'center', paddingRight:12,
-                        fontSize:14, cursor:'pointer', width:"5%", }}
+                    <div style={{display:'flex',alignItems:'space-between', justifyContent:'space-between',
+                        fontSize:14, cursor:'pointer', width:'96%', paddingRight:9 }}
                         onClick={()=>{
                           router.push('/dataset/'+props.data.ID)
                           mixpanel.track('Dataset Card Operations', {
@@ -116,7 +101,8 @@ export default function DatasetCard(props){
                           });
                           }
                         }>
-                        <Button sx={{borderRadius:2}} variant="outlined">View</Button>
+                        <div><Button sx={{borderRadius:2,paddingRight:1, paddingTop:1,}} variant="outlined" startIcon={<DeleteIcon />}></Button></div>
+                        <div><Button sx={{borderRadius:2}} variant="outlined">Edit Details</Button></div>
                     </div>}
               </div>
           </div>

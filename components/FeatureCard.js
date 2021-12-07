@@ -7,6 +7,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import mixpanel from 'mixpanel-browser';
 import {getUser} from "../function/users";
+import Divider from '@mui/material/Divider';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -51,7 +52,7 @@ export default function FeatureCard(props){
 
     return (
 
-          <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'125px', width:"100%",
+          <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"100%",
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', marginBottom:16,
               textOverflow:'clip',  }}>
       

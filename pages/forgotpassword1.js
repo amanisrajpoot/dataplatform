@@ -285,4 +285,4 @@ const ForgotPassword =() => {
   );
 }
 
-export default ForgotPassword;
+export default ForgotPasswordw;
