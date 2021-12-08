@@ -170,7 +170,6 @@ export default function Dashboard({
                                ),
                                placeholder:"Search..."
                            }}
-
                 />
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                     alignItems: 'center',cursor: 'pointer', justifyContent:'space-between'}}>

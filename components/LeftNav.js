@@ -18,6 +18,7 @@ import SourceIcon from '@mui/icons-material/Source';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import Divider from '@mui/material/Divider';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 export default function LeftNav({
 	setmenu,
@@ -318,7 +319,12 @@ export default function LeftNav({
 
 				</div>
 
-				{recently && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
+				{recently && <><div style={{display:'flex', flex:'start', paddingBottom:9, color:"#5A00E2", alignItems:'center',
+				cursor:'pointer'}}>
+					<AddCircleOutlineOutlinedIcon color="disabled" style={{fontSize:32,color:"gray",marginRight:24}} />
+					<div>Start New Set</div>
+				</div>
+					<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
 					<FiberManualRecordIcon color="success" fontSize="small" />
 					<div>Insurance Inc.</div>
 					<div>678</div>

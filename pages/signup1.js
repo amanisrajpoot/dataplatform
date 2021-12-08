@@ -201,7 +201,7 @@ const SignUp =({token, setToken}) => {
                         flexDirection: 'column', justifyContent: 'space-between', alignItems: 'space-between'
                     }}>
                         {mode === 0 ? <div style={{
-                            paddingTop: 42,
+                            paddingTop: 24,
                             paddingRight: 76,
                             width: '100%',
                             display: 'flex',

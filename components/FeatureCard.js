@@ -8,6 +8,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import mixpanel from 'mixpanel-browser';
 import {getUser} from "../function/users";
 import Divider from '@mui/material/Divider';
+import Button from "@mui/material/Button";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -53,26 +54,44 @@ export default function FeatureCard(props){
     return (
 
           <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"100%",
-              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', marginBottom:16,
+               alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
               textOverflow:'clip',  }}>
-      
-                    <div style={{fontSize:14, maxWidth:"19%", overflow:'hidden'}}>
-                      <p style={{textOverflow:'clip', overflow:'hidden',}}><b>{props.data.title?props.data.title: "FDA Approved Drugs"}</b><br></br>
-                            {props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</p>
+
+              <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'5%',
+                  paddingLeft:8, paddingRight:8}}>
+
+                  <Button sx={{borderRadius:6,maxHeight:'38px',maxWidth:'12px',backgroundColor:"#5A00E2", color:"#fff"}}
+                          variant="outlined">{parseInt(props.index+1)}</Button>
+              </div>
+
+                    <div style={{fontSize:14, minWidth:"47%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
+                        <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title: "FDA Approved Drugs"}</b></div>
+                        <div style={{paddingBottom:8}}>{props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</div>
+                        <div style={{fontSize:14,display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
+                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
+                                    borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
+                                    color:'#24BBFF'}} size="small">{topic}</Button>)
+                                : "6"}</div>
                     </div>
-                    <div style={{fontSize:14, width:"12%"}}>
-                    <p><b>No. of Features:</b>&nbsp;{props.data.features?props.data.features.split(",").length: "0"}<br></br>
-                         </p>
+
+
+                    <div style={{minWidth:'43%', display:'flex', flex:'end',justifyContent:'space-between', }}>
+                        <Divider orientation="vertical" variant="middle" flexItem/>
+                    <div style={{fontSize:14, width:"25%"}}>
+                        <div>No. of Features<br></br>
+                         </div>
+                        <div><b>{props.data.features?props.data.features.split(",").length: "0"}</b></div>
                     </div>
-                    <div style={{fontSize:14,width:"14%"}}>
-                      <p><b>No. of Rows:</b>&nbsp;{props.data.row_count?props.data.row_count: "0"}<br></br>
-                         </p>
+                        <Divider orientation="vertical" variant="middle" flexItem/>
+                    <div style={{fontSize:14,width:"25%"}}>
+                        <div>No. of Rows<br></br>
+                        </div>
+                        <div><b>{props.data.row_count?props.data.row_count: "0"}</b></div>
                     </div>
-                    <div style={{fontSize:14,width:"19%"}}>
-                      <p><b>Topic:</b>&nbsp;{props.data.topic?props.data.topic.substring(0,30): "FDA Approved Drugs"}<br></br>
-                         </p>
-                    </div>
-                    <div style={{fontSize:14, cursor:'pointer',width:"9%"}} 
+                        <Divider orientation="vertical" variant="middle" flexItem/>
+
+                    <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',}}>
+                        <Button variant="outlined" fontSize="small" sx={{borderRadius:2}}
                         onClick={()=>{
                           props.handleOpenDetails(props.data)
                           mixpanel.track('Catalog Card View Details', {
@@ -83,8 +102,9 @@ export default function FeatureCard(props){
                            }) 
                           }
                         }>
-                      <p><b>{props.geo?"View Details": "View Details"}</b></p>
-                    </div>
+                      <div><b>{props.geo?"View": "View"}</b></div>
+                    </Button>
+                        </div>
                     
                     {router.pathname.includes('/dashboard')?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 0 ?"":
@@ -93,6 +113,8 @@ export default function FeatureCard(props){
                         onClick={()=>handleAdd()}>
                       <p>{searchInArray(props.dataset, props.data.ID)? <DoneIcon />: <AddIcon />}</p>
                     </div>}
+
+                    </div>
         
           </div>
     )

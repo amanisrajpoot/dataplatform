@@ -35,7 +35,7 @@ export default function DatasetDraftCard(props){
     console.log("fetched dataset",props.data);
     return (
         <div style={{display:"flex", flexDirection:'column', minWidth:"38ch", paddingBottom:12,paddingRight:6,marginLeft:6,
-              }}>
+              border:"1px solid black", borderRadius:8}}>
           <div style={{display:"flex", flexDirection:'column', minHeight:'28vh',maxHeight:'36vh', borderRadius:9,
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', paddingLeft:12,
               textOverflow:'clip',  }}>
