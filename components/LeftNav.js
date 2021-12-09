@@ -148,11 +148,8 @@ export default function LeftNav({
 							: '',
 					}}
 				>
-					{router.pathname.includes('/dashboard') ? (
 						<DashboardIcon fontSize="medium"/>
-					) : (
-						<Image src='/dashboard.svg' width={20} height={20} />
-					)}
+
 					<p
 						style={{
 							color: router.pathname.includes('/dashboard') ? '#0DB1A1' : '',
@@ -178,10 +175,8 @@ export default function LeftNav({
 							: '',
 					}}
 				>
-					{router.pathname.includes('/dashboard') ? (
 						<TableViewOutlinedIcon fontSize="medium"/>
-					) : (
-						<Image src='/sample.svg' width={20} height={20} />
+
 					)}
 					<p
 						style={{
@@ -207,10 +202,8 @@ export default function LeftNav({
 							: '',
 					}}
 				>
-					{router.pathname.includes('/dashboard') ? (
 						<SourceIcon fontSize="medium" />
-					) : (
-						<Image src='/patient.svg' width={20} height={20} />
+
 					)}
 					<p
 						style={{
@@ -236,10 +229,8 @@ export default function LeftNav({
 							: '',
 					}}
 				>
-					{router.pathname.includes('/dashboard') ? (
 						<SettingsIcon fontSize="medium" />
-					) : (
-						<Image src='/patient.svg' width={20} height={20} />
+
 					)}
 					<p
 						style={{
@@ -265,10 +256,8 @@ export default function LeftNav({
 							: '',
 					}}
 				>
-					{router.pathname.includes('/dashboard') ? (
 						<LiveHelpIcon fontSize="medium" />
-					) : (
-						<Image src='/bell.svg' width={20} height={20} />
+
 					)}
 					<p
 						style={{

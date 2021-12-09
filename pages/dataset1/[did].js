@@ -222,7 +222,7 @@ const removeLocalDatasetcatalog = (data) => {
                             justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setDatasetMode(0)}>
                             {"Back"}</Button>:
                         datasetMode ===0 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
-                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
+                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard1')}>
                             {"Back"}</Button>:null}
                     <Divider variant="middle" orientation="vertical" />
                     <div style={{paddingLeft:8,paddingRight:2,}}>{userdataset !== null && userdataset !== undefined && <div>{userdataset.title}</div>}</div>

@@ -153,7 +153,7 @@ export default function Dashboard({
     
     <Box>
       {/*<Navbar token={token} setToken={setToken}/>*/}
-        <Box sx={{display:'flex', width:"100ch"}}>
+        <Box sx={{display:'flex',}}>
             <Box sx={{width:"18%"}}>
                 <LeftNav />
             </Box>

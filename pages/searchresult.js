@@ -234,7 +234,7 @@ export default function Searchresult({
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
                     <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
-                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
+                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard1')}>
                             {"Back"}</Button>
                     <Divider variant="middle" orientation="vertical" />
                     <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Create Dataset</div>
@@ -243,7 +243,7 @@ export default function Searchresult({
                 </Box>
 
             <Box
-                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , mx:2, my:2, pt:2}}
+                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, my:2, pt:2}}
             >
                 <Tabs
                     orientation="vertical"
@@ -260,12 +260,12 @@ export default function Searchresult({
                 </Tabs>
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
                     <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                        color:'gray', fontSize:18,pb:2, minWidth:'100%', mr:45}}>
+                         fontSize:20,pb:2, minWidth:'100%', mr:45}}>
                         <div>BASIC INFO &nbsp;</div>
-                        <div style={{fontSize:12, paddingTop:4}}>*Enter a title and description for your signal.</div>
+                        <div style={{fontSize:12, paddingTop:4, color:'gray'}}>*Enter a title and description for your signal.</div>
                     </Box>
 
-                    <Box sx={{display:'flex', width:"100%", bgColor:'#fff',color:'#fff'}}>
+                    <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff'}}>
                         <FormControl fullWidth sx={{width:'100%' }}>
                             {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                             <TextField
@@ -289,27 +289,39 @@ export default function Searchresult({
                             />
 
                         </FormControl>
+
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
+                            fontSize:20,pb:2,  ml:73.5, flex:'end'}}>
+                            <Button variant="outlined" size="small" sx={{px:2, py:2.5,ml:2,
+                                }}
+                                     onClick={()=>router.push('/dashboard')}>
+                                {"Save as Draft"}</Button>
+                        <Button variant="contained" size="small" sx={{px:5, py:2.5,ml:2,
+                            backgroundColor:"#5A00E2"}}
+                                 onClick={()=>router.push('/dashboard')}>
+                            {"Next"}</Button>
+                        </Box>
+
+
                     </Box>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <Typography color="inherit" variant="h5" component="h1">
-                        <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:4}}>
-                            <div>Explore Healthcare Data Platform &nbsp;</div>
-                            <div><HelpOutlineIcon /></div>
+                        <Box sx={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto', fontSize:20}}>
+                            <div>ADD CATALOG &nbsp;</div>
+                            <div style={{fontSize:12, paddingTop:4,color:'gray'}}>*Search from a wide range of healthcare catalogs..</div>
                         </Box>
-                    </Typography>
 
                     <Box
                         component="form"
                         sx={{
-                            '& > :not(style)': { m: 1},
+                            '& > :not(style)': {},
                             display: 'flex', flexDirection: 'row', flex:'1', py: 2,
                             justifyContent: 'space-between',}}
                         noValidate
                         autoComplete="off"
                     >
                         <Box sx={{ display: 'flex', flexDirection: 'row', flex:'1', }}>
-                            <Box component="main" sx={{  minWidth: '42vw', px:5}}>
+                            <Box component="main" sx={{  minWidth: '45vw', pr:4 }}>
                                 <TextField fullWidth id="outlined-basic" variant="outlined"
                                            value={keyword} onChange={(e) => setKeyword(e.target.value)}
                                            label="Keyword" sx={{ bgcolor: '#ffffff'}}
@@ -319,7 +331,7 @@ export default function Searchresult({
                             <Box>
                                 <Button sx={{minWidth:'225px', height:'55px',  display:'flex', bgcolor: '#009BE5',
                                     alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
-                                    backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                                    backgroundColor:"#5A00E2"}}
                                         onClick={()=>handleKeywordSearch()}>
                                     {/*onClick={()=>setSearch(!search)}*/}
                                     {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
@@ -333,9 +345,10 @@ export default function Searchresult({
 
                     <Box sx={{ width:"100%", display:'flex', flexDirection:'column',
                         justifyContent:"center",alignItems:'center', }}>
-                        {dataSources && dataSources.map((data)=><FeatureCard
+                        {dataSources && dataSources.map((data,index)=><FeatureCard
                             openDetails={openDetails}
                             data={data}
+                            index={index}
                             token={token}
                             user={user}
                             handleOpenDetails={handleOpenDetails}
@@ -347,135 +360,73 @@ export default function Searchresult({
                         />)}
                     </Box>
 
+                    <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
+                        fontSize:20,pb:2,  ml:73.5, flex:'end'}}>
+                        <Button variant="outlined" size="small" sx={{px:2, py:2.5,ml:2,
+                            }}
+                                onClick={()=>router.push('/dashboard')}>
+                            {"Save as Draft"}</Button>
+                        <Button variant="contained" size="small" sx={{px:5, py:2.5,ml:2,
+                            backgroundColor:"#5A00E2"}}
+                                onClick={()=>router.push('/dashboard')}>
+                            {"Next"}</Button>
+                    </Box>
+
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Item Three
-                </TabPanel>
-                <TabPanel value={value} index={3}>
-                    Item Four
-                </TabPanel>
-                <TabPanel value={value} index={4}>
-                    Item Five
-                </TabPanel>
-                <TabPanel value={value} index={5}>
-                    Item Six
-                </TabPanel>
-                <TabPanel value={value} index={6}>
-                    Item Seven
-                </TabPanel>
-            </Box>
-        
-      <Box sx={{ display: 'flex' }}>        
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          
-          <Box component="main" sx={{ flex: 1, bgcolor: '#eaeff1' }}>
+                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto',fontSize:20,mr:75}}>
+                        <div>REVIEW AND SAVE &nbsp;</div>
+                        <div style={{fontSize:12, paddingTop:4,color:'gray'}}>*Go through the entries and selection you've made.</div>
 
-            <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', bgcolor:"#fff",
-                        color:'gray', fontSize:24, py:2,px:4,}}>
-                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', bgcolor:"#fff",
-                        color:'gray', justifyContent:'space-between',fontSize:24,pl:10, py:2, pr:10}}>
-                        <div style={{display:"flex"}}>
-                          <div>CREATE DATASET &nbsp;</div>
-                          <div><HelpOutlineIcon /></div>
+                    </Box>
+                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:4}}>
+                        <div style={{display: 'flex'}}>
+                            <div style={{color:'gray'}}>Title: </div>
+                            <div style={{marginLeft:128}}>{localdataset.title ? localdataset.title : "Enter a Title"} &nbsp;</div>
                         </div>
+                    </Box>
+                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:1}}>
+                        <div style={{color:'gray'}}>Description: </div>
+                        <div style={{marginLeft:76}}>{localdataset.description ? localdataset.description : "Describe the purpose of the Dataset"} &nbsp;</div>
+                    </Box>
 
-                        <Button variant="contained" size="small" sx={{px:2, py:2.5,
-              backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                      startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
-                      {"Back to Dashboard"}</Button>
 
-                </Box>
-                
-                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
-                    color:'gray', fontSize:18,px:10,pb:2}}>
-                    <div>BASIC INFO &nbsp;</div>
-                    <div style={{fontSize:12, paddingTop:4}}>*Enter a title and description for your signal.</div>
-                </Box>
+                            <Box component="main" sx={{ flex: 1, py: 2, }}>
+                                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',fontSize:20}}>
+                                        <div>Added Data Sources &nbsp;</div>
 
-                <Box sx={{display:'flex',px:10, width:"100%", bgColor:'#fff',color:'#fff'}}>
-                <FormControl fullWidth sx={{ }}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
-                    <TextField
-                      variant="outlined"
-                      value={title}
-                      onChange={(event)=>setTitle(event.target.value)}
-                      sx={{color:'#fff', bgColor:'#fff',pb:2}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Title"
-                    />
+                                    </Box>
+                            </Box>
 
-                    <TextField
-                      variant="outlined"
-                      value={description}
-                      onChange={(event)=>setDescription(event.target.value)}
-                      sx={{color:'#fff',pb:2}}
-                      rows={4}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="What this data will be doing for you?"
-                      multiline
-                    />
+                            <Box sx={{ minWidth:"100%", display:'flex', flexDirection:'column',
+                                justifyContent:"center",alignItems:'center' }}>
+                                {searching4.map((data, index)=><AddedFeatureCard
+                                    openDetails={openDetails}
+                                    data={data}
+                                    index={index}
+                                    token={token}
+                                    user={user}
+                                    handleOpenDetails={handleOpenDetails}
+                                    handleCloseDetails={handleCloseDetails}
+                                    dataset={dataset}
+                                    removeDatasetcatalog={removeDatasetcatalog}
+                                    addDatasetcatalog={addDatasetcatalog} />)}
+                            </Box>
 
-                  </FormControl>
-                </Box>
-              </Box>
+                    <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
+                        fontSize:20,pb:2,  ml:71, flex:'end'}}>
+                        <Button variant="outlined" size="small" sx={{px:2, py:2.5,ml:2,}}
+                                onClick={()=>router.push('/dashboard')}>
+                            {"Save as Draft"}</Button>
+                        <Button variant="contained" size="small" sx={{px:5, py:2.5,ml:2,
+                            backgroundColor:"#5A00E2"}}
+                                onClick={()=>handleSendData()}>
+                            {"Create"}</Button>
+                    </Box>
 
-            <Typography color="inherit" variant="h5" component="h1">
-                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:14,pt:4}}>
-                      <div>Explore Healthcare Data Platform &nbsp;</div>
-                      <div><HelpOutlineIcon /></div>
-                  </Box>
-              </Typography>
-              
-          <Box
-            component="form"
-            sx={{
-              '& > :not(style)': { m: 1}, 
-              display: 'flex', flexDirection: 'row', flex:'1', py: 2, px: 8, bgcolor: '#eaeff1',
-              justifyContent: 'space-between',}}
-            noValidate
-            autoComplete="off"
-          >
-            <Box sx={{ display: 'flex', flexDirection: 'row', flex:'1', }}> 
-            <Box component="main" sx={{  minWidth: '42vw', px:5}}>
-                <TextField fullWidth id="outlined-basic" variant="outlined" 
-                value={keyword} onChange={(e) => setKeyword(e.target.value)}
-                label="Keyword" sx={{ bgcolor: '#ffffff'}}
-                onKeyDown={()=>handleKeywordSearch()}/>
-            </Box>
-            
-            <Box>
-                <Button sx={{minWidth:'225px', height:'55px',  display:'flex', bgcolor: '#009BE5',
-                alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                onClick={()=>handleKeywordSearch()}>
-                  {/*onClick={()=>setSearch(!search)}*/}
-                    {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
-                    <div style={{color:'#fff',fontSize:18}}>Search</div>
-                </Button>
+                </TabPanel>
 
             </Box>
-            </Box>
-
-            <Box>
-              <Link >
-                <a>
-                <Button sx={{minWidth:'225px', height:'55px',
-                display:'flex', bgcolor: '#009BE5', mr:5,
-                alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                 onClick={()=>handleSendData()}>
-                  {/*onClick={()=>setSearch(!search)}*/}
-                    {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
-                    <div style={{color:'#fff',fontSize:18}}>Create</div>
-                </Button>
-                </a>
-              </Link>
-
-            </Box>
-          </Box>
-          </Box>
-        </Box>
-      </Box>
 
       <Modal open={openDetails} onClose={handleCloseDetails}>
           <Box sx={style2}>            
@@ -484,47 +435,10 @@ export default function Searchresult({
           </Box>                  
        </Modal>
 
-      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
-        
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
-          
-          <Box component="main" sx={{ display:'flex',flexDirection:'row',
-            flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
-             <Typography color="inherit" variant="h5" component="h1">
-                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                      <div>Matching Data Sources &nbsp;</div>
-                 
-                  </Box>
-              </Typography>
-
-          </Box>
-
-          <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
-              justifyContent:"center",alignItems:'center', px:14 }}>
-                {dataSources && dataSources.map((data)=><FeatureCard 
-                  openDetails={openDetails}
-                  data={data}
-                  token={token}
-                  user={user}
-                  handleOpenDetails={handleOpenDetails}
-                  handleCloseDetails={handleCloseDetails} 
-                  dataset={dataset.catalog}
-                  dataSources={dataSources}
-                  removeDatasetcatalog={removeDatasetcatalog}
-                  addDatasetcatalog={addDatasetcatalog}
-                  />)}
-          </Box>
-          
-        </Box>
-      </Box>
-
-      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
-        
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',}}>
-          
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column',}}>
           <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
              <Typography color="inherit" variant="h5" component="h1">
-                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
+                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                       <div>Matching Topics &nbsp;</div>
                  
                   </Box>
@@ -532,7 +446,7 @@ export default function Searchresult({
           </Box>
 
           <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
-              justifyContent:"center",alignItems:'center', px:14 }}>
+              justifyContent:"center",alignItems:'center', }}>
                 {dataSources && <TopicsCard 
                   openDetails={openDetails}
                   data={dataSources}
@@ -546,38 +460,6 @@ export default function Searchresult({
                   addDatasetcatalog={addDatasetcatalog}
                   />}
           </Box>
-
-          
-        </Box>
-      </Box>
-                
-      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
-        
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',}}>
-          
-          <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
-             <Typography color="inherit" variant="h5" component="h1">
-                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                      <div>Added Data Sources &nbsp;</div>
-                 
-                  </Box>
-              </Typography>
-          </Box>
-
-          <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
-              justifyContent:"center",alignItems:'center', px:14 }}>
-                {searching4.map((data)=><AddedFeatureCard 
-                  openDetails={openDetails}
-                  data={data}
-                  token={token}
-                  user={user}
-                  handleOpenDetails={handleOpenDetails}
-                  handleCloseDetails={handleCloseDetails} 
-                  dataset={dataset}
-                  removeDatasetcatalog={removeDatasetcatalog}
-                  addDatasetcatalog={addDatasetcatalog} />)}
-          </Box>
-        </Box>
       </Box>
     
       {/* <Box sx={{  minHeight: '23vh', }}>        
@@ -619,32 +501,7 @@ export default function Searchresult({
             </Box>
         </Box>
     </Box>   */}
-        <Box
-            component="form"
-            sx={{
-              '& > :not(style)': { m: 1}, 
-              display: 'flex', flexDirection: 'row', flex:'end', 
-              justifyContent:'end',py: 2, px: 13, bgcolor: '#eaeff1'
 
-            }}
-            noValidate
-            autoComplete="off"
-          >
-          <Box>
-              
-                <Button sx={{minWidth:'225px', height:'55px', display:'flex', bgcolor: '#009BE5',
-                alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
-                backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
-                onClick={()=>handleSendData()}>
-                  {/*onClick={()=>setSearch(!search)}*/}
-                    {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
-                    <div style={{color:'#fff',fontSize:18}}>Create</div>
-                </Button>
-                
-
-            </Box>
-          </Box>
-       <Footer />
         </Box>
     </Box>
   );

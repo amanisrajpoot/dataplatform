@@ -107,7 +107,7 @@ export default function DatasetCard(props){
                     <div style={{display:'flex',justifyContent:'center', paddingRight:12,
                         fontSize:14, cursor:'pointer', width:"5%", }}
                         onClick={()=>{
-                          router.push('/dataset/'+props.data.ID)
+                          router.push('/dataset1/'+props.data.ID)
                           mixpanel.track('Dataset Card Operations', {
                             'source': "Data Platform Dashboard",
                             'action': "clicked on operations icon",
