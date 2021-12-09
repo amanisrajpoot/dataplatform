@@ -176,7 +176,7 @@ export default function Searchresult({
             'email':user.email,
         })
         console.log("created dataset",data);
-        router.push('/dataset/'+data.ID);
+        router.push('/dataset1/'+data.ID);
       }
   };
 

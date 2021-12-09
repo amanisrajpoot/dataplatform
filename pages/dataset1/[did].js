@@ -286,12 +286,12 @@ const removeLocalDatasetcatalog = (data) => {
           <Box component="main" sx={{display:'flex', justifyContent:'space-between', 
               py: 2, bgcolor: '#eaeff1', width:'100%', }}>
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',
-                      fontSize:28,font:'roboto',pl:4}}>
-                      <div>{datasetMode === 0? "INCLUDED ":'SELECTED ' }CATALOGS &nbsp;</div>
+                      fontSize:24,font:'roboto',pl:4}}>
+                      <div>{datasetMode === 0? "Included ":'Selected ' }Catalogs &nbsp;</div>
                   </Box>
 
-              {datasetMode ===1 ?<Button variant="contained" size="large" sx={{mx:2, py:2.5,
-            backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+              {datasetMode ===1 ?<Button variant="contained" size="large" sx={{mx:4, py:2,
+            backgroundColor:'#5A00E2'}}
                     startIcon={addCatalogMode ?<CheckIcon />:<AddIcon />} onClick={()=>setAddCatalogMode(!addCatalogMode)}>
                     {addCatalogMode ?"Done":"Add Catalog"}</Button>:null}
               
@@ -335,27 +335,8 @@ const removeLocalDatasetcatalog = (data) => {
 
           </Box>
 
-            <div style={{display:'flex'}}>
-            <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2, flex:'start',
-                alignItems:'center',  overflow: "scroll"}}>
-
-                {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
-                    userdatasets.map((data, index)=><DatasetDraftCard
-                        key={data.dataset_id}
-                        index={index}
-                        data={data}
-                        token={token}
-                        user={user}
-                        openDetails={openDetails}
-                        handleOpenDetails={handleOpenDetails}
-                        handleCloseDetails={handleCloseDetails}/>): null
-                            }
-                        </Box>
-                        </div>
-                    </Box>
 
 
-                  </Box>
 
               {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
 
@@ -364,8 +345,8 @@ const removeLocalDatasetcatalog = (data) => {
                   <Box component="main" sx={{ display:'flex',flexDirection:'row',
                     flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
                      <Typography color="inherit" variant="h5" component="h1">
-                          <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                              <div>Matching Data Sources &nbsp;</div>
+                          <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
+                              <div>Matching Catalogs &nbsp;</div>
 
                           </Box>
                       </Typography>
@@ -392,6 +373,40 @@ const removeLocalDatasetcatalog = (data) => {
                 </Box>
               </Box>:null}
 
+            <div style={{display:'flex', flexDirection:'column'}}>
+
+                <Box component="main" sx={{ display:'flex',flexDirection:'row',
+                    flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
+                    <Typography color="inherit" variant="h5" component="h1">
+                        <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
+                            <div>Matching Datasets &nbsp;</div>
+
+                        </Box>
+                    </Typography>
+
+                </Box>
+                <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2, flex:'start',
+                    alignItems:'center',  overflow: "scroll"}}>
+
+                    {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
+                        userdatasets.map((data, index)=><DatasetDraftCard
+                            key={data.dataset_id}
+                            index={index}
+                            data={data}
+                            token={token}
+                            user={user}
+                            openDetails={openDetails}
+                            handleOpenDetails={handleOpenDetails}
+                            handleCloseDetails={handleCloseDetails}/>): null
+                    }
+                </Box>
+            </div>
+
+        </Box>
+
+
+      </Box>
+
           <Modal
             open={open}
             onClose={handleClose}
@@ -407,7 +422,6 @@ const removeLocalDatasetcatalog = (data) => {
           </Box>
           </Modal>
 
-           <Footer />
         </Box>
     </Box>
   );
