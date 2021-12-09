@@ -176,14 +176,14 @@ const removeLocalDatasetcatalog = (data) => {
 
   return (
     
-    <Box sx={{display:'flex',}}>
+    <Box sx={{display:'flex',width:'100%', flexDirection:'row'}}>
 
         <Box sx={{width:"18%"}}>
             <LeftNav />
         </Box>
-        <Box sx={{width:"88%"}}>
-        <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#3e3e33'}}>
-            <Box component="main" sx={{  minWidth: '50vw', display:'flex'}}>
+        <Box sx={{width:"82%"}}>
+            <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#3e3e33'}}>
+             <Box component="main" sx={{ minWidth: '50vw', display:'flex'}}>
                 <TextField fullWidth id="outlined-basic"
                            value={keyword} onChange={(event)=>setKeyword(event.target.value)}
                            sx={{ bgcolor: '#ffffff', border:0}}
@@ -333,64 +333,10 @@ const removeLocalDatasetcatalog = (data) => {
                 : null}
           </Box>
 
-          </Box>            
-        </Box>
-
-        
-      </Box>
-
-      {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
-        
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
-          
-          <Box component="main" sx={{ display:'flex',flexDirection:'row',
-            flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
-             <Typography color="inherit" variant="h5" component="h1">
-                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
-                      <div>Matching Data Sources &nbsp;</div>
-                 
-                  </Box>
-              </Typography>
-
           </Box>
 
-          <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
-              justifyContent:"center",alignItems:'center', px:4 }}>
-                {dataSources && dataSources.map((data,index)=><FeatureCard
-                  openDetails={openDetails}
-                  data={data}
-                  index={index}
-                  token={token}
-                  user={user}
-                  handleOpenDetails={handleOpenDetails}
-                  handleCloseDetails={handleCloseDetails} 
-                  dataset={userdataset.catalog}
-                  dataSources={dataSources}
-                  removeDatasetcatalog={removeLocalDatasetcatalog}
-                  addDatasetcatalog={addLocalDatasetcatalog}
-                  />)}
-          </Box>
-          
-        </Box>
-      </Box>:null}
-
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-      <Box sx={{ position: 'absolute', bgColor:'#fff',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width:'70%'}}>  
-        <Output data={dataset} downloadLink={downloadLink}/>
-      </Box>
-      </Modal>
-
-            <Box sx={{width:'100%',bgcolor: 'gray-900'}}>
-            <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',
+            <div style={{display:'flex'}}>
+            <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2, flex:'start',
                 alignItems:'center',  overflow: "scroll"}}>
 
                 {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
@@ -403,10 +349,65 @@ const removeLocalDatasetcatalog = (data) => {
                         openDetails={openDetails}
                         handleOpenDetails={handleOpenDetails}
                         handleCloseDetails={handleCloseDetails}/>): null
-                }
-            </Box>
-            </Box>
-       <Footer />
+                            }
+                        </Box>
+                        </div>
+                    </Box>
+
+
+                  </Box>
+
+              {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
+
+                <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
+
+                  <Box component="main" sx={{ display:'flex',flexDirection:'row',
+                    flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
+                     <Typography color="inherit" variant="h5" component="h1">
+                          <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:10}}>
+                              <div>Matching Data Sources &nbsp;</div>
+
+                          </Box>
+                      </Typography>
+
+                  </Box>
+
+                  <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column',
+                      justifyContent:"center",alignItems:'center', px:4 }}>
+                        {dataSources && dataSources.map((data,index)=><FeatureCard
+                          openDetails={openDetails}
+                          data={data}
+                          index={index}
+                          token={token}
+                          user={user}
+                          handleOpenDetails={handleOpenDetails}
+                          handleCloseDetails={handleCloseDetails}
+                          dataset={userdataset.catalog}
+                          dataSources={dataSources}
+                          removeDatasetcatalog={removeLocalDatasetcatalog}
+                          addDatasetcatalog={addLocalDatasetcatalog}
+                          />)}
+                  </Box>
+
+                </Box>
+              </Box>:null}
+
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+          <Box sx={{ position: 'absolute', bgColor:'#fff',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width:'70%'}}>
+            <Output data={dataset} downloadLink={downloadLink}/>
+          </Box>
+          </Modal>
+
+           <Footer />
         </Box>
     </Box>
   );

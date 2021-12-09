@@ -56,10 +56,10 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
 
                       <div style={{display:'flex',width:'100%',  }}>
                           <div style={{display:'flex',wordWrap: "break-word",
-                              whiteSpace: "pre-wrap", wordBreak: "break-word",paddingRight:48 }}>
+                              whiteSpace: "pre-wrap", wordBreak: "break-word",paddingRight:64 }}>
                               <b>Data Points:</b> {data.data_points?data.data_points:""}
                           </div>
-                          <div style={{fontSize:14,display:'flex', alignItems:'center', }}><b>{"Features:  "}</b>
+                          <div style={{display:'flex', alignItems:'center', }}><b>Features:</b>
                               {data.features?data.features.split(',').map((feature, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
                                       borderRadius:4, border:1, fontSize:10, fontWeight:"bold",mr:1,
                                       color:'#24BBFF'}} size="small">{feature}</Button>)

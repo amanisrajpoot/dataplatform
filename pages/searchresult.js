@@ -19,8 +19,53 @@ import {useRouter} from 'next/router';
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import mixpanel from 'mixpanel-browser';
+import LeftNav from "../components/LeftNav";
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import {signOut} from "../function/checkAuth";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import Divider from "@mui/material/Divider";
+import CachedIcon from "@mui/icons-material/Cached";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`vertical-tabpanel-${index}`}
+            aria-labelledby={`vertical-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3, minWidth:'100%' }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+    return {
+        id: `vertical-tab-${index}`,
+        'aria-controls': `vertical-tabpanel-${index}`,
+    };
+}
 
 const style2 = {
   position: 'absolute',
@@ -60,6 +105,11 @@ export default function Searchresult({
   const [keywords, setKeywords] = React.useState('');
   const [localdataset, setLocaldataset] = React.useState({title: '', description: '', topic: '', keywords: ''});
   const router = useRouter()
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
   useEffect(() => {
     setSearching4(dataset.catalog);
@@ -141,20 +191,185 @@ export default function Searchresult({
   }, [dataset]);
 
   return (
-    <Box>
-      <Navbar token={token} setToken={setToken}/>
+    <Box sx={{display:'flex', flexDirection:'row'}}>
+        <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
+            <LeftNav />
+        </Box>
+
+        <Box sx={{width:"82%", bgcolor: '#E5E5E5'}}>
+
+            <Box component="main" sx={{width:'100%', display:'flex'}}>
+                <TextField fullWidth id="outlined-basic"
+                           value={keyword} onChange={(event)=>setKeyword(event.target.value)}
+                           sx={{ bgcolor: '#ffffff', border:0}}
+                           InputProps={{
+                               startAdornment: (
+                                   <InputAdornment position="start">
+                                       <SearchIcon />
+                                   </InputAdornment>
+                               ),
+                               placeholder:"Search..."
+                           }}
+                />
+                <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
+                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-between'}}>
+                    <Link href='/login'>
+                        <NotificationsIcon />
+                    </Link>
+                    &nbsp;&nbsp;&nbsp;
+                    <Link href='/login'>
+                        <AccountCircleIcon />
+                    </Link>
+                    &nbsp;&nbsp;&nbsp;
+                    <p>{user && user.firstname ? user.firstname : 'Account'} </p>
+                    &nbsp;&nbsp;&nbsp;
+                    <div onClick={()=>signOut({path:router.pathname})}>
+                        <ArrowDropDownIcon />
+                    </div>
+                </div>
+            </Box>
+
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#E5E5E5', justifyContent:'space-between'}}>
+
+                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
+                    color:'gray-700', alignItems:'center'}}>
+                    <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
+                            {"Back"}</Button>
+                    <Divider variant="middle" orientation="vertical" />
+                    <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Create Dataset</div>
+
+                </Box>
+                </Box>
+
+            <Box
+                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , mx:2, my:2, pt:2}}
+            >
+                <Tabs
+                    orientation="vertical"
+                    variant="scrollable"
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="Vertical tabs example"
+                    sx={{ borderRight: 1, borderColor: 'divider' }}
+                >
+                    <Tab label="1. Dataset Information" {...a11yProps(0)} />
+                    <Tab label="2. Add Catalogues" {...a11yProps(1)} />
+                    <Tab label="3. Review and Save" {...a11yProps(2)} />
+
+                </Tabs>
+                <TabPanel value={value} index={0} sx={{width:'100%',}}>
+                    <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
+                        color:'gray', fontSize:18,pb:2, minWidth:'100%', mr:45}}>
+                        <div>BASIC INFO &nbsp;</div>
+                        <div style={{fontSize:12, paddingTop:4}}>*Enter a title and description for your signal.</div>
+                    </Box>
+
+                    <Box sx={{display:'flex', width:"100%", bgColor:'#fff',color:'#fff'}}>
+                        <FormControl fullWidth sx={{width:'100%' }}>
+                            {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
+                            <TextField
+                                variant="outlined"
+                                value={title}
+                                onChange={(event)=>setTitle(event.target.value)}
+                                sx={{color:'#fff', bgColor:'#fff',pb:2}}
+                                //startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                label="Title"
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                value={description}
+                                onChange={(event)=>setDescription(event.target.value)}
+                                sx={{color:'#fff',pb:2}}
+                                rows={4}
+                                //startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                label="What this data will be doing for you?"
+                                multiline
+                            />
+
+                        </FormControl>
+                    </Box>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <Typography color="inherit" variant="h5" component="h1">
+                        <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:4}}>
+                            <div>Explore Healthcare Data Platform &nbsp;</div>
+                            <div><HelpOutlineIcon /></div>
+                        </Box>
+                    </Typography>
+
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1},
+                            display: 'flex', flexDirection: 'row', flex:'1', py: 2,
+                            justifyContent: 'space-between',}}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <Box sx={{ display: 'flex', flexDirection: 'row', flex:'1', }}>
+                            <Box component="main" sx={{  minWidth: '42vw', px:5}}>
+                                <TextField fullWidth id="outlined-basic" variant="outlined"
+                                           value={keyword} onChange={(e) => setKeyword(e.target.value)}
+                                           label="Keyword" sx={{ bgcolor: '#ffffff'}}
+                                           onKeyDown={()=>handleKeywordSearch()}/>
+                            </Box>
+
+                            <Box>
+                                <Button sx={{minWidth:'225px', height:'55px',  display:'flex', bgcolor: '#009BE5',
+                                    alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
+                                    backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
+                                        onClick={()=>handleKeywordSearch()}>
+                                    {/*onClick={()=>setSearch(!search)}*/}
+                                    {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
+                                    <div style={{color:'#fff',fontSize:18}}>Search</div>
+                                </Button>
+
+                            </Box>
+                        </Box>
+
+                    </Box>
+
+                    <Box sx={{ width:"100%", display:'flex', flexDirection:'column',
+                        justifyContent:"center",alignItems:'center', }}>
+                        {dataSources && dataSources.map((data)=><FeatureCard
+                            openDetails={openDetails}
+                            data={data}
+                            token={token}
+                            user={user}
+                            handleOpenDetails={handleOpenDetails}
+                            handleCloseDetails={handleCloseDetails}
+                            dataset={dataset.catalog}
+                            dataSources={dataSources}
+                            removeDatasetcatalog={removeDatasetcatalog}
+                            addDatasetcatalog={addDatasetcatalog}
+                        />)}
+                    </Box>
+
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    Item Three
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                    Item Four
+                </TabPanel>
+                <TabPanel value={value} index={4}>
+                    Item Five
+                </TabPanel>
+                <TabPanel value={value} index={5}>
+                    Item Six
+                </TabPanel>
+                <TabPanel value={value} index={6}>
+                    Item Seven
+                </TabPanel>
+            </Box>
         
       <Box sx={{ display: 'flex' }}>        
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           
           <Box component="main" sx={{ flex: 1, bgcolor: '#eaeff1' }}>
-            {/* <Box sx={{ width: '100%', px:10,py:2,pb:4}}>
-              <p>Step 2 of 3</p>
-              <LinearProgress variant="determinate" value={66} sx={{height:'2vh', 
-              backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)',
-              color:'linear-gradient(to right,#094a98, #4e0c98)'}} />
-            </Box> */}
-            
+
             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', bgcolor:"#fff",
                         color:'gray', fontSize:24, py:2,px:4,}}>
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', bgcolor:"#fff",
@@ -168,7 +383,6 @@ export default function Searchresult({
               backgroundImage: 'linear-gradient(to right,#094a98, #4e0c98)'}}
                       startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard')}>
                       {"Back to Dashboard"}</Button>
-
 
                 </Box>
                 
@@ -201,38 +415,9 @@ export default function Searchresult({
                       multiline
                     />
 
-                    {/* <TextField
-                      variant="outlined"
-                      value={topic}
-                      onChange={(event) => setTopic(event.target.value)}
-                      sx={{color:'#fff', bgColor:'#fff',pb:2}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Topic"
-                    /> */}
                   </FormControl>
-
                 </Box>
               </Box>
-
-                {/* <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto', 
-                    color:'gray', fontSize:18,px:16, py:2, pb:4}}>
-                    <div>ENTER KEYWORDS &nbsp;</div>
-                    <div style={{fontSize:12, paddingTop:4}}>{"Limit the size of your signal by filtering down to a specific geography"}</div>
-                </Box>
-
-                <Box sx={{display:'flex',px:16, width:"100%", bgColor:'#fff',color:'#fff'}}>
-                <FormControl fullWidth sx={{ }}>
-                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                    <TextField
-                      variant="outlined"
-                      value={keywords}
-                      onChange={(event)=>setKeywords(event.target.value)}
-                      sx={{color:'#fff', bgColor:'#fff',pb:2}}
-                      //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      label="Keywords"
-                    />
-                  </FormControl>
-                </Box> */}
 
             <Typography color="inherit" variant="h5" component="h1">
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',px:14,pt:4}}>
@@ -246,10 +431,7 @@ export default function Searchresult({
             sx={{
               '& > :not(style)': { m: 1}, 
               display: 'flex', flexDirection: 'row', flex:'1', py: 2, px: 8, bgcolor: '#eaeff1',
-              justifyContent: 'space-between',
-
-
-            }}
+              justifyContent: 'space-between',}}
             noValidate
             autoComplete="off"
           >
@@ -463,6 +645,7 @@ export default function Searchresult({
             </Box>
           </Box>
        <Footer />
+        </Box>
     </Box>
   );
 }
