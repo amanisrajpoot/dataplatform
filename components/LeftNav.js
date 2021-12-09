@@ -339,40 +339,40 @@ export default function LeftNav({
 
 			</div>
 
-			<section className={styles.accountSection}>
-				<div
-					onClick={() => {
-						redirect('/profile');
-						if (width !== null && width <= 800) {
-							setmenu(false);
-							setLeftAnimation(styles.menuTopClose);
-						}
-					}}
-					className={styles.itemsAcc}
-					style={{
-						backgroundColor: router.pathname.includes('/profile')
-							? '#ecfefc'
-							: '',
-					}}
-				>
-					<p style={{ marginRight: '1rem', zIndex: '2' }}>
-						<Image src='/account.svg' width={40} height={40} />
-					</p>
-					<p className={styles.itemlabel}>
-						{doctor && doctor.name ? doctor.name : 'Account'}
-					</p>
-				</div>
-				<div
-					onClick={signOut}
-					className={styles.itemsLogout}
-					style={{ marginTop: '0.5em' }}
-				>
-					<p style={{ marginRight: '1rem', zIndex: '2' }}>
-						<Image src='/logout_red.svg' width={40} height={40} />
-					</p>
-					<p className={styles.itemlabel}>Log out</p>
-				</div>
-			</section>
+			{/*<section className={styles.accountSection}>*/}
+			{/*	<div*/}
+			{/*		onClick={() => {*/}
+			{/*			redirect('/profile');*/}
+			{/*			if (width !== null && width <= 800) {*/}
+			{/*				setmenu(false);*/}
+			{/*				setLeftAnimation(styles.menuTopClose);*/}
+			{/*			}*/}
+			{/*		}}*/}
+			{/*		className={styles.itemsAcc}*/}
+			{/*		style={{*/}
+			{/*			backgroundColor: router.pathname.includes('/profile')*/}
+			{/*				? '#ecfefc'*/}
+			{/*				: '',*/}
+			{/*		}}*/}
+			{/*	>*/}
+			{/*		<p style={{ marginRight: '1rem', zIndex: '2' }}>*/}
+			{/*			<Image src='/account.svg' width={40} height={40} />*/}
+			{/*		</p>*/}
+			{/*		<p className={styles.itemlabel}>*/}
+			{/*			{doctor && doctor.name ? doctor.name : 'Account'}*/}
+			{/*		</p>*/}
+			{/*	</div>*/}
+			{/*	<div*/}
+			{/*		onClick={signOut}*/}
+			{/*		className={styles.itemsLogout}*/}
+			{/*		style={{ marginTop: '0.5em' }}*/}
+			{/*	>*/}
+			{/*		<p style={{ marginRight: '1rem', zIndex: '2' }}>*/}
+			{/*			<Image src='/logout_red.svg' width={40} height={40} />*/}
+			{/*		</p>*/}
+			{/*		<p className={styles.itemlabel}>Log out</p>*/}
+			{/*	</div>*/}
+			{/*</section>*/}
 		</div>
 	);
 }

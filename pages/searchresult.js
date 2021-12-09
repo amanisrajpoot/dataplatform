@@ -435,32 +435,32 @@ export default function Searchresult({
           </Box>                  
        </Modal>
 
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column',}}>
-          <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
-             <Typography color="inherit" variant="h5" component="h1">
-                  <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
-                      <div>Matching Topics &nbsp;</div>
-                 
-                  </Box>
-              </Typography>
-          </Box>
+      {/*  <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column',}}>*/}
+      {/*    <Box component="main" sx={{ flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>*/}
+      {/*       <Typography color="inherit" variant="h5" component="h1">*/}
+      {/*            <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>*/}
+      {/*                <div>Matching Topics &nbsp;</div>*/}
+      {/*           */}
+      {/*            </Box>*/}
+      {/*        </Typography>*/}
+      {/*    </Box>*/}
 
-          <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
-              justifyContent:"center",alignItems:'center', }}>
-                {dataSources && <TopicsCard 
-                  openDetails={openDetails}
-                  data={dataSources}
-                  token={token}
-                  user={user}
-                  handleOpenDetails={handleOpenDetails}
-                  handleCloseDetails={handleCloseDetails} 
-                  dataset={dataset.catalog}
-                  dataSources={dataSources}
-                  removeDatasetcatalog={removeDatasetcatalog}
-                  addDatasetcatalog={addDatasetcatalog}
-                  />}
-          </Box>
-      </Box>
+      {/*    <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', */}
+      {/*        justifyContent:"center",alignItems:'center', }}>*/}
+      {/*          {dataSources && <TopicsCard */}
+      {/*            openDetails={openDetails}*/}
+      {/*            data={dataSources}*/}
+      {/*            token={token}*/}
+      {/*            user={user}*/}
+      {/*            handleOpenDetails={handleOpenDetails}*/}
+      {/*            handleCloseDetails={handleCloseDetails} */}
+      {/*            dataset={dataset.catalog}*/}
+      {/*            dataSources={dataSources}*/}
+      {/*            removeDatasetcatalog={removeDatasetcatalog}*/}
+      {/*            addDatasetcatalog={addDatasetcatalog}*/}
+      {/*            />}*/}
+      {/*    </Box>*/}
+      {/*</Box>*/}
     
       {/* <Box sx={{  minHeight: '23vh', }}>        
         <Box component="main" sx={{ flex: 1, pt:6, px: 4, bgcolor: '#ffffff' }}>
