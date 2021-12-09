@@ -49,18 +49,18 @@ export default function LeftNav({
 	// 	console.log('doctorP', doctorP);
 	// }, [token]);
 
-	useEffect(() => {
-		window.addEventListener('resize', function () {
-			setWidth(window.innerWidth);
-		});
-	}, []);
-
-	useEffect(() => {
-		window.addEventListener('resize', function () {
-			setWidth(window.innerWidth);
-			if (width >= 800) setLeftAnimation(styles.menuTopOpen);
-		});
-	}, [width]);
+	// useEffect(() => {
+	// 	window.addEventListener('resize', function () {
+	// 		setWidth(window.innerWidth);
+	// 	});
+	// }, []);
+	//
+	// useEffect(() => {
+	// 	window.addEventListener('resize', function () {
+	// 		setWidth(window.innerWidth);
+	// 		if (width >= 800) setLeftAnimation(styles.menuTopOpen);
+	// 	});
+	// }, [width]);
 
 	return (
 		<div className={`${styles.header} ${leftAnimation}`}>
