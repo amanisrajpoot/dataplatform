@@ -193,12 +193,12 @@ export default function Dashboard({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                        <div style={{fontSize:30}}>Datasets &nbsp;&nbsp;</div>
+                        <div style={{fontSize:30}}>My Datasets &nbsp;&nbsp;</div>
                         <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                             alignItems:'space-between'}}>
-                            <div style={{fontSize:18, color:'gray-900'}}>Show:&nbsp;&nbsp;</div>
+                            <div style={{fontSize:18, color:'gray'}}>Show:&nbsp;&nbsp;</div>
                             <div style={{fontSize:18, color:'gray-900'}}>All</div>
-                            <div><ArrowDropDownIcon onClick={handleClick}/></div>
+                            <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
 
                             <Menu
                                 id="basic-menu"
@@ -217,7 +217,7 @@ export default function Dashboard({
 
                     </Box>
                 <Button variant="contained" size="large"
-                        sx={{backgroundColor:'#5A00E2', px:2}}
+                        sx={{backgroundColor:'#5A00E2', px:2, borderRadius:4}}
                         startIcon={<AddIcon />}
                         onClick={() => {
                             router.push('/searchresult');
