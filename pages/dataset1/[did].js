@@ -279,12 +279,12 @@ const removeLocalDatasetcatalog = (data) => {
           </Box>                  
        </Modal>
 
-      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',pt:4, width:'100%'}}>
+      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#E5E5E5',pt:4, width:'100%'}}>
         
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%'}}>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%', }}>
           
           <Box component="main" sx={{display:'flex', justifyContent:'space-between', 
-              py: 2, bgcolor: '#eaeff1', width:'100%', }}>
+              py: 2, bgcolor: '#E5E5E5', width:'100%', }}>
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',
                       fontSize:24,font:'roboto',pl:4}}>
                       <div>{datasetMode === 0? "Included ":'Selected ' }Catalogs &nbsp;</div>
@@ -297,10 +297,10 @@ const removeLocalDatasetcatalog = (data) => {
               
           </Box>
 
-          <Box sx={{ minWidth: 275, bgcolor: '#eaeff1', display:'flex', flexDirection:'column', pt:1,px: 4,
+          <Box sx={{ minWidth: 275, bgcolor: '#E5E5E5', display:'flex', flexDirection:'column', pt:1,px: 4,
               alignItems:'center' }}>
-                <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column', 
-              justifyContent:"center",alignItems:'center', }}>
+                <Box sx={{ width:"100%", bgcolor: '#E5E5E5', display:'flex', flexDirection:'column',
+              justifyContent:"center",alignItems:'center', border:'1px solid gray', borderRadius:4, p:1}}>
                 {datasetMode === 0 ? userdataset !== null && userdataset !== undefined &&
                   userdataset.catalog !== null && userdataset.catalog !== undefined &&
                   userdataset.catalog.map((data,index)=><FeatureCard
@@ -335,12 +335,12 @@ const removeLocalDatasetcatalog = (data) => {
 
           </Box>
 
-              {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
+              {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#E5E5E5',}}>
 
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
 
                   <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                    flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
+                    flex: 1, py: 2, px: 4, bgcolor: '#E5E5E5' }}>
                      <Typography color="inherit" variant="h5" component="h1">
                           <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                               <div>Matching Catalogs &nbsp;</div>
@@ -350,7 +350,7 @@ const removeLocalDatasetcatalog = (data) => {
 
                   </Box>
 
-                  <Box sx={{ width:"100%", bgcolor: '#eaeff1', display:'flex', flexDirection:'column',
+                  <Box sx={{ width:"100%", bgcolor: '#E5E5E5', display:'flex', flexDirection:'column',
                       justifyContent:"center",alignItems:'center', px:4 }}>
                         {dataSources && dataSources.map((data,index)=><FeatureCard
                           openDetails={openDetails}
@@ -373,7 +373,7 @@ const removeLocalDatasetcatalog = (data) => {
             <div style={{display:'flex', flexDirection:'column'}}>
 
                 <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                    flex: 1, py: 2, px: 4, bgcolor: '#eaeff1' }}>
+                    flex: 1, py: 2, px: 4, bgcolor: '#E5E5E5' }}>
                     <Typography color="inherit" variant="h5" component="h1">
                         <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                             <div>Matching Datasets &nbsp;</div>
@@ -382,7 +382,7 @@ const removeLocalDatasetcatalog = (data) => {
                     </Typography>
 
                 </Box>
-                <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2, flex:'start',
+                <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:3.5, flex:'start',
                     alignItems:'center',  overflow: "scroll"}}>
 
                     {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?

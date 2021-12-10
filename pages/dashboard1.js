@@ -256,8 +256,8 @@ export default function Dashboard({
 
                     <div style={{height:'28ch', minWidth:'26ch', maxWidth:'28ch',borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
                         marginRight:12, marginBottom:12, display:'flex', flexDirection:'column', alignItems:'center',
-                        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed' }}>
-                        <div>
+                        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed', marginBottom:7 }}>
+                        <div style={{marginTop:12}}>
                             <div><AddCircleOutlinedIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
                                 }}/></div>
                             <div style={{color:'black', fontSize:20, paddingBottom:12}}>Create New Set</div>
@@ -287,7 +287,7 @@ export default function Dashboard({
                     <Divider variant="middle"/>
                 </Box>
 
-                <SettingsIcon fontSize="large" sx={{cursor:'pointer'}}/>
+                <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/>
 
                 <Modal
                   open={open2}
