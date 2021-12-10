@@ -157,7 +157,7 @@ export default function Dashboard({
             <Box sx={{width:"18%"}}>
                 <LeftNav />
             </Box>
-        <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#E5E5E5'}}>
+        <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#E5E5E5', font:'roboto'}}>
             <Box component="main" sx={{  minWidth: '50vw', display:'flex'}}>
                 <TextField fullWidth id="outlined-basic"
                            value={keyword} onChange={(event)=>setKeyword(event.target.value)}
@@ -254,13 +254,14 @@ export default function Dashboard({
                 <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',
                     alignItems:'center',  overflow: "scroll"}}>
 
-                    <div style={{height:'23ch', minWidth:'28ch', borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
+                    <div style={{height:'28ch', minWidth:'26ch', maxWidth:'28ch',borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
                         marginRight:12, marginBottom:12, display:'flex', flexDirection:'column', alignItems:'center',
                         justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed' }}>
                         <div>
-                            <div><AddCircleOutlinedIcon sx={{fontSize:96}}/></div>
-                            <div>Create New Set</div>
-                            <div>First steps to create the great analysis is to start with data sets</div>
+                            <div><AddCircleOutlinedIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
+                                }}/></div>
+                            <div style={{color:'black', fontSize:20, paddingBottom:12}}>Create New Set</div>
+                            <div style={{color:'gray'}}>First steps to create the great analysis is to start with data sets</div>
                         </div>
                     </div>
                     {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
