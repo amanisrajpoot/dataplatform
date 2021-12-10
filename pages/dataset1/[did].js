@@ -335,9 +335,6 @@ const removeLocalDatasetcatalog = (data) => {
 
           </Box>
 
-
-
-
               {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#eaeff1',}}>
 
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>

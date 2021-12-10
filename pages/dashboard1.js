@@ -254,9 +254,9 @@ export default function Dashboard({
                 <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',
                     alignItems:'center',  overflow: "scroll"}}>
 
-                    <div style={{height:'23ch', minWidth:'28ch', borderStyle: "dotted", backgroundColor:'#fff', textAlign:'center',
+                    <div style={{height:'23ch', minWidth:'28ch', borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
                         marginRight:12, marginBottom:12, display:'flex', flexDirection:'column', alignItems:'center',
-                        justifyContent:"space-around", flex:'end',borderRadius:9 }}>
+                        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed' }}>
                         <div>
                             <div><AddCircleOutlinedIcon sx={{fontSize:96}}/></div>
                             <div>Create New Set</div>

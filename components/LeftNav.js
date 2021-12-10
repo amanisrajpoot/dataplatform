@@ -148,10 +148,10 @@ export default function LeftNav({
 							: '',
 					}}
 				>
-						<DashboardIcon fontSize="medium"/>
+						<DashboardIcon fontSize="medium" sx={{color:'gray'}}/>
 
 					<p
-						style={{
+						style={{fontSize:20,
 							color: router.pathname.includes('/dashboard') ? '#0DB1A1' : '',
 						}}
 					>
@@ -169,17 +169,17 @@ export default function LeftNav({
 						}
 					}}
 					className={styles.items}
-					style={{
+					style={{fontSize:20,
 						backgroundColor: router.pathname.includes('/samples')
 							? '#ECFEFC'
 							: '',
 					}}
 				>
-						<TableViewOutlinedIcon fontSize="medium"/>
+						<TableViewOutlinedIcon fontSize="medium" sx={{color:'gray'}}/>
 
-					)}
+
 					<p
-						style={{
+						style={{fontSize:20,
 							color: router.pathname.includes('/samples') ? '#0DB1A1' : '',
 						}}
 					>
@@ -196,17 +196,17 @@ export default function LeftNav({
 						}
 					}}
 					className={styles.items}
-					style={{
+					style={{fontSize:20,
 						backgroundColor: router.pathname.includes('/dispense')
 							? '#ECFEFC'
 							: '',
 					}}
 				>
-						<SourceIcon fontSize="medium" />
+						<SourceIcon fontSize="medium" sx={{color:'gray'}}/>
 
-					)}
+
 					<p
-						style={{
+						style={{fontSize:20,
 							color: router.pathname.includes('/dispense') ? '#0DB1A1' : '',
 						}}
 					>
@@ -223,17 +223,17 @@ export default function LeftNav({
 						}
 					}}
 					className={styles.items}
-					style={{
+					style={{fontSize:20,
 						backgroundColor: router.pathname.includes('/dispense')
 							? '#ECFEFC'
 							: '',
 					}}
 				>
-						<SettingsIcon fontSize="medium" />
+						<SettingsIcon fontSize="medium" sx={{color:'gray'}}/>
 
-					)}
+
 					<p
-						style={{
+						style={{fontSize:20,
 							color: router.pathname.includes('/dispense') ? '#0DB1A1' : '',
 						}}
 					>
@@ -250,15 +250,15 @@ export default function LeftNav({
 						}
 					}}
 					className={styles.items}
-					style={{
+					style={{fontSize:20,
 						backgroundColor: router.pathname.includes('/alerts')
 							? '#ECFEFC'
 							: '',
 					}}
 				>
-						<LiveHelpIcon fontSize="medium" />
+						<LiveHelpIcon fontSize="medium" sx={{color:'gray'}}/>
 
-					)}
+
 					<p
 						style={{
 							color: router.pathname.includes('/alerts') ? '#0DB1A1' : '',
