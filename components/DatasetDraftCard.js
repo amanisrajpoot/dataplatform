@@ -11,13 +11,50 @@ import {getUser} from "../function/users";
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import PropTypes from 'prop-types';
+import LinearProgress from '@mui/material/LinearProgress';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
+
+function LinearProgressWithLabel(props) {
+    return (
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ width: '100%', mr: 1 }}>
+                <LinearProgress variant="determinate" {...props} />
+            </Box>
+            <Box sx={{ minWidth: 35 }}>
+                <Typography variant="body2" color="text.secondary">{`${Math.round(
+                    props.value,
+                )}%`}</Typography>
+            </Box>
+        </Box>
+    );
+}
+
+LinearProgressWithLabel.propTypes = {
+    /**
+     * The value of the progress indicator for the determinate and buffer variants.
+     * Value between 0 and 100.
+     */
+    value: PropTypes.number.isRequired,
+};
 
 export default function DatasetDraftCard(props){
     const [show, setShow] = React.useState(false);
     const router = useRouter();
     const[added, setAdded] = React.useState(false);
+    const [progress, setProgress] = React.useState(10);
+
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+        }, 800);
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
     const handleAdd = () => {
         if(added === false){
           props.addDatasetcatalog(props.data);
@@ -34,11 +71,13 @@ export default function DatasetDraftCard(props){
 
     console.log("fetched dataset",props.data);
     return (
-        <div style={{display:"flex", flexDirection:'column', minWidth:"38ch", paddingBottom:12,paddingRight:6,marginLeft:6,
-              border:"1px solid black", borderRadius:8}}>
-          <div style={{display:"flex", flexDirection:'column', minHeight:'28vh',maxHeight:'36vh', borderRadius:9,
-              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', paddingLeft:12,
-              textOverflow:'clip',  }}>
+        <div style={{display:"flex", flexDirection:'column', marginRight:8,
+                borderRadius:8, height:'100%', width:'100%',
+        border:router.pathname.includes("/dataset1")?"1px solid #5A00E2":null}}>
+          <div style={{display:"flex", flexDirection:'column',  maxheight:'29vh', borderRadius:9,
+              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', paddingLeft:12,minWidth:"42ch",
+              textOverflow:'clip',
+              minHeight:router.pathname.includes("/dataset")?'20vh':'34vh',}}>
 
                     <div style={{fontSize:15, width:"100%", overflow:'hidden',
                         flexDirection:'column',display:'flex',justifyContent:'center', }}>
@@ -54,31 +93,35 @@ export default function DatasetDraftCard(props){
                     {/*    </p>*/}
                     {/*</div>*/}
 
-                     <Divider  flexItem variant="middle"/>
+              {router.pathname.includes("/dataset1")?null:<Divider  flexItem variant="middle"/>}
 
               <div style={{display:'flex', flexDirection:"row", width:'100%'}}>
                     <div style={{fontSize:12,width:"26%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
                       <div >Row Count</div>
-                        <div style={{fontWeight:'bold', fontSize:15}}>{props.data.row_count?props.data.row_count: "123"}</div>
+                        <div style={{fontWeight:'bold', fontSize:15, color:"#5A00E2"}}>{props.data.row_count?props.data.row_count.toLocaleString(): "123"}</div>
                     </div>
 
-                      <div style={{fontSize:12,width:"36%",flexDirection:'column',display:'flex',justifyContent:'center',}}>
+                      <div style={{fontSize:12,width:"26%",flexDirection:'column',display:'flex',justifyContent:'center',}}>
                           <div >Data Points</div>
-                          <div style={{fontWeight:'bold', fontSize:15}}>{props.data.data_points?props.data.data_points: "567"}</div>
+                          <div style={{fontWeight:'bold', fontSize:15, color:"#5A00E2"}}>{props.data.data_points?props.data.data_points.toLocaleString(): "567"}</div>
                       </div>
 
                       <div style={{fontSize:12,width:"28%",flexDirection:'column',display:'flex',justifyContent:'center',}}>
                           <div >Data Source</div>
-                          <div style={{fontWeight:'bold', fontSize:15}}>{props.data.data_sources?props.data.data_sources: "123"}</div>
+                          <div style={{fontWeight:'bold', fontSize:15, color:"#5A00E2"}}>{props.data.data_sources?props.data.data_sources.toLocaleString(): "123"}</div>
                       </div>
 
                       <div style={{fontSize:12,width:"20%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
                           <div >Topics</div>
-                          <div style={{fontWeight:'bold', fontSize:15}}>{props.data.topic?props.data.topic.split(",").length: "6"}</div>
+                          <div style={{fontWeight:'bold', fontSize:15, color:"#5A00E2"}}>{props.data.topic?props.data.topic.split(",").length.toLocaleString(): "6"}</div>
                       </div>
               </div>
 
-              <Divider flexItem variant="middle"/>
+              {router.pathname.includes("/dataset1")?null:<Divider  flexItem variant="middle"/>}
+
+              {router.pathname.includes("/dataset1")?null:<Box sx={{ width: '100%',color:"#5A00E2" }}>
+                  <LinearProgressWithLabel color='inherit' value={70} sx={{ color:"#5A00E2"}} />
+              </Box>}
                     {/* <div style={{fontSize:14, cursor:'pointer',width:"12%"}} 
                         onClick={()=>props.handleOpenDetails(props.data)}>
                       <p><b>{props.geo?"View Details": "View Details"}</b></p>
@@ -101,10 +144,16 @@ export default function DatasetDraftCard(props){
                           });
                           }
                         }>
-                        <div><Button sx={{borderRadius:2,paddingRight:1, paddingTop:1,}} variant="outlined" startIcon={<DeleteIcon />}></Button></div>
-                        <div><Button sx={{borderRadius:2}} variant="outlined">Edit Details</Button></div>
+                        {router.pathname.includes("/dataset1")?null:<>
+                            <div><Button sx={{borderRadius:2, color:'#FF6262',paddingTop:1,borderColor:"#FF6262", }} variant="outlined" startIcon={<DeleteIcon />}></Button></div>
+                            <div><Button sx={{borderRadius:2, color:'#667280', borderColor:'#667280'}} variant="outlined">Edit Details</Button></div></>}
                     </div>}
+
               </div>
+            {router.pathname.includes("/dataset")?<div style={{width:"100%", backgroundColor:"#5A00E2", color:'white',height:'7vh', textAlign:'center',
+                display:'flex', justifyContent:'center', alignItems:'center'}}>View More Details
+            </div>:null}
+
           </div>
     )
 

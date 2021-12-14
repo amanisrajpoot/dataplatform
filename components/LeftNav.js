@@ -63,7 +63,7 @@ export default function LeftNav({
 	// }, [width]);
 
 	return (
-		<div className={`${styles.header} ${leftAnimation}`}>
+		<div className={`${styles.header} ${leftAnimation}`} style={{font:'roboto'}}>
 			{/* ADD SAMPLES */}
 			<Modal
 				open={addSampleModalVisible}
@@ -143,16 +143,16 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						backgroundColor: router.pathname.includes('/dashboard')
-							? '#ECFEFC'
-							: '',
+						color: router.pathname.includes('/dashboard')
+							? '#5A00E2'
+							: 'gray',
 					}}
 				>
-						<DashboardIcon fontSize="medium" sx={{color:'gray'}}/>
+						<DashboardIcon fontSize="medium" sx={{fontSize:32,}}/>
 
 					<p
-						style={{fontSize:20,
-							color: router.pathname.includes('/dashboard') ? '#0DB1A1' : '',
+						style={{fontSize:20, font:'roboto', fontWeight:500,
+							color: router.pathname.includes('/dashboard') ? '#5A00E2' : '',
 						}}
 					>
 						Dashboard
@@ -162,25 +162,25 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/samples');
+						redirect('/dashboard');
 						if (width !== null && width <= 800) {
 							setmenu(false);
 							setLeftAnimation(styles.menuTopClose);
 						}
 					}}
 					className={styles.items}
-					style={{fontSize:20,
-						backgroundColor: router.pathname.includes('/samples')
-							? '#ECFEFC'
-							: '',
+					style={{
+						color: router.pathname.includes('/dataset1')
+							? '#5A00E2'
+							: 'gray',
 					}}
 				>
-						<TableViewOutlinedIcon fontSize="medium" sx={{color:'gray'}}/>
+						<TableViewOutlinedIcon fontSize="medium" sx={{fontSize:32,}}/>
 
 
 					<p
-						style={{fontSize:20,
-							color: router.pathname.includes('/samples') ? '#0DB1A1' : '',
+						style={{fontSize:20, font:'roboto', fontWeight:500,
+							color: router.pathname.includes('/dataset1') ? '#5A00E2' : '',
 						}}
 					>
 						My Datasets
@@ -189,25 +189,25 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/dispense');
+						redirect('/dashboard');
 						if (width !== null && width <= 800) {
 							setmenu(false);
 							setLeftAnimation(styles.menuTopClose);
 						}
 					}}
 					className={styles.items}
-					style={{fontSize:20,
-						backgroundColor: router.pathname.includes('/dispense')
-							? '#ECFEFC'
-							: '',
+					style={{
+						color: router.pathname.includes('/catalogue')
+							? '#5A00E2'
+							: 'gray',
 					}}
 				>
-						<SourceIcon fontSize="medium" sx={{color:'gray'}}/>
+						<SourceIcon fontSize="medium" sx={{fontSize:32,}}/>
 
 
 					<p
-						style={{fontSize:20,
-							color: router.pathname.includes('/dispense') ? '#0DB1A1' : '',
+						style={{fontSize:20, font:'roboto', fontWeight:500,
+							color: router.pathname.includes('/catalogue') ? '#5A00E2' : '',
 						}}
 					>
 						Catalogues
@@ -216,25 +216,25 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/dispense');
+						redirect('/dashboard');
 						if (width !== null && width <= 800) {
 							setmenu(false);
 							setLeftAnimation(styles.menuTopClose);
 						}
 					}}
 					className={styles.items}
-					style={{fontSize:20,
-						backgroundColor: router.pathname.includes('/dispense')
-							? '#ECFEFC'
-							: '',
+					style={{
+						color: router.pathname.includes('/setting')
+							? '#5A00E2'
+							: 'gray',
 					}}
 				>
-						<SettingsIcon fontSize="medium" sx={{color:'gray'}}/>
+						<SettingsIcon fontSize="medium" sx={{fontSize:32,}}/>
 
 
 					<p
-						style={{fontSize:20,
-							color: router.pathname.includes('/dispense') ? '#0DB1A1' : '',
+						style={{fontSize:20, font:'roboto', fontWeight:500,
+							color: router.pathname.includes('/setting') ? '#5A00E2' : '',
 						}}
 					>
 						Settings
@@ -243,25 +243,25 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/alerts');
+						redirect('/dashboard');
 						if (width !== null && width <= 800) {
 							setmenu(false);
 							setLeftAnimation(styles.menuTopClose);
 						}
 					}}
 					className={styles.items}
-					style={{fontSize:20,
-						backgroundColor: router.pathname.includes('/alerts')
-							? '#ECFEFC'
-							: '',
+					style={{
+						color: router.pathname.includes('/support')
+							? '#5A00E2'
+							: 'gray',
 					}}
 				>
-						<LiveHelpIcon fontSize="medium" sx={{color:'gray'}}/>
+						<LiveHelpIcon fontSize="medium" sx={{ fontSize:32, }}/>
 
 
 					<p
-						style={{
-							color: router.pathname.includes('/alerts') ? '#0DB1A1' : '',
+						style={{ fontSize:20,font:'roboto', fontWeight:500,
+							color: router.pathname.includes('/support') ? '#5A00E2' : '',
 						}}
 					>
 						Support
