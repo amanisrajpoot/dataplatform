@@ -74,7 +74,7 @@ export default function DatasetDraftCard(props){
         <div style={{display:"flex", flexDirection:'column', marginRight:8,
                 borderRadius:8, height:'100%', width:'100%',
         border:router.pathname.includes("/dataset1")?"1px solid #5A00E2":null}}>
-          <div style={{display:"flex", flexDirection:'column',  maxheight:'29vh', borderRadius:9,
+          <div style={{display:"flex", flexDirection:'column',  minheight:'29vh', borderRadius:9,
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', paddingLeft:12,minWidth:"42ch",
               textOverflow:'clip',
               minHeight:router.pathname.includes("/dataset")?'20vh':'34vh',}}>
@@ -119,8 +119,8 @@ export default function DatasetDraftCard(props){
 
               {router.pathname.includes("/dataset1")?null:<Divider  flexItem variant="middle"/>}
 
-              {router.pathname.includes("/dataset1")?null:<Box sx={{ width: '100%',color:"#5A00E2" }}>
-                  <LinearProgressWithLabel color='inherit' value={70} sx={{ color:"#5A00E2"}} />
+              {router.pathname.includes("/dataset1")?null:<Box sx={{ width: '100%',color:"#24BBFF" }}>
+                  <LinearProgressWithLabel color='inherit' value={70} sx={{ color:"#24BBFF"}} />
               </Box>}
                     {/* <div style={{fontSize:14, cursor:'pointer',width:"12%"}} 
                         onClick={()=>props.handleOpenDetails(props.data)}>
@@ -135,7 +135,7 @@ export default function DatasetDraftCard(props){
                     <div style={{display:'flex',alignItems:'space-between', justifyContent:'space-between',
                         fontSize:14, cursor:'pointer', width:'96%', paddingRight:9 }}
                         onClick={()=>{
-                          router.push('/dataset/'+props.data.ID)
+                          router.push('/dataset1/'+props.data.ID)
                           mixpanel.track('Dataset Card Operations', {
                             'source': "Data Platform Dashboard",
                             'action': "clicked on operations icon",
@@ -145,13 +145,16 @@ export default function DatasetDraftCard(props){
                           }
                         }>
                         {router.pathname.includes("/dataset1")?null:<>
-                            <div><Button sx={{borderRadius:2, color:'#FF6262',paddingTop:1,borderColor:"#FF6262", }} variant="outlined" startIcon={<DeleteIcon />}></Button></div>
-                            <div><Button sx={{borderRadius:2, color:'#667280', borderColor:'#667280'}} variant="outlined">Edit Details</Button></div></>}
+                            <div><Button sx={{borderRadius:2, color:'#FF6262',paddingTop:1,borderColor:"#FF6262", }} variant="outlined"><DeleteIcon /></Button></div>
+                            <div><Button sx={{borderRadius:2, color:'#667280', borderColor:'#667280', textTransform: "capitalize"}} variant="outlined"
+                                         onClick={()=>{router.push('/dataset1/'+props.data.ID)}}>Edit Details</Button></div></>}
                     </div>}
 
               </div>
             {router.pathname.includes("/dataset")?<div style={{width:"100%", backgroundColor:"#5A00E2", color:'white',height:'7vh', textAlign:'center',
-                display:'flex', justifyContent:'center', alignItems:'center'}}>View More Details
+                display:'flex', justifyContent:'center', alignItems:'center', cursor:'pointer'}}
+                                                       onClick={()=>{
+                                                           router.push('/dataset1/'+props.data.ID)}}>View More Details
             </div>:null}
 
           </div>

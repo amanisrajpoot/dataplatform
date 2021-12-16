@@ -56,13 +56,9 @@ export async function signIn({ email, password, token, setToken }) {
 
 export async function signUp({
 	email,
-	phone,
 	password,
 	name,
-	role,
 	company,
-	city,
-	State,
 	token,
 	setToken,
 }) {
@@ -72,12 +68,10 @@ export async function signUp({
 			password: password,
 			attributes: {
 				email: email,
-				phone_number: phone,
 				name: name,
-				nickname: role,
-				profile: afNum,
-				address: city,
-				zoneinfo: State,
+				company:company,
+				password:password,
+
 			},
 		});
 		/* Once the user successfully signs in, update the form state to show the signed in state */

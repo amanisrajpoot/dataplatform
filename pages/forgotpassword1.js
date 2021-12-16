@@ -24,7 +24,8 @@ import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
 import mixpanel from 'mixpanel-browser';
-
+import {recieveForgotOTP, forgotPasswordSubmit} from '../function/checkAuth'
+import OtpInput from 'react-otp-input';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -54,7 +55,6 @@ function BrandName(props) {
         </Typography>
     );
 }
-
 
 const theme = createTheme();
 
@@ -123,9 +123,14 @@ const ForgotPassword =() => {
     }
 
     async function resetPassword(){
-
-        setMode(1);
-
+        if(email !== undefined && email !== null){
+            const erro = await recieveForgotOTP({email})
+            if (error !== null) {
+                setError(erro)
+            } else{
+                setMode(1);
+            }
+        }
     }
 
   return (
@@ -178,7 +183,7 @@ const ForgotPassword =() => {
                   <div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
                           <div style={{marginLeft:125}}>
                               <div style={{fontSize:30}}>Check Your Email</div>
-                              <div style={{fontSize:14}}>We've sent a reset link to your email address: user@Example.com
+                              <div style={{fontSize:14}}>We've sent a reset OTP to your email address: <b>{email}</b>
                               </div>
                           </div>
                       </div>
@@ -210,7 +215,9 @@ const ForgotPassword =() => {
 
                     :null}
 
-                {mode===0?<Button
+                {mode===0?<>
+                    <p>{error}</p>
+                        <Button
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
@@ -218,16 +225,19 @@ const ForgotPassword =() => {
                 // href="/dashboard"
               >
                 Reset Password
-              </Button>
+              </Button></>
                     :mode===1?
                         <Button
                             type="submit"
                             variant="contained"
                             sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
-                            onClick={()=>router.push("/login")}
+                            onClick={()=>router.push({
+                                pathname:"/resetpassword",
+                                query:{useremail:email}
+                            })}
                             // href="/dashboard"
                         >
-                            Go Back to Log In
+                            Continue with Reset
                         </Button>
                         :null}
 
@@ -285,4 +295,4 @@ const ForgotPassword =() => {
   );
 }
 
-export default ForgotPasswordw;
+export default ForgotPassword;

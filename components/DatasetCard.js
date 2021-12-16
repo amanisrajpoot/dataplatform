@@ -34,7 +34,7 @@ export default function DatasetCard(props){
     console.log("fetched dataset",props.data);
     return (
         <div style={{display:"flex", flexDirection:'column', width:"99.5%", borderRadius:9,paddingRight:9,
-             backgroundColor:"#E5E5E5",font:'roboto'
+             backgroundColor:"#FAFAFB",font:'roboto'
               }}>
           <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'14vh', width:"100%",
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
@@ -43,7 +43,7 @@ export default function DatasetCard(props){
                   <div style={{
                       flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px'}}>
 
-                      <Button sx={{borderRadius:6,maxHeight:'38px',maxWidth:'12px',backgroundColor:"#5A00E2", color:"#fff"}}
+                      <Button sx={{borderRadius:2,minWidth:'36px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
                               variant="outlined">{parseInt(props.index+1)}</Button>
                   </div>
 

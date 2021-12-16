@@ -139,7 +139,7 @@ const Login =({token, setToken}) => {
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
             flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
             <div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'end'}}>
-                <Link sx={{alignSelf:'end'}} href="/signup" variant="body2">
+                <Link sx={{alignSelf:'end'}} href="/signup1" variant="body2">
                     {"Don't have an account?"} <div style={{color:"#5A00E2", display:"inline"}}>Sign Up</div>
                 </Link>
             </div>

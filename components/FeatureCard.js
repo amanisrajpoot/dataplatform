@@ -55,12 +55,13 @@ export default function FeatureCard(props){
 
           <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"100%",
                alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
-              textOverflow:'clip', font:'roboto' }}>
+              textOverflow:'clip', font:'roboto',
+          border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
 
               <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'5%',
                   paddingLeft:8, paddingRight:8}}>
 
-                  <Button sx={{borderRadius:6,maxHeight:'38px',maxWidth:'12px',backgroundColor:"#5A00E2", color:"#fff"}}
+                  <Button sx={{borderRadius:2,minWidth:'24px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
                           variant="outlined">{parseInt(props.index+1)}</Button>
               </div>
 
@@ -80,18 +81,18 @@ export default function FeatureCard(props){
                     <div style={{fontSize:14, width:"25%"}}>
                         <div>No. of Features<br></br>
                          </div>
-                        <div><b>{props.data.features?props.data.features.split(",").length: "0"}</b></div>
+                        <div><b>{props.data.features?props.data.features.split(",").length.toLocaleString(): "0"}</b></div>
                     </div>
                         <Divider orientation="vertical" variant="middle" flexItem/>
                     <div style={{fontSize:14,width:"25%"}}>
                         <div>No. of Rows<br></br>
                         </div>
-                        <div><b>{props.data.row_count?props.data.row_count: "0"}</b></div>
+                        <div><b>{props.data.row_count?props.data.row_count.toLocaleString(): "0"}</b></div>
                     </div>
                         <Divider orientation="vertical" variant="middle" flexItem/>
 
                     <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',}}>
-                        <Button variant="outlined" fontSize="small" sx={{borderRadius:2}}
+                        <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
                         onClick={()=>{
                           props.handleOpenDetails(props.data)
                           mixpanel.track('Catalog Card View Details', {
@@ -102,7 +103,7 @@ export default function FeatureCard(props){
                            }) 
                           }
                         }>
-                      <div><b>{props.geo?"View": "View"}</b></div>
+                      <div ><b>{props.geo?"View": "View"}</b></div>
                     </Button>
                         </div>
                     

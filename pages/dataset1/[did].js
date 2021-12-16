@@ -37,6 +37,7 @@ import GetAppIcon from '@mui/icons-material/GetApp';
 import EditIcon from '@mui/icons-material/Edit';
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import DatasetDraftCard from "../../components/DatasetDraftCard";
+import InputBase from '@mui/material/InputBase';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -182,39 +183,59 @@ const removeLocalDatasetcatalog = (data) => {
             <LeftNav />
         </Box>
         <Box sx={{width:"82%"}}>
-            <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#3e3e33'}}>
-             <Box component="main" sx={{ minWidth: '50vw', display:'flex'}}>
-                <TextField fullWidth id="outlined-basic"
-                           value={keyword} onChange={(event)=>setKeyword(event.target.value)}
-                           sx={{ bgcolor: '#ffffff', border:0}}
-                           InputProps={{
-                               startAdornment: (
-                                   <InputAdornment position="start">
-                                       <SearchIcon />
-                                   </InputAdornment>
-                               ),
-                               placeholder:"Search..."
-                           }}
-                />
-                <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-between'}}>
-                    <Link href='/login'>
-                        <NotificationsIcon />
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;
-                    <Link href='/login'>
-                        <AccountCircleIcon />
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;
-                    <p>{user && user.firstname ? user.firstname : 'Account'} </p>
-                    &nbsp;&nbsp;&nbsp;
-                    <div onClick={()=>signOut({path:router.pathname})}>
-                        <ArrowDropDownIcon />
-                    </div>
-                </div>
+            <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
+             <Box component="main" sx={{ minWidth: '50vw', display:'flex', }}>
+                 <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center'}} >
+                     <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                         <SearchIcon />
+                     </Box>
+
+                     <InputBase
+                         // onChange={setVal}
+                         sx={{ bgcolor:'white',width:'90%'}}
+                         placeholder="Search Google Maps"
+                         inputProps={{
+                             startAdornment: (
+                                 <InputAdornment position="start">
+                                     <SearchIcon />
+                                 </InputAdornment>
+                             ),
+                             placeholder:"Search..."
+                         }}
+                     />
+                 </Box>
+
+                 {/*<TextField fullWidth id="outlined-basic"*/}
+                 {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
+                 {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
+                 {/*           InputProps={{*/}
+                 {/*               startAdornment: (*/}
+                 {/*                   <InputAdornment position="start">*/}
+                 {/*                       <SearchIcon />*/}
+                 {/*                   </InputAdornment>*/}
+                 {/*               ),*/}
+                 {/*               placeholder:"Search..."*/}
+                 {/*           }}*/}
+                 {/*/>*/}
+                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
+                     alignItems: 'center',cursor: 'pointer', justifyContent:'space-around'}}>
+                     <Link href='/login'>
+                         <NotificationsIcon sx={{color:'#939EAA'}}/>
+                     </Link>
+                     &nbsp;&nbsp;&nbsp;
+                     <Link href='/login'>
+                         <AccountCircleIcon sx={{color:'#939EAA'}}/>
+                     </Link>
+                     &nbsp;&nbsp;&nbsp;
+                     <p>{user && user.firstname ? user.firstname : 'Account'} </p>
+                     &nbsp;&nbsp;&nbsp;
+                     <div onClick={()=>signOut({path:router.pathname})}>
+                         <ArrowDropDownIcon sx={{color:'#939EAA'}}/>
+                     </div>
+                 </div>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#E5E5E5', justifyContent:'space-between'}}>
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, justifyContent:'space-between'}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
@@ -222,31 +243,31 @@ const removeLocalDatasetcatalog = (data) => {
                             justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setDatasetMode(0)}>
                             {"Back"}</Button>:
                         datasetMode ===0 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
-                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard1')}>
+                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                             {"Back"}</Button>:null}
                     <Divider variant="middle" orientation="vertical" />
                     <div style={{paddingLeft:8,paddingRight:2,}}>{userdataset !== null && userdataset !== undefined && <div>{userdataset.title}</div>}</div>
-                    <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2 }}
+                    <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2,  color:'#939EAA', borderColor:'#939EAA' }}
                                               startIcon={<CachedIcon />} onClick={()=>router.reload()}>
                     {"Refresh"}</Button>
                 </Box>
                 <Box sx={{display:"flex", alignItems:'center', justifyContent:'space-between', width:'24%', }}>
-                    {datasetMode==0?<div><DeleteOutlineIcon fontSize="large" sx={{cursor:'pointer'}}
+                    {datasetMode==0?<div><DeleteOutlineIcon fontSize="large" sx={{cursor:'pointer',}}
                                                             onClick={() => deleteF(userdataset)}/></div>:null}
-                    <Button variant="outlined" size="medium" sx={{borderRadius:3}}
+                    <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
                             startIcon={<GetAppIcon />} onClick={handleOpen}>
                         {"Export"}</Button>
-                    {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3}}
+                    {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
                             startIcon={<EditIcon />} onClick={() => setDatasetMode(1)}>
                         {"Edit"}</Button>: datasetMode === 1 ?
-                    <Button variant="outlined" size="medium" sx={{borderRadius:3}}
+                    <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
                             startIcon={<CheckIcon />} onClick={() => {updateF(userdataset)}}>
                         {"Update"}</Button>:null}
                 </Box>
 
             </Box>
 
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#E5E5E5', justifyContent:'space-between'}}>
+          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, justifyContent:'space-between'}}>
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,
                     color:'gray-900',justifyContent:'space-around'}}>
                     <div>Overview &nbsp;</div>
@@ -255,7 +276,7 @@ const removeLocalDatasetcatalog = (data) => {
           </Box>
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
-          <Box sx={{px:4, bgcolor:"#E5E5E5"}}>
+          <Box sx={{px:4, }}>
             <Box>{
               userdataset !== null && userdataset !== undefined
               && <SignalCardOut token={token} localDataset={localDataset} setLocalDataset={setLocalDataset}
@@ -279,12 +300,12 @@ const removeLocalDatasetcatalog = (data) => {
           </Box>                  
        </Modal>
 
-      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#E5E5E5',pt:4, width:'100%'}}>
+      <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#FAFAFB',pt:4, width:'100%'}}>
         
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%', }}>
           
           <Box component="main" sx={{display:'flex', justifyContent:'space-between', 
-              py: 2, bgcolor: '#E5E5E5', width:'100%', }}>
+              py: 2, width:'100%', }}>
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',
                       fontSize:24,font:'roboto',pl:4}}>
                       <div>{datasetMode === 0? "Included ":'Selected ' }Catalogs &nbsp;</div>
@@ -297,10 +318,10 @@ const removeLocalDatasetcatalog = (data) => {
               
           </Box>
 
-          <Box sx={{ minWidth: 275, bgcolor: '#E5E5E5', display:'flex', flexDirection:'column', pt:1,px: 4,
+          <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 4,
               alignItems:'center' }}>
-                <Box sx={{ width:"100%", bgcolor: '#E5E5E5', display:'flex', flexDirection:'column',
-              justifyContent:"center",alignItems:'center', border:'1px solid gray', borderRadius:4, p:1}}>
+                <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
+              justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, p:1}}>
                 {datasetMode === 0 ? userdataset !== null && userdataset !== undefined &&
                   userdataset.catalog !== null && userdataset.catalog !== undefined &&
                   userdataset.catalog.map((data,index)=><FeatureCard
@@ -335,12 +356,12 @@ const removeLocalDatasetcatalog = (data) => {
 
           </Box>
 
-              {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#E5E5E5',}}>
+              {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh',}}>
 
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
 
                   <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                    flex: 1, py: 2, px: 4, bgcolor: '#E5E5E5' }}>
+                    flex: 1, py: 2, px: 4, }}>
                      <Typography color="inherit" variant="h5" component="h1">
                           <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                               <div>Matching Catalogs &nbsp;</div>
@@ -350,7 +371,7 @@ const removeLocalDatasetcatalog = (data) => {
 
                   </Box>
 
-                  <Box sx={{ width:"100%", bgcolor: '#E5E5E5', display:'flex', flexDirection:'column',
+                  <Box sx={{ width:"100%", display:'flex', flexDirection:'column',
                       justifyContent:"center",alignItems:'center', px:4 }}>
                         {dataSources && dataSources.map((data,index)=><FeatureCard
                           openDetails={openDetails}
@@ -373,7 +394,7 @@ const removeLocalDatasetcatalog = (data) => {
             <div style={{display:'flex', flexDirection:'column'}}>
 
                 <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                    flex: 1, py: 2, px: 4, bgcolor: '#E5E5E5' }}>
+                    flex: 1, py: 2, px: 4, }}>
                     <Typography color="inherit" variant="h5" component="h1">
                         <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                             <div>Matching Datasets &nbsp;</div>

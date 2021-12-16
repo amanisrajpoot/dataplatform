@@ -31,7 +31,8 @@ export default function AddedFeatureCard(props){
 
           <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', minWidth:"100%", maxWidth:'100%',
               alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
-              textOverflow:'clip', border:'1px solid gray' }}>
+              textOverflow:'clip',
+              border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
 
               <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'5%',
                   paddingLeft:8, paddingRight:8}}>

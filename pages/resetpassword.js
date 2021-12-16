@@ -21,13 +21,14 @@ import Grid from '@mui/material/Grid';
 import ScreenLockPortraitOutlinedIcon from '@mui/icons-material/ScreenLockPortraitOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
 import mixpanel from 'mixpanel-browser';
 import PasswordStrengthBar from 'react-password-strength-bar';
-
+import OtpInput from "react-otp-input";
+import {forgotPasswordSubmit} from "../function/checkAuth"
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -61,7 +62,7 @@ function BrandName(props) {
 
 const theme = createTheme();
 
-const ResetPassword =() => {
+const ResetPassword =(props) => {
 
 	const signingLoading = () => {
 		if (email !== '' && password !== '') {
@@ -100,6 +101,7 @@ const ResetPassword =() => {
     // eslint-disable-next-line no-console
     console.log({
       email: data.get('email'),
+        otp: data.get('otp'),
       password: data.get('password'),
     });
   };
@@ -108,10 +110,11 @@ const ResetPassword =() => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [otp, setOtp] = useState("")
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
     const [mode, setMode] = useState(0);
-    const [top, setTop] = useState(24);
+    const [top, setTop] = useState(36);
 
     async function signInF(){
         const err = await signIn({email, password});
@@ -126,10 +129,25 @@ const ResetPassword =() => {
         }
     }
 
-    async function resetPassword(){
+    useEffect(()=>{
+        setEmail(router.query.useremail)
+        console.log("email", email)
+    },[email])
 
-        setMode(1);
-        setTop(36)
+    async function resetPassword(){
+        if(mode===0){
+            setMode(1);
+            setTop(24)
+        } else if(mode===1){
+            const erro = await forgotPasswordSubmit({email, otp, password})
+            if(erro === null) {
+                setMode(2);
+                setTop(36)
+            }else{
+                setError(erro)
+            }
+
+        }
 
     }
 
@@ -155,7 +173,7 @@ const ResetPassword =() => {
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
             flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
 
-            {mode===1?()=>setTop(56):null}
+            {mode===2?()=>setTop(56):null}
           <Box
             sx={{
               pt: top,
@@ -169,6 +187,13 @@ const ResetPassword =() => {
           >
 
               {mode===0?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
+                      <div style={{marginLeft:125}}>
+                          <div style={{fontSize:30}}>Enter the Password Reset OTP</div>
+                          <div style={{fontSize:14}}>The OTP will be of at-least 6 digits.</div>
+
+                      </div>
+                  </div>
+                  :mode===1?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
                 <div style={{marginLeft:125}}>
                     <div style={{fontSize:30}}>Set New Password?</div>
                     <div style={{fontSize:14}}>Your Password Must have</div>
@@ -180,7 +205,7 @@ const ResetPassword =() => {
                         sx={{transform: "scale(0.8)"}}/>One number or special character</div>
                 </div>
             </div>
-                  :mode===1?<>
+                  :mode===2?<>
 
                   <div style={{color:"#5A00E2", alignSelf:'center',marginBottom:35}}>
                       <LockIcon sx={{transform: "scale(4)"}} />
@@ -199,7 +224,28 @@ const ResetPassword =() => {
                  sx={{ pt: 1, display:'flex', flexDirection:'column', alignItems:'center',
                     width:'100%'}}>
 
-                {mode===0?<>
+                {mode===0?<><div style={{
+                        width: '100%',
+                        paddingLeft: 125,
+                        paddingRight: 100,
+                        paddingTop: 12
+                    }}>
+                        <OtpInput
+                            inputStyle={{
+                                alignSelf: 'center', display: 'flex',
+                                width: '60%', height: '7vh'
+                            }}
+                            value={otp}
+                            onChange={(otp) => {
+                                setOtp(otp)
+                                console.log("otp",otp)
+                            }}
+                            numInputs={6}
+                            separator={<span></span>}
+                        />
+                    </div>
+                    {error? <>{error}</>:null}</>
+                    :mode===1?<>
                 <TextField
                     margin="normal"
                     required
@@ -207,6 +253,7 @@ const ResetPassword =() => {
                     id="password"
                     label="Password"
                     name="password"
+                    type="password"
                     autoComplete="password"
                     autoFocus
                     onChange={(e) => setPassword(e.target.value)}
@@ -225,9 +272,10 @@ const ResetPassword =() => {
                         margin="normal"
                         required
                         sx={{width:"65%"}}
-                        id="email"
+                        id="confirmPassword"
                         label="Confirm Password"
                         name="confirmPassword"
+                        type="password"
                         autoComplete="confirmPassword"
                         autoFocus
                         onChange={(e) => setConfirmPassword(e.target.value)}
@@ -240,10 +288,20 @@ const ResetPassword =() => {
                             placeholder:"Confirm Password"
                         }}
                     />
+                        {error? <>{error}</>:null}
                     </>
                     :null}
 
                 {mode===0?<Button
+                        type="submit"
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
+                        onClick={resetPassword}
+                        // href="/dashboard"
+                    >
+                        Continue
+                    </Button>
+                    :mode===1?<Button
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
@@ -252,7 +310,7 @@ const ResetPassword =() => {
               >
                 Reset Password
               </Button>
-                    :mode===1?
+                    :mode===2?
                         <Button
                             type="submit"
                             variant="contained"
@@ -264,7 +322,7 @@ const ResetPassword =() => {
                         </Button>
                         :null}
 
-                {mode===0?<div style={{paddingTop:12,paddingRight:76,width:'100%',display:'flex',justifyContent:'start'}}>
+                {mode===1?<div style={{paddingTop:12,paddingRight:76,width:'100%',display:'flex',justifyContent:'start'}}>
                     <Link  href="/login" variant="body2" >
                         <a style={{display:'flex', alignItems:'center',
                             justifyContent:'center', paddingLeft:128}}>
@@ -273,14 +331,14 @@ const ResetPassword =() => {
                         </a>
                     </Link>
                 </div>
-                    :mode===1?
+                    :mode===2?
 
                 null:null}
 
 
                 <Divider variant="middle" />
 
-                {mode===0?<><div style={{width:'100%',display:'flex', paddingTop:95, fontSize:14,
+                {mode===1?<><div style={{width:'100%',display:'flex', paddingTop:95, fontSize:14,
                     justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
@@ -288,7 +346,7 @@ const ResetPassword =() => {
 
                 </div>
                 <Copyright sx={{ pt: 1 }} /></>
-                    :mode===1?<>
+                    :mode===2?<>
                     <div style={{width:'100%',display:'flex', paddingTop:235, fontSize:14,
                     justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
                     <div>Terms of Service </div>
@@ -300,8 +358,6 @@ const ResetPassword =() => {
                     :null}
             </Box>
           </Box>
-
-
 
         </Grid>
       </Grid>

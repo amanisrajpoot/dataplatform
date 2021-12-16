@@ -31,6 +31,8 @@ import {signOut} from "../function/checkAuth";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Divider from "@mui/material/Divider";
 import CachedIcon from "@mui/icons-material/Cached";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import InputBase from '@mui/material/InputBase';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -196,45 +198,65 @@ export default function Searchresult({
             <LeftNav />
         </Box>
 
-        <Box sx={{width:"82%", bgcolor: '#E5E5E5'}}>
+        <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
 
             <Box component="main" sx={{width:'100%', display:'flex'}}>
-                <TextField fullWidth id="outlined-basic"
-                           value={keyword} onChange={(event)=>setKeyword(event.target.value)}
-                           sx={{ bgcolor: '#ffffff', border:0}}
-                           InputProps={{
-                               startAdornment: (
-                                   <InputAdornment position="start">
-                                       <SearchIcon />
-                                   </InputAdornment>
-                               ),
-                               placeholder:"Search..."
-                           }}
-                />
+                <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center'}} >
+                    <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                        <SearchIcon />
+                    </Box>
+
+                    <InputBase
+                        // onChange={setVal}
+                        sx={{ bgcolor:'white',width:'90%'}}
+                        placeholder="Search Google Maps"
+                        inputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchIcon />
+                                </InputAdornment>
+                            ),
+                            placeholder:"Search..."
+                        }}
+                    />
+                </Box>
+
+                {/*<TextField fullWidth id="outlined-basic"*/}
+                {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
+                {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
+                {/*           InputProps={{*/}
+                {/*               startAdornment: (*/}
+                {/*                   <InputAdornment position="start">*/}
+                {/*                       <SearchIcon />*/}
+                {/*                   </InputAdornment>*/}
+                {/*               ),*/}
+                {/*               placeholder:"Search..."*/}
+                {/*           }}*/}
+                {/*/>*/}
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-between'}}>
+                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-around'}}>
                     <Link href='/login'>
-                        <NotificationsIcon />
+                        <NotificationsIcon sx={{color:'#939EAA'}}/>
                     </Link>
                     &nbsp;&nbsp;&nbsp;
                     <Link href='/login'>
-                        <AccountCircleIcon />
+                        <AccountCircleIcon sx={{color:'#939EAA'}}/>
                     </Link>
                     &nbsp;&nbsp;&nbsp;
                     <p>{user && user.firstname ? user.firstname : 'Account'} </p>
                     &nbsp;&nbsp;&nbsp;
                     <div onClick={()=>signOut({path:router.pathname})}>
-                        <ArrowDropDownIcon />
+                        <ArrowDropDownIcon sx={{color:'#939EAA'}}/>
                     </div>
                 </div>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#E5E5E5', justifyContent:'space-between'}}>
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
                     <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
-                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/dashboard1')}>
+                            justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                             {"Back"}</Button>
                     <Divider variant="middle" orientation="vertical" />
                     <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Create Dataset</div>
@@ -251,11 +273,11 @@ export default function Searchresult({
                     value={value}
                     onChange={handleChange}
                     aria-label="Vertical tabs example"
-                    sx={{ borderRight: 1, borderColor: 'divider' }}
+                    sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', }}
                 >
-                    <Tab label="1. Dataset Information" {...a11yProps(0)} />
-                    <Tab label="2. Add Catalogues" {...a11yProps(1)} />
-                    <Tab label="3. Review and Save" {...a11yProps(2)} />
+                    <Tab sx={{ textAlign: 'left', color:'#5A00E2' }} label={"1. Dataset Information "} {...a11yProps(0)} />
+                    <Tab sx={{ textAlign: 'left', }} label="2. Add Catalogues" {...a11yProps(1)} />
+                    <Tab sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="3. Review and Save" {...a11yProps(2)} />
 
                 </Tabs>
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
@@ -292,11 +314,11 @@ export default function Searchresult({
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                             fontSize:20,pb:2,  ml:73.5, flex:'end'}}>
-                            <Button variant="outlined" size="small" sx={{px:2, py:2.5,ml:2,
-                                }}
+                            <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
+                                borderColor:'#5A00E2'}}
                                      onClick={()=>router.push('/dashboard')}>
                                 {"Save as Draft"}</Button>
-                        <Button variant="contained" size="small" sx={{px:5, py:2.5,ml:2,
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                  onClick={()=>router.push('/dashboard')}>
                             {"Next"}</Button>
@@ -362,11 +384,12 @@ export default function Searchresult({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                         fontSize:20,pb:2,  ml:73.5, flex:'end'}}>
-                        <Button variant="outlined" size="small" sx={{px:2, py:2.5,ml:2,
+                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
+                            borderColor:'#5A00E2'
                             }}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button>
-                        <Button variant="contained" size="small" sx={{px:5, py:2.5,ml:2,
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Next"}</Button>
@@ -415,10 +438,11 @@ export default function Searchresult({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                         fontSize:20,pb:2,  ml:71, flex:'end'}}>
-                        <Button variant="outlined" size="small" sx={{px:2, py:2.5,ml:2,}}
+                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
+                            borderColor:'#5A00E2'}}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button>
-                        <Button variant="contained" size="small" sx={{px:5, py:2.5,ml:2,
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleSendData()}>
                             {"Create"}</Button>

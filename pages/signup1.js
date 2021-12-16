@@ -118,6 +118,8 @@ const SignUp =({token, setToken}) => {
             password,
             name,
             company,
+            token,
+            setToken
 
         });
         if (erro === null) {
@@ -126,12 +128,14 @@ const SignUp =({token, setToken}) => {
             setBottomTopPadding(202)
         }
         setError(erro);
-        setMode(0);
+        console.log('server error', erro)
+        //setMode(0);
     }
 
     async function confirmSignUpF() {
         const erro = await confirmSignUp({ email,otp,token, setToken  });
         if (erro === null) {
+            await router.push('/accountcreated')
             await signIn({email, password, token, setToken});
             // sleep(2000);
             // const ret = await createUser({email,firstname,lastname,company,token});
@@ -170,6 +174,7 @@ const SignUp =({token, setToken}) => {
         event.preventDefault();
         // const data = new FormData(event.currentTarget);
         console.log("wrong OTP", error)
+        console.log(email,password,company, name, otp)
         if(mode===0){
             checkFields()
         } else if(mode===1){
@@ -188,8 +193,10 @@ const SignUp =({token, setToken}) => {
                         sm={4}
                         md={6}
                         sx={{
-                            backgroundImage: 'url(/login-background.jpg)',
+                            backgroundImage: 'url(/login-background01.png)',
                             // backgroundRepeat: 'no-repeat',
+                            width:"100%",
+
                             backgroundColor: (t) =>
                                 t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                             backgroundSize: 'cover',

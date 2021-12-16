@@ -44,7 +44,7 @@
 
 .items p,
 .loc p {
-    font-family: Plus Jakarta Sans;
+    font-family: Roboto;
     font-style: normal;
     font-weight: 700;
     font-size: 1.1rem;
@@ -91,7 +91,7 @@
     background-color: #5A00E2;
     border-radius: 6px;
     padding: 0.5rem 1rem;
-    font-family: Plus Jakarta Sans;
+    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 1rem;
@@ -145,7 +145,7 @@
     align-items: center;
     border-radius: 6px;
     padding: 0.5rem 1rem;
-    font-family: Plus Jakarta Sans;
+    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 1rem;
@@ -170,7 +170,7 @@
     border: none;
     justify-content: flex-start;
     align-items: center;
-    font-family: Plus Jakarta Sans;
+    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 1rem;
@@ -339,7 +339,7 @@
         border: none;
         justify-content: flex-start;
         align-items: center;
-        font-family: Plus Jakarta Sans;
+        font-family: Roboto;
         font-style: normal;
         font-weight: 500;
         font-size: 1rem;

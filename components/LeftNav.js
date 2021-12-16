@@ -63,7 +63,8 @@ export default function LeftNav({
 	// }, [width]);
 
 	return (
-		<div className={`${styles.header} ${leftAnimation}`} style={{font:'roboto'}}>
+		<div className={`${styles.header} ${leftAnimation}`} style={{font:'roboto', border: "1px solid #dedede",
+			boxShadow: "10px 0 5px -2px #888"}}>
 			{/* ADD SAMPLES */}
 			<Modal
 				open={addSampleModalVisible}
@@ -135,11 +136,11 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/dashboard');
-						if (width !== null && width <= 800) {
-							setmenu(false);
-							setLeftAnimation(styles.menuTopClose);
-						}
+						router.push('/dashboard1');
+						// if (width !== null && width <= 800) {
+						// 	setmenu(false);
+						// 	setLeftAnimation(styles.menuTopClose);
+						// }
 					}}
 					className={styles.items}
 					style={{
@@ -148,7 +149,7 @@ export default function LeftNav({
 							: 'gray',
 					}}
 				>
-						<DashboardIcon fontSize="medium" sx={{fontSize:32,}}/>
+						<DashboardIcon fontSize="medium" sx={{fontSize:28,}}/>
 
 					<p
 						style={{fontSize:20, font:'roboto', fontWeight:500,
@@ -162,11 +163,11 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/dashboard');
-						if (width !== null && width <= 800) {
-							setmenu(false);
-							setLeftAnimation(styles.menuTopClose);
-						}
+						router.push('/dashboard1');
+						// if (width !== null && width <= 800) {
+						// 	setmenu(false);
+						// 	setLeftAnimation(styles.menuTopClose);
+						// }
 					}}
 					className={styles.items}
 					style={{
@@ -175,7 +176,7 @@ export default function LeftNav({
 							: 'gray',
 					}}
 				>
-						<TableViewOutlinedIcon fontSize="medium" sx={{fontSize:32,}}/>
+						<TableViewOutlinedIcon fontSize="medium" sx={{fontSize:28,}}/>
 
 
 					<p
@@ -189,11 +190,11 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/dashboard');
-						if (width !== null && width <= 800) {
-							setmenu(false);
-							setLeftAnimation(styles.menuTopClose);
-						}
+						router.push('/dashboard1');
+						// if (width !== null && width <= 800) {
+						// 	setmenu(false);
+						// 	setLeftAnimation(styles.menuTopClose);
+						// }
 					}}
 					className={styles.items}
 					style={{
@@ -202,7 +203,7 @@ export default function LeftNav({
 							: 'gray',
 					}}
 				>
-						<SourceIcon fontSize="medium" sx={{fontSize:32,}}/>
+						<SourceIcon fontSize="medium" sx={{fontSize:28,}}/>
 
 
 					<p
@@ -216,11 +217,11 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/dashboard');
-						if (width !== null && width <= 800) {
-							setmenu(false);
-							setLeftAnimation(styles.menuTopClose);
-						}
+						router.push('/dashboard1');
+						// if (width !== null && width <= 800) {
+						// 	setmenu(false);
+						// 	setLeftAnimation(styles.menuTopClose);
+						// }
 					}}
 					className={styles.items}
 					style={{
@@ -229,7 +230,7 @@ export default function LeftNav({
 							: 'gray',
 					}}
 				>
-						<SettingsIcon fontSize="medium" sx={{fontSize:32,}}/>
+						<SettingsIcon fontSize="medium" sx={{fontSize:28,}}/>
 
 
 					<p
@@ -243,11 +244,11 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						redirect('/dashboard');
-						if (width !== null && width <= 800) {
-							setmenu(false);
-							setLeftAnimation(styles.menuTopClose);
-						}
+						router.push('/dashboard1');
+						// if (width !== null && width <= 800) {
+						// 	setmenu(false);
+						// 	setLeftAnimation(styles.menuTopClose);
+						// }
 					}}
 					className={styles.items}
 					style={{
@@ -256,7 +257,7 @@ export default function LeftNav({
 							: 'gray',
 					}}
 				>
-						<LiveHelpIcon fontSize="medium" sx={{ fontSize:32, }}/>
+						<LiveHelpIcon fontSize="medium" sx={{ fontSize:28, }}/>
 
 
 					<p
@@ -273,35 +274,41 @@ export default function LeftNav({
 				</div>
 
 				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
-					<div>Favourite</div>
+					<div style={{textTransform: "capitalize", color:'#939EAA', fontSize:14}}>FAVOURITE</div>
 					<div onClick={()=>setFavourite(!favourite)}>
 						{favourite?<ExpandLessIcon />:<ExpandMoreIcon/>}
 					</div>
 
 				</div>
 
-				{favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
-					<FiberManualRecordIcon color="error" fontSize="small" />
-					<div>Healthcare</div>
-					<div>345</div>
+				{favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,
+				textAlign:'left'}}>
+					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}} /></div>
+					<div style={{width:"70%"}}>Healthcare</div>
+					<div style={{width:"14%", color:'#C5CDD4'}}>345</div>
 				</div>
 				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
-					<FiberManualRecordIcon color="error" fontSize="small" />
-					<div>FDA Drugs </div>
-					<div>123</div>
+					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
+					<div style={{width:"70%"}}>FDA Drugs</div>
+					<div style={{width:"14%", color:'#C5CDD4'}}>123</div>
 				</div>
 				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12}}>
-					<FiberManualRecordIcon color="error" fontSize="small" />
-					<div>Insurance Inc.</div>
-					<div>678</div>
-				</div></>}
+					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
+					<div style={{width:"70%"}}>Insaurance inc.</div>
+					<div style={{width:"14%", color:'#C5CDD4'}}>456</div>
+				</div>
+					<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12}}>
+						<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
+						<div style={{width:"70%"}}>Test Dataset</div>
+						<div style={{width:"14%", color:'#C5CDD4'}}>756</div>
+					</div></>}
 
 				<div style={{paddingTop:24, paddingBottom:24}}>
 					<Divider />
 				</div>
 
 				<div style={{display:'flex', justifyContent:'space-between',  paddingBottom:12}}>
-					<div>Recently Used</div>
+					<div style={{textTransform: "capitalize", color:'#939EAA', fontSize:14}}>RECENT SETS</div>
 					<div onClick={()=>setRecently(!recently)}>
 						{recently?<ExpandLessIcon />:<ExpandMoreIcon/>}
 					</div>
@@ -309,24 +316,27 @@ export default function LeftNav({
 				</div>
 
 				{recently && <><div style={{display:'flex', flex:'start', paddingBottom:9, color:"#5A00E2", alignItems:'center',
-				cursor:'pointer'}}>
-					<AddCircleOutlineOutlinedIcon color="disabled" style={{fontSize:32,color:"gray",marginRight:24}} />
-					<div>Start New Set</div>
+				cursor:'pointer', justifyContent:'center'}} onClick={()=>router.push("/searchresult")}>
+					<div style={{width:'20%'}}><AddCircleOutlineOutlinedIcon color="disabled" style={{fontSize:28,color:"gray",marginRight:24}} /></div>
+					<div style={{width:'80%'}}>Start New Set</div>
 				</div>
-					<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
-					<FiberManualRecordIcon color="success" fontSize="small" />
-					<div>Insurance Inc.</div>
-					<div>678</div>
+
+				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center',  }}>
+					<div style={{width:"21%"}}>
+						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
+							textAlign:'center',paddingTop:6}}>
+							HC
+						</div></div>
+					<div style={{width:"75%"}}>HealthCare</div>
+					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#46D989'}}/></div>
 				</div>
-				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12 }}>
-					<FiberManualRecordIcon color="success" fontSize="small" />
-					<div>FDA Drugs </div>
-					<div>123</div>
-				</div>
-				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
-					<FiberManualRecordIcon color="success" fontSize="small" />
-					<div>FDA Drugs </div>
-					<div>123</div>
+				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,alignItems:'center',}}>
+					<div style={{width:"21%"}}>
+						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
+							textAlign:'center', paddingTop:6}}>
+							CT</div></div>
+					<div style={{width:"75%"}}>Cancer Treate</div>
+					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#46D989'}} /></div>
 				</div></>}
 
 				<div

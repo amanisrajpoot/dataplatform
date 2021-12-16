@@ -39,6 +39,7 @@ import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import InputBase from '@mui/material/InputBase';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -153,38 +154,58 @@ export default function Dashboard({
     
     <Box>
       {/*<Navbar token={token} setToken={setToken}/>*/}
-        <Box sx={{display:'flex', font:'roboto'}}>
+        <Box sx={{display:'flex', fontStyle:'roboto'}}>
             <Box sx={{width:"18%"}}>
                 <LeftNav />
             </Box>
-        <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#E5E5E5', font:'roboto'}}>
-            <Box component="main" sx={{  minWidth: '50vw', display:'flex'}}>
-                <TextField fullWidth id="outlined-basic"
-                           value={keyword} onChange={(event)=>setKeyword(event.target.value)}
-                            sx={{ bgcolor: '#ffffff', border:0}}
-                           InputProps={{
-                               startAdornment: (
-                                   <InputAdornment position="start">
-                                       <SearchIcon />
-                                   </InputAdornment>
-                               ),
-                               placeholder:"Search..."
-                           }}
+        <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+            <Box component="main" sx={{  minWidth:'100%', display:'flex'}}>
+                <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center'}} >
+                    <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                        <SearchIcon />
+                    </Box>
+
+                <InputBase
+                    // onChange={setVal}
+                    sx={{ bgcolor:'white',width:'90%'}}
+                    placeholder="Search Google Maps"
+                    inputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                        placeholder:"Search..."
+                    }}
                 />
+                </Box>
+
+                {/*<TextField fullWidth id="outlined-basic"*/}
+                {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
+                {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
+                {/*           InputProps={{*/}
+                {/*               startAdornment: (*/}
+                {/*                   <InputAdornment position="start">*/}
+                {/*                       <SearchIcon />*/}
+                {/*                   </InputAdornment>*/}
+                {/*               ),*/}
+                {/*               placeholder:"Search..."*/}
+                {/*           }}*/}
+                {/*/>*/}
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-between'}}>
+                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-around'}}>
                     <Link href='/login'>
-                        <NotificationsIcon />
+                        <NotificationsIcon sx={{color:'#939EAA'}}/>
                     </Link>
                     &nbsp;&nbsp;&nbsp;
                     <Link href='/login'>
-                        <AccountCircleIcon />
+                        <AccountCircleIcon sx={{color:'#939EAA'}}/>
                     </Link>
                     &nbsp;&nbsp;&nbsp;
                     <p>{user && user.firstname ? user.firstname : 'Account'} </p>
                     &nbsp;&nbsp;&nbsp;
                     <div onClick={()=>signOut({path:router.pathname})}>
-                        <ArrowDropDownIcon />
+                        <ArrowDropDownIcon sx={{color:'#939EAA'}}/>
                     </div>
                 </div>
             </Box>
@@ -193,7 +214,7 @@ export default function Dashboard({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                        <div style={{fontSize:30}}>My Datasets &nbsp;&nbsp;</div>
+                        <div style={{fontSize:28}}>My Datasets &nbsp;&nbsp;</div>
                         <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                             alignItems:'space-between'}}>
                             <div style={{fontSize:18, color:'gray'}}>Show:&nbsp;&nbsp;</div>
@@ -217,7 +238,7 @@ export default function Dashboard({
 
                     </Box>
                 <Button variant="contained" size="large"
-                        sx={{backgroundColor:'#5A00E2', px:2, borderRadius:4}}
+                        sx={{backgroundColor:'#5A00E2', px:2, borderRadius:'10px', textTransform: "capitalize"}}
                         startIcon={<AddIcon />}
                         onClick={() => {
                             router.push('/searchresult');
@@ -239,6 +260,7 @@ export default function Dashboard({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                         color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
+                        <div ><ArrowDropDownIcon fontSize="large" sx={{color:'#92929D'}}/></div>
                         <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                         <div>Drafts &nbsp;</div>
                         {userdatasets !== null && userdatasets !== undefined && <div>{"("+ userdatasets.length+")"}</div>}
@@ -256,8 +278,8 @@ export default function Dashboard({
 
                     <div style={{height:'28ch', minWidth:'26ch', maxWidth:'28ch',borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
                         marginRight:12, marginBottom:12, display:'flex', flexDirection:'column', alignItems:'center',
-                        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed', marginBottom:7 }}>
-                        <div style={{marginTop:12}}>
+                        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed #bfbfbf', marginBottom:7 }}>
+                        <div style={{marginTop:12, cursor:'pointer'}} onClick={()=>router.push('/searchresult')} >
                             <div><AddCircleOutlinedIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
                                 }}/></div>
                             <div style={{color:'black', fontSize:20, paddingBottom:12}}>Create New Set</div>
@@ -341,7 +363,7 @@ export default function Dashboard({
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
             {/* <SignalTable /> */}
             <Box sx={{ width:"98%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
-              justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid black',}}>
+              justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                 {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
                   userdatasets.map((data, index)=><DatasetCard
                   key={data.dataset_id}

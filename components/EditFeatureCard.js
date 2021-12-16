@@ -43,7 +43,8 @@ export default function FeatureCard(props){
 
           <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"100%",
               alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
-              textOverflow:'clip',  }}>
+              textOverflow:'clip',
+              border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
 
               <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'5%',
                   paddingLeft:8, paddingRight:8}}>
@@ -67,13 +68,13 @@ export default function FeatureCard(props){
                   <div style={{fontSize:14, width:"25%"}}>
                       <div>No. of Features<br></br>
                       </div>
-                      <div><b>{props.data.features?props.data.features.split(",").length: "0"}</b></div>
+                      <div><b>{props.data.features?props.data.features.split(",").length.toLocaleString(): "0"}</b></div>
                   </div>
                   <Divider orientation="vertical" variant="middle" flexItem/>
                   <div style={{fontSize:14,width:"25%"}}>
                       <div>No. of Rows<br></br>
                       </div>
-                      <div><b>{props.data.row_count?props.data.row_count: "0"}</b></div>
+                      <div><b>{props.data.row_count?props.data.row_count.toLocaleString(): "0"}</b></div>
                   </div>
                   <Divider orientation="vertical" variant="middle" flexItem/>
 
