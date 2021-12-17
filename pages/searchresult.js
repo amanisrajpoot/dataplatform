@@ -395,12 +395,12 @@ export default function Searchresult({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                         fontSize:20,pb:2,  flex:'end'}}>
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleClickChange(0)}>
                             {"Previous"}</Button>
 
-                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',ml:55.5,borderRadius:4,
+                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',ml:58.5,borderRadius:4,
                             borderColor:'#5A00E2'
                             }}
                                 onClick={()=>router.push('/dashboard')}>
@@ -456,11 +456,11 @@ export default function Searchresult({
                     <Divider sx={{width:'100%', marginBottom:2}} />
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                         fontSize:20,pb:2,  flex:'end'}}>
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleClickChange(1)}>
                             {"Previous"}</Button>
-                        <Button variant="outlined" size="small" sx={{ml:2,ml:55.5,color:'#5A00E2',borderRadius:4,
+                        <Button variant="outlined" size="small" sx={{ml:2,ml:56.5,color:'#5A00E2',borderRadius:4,
                             borderColor:'#5A00E2'}}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button>

@@ -106,7 +106,7 @@ export default function ManageDataset({
         console.log(dataF)
         const data = await deleteUserDataset({token, data:dataF});
         if(data){
-            window.open("/dashboard", "_self")
+            window.open("/dashboard1", "_self")
         }
     }
 

@@ -123,6 +123,8 @@ export default function Dashboard({
 
   const [openDetails, setOpenDetails] = useState(false);
   const [dsDetails, setDSDetails] = useState([]);
+  const [showDraft, setShowDraft] = useState(true)
+
   const handleOpenDetails = (data) => {
     setOpenDetails(true);
     setDSDetails(data);
@@ -195,7 +197,10 @@ export default function Dashboard({
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                     alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                     <Link href='/login'>
-                        <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                        <NotificationsIcon
+                            fontSize="large"
+                            sx={{color:'#939EAA', cursor:'pointer'}}
+                        />
                     </Link>
                     &nbsp;&nbsp;&nbsp;
                     <Link href='/login'>
@@ -260,7 +265,11 @@ export default function Dashboard({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                         color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
-                        <div ><ArrowDropDownIcon fontSize="large" sx={{color:'#92929D'}}/></div>
+                        <div ><ArrowDropDownIcon
+                            fontSize="large"
+                            sx={{color:'#92929D'}}
+                            onClick={()=>setShowDraft(!showDraft)}
+                        /></div>
                         <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                         <div>Drafts &nbsp;</div>
                         {userdatasets !== null && userdatasets !== undefined && <div>{"("+ userdatasets.length+")"}</div>}
@@ -273,7 +282,7 @@ export default function Dashboard({
                     </Box>
                 </Box>
 
-                <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',
+                {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',
                     alignItems:'center',  overflow: "scroll"}}>
 
                     <div style={{height:'28ch', minWidth:'26ch', maxWidth:'28ch',borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
@@ -297,7 +306,7 @@ export default function Dashboard({
                             handleOpenDetails={handleOpenDetails}
                             handleCloseDetails={handleCloseDetails}/>): null
                     }
-                </Box>
+                </Box>}
 
           <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
 

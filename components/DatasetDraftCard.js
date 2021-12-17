@@ -7,7 +7,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 import SettingsIcon from '@mui/icons-material/Settings';
 import mixpanel from 'mixpanel-browser';
-import {getUser} from "../function/users";
+import {deleteUserDataset, getUser} from "../function/users";
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -68,6 +68,14 @@ export default function DatasetDraftCard(props){
     const handleRemove = () => {
           props.removeDatasetcatalog(props.data);
   }
+
+    async function deleteF(dataF){
+        console.log(dataF)
+        const data = await deleteUserDataset({token:props.token, data:dataF});
+        if(data){
+            window.open("/dashboard1", "_self")
+        }
+    }
 
     console.log("fetched dataset",props.data);
     return (
@@ -145,7 +153,9 @@ export default function DatasetDraftCard(props){
                           }
                         }>
                         {router.pathname.includes("/dataset1")?null:<>
-                            <div><Button sx={{borderRadius:2, color:'#FF6262',paddingTop:1,borderColor:"#FF6262", }} variant="outlined"><DeleteIcon /></Button></div>
+                            <div><Button sx={{borderRadius:2, color:'#FF6262',paddingTop:1,borderColor:"#FF6262", }}
+                                         variant="outlined"
+                                         onClick={()=>deleteF(props.data)}><DeleteIcon /></Button></div>
                             <div><Button sx={{borderRadius:2, color:'#667280', borderColor:'#667280', textTransform: "capitalize"}} variant="outlined"
                                          onClick={()=>{router.push('/dataset1/'+props.data.ID)}}>Edit Details</Button></div></>}
                     </div>}
