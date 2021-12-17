@@ -40,10 +40,6 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import InputBase from '@mui/material/InputBase';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import SortIcon from '@mui/icons-material/Sort';
-import {FormControl} from "@mui/material";
-import CancelIcon from '@mui/icons-material/Cancel';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -85,16 +81,13 @@ const style2 = {
   p: 4,
 };
 
-export default function BrowseCatalogue({
+export default function Dashboard({
   token,
   setToken,
   dataset,
   userdatasets,
   dataSources,
   setDataSources,
-                                            addDatasetcatalog,
-                                            removeDatasetcatalog,
-
   
 }) {
 
@@ -163,12 +156,12 @@ export default function BrowseCatalogue({
     
     <Box>
       {/*<Navbar token={token} setToken={setToken}/>*/}
-        <Box sx={{display:'flex', fontStyle:'roboto', maxWidth:'100%'}}>
+        <Box sx={{display:'flex', fontStyle:'roboto'}}>
             <Box sx={{width:"18%"}}>
                 <LeftNav />
             </Box>
         <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-            <Box component="main" sx={{  width:'100%', display:'flex', }}>
+            <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
                 <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                     <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                         <SearchIcon />
@@ -177,7 +170,7 @@ export default function BrowseCatalogue({
                 <InputBase
                     // onChange={setVal}
                     sx={{ bgcolor:'white',width:'90%'}}
-                    placeholder="Search"
+                    placeholder="Search Google Maps"
                     inputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
@@ -222,118 +215,125 @@ export default function BrowseCatalogue({
                 </div>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', }}>
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between'}}>
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                        <div style={{fontSize:28}}>Catalouges &nbsp;&nbsp;</div>
+                        <div style={{fontSize:28}}>Dashboard &nbsp;&nbsp;</div>
                         <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                             alignItems:'space-between'}}>
-                            <div style={{fontSize:18, color:'gray'}}>Show:&nbsp;&nbsp;</div>
-                            <div style={{fontSize:18, color:'gray-900'}}>All</div>
-                            <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
 
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose2}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={handleClose}>All</MenuItem>
-                                <MenuItem onClick={handleClose}>Created</MenuItem>
-                                <MenuItem onClick={handleClose}>Draft</MenuItem>
-                            </Menu>
                         </div>
 
                     </Box>
+
 
                 </Box>
 
             <Box>
 
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', width:'100%',
-              justifyContent:'space-between'}}>
+                {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',
+                    alignItems:'center',  overflow: "scroll"}}>
+
+                    <div style={{height:'28ch', minWidth:'72ch', maxWidth:'28ch',borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
+                        marginRight:12, marginBottom:12, display:'flex', flexDirection:'column', alignItems:'center',
+                        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed #bfbfbf', marginBottom:7 }}>
+                        <div style={{marginTop:12, cursor:'pointer'}} onClick={()=>router.push('/searchresult')} >
+                            <div><AddCircleOutlinedIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
+                                }}/></div>
+                            <div style={{color:'black', fontSize:20, paddingBottom:12}}>Create New Set</div>
+                            <div style={{color:'gray'}}>First steps to create the great analysis is to start with data sets</div>
+                        </div>
+                    </div>
+                    {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
+                        userdatasets.map((data, index)=><DatasetDraftCard
+                            key={data.dataset_id}
+                            index={index}
+                            data={data}
+                            token={token}
+                            user={user}
+                            openDetails={openDetails}
+                            handleOpenDetails={handleOpenDetails}
+                            handleCloseDetails={handleCloseDetails}/>): null
+                    }
+                </Box>}
+
+          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
 
               <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                     color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                      <div>Catalogues &nbsp;</div>
-                  {dataSources !== null && dataSources !== undefined && <div>{"("+ dataSources.length+")"}</div>}
-                    <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
-
+                      <div>My Datasets &nbsp;</div>
+                  {userdatasets !== null && userdatasets !== undefined && <div>{"("+ userdatasets.length+")"}</div>}
+                    <Divider variant="middle"/>
                 </Box>
-              <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
+
                 <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/>
 
+                <Modal
+                  open={open2}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                      <Grid sx={{display:'flex', flexDirection:'column', width:'100%' }}>
+                        <Box sx={{display:'flex', flexDirection:"row", fontSize:20, fontWeight:600,
+                            justifyContent:'space-between'}}>
+                            <Box>
+                                CHOOSE A METHOD
+                            </Box>
+                            <Box onClick={()=>handleClose()}>
+                                X
+                            </Box>
+                        </Box>
+
+                        <div style={{display:"flex", flexDirection:'row', maxHeight:'375px', width:"100%",
+                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16 }}>
+
+                            <Link href="/createsignalfirst">
+                                <Box sx={{border:2, borderColor:"#000000",
+                                    mx:4,my:4,py:2,px:4, textAlign:'center',}}>
+                                    <AddBoxIcon style={{fontSize:96}}/>
+                                    <p><b>From Scratch</b><br></br>
+                                        Create a new Custom<br></br>
+                                        Dataset combining the<br></br>
+                                        data sources you want.</p>
+                                </Box>
+                            </Link>
+
+                            <Divider variant="middle" orientation="vertical" />
+
+                            <Box sx={{border:2, borderColor:"#000",
+                                mx:4,my:4,py:2,px:4,textAlign:'center'}}
+                                 onClick={handleOpen2}>
+                                <ContentCopyOutlinedIcon style={{fontSize:96}}/>
+                                <p><b>From Predefined Models</b><br></br>
+                                    Create a new<br></br>
+                                    Dateset based on<br></br>
+                                    predefined domain models.</p>
+                            </Box>
+                      </div>
+                      </Grid>
+                  </Box>
+                </Modal>
           </Box>
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
             {/* <SignalTable /> */}
-            <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
+            <Box sx={{ width:"98%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
-                    <Box component="main" sx={{ display:'flex', width:'100%', alignItems:'center',
-                        minHeight:'14vh', px:1.5, borderRadius:4}}>
-                        <Box sx={{ display:'flex', width:'100%',py:4, px:2, alignItems:'left', flexDirection:'column',
-                            minHeight:'20vh',maxHeight:'20vh',bgcolor:"#fff", my:2,  borderRadius:4}}>
-                            <Box sx={{display:'flex',width:'100%', alignItems:'center',}}>
-                            <input variant="outlined" placeholder="Search..."
-                                   value={keyword} onChange={(event)=>setKeyword(event.target.value)}
-                                   label="Keyword" style={{ bgcolor: '#ffffff', minHeight:"5.5vh",maxHeight:'5.5vh',
-                                     border:'1px solid',borderColor:"#E2E2EA",fontSize:20,
-                                    borderRadius:4, width:'100%'}}>
-                                {/*<FilterListIcon sx={{ fontSize: 25,  }}/>*/}
-                            </input>
-
-                        <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
-                            alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
-                            }}
-                                variant="outlined"
-                                onClick={()=>handleKeywordSearch()}>
-                            <FilterListIcon sx={{ fontSize: 25,  }}/>
-                            <div style={{ paddingLeft:12}}>Filter</div>
-                        </Button>
-
-                        <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
-                            alignItems:'center', justifyContent:'center', borderRadius:3, border:0.5, borderColor:'#939EAA',
-                            }}
-                                variant={"outlined"}
-                                onClick={()=>handleKeywordSearch()}>
-                            <SortIcon sx={{ fontSize: 25, }}/>
-                            <div style={{ paddingLeft:12, paddingRight:4}}>Sort</div>
-                        </Button>
-                            </Box>
-                            <Box sx={{display:'flex', pt:2}}>
-                                <div style={{paddingTop:8}}>Appllied Filters: {keyword && keyword.split(/(?:,| )+/).map((word,index)=>index <7 && <Button
-                                    variant="outlined"
-                                    sx={{marginRight:1, borderRadius:4, bgcolor:'#FF49A1',color:'#fff',
-                                        textTransform:'lowercase', borderColor:'#FF49A1',
-                                    }}
-                                    onClick={()=>setKeyword(keyword.split(/(?:,| )+/).filter(key=>key!==word).toString())}
-                                    endIcon={<CancelIcon />}>
-                                    {word +" "}</Button>)}
-                                </div>
-
-                            </Box>
-                        </Box>
-
-                    </Box>
-
-                {dataSources && dataSources.map((data,index)=><FeatureCard
-                    openDetails={openDetails}
-                    data={data}
-                    index={index}
-                    token={token}
-                    user={user}
-                    handleOpenDetails={handleOpenDetails}
-                    handleCloseDetails={handleCloseDetails}
-                    dataset={dataset.catalog}
-                    dataSources={dataSources}
-                    removeDatasetcatalog={removeDatasetcatalog}
-                    addDatasetcatalog={addDatasetcatalog}
-                />)}
+                {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
+                  userdatasets.map((data, index)=><DatasetCard
+                  key={data.dataset_id}
+                  index={index}
+                  data={data}
+                  token={token}
+                  user={user}
+                  openDetails={openDetails}
+                  handleOpenDetails={handleOpenDetails}
+                  handleCloseDetails={handleCloseDetails}/>): null
+                  }
           </Box>
       
       </Box>

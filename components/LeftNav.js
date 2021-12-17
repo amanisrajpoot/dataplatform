@@ -191,7 +191,7 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						router.push('/dashboard1');
+						router.push('/browsecatalogue');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
 						// 	setLeftAnimation(styles.menuTopClose);
@@ -199,7 +199,7 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						color: router.pathname.includes('/catalogue')
+						color: router.pathname.includes('/browsecatalogue')
 							? '#5A00E2'
 							: 'gray',
 					}}
@@ -209,7 +209,7 @@ export default function LeftNav({
 
 					<p
 						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/catalogue') ? '#5A00E2' : '',
+							color: router.pathname.includes('/browsecatalogue') ? '#5A00E2' : '',
 						}}
 					>
 						Catalogues
