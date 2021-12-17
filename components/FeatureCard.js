@@ -53,15 +53,15 @@ export default function FeatureCard(props){
 
     return (
 
-          <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"100%",
+          <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"98%",
                alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
-              textOverflow:'clip', font:'roboto',
+              textOverflow:'clip', font:'roboto',paddingRight:8,paddingLeft:4, marginLeft:12,marginRight:12,
           border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
 
-              <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'5%',
-                  paddingLeft:8, paddingRight:8}}>
+              <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'7%',
+                  paddingLeft:18, paddingRight:8,}}>
 
-                  <Button sx={{borderRadius:2,minWidth:'24px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
+                  <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
                           variant="outlined">{parseInt(props.index+1)}</Button>
               </div>
 
@@ -109,6 +109,7 @@ export default function FeatureCard(props){
                         </div>
                     
                     {router.pathname.includes('/dashboard')?"":
+                        router.pathname.includes('/browsecatalogue')?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 0 ?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 1 ?"":
                     <div style={{fontSize:14, cursor:'pointer'}} 
