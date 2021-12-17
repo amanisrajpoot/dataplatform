@@ -30,6 +30,14 @@
     align-items: center;
     transition: all 0.25s ease-in;
     cursor: pointer;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    /* Gray/Gray_700 */
+    color: #474F5A;
 
 }
 
@@ -46,10 +54,12 @@
 .loc p {
     font-family: Roboto;
     font-style: normal;
-    font-weight: 700;
-    font-size: 1.1rem;
-    line-height: 27px;
-    color: #3f4544;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    /* Gray/Gray_700 */
+    color: #474F5A;
     margin-left: 1rem;
 }
 
@@ -94,8 +104,11 @@
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
-    font-size: 1rem;
-    line-height: 27px;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    /* Gray/Gray_700 */
+    color: #474F5A;
     text-align: center;
     color: #ffffff;
     cursor: pointer;
@@ -148,8 +161,11 @@
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
-    font-size: 1rem;
-    line-height: 27px;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    /* Gray/Gray_700 */
+    color: #474F5A;
     text-align: center;
     color: #5A00E2;
     cursor: pointer;
@@ -173,9 +189,11 @@
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
-    font-size: 1rem;
-    line-height: 24px;
-    color: #3f4544;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    /* Gray/Gray_700 */
+    color: #474F5A;
 }
 
 .itemsLogout,

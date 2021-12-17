@@ -113,6 +113,10 @@ export default function Searchresult({
         setValue(newValue);
     };
 
+    const handleClickChange = (newValue) => {
+        setValue(newValue);
+    };
+
   useEffect(() => {
     setSearching4(dataset.catalog);
     console.log("fetched dataset",searching4);
@@ -199,57 +203,56 @@ export default function Searchresult({
         </Box>
 
         <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
+                <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+                    <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+                        <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                            <SearchIcon />
+                        </Box>
 
-            <Box component="main" sx={{width:'100%', display:'flex'}}>
-                <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center'}} >
-                    <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                        <SearchIcon />
+                        <InputBase
+                            // onChange={setVal}
+                            sx={{ bgcolor:'white',width:'90%'}}
+                            placeholder="Search Google Maps"
+                            inputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                ),
+                                placeholder:"Search..."
+                            }}
+                        />
                     </Box>
 
-                    <InputBase
-                        // onChange={setVal}
-                        sx={{ bgcolor:'white',width:'90%'}}
-                        placeholder="Search Google Maps"
-                        inputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                            placeholder:"Search..."
-                        }}
-                    />
-                </Box>
-
-                {/*<TextField fullWidth id="outlined-basic"*/}
-                {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                {/*           InputProps={{*/}
-                {/*               startAdornment: (*/}
-                {/*                   <InputAdornment position="start">*/}
-                {/*                       <SearchIcon />*/}
-                {/*                   </InputAdornment>*/}
-                {/*               ),*/}
-                {/*               placeholder:"Search..."*/}
-                {/*           }}*/}
-                {/*/>*/}
-                <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-around'}}>
-                    <Link href='/login'>
-                        <NotificationsIcon sx={{color:'#939EAA'}}/>
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;
-                    <Link href='/login'>
-                        <AccountCircleIcon sx={{color:'#939EAA'}}/>
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;
-                    <p>{user && user.firstname ? user.firstname : 'Account'} </p>
-                    &nbsp;&nbsp;&nbsp;
-                    <div onClick={()=>signOut({path:router.pathname})}>
-                        <ArrowDropDownIcon sx={{color:'#939EAA'}}/>
+                    {/*<TextField fullWidth id="outlined-basic"*/}
+                    {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
+                    {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
+                    {/*           InputProps={{*/}
+                    {/*               startAdornment: (*/}
+                    {/*                   <InputAdornment position="start">*/}
+                    {/*                       <SearchIcon />*/}
+                    {/*                   </InputAdornment>*/}
+                    {/*               ),*/}
+                    {/*               placeholder:"Search..."*/}
+                    {/*           }}*/}
+                    {/*/>*/}
+                    <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
+                        alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
+                        <Link href='/login'>
+                            <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                        </Link>
+                        &nbsp;&nbsp;&nbsp;
+                        <Link href='/login'>
+                            <AccountCircleIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                        </Link>
+                        &nbsp;&nbsp;&nbsp;
+                        <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
+                        &nbsp;&nbsp;&nbsp;
+                        <div onClick={()=>signOut({path:router.pathname})}>
+                            <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                        </div>
                     </div>
-                </div>
-            </Box>
+                </Box>
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
 
@@ -265,7 +268,7 @@ export default function Searchresult({
                 </Box>
 
             <Box
-                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, my:2, pt:2}}
+                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2}}
             >
                 <Tabs
                     orientation="vertical"
@@ -275,19 +278,21 @@ export default function Searchresult({
                     aria-label="Vertical tabs example"
                     sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', }}
                 >
-                    <Tab sx={{ textAlign: 'left', color:'#5A00E2' }} label={"1. Dataset Information "} {...a11yProps(0)} />
+                    <Tab sx={{ textAlign: 'left', }} label={"1. Dataset Information "} {...a11yProps(0)} />
                     <Tab sx={{ textAlign: 'left', }} label="2. Add Catalogues" {...a11yProps(1)} />
                     <Tab sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="3. Review and Save" {...a11yProps(2)} />
 
                 </Tabs>
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
-                    <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                         fontSize:20,pb:2, minWidth:'100%', mr:45}}>
+                    <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between', }}>
+                    <Box >
+                        <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
+                         fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
                         <div>BASIC INFO &nbsp;</div>
-                        <div style={{fontSize:12, paddingTop:4, color:'gray'}}>*Enter a title and description for your signal.</div>
-                    </Box>
+                        <div style={{fontSize:12, paddingTop:4, color:'gray',}}>*Enter a title and description for your signal.</div>
+                         </Box>
 
-                    <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff'}}>
+                    <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', paddingBottom:28}}>
                         <FormControl fullWidth sx={{width:'100%' }}>
                             {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                             <TextField
@@ -304,23 +309,27 @@ export default function Searchresult({
                                 value={description}
                                 onChange={(event)=>setDescription(event.target.value)}
                                 sx={{color:'#fff',pb:2}}
-                                rows={4}
+                                rows={5}
                                 //startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                 label="What this data will be doing for you?"
                                 multiline
                             />
 
                         </FormControl>
+                    </Box>
+                    </Box>
+                        <Divider sx={{width:'100%', marginBottom:2}} />
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                             fontSize:20,pb:2,  ml:73.5, flex:'end'}}>
+
                             <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
                                 borderColor:'#5A00E2'}}
                                      onClick={()=>router.push('/dashboard')}>
                                 {"Save as Draft"}</Button>
                         <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
-                                 onClick={()=>router.push('/dashboard')}>
+                                 onClick={()=>handleClickChange(1)}>
                             {"Next"}</Button>
                         </Box>
 
@@ -382,16 +391,23 @@ export default function Searchresult({
                         />)}
                     </Box>
 
+                    <Divider sx={{width:'100%', marginBottom:2}} />
+
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
-                        fontSize:20,pb:2,  ml:73.5, flex:'end'}}>
-                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
+                        fontSize:20,pb:2,  flex:'end'}}>
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
+                            backgroundColor:"#5A00E2"}}
+                                onClick={()=>handleClickChange(0)}>
+                            {"Previous"}</Button>
+
+                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',ml:55.5,borderRadius:4,
                             borderColor:'#5A00E2'
                             }}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button>
                         <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
-                                onClick={()=>router.push('/dashboard')}>
+                                onClick={()=>handleClickChange(2)}>
                             {"Next"}</Button>
                     </Box>
 
@@ -436,9 +452,15 @@ export default function Searchresult({
                                     addDatasetcatalog={addDatasetcatalog} />)}
                             </Box>
 
+                    <Box sx={{paddingBottom:36}}>
+                    <Divider sx={{width:'100%', marginBottom:2}} />
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
-                        fontSize:20,pb:2,  ml:71, flex:'end'}}>
-                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
+                        fontSize:20,pb:2,  flex:'end'}}>
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
+                            backgroundColor:"#5A00E2"}}
+                                onClick={()=>handleClickChange(1)}>
+                            {"Previous"}</Button>
+                        <Button variant="outlined" size="small" sx={{ml:2,ml:55.5,color:'#5A00E2',borderRadius:4,
                             borderColor:'#5A00E2'}}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button>
@@ -446,6 +468,7 @@ export default function Searchresult({
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleSendData()}>
                             {"Create"}</Button>
+                    </Box>
                     </Box>
 
                 </TabPanel>

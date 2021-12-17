@@ -184,58 +184,58 @@ const removeLocalDatasetcatalog = (data) => {
         </Box>
         <Box sx={{width:"82%"}}>
             <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
-             <Box component="main" sx={{ minWidth: '50vw', display:'flex', }}>
-                 <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center'}} >
-                     <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                         <SearchIcon />
-                     </Box>
+                <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+                    <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+                        <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                            <SearchIcon />
+                        </Box>
 
-                     <InputBase
-                         // onChange={setVal}
-                         sx={{ bgcolor:'white',width:'90%'}}
-                         placeholder="Search Google Maps"
-                         inputProps={{
-                             startAdornment: (
-                                 <InputAdornment position="start">
-                                     <SearchIcon />
-                                 </InputAdornment>
-                             ),
-                             placeholder:"Search..."
-                         }}
-                     />
-                 </Box>
+                        <InputBase
+                            // onChange={setVal}
+                            sx={{ bgcolor:'white',width:'90%'}}
+                            placeholder="Search Google Maps"
+                            inputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                ),
+                                placeholder:"Search..."
+                            }}
+                        />
+                    </Box>
 
-                 {/*<TextField fullWidth id="outlined-basic"*/}
-                 {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                 {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                 {/*           InputProps={{*/}
-                 {/*               startAdornment: (*/}
-                 {/*                   <InputAdornment position="start">*/}
-                 {/*                       <SearchIcon />*/}
-                 {/*                   </InputAdornment>*/}
-                 {/*               ),*/}
-                 {/*               placeholder:"Search..."*/}
-                 {/*           }}*/}
-                 {/*/>*/}
-                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                     alignItems: 'center',cursor: 'pointer', justifyContent:'space-around'}}>
-                     <Link href='/login'>
-                         <NotificationsIcon sx={{color:'#939EAA'}}/>
-                     </Link>
-                     &nbsp;&nbsp;&nbsp;
-                     <Link href='/login'>
-                         <AccountCircleIcon sx={{color:'#939EAA'}}/>
-                     </Link>
-                     &nbsp;&nbsp;&nbsp;
-                     <p>{user && user.firstname ? user.firstname : 'Account'} </p>
-                     &nbsp;&nbsp;&nbsp;
-                     <div onClick={()=>signOut({path:router.pathname})}>
-                         <ArrowDropDownIcon sx={{color:'#939EAA'}}/>
-                     </div>
-                 </div>
-            </Box>
+                    {/*<TextField fullWidth id="outlined-basic"*/}
+                    {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
+                    {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
+                    {/*           InputProps={{*/}
+                    {/*               startAdornment: (*/}
+                    {/*                   <InputAdornment position="start">*/}
+                    {/*                       <SearchIcon />*/}
+                    {/*                   </InputAdornment>*/}
+                    {/*               ),*/}
+                    {/*               placeholder:"Search..."*/}
+                    {/*           }}*/}
+                    {/*/>*/}
+                    <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
+                        alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
+                        <Link href='/login'>
+                            <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                        </Link>
+                        &nbsp;&nbsp;&nbsp;
+                        <Link href='/login'>
+                            <AccountCircleIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                        </Link>
+                        &nbsp;&nbsp;&nbsp;
+                        <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
+                        &nbsp;&nbsp;&nbsp;
+                        <div onClick={()=>signOut({path:router.pathname})}>
+                            <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                        </div>
+                    </div>
+                </Box>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, justifyContent:'space-between'}}>
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
@@ -267,7 +267,7 @@ const removeLocalDatasetcatalog = (data) => {
 
             </Box>
 
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, justifyContent:'space-between'}}>
+          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,
                     color:'gray-900',justifyContent:'space-around'}}>
                     <div>Overview &nbsp;</div>
@@ -276,7 +276,7 @@ const removeLocalDatasetcatalog = (data) => {
           </Box>
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
-          <Box sx={{px:4, }}>
+          <Box sx={{px:2, }}>
             <Box>{
               userdataset !== null && userdataset !== undefined
               && <SignalCardOut token={token} localDataset={localDataset} setLocalDataset={setLocalDataset}
@@ -307,7 +307,7 @@ const removeLocalDatasetcatalog = (data) => {
           <Box component="main" sx={{display:'flex', justifyContent:'space-between', 
               py: 2, width:'100%', }}>
                   <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',
-                      fontSize:24,font:'roboto',pl:4}}>
+                      fontSize:24,font:'roboto',pl:2}}>
                       <div>{datasetMode === 0? "Included ":'Selected ' }Catalogs &nbsp;</div>
                   </Box>
 
@@ -318,7 +318,7 @@ const removeLocalDatasetcatalog = (data) => {
               
           </Box>
 
-          <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 4,
+          <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 2,
               alignItems:'center' }}>
                 <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
               justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, p:1}}>
@@ -361,7 +361,7 @@ const removeLocalDatasetcatalog = (data) => {
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
 
                   <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                    flex: 1, py: 2, px: 4, }}>
+                    flex: 1, py: 2, px: 2, }}>
                      <Typography color="inherit" variant="h5" component="h1">
                           <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                               <div>Matching Catalogs &nbsp;</div>
@@ -372,7 +372,7 @@ const removeLocalDatasetcatalog = (data) => {
                   </Box>
 
                   <Box sx={{ width:"100%", display:'flex', flexDirection:'column',
-                      justifyContent:"center",alignItems:'center', px:4 }}>
+                      justifyContent:"center",alignItems:'center', px:2 }}>
                         {dataSources && dataSources.map((data,index)=><FeatureCard
                           openDetails={openDetails}
                           data={data}
@@ -394,7 +394,7 @@ const removeLocalDatasetcatalog = (data) => {
             <div style={{display:'flex', flexDirection:'column'}}>
 
                 <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                    flex: 1, py: 2, px: 4, }}>
+                    flex: 1, py: 2, px: 2, }}>
                     <Typography color="inherit" variant="h5" component="h1">
                         <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                             <div>Matching Datasets &nbsp;</div>
@@ -403,7 +403,7 @@ const removeLocalDatasetcatalog = (data) => {
                     </Typography>
 
                 </Box>
-                <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:3.5, flex:'start',
+                <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2.5, flex:'start',
                     alignItems:'center',  overflow: "scroll"}}>
 
                     {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?

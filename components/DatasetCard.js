@@ -52,9 +52,9 @@ export default function DatasetCard(props){
                       <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title: "Sample Dataset"+props.data.ID}</b><br></br>
                             </div>
                         <div style={{color:'gray'}}>{props.data.description?props.data.description.substring(0,99): "Dataset Description"}</div>
-                        <div style={{fontSize:12,display:'flex', alignItems:'center'}}><div ><b>{"Topics:  "}</b></div>
+                        <div style={{fontSize:12,display:'flex', alignItems:'center', }}><div style={{paddingRight:4, paddingTop:4}}><b>{"Topics:  "}</b></div>
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
-                                borderRadius:4, border:1, fontSize:10, fontWeight:"bold", marginTop:1,
+                                 borderRadius:4, border:1, fontSize:10, fontWeight:"bold", marginTop:1,
                                     marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small">{topic}</Button>)
                             : "6"}</div>
                     </div>
@@ -89,7 +89,7 @@ export default function DatasetCard(props){
               <Divider orientation="vertical" flexItem variant="middle"/>
 
               <div style={{fontSize:14,width:"3%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18, }}>
-                  <div style={{color:'gray', paddingBottom:8}}>Topics:&nbsp;</div>
+                  <div style={{color:'gray', paddingBottom:8,}}>Topics:&nbsp;</div>
                   <div style={{fontWeight:'bold', fontSize:17}}>{props.data.topic?props.data.topic.split(",").length: "6"}</div>
               </div>
 

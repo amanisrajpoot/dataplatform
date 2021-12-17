@@ -159,8 +159,8 @@ export default function Dashboard({
                 <LeftNav />
             </Box>
         <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-            <Box component="main" sx={{  minWidth:'100%', display:'flex'}}>
-                <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center'}} >
+            <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+                <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                     <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                         <SearchIcon />
                     </Box>
@@ -193,19 +193,19 @@ export default function Dashboard({
                 {/*           }}*/}
                 {/*/>*/}
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-around'}}>
+                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                     <Link href='/login'>
-                        <NotificationsIcon sx={{color:'#939EAA'}}/>
+                        <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/>
                     </Link>
                     &nbsp;&nbsp;&nbsp;
                     <Link href='/login'>
-                        <AccountCircleIcon sx={{color:'#939EAA'}}/>
+                        <AccountCircleIcon fontSize="large" sx={{color:'#939EAA'}}/>
                     </Link>
                     &nbsp;&nbsp;&nbsp;
-                    <p>{user && user.firstname ? user.firstname : 'Account'} </p>
+                    <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
                     &nbsp;&nbsp;&nbsp;
                     <div onClick={()=>signOut({path:router.pathname})}>
-                        <ArrowDropDownIcon sx={{color:'#939EAA'}}/>
+                        <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
                     </div>
                 </div>
             </Box>

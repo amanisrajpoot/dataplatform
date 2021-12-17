@@ -68,7 +68,7 @@ export default function FeatureCard(props){
                     <div style={{fontSize:14, minWidth:"47%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
                         <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title: "FDA Approved Drugs"}</b></div>
                         <div style={{paddingBottom:8}}>{props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</div>
-                        <div style={{fontSize:14,display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
+                        <div style={{fontSize:14,display:'flex', alignItems:'center'}}><div style={{paddingRight:4,paddingBottom:4}}><b>{"Topics:  "}</b></div>
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
                                     borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
                                     color:'#24BBFF'}} size="small">{topic}</Button>)
@@ -91,7 +91,8 @@ export default function FeatureCard(props){
                     </div>
                         <Divider orientation="vertical" variant="middle" flexItem/>
 
-                    <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',}}>
+                    <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',
+                    maxHeight:36}}>
                         <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
                         onClick={()=>{
                           props.handleOpenDetails(props.data)

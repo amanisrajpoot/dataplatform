@@ -63,7 +63,8 @@ export default function LeftNav({
 	// }, [width]);
 
 	return (
-		<div className={`${styles.header} ${leftAnimation}`} style={{font:'roboto', border: "1px solid #dedede",
+		<div className={`${styles.header} ${leftAnimation}`} style={{ fontStyle:'normal',
+			fontWeight:400,border: "1px solid #dedede",
 			boxShadow: "10px 0 5px -2px #888"}}>
 			{/* ADD SAMPLES */}
 			<Modal

@@ -113,7 +113,7 @@ const Login =({token, setToken}) => {
             setError(err.message);
         } else {
             setError("");
-            await router.push("/dashboard");
+            await router.push("/dashboard1");
         }
     }
 
