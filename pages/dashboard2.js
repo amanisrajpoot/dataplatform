@@ -40,6 +40,8 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import InputBase from '@mui/material/InputBase';
+import CelebrationIcon from '@mui/icons-material/Celebration';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -215,128 +217,257 @@ export default function Dashboard({
                 </div>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between'}}>
+            <Box sx={{ display: 'flex', flexDirection:'column', py: 2,px:2,justifyContent:'space-between'}}>
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                        <div style={{fontSize:28}}>Dashboard &nbsp;&nbsp;</div>
-                        <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
-                            alignItems:'space-between'}}>
-
-                        </div>
+                        <div style={{fontSize:24, paddingBottom:12}}>Dashboard &nbsp;&nbsp;</div>
 
                     </Box>
 
+                {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                    alignItems:'start',}}>
 
-                </Box>
+                    <div style={{height:'18ch', minWidth:'74.5ch', maxWidth:'28ch', backgroundColor:'#E4F7FF',
+                        marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
+                        justifyContent:"space-between",borderRadius:9,  }}>
+                        <div style={{marginTop:18,marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between', width:'80%'
+                            }}
+                             onClick={()=>router.push('/searchresult')} >
 
-            <Box>
+                            <div>
+                                <div style={{color:'black', fontSize:20,}}>Announcement </div>
+                                <div style={{paddingTop:12,color:'gray'}}>Non, nisl, tortor id facilisis et elementum ultrices arcu cras. Sit montes, lectus non commodo, lectus auctor. Netus amet leo nascetur neque. Et molestie sem odio dui, curabitur. Ac sapien porta tempor enim.</div>
+                            </div>
+                            <div style={{paddingTop:12,color:'gray', paddingBottom:24}}>23 Mar, 2021 09:10PM</div>
+                        </div>
+                        <div style={{marginTop:12, cursor:'pointer', width:'20%', display:'flex', justifyContent:"center",alignItems:'center'}}
+                             onClick={()=>router.push('/searchresult')} >
+                            <div><CelebrationIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
+                            }}/></div>
 
-                {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',
-                    alignItems:'center',  overflow: "scroll"}}>
-
-                    <div style={{height:'28ch', minWidth:'72ch', maxWidth:'28ch',borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',
-                        marginRight:12, marginBottom:12, display:'flex', flexDirection:'column', alignItems:'center',
-                        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed #bfbfbf', marginBottom:7 }}>
-                        <div style={{marginTop:12, cursor:'pointer'}} onClick={()=>router.push('/searchresult')} >
-                            <div><AddCircleOutlinedIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
-                                }}/></div>
-                            <div style={{color:'black', fontSize:20, paddingBottom:12}}>Create New Set</div>
-                            <div style={{color:'gray'}}>First steps to create the great analysis is to start with data sets</div>
                         </div>
                     </div>
-                    {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
-                        userdatasets.map((data, index)=><DatasetDraftCard
-                            key={data.dataset_id}
-                            index={index}
-                            data={data}
-                            token={token}
-                            user={user}
-                            openDetails={openDetails}
-                            handleOpenDetails={handleOpenDetails}
-                            handleCloseDetails={handleCloseDetails}/>): null
-                    }
+
+                    <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF4E4',
+                        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
+                        justifyContent:"space-around", flex:'end',borderRadius:9, }}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
+
+                            <div>
+                                <div style={{color:'black', fontSize:18,}}>We would love to hear your opinion </div>
+                                <div style={{paddingTop:12,color:'gray'}}>Please feel free to give your advice and notes on how we can do better to give you more. </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
+                                <Button
+                                    variant="filled"
+                                    sx={{bgcolor:'#FF9800', borderRadius:2, color:"#fff",
+                                    textTransform:'capitalize'}}
+                                    endIcon={<ArrowForwardIcon />}
+                                >Take Survey</Button>
+                            </div>
+                        </div>
+                    </div>
+
                 </Box>}
 
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
-
-              <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
-                    color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
-                    <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                      <div>My Datasets &nbsp;</div>
-                  {userdatasets !== null && userdatasets !== undefined && <div>{"("+ userdatasets.length+")"}</div>}
-                    <Divider variant="middle"/>
                 </Box>
 
-                <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/>
+            <Box sx={{ display: 'flex', flexDirection:'column', py: 2,px:2,justifyContent:'space-between'}}>
 
-                <Modal
-                  open={open2}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style}>
-                      <Grid sx={{display:'flex', flexDirection:'column', width:'100%' }}>
-                        <Box sx={{display:'flex', flexDirection:"row", fontSize:20, fontWeight:600,
-                            justifyContent:'space-between'}}>
-                            <Box>
-                                CHOOSE A METHOD
-                            </Box>
-                            <Box onClick={()=>handleClose()}>
-                                X
-                            </Box>
-                        </Box>
+                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
+                    color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
+                    <div style={{fontSize:22, paddingBottom:12}}>Industry-wide trends &nbsp;&nbsp;</div>
 
-                        <div style={{display:"flex", flexDirection:'row', maxHeight:'375px', width:"100%",
-                          justifyContent:'center',backgroundColor:'#fff', marginBottom:16 }}>
+                </Box>
 
-                            <Link href="/createsignalfirst">
-                                <Box sx={{border:2, borderColor:"#000000",
-                                    mx:4,my:4,py:2,px:4, textAlign:'center',}}>
-                                    <AddBoxIcon style={{fontSize:96}}/>
-                                    <p><b>From Scratch</b><br></br>
-                                        Create a new Custom<br></br>
-                                        Dataset combining the<br></br>
-                                        data sources you want.</p>
-                                </Box>
-                            </Link>
+                {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                    alignItems:'start', paddingTop:1}}>
 
-                            <Divider variant="middle" orientation="vertical" />
+                    <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
+                        justifyContent:"space-around", flex:'end',borderRadius:9,}}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
 
-                            <Box sx={{border:2, borderColor:"#000",
-                                mx:4,my:4,py:2,px:4,textAlign:'center'}}
-                                 onClick={handleOpen2}>
-                                <ContentCopyOutlinedIcon style={{fontSize:96}}/>
-                                <p><b>From Predefined Models</b><br></br>
-                                    Create a new<br></br>
-                                    Dateset based on<br></br>
-                                    predefined domain models.</p>
-                            </Box>
-                      </div>
-                      </Grid>
-                  </Box>
-                </Modal>
-          </Box>
+                            <div>
+                                <div style={{color:'black', fontSize:18, fontWeight:'500'}}
+                                    >Datasets for the Insaurance approval </div>
+                                <div style={{paddingTop:12,color:'#667280'}}>There is no better classification and accumulation of data at a single portal on the internet. </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
+                                        justifyContent:'space-between', alignItems:'center'}}>
+                                <div style={{color:'gray',fontSize:14}}>23 Mar, 2021 09:10PM</div>
+                                <Button
+                                    variant="outlined"
+                                    sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
+                                        textTransform:'capitalize'}}
+                                >Share</Button>
+                            </div>
+                        </div>
+                    </div>
 
-          {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
-            {/* <SignalTable /> */}
-            <Box sx={{ width:"98%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
-              justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
-                {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
-                  userdatasets.map((data, index)=><DatasetCard
-                  key={data.dataset_id}
-                  index={index}
-                  data={data}
-                  token={token}
-                  user={user}
-                  openDetails={openDetails}
-                  handleOpenDetails={handleOpenDetails}
-                  handleCloseDetails={handleCloseDetails}/>): null
-                  }
-          </Box>
-      
-      </Box>
+                    <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
+                        justifyContent:"space-around", flex:'end',borderRadius:9,}}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
+
+                            <div>
+                                <div style={{color:'black', fontSize:18, fontWeight:'500'}}
+                                >Datasets for the Insaurance approval </div>
+                                <div style={{paddingTop:12,color:'#667280'}}>There is no better classification and accumulation of data at a single portal on the internet. </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
+                                justifyContent:'space-between', alignItems:'center'}}>
+                                <div style={{color:'gray',fontSize:14}}>23 Mar, 2021 09:10PM</div>
+                                <Button
+                                    variant="outlined"
+                                    sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
+                                        textTransform:'capitalize'}}
+                                >Share</Button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
+                        justifyContent:"space-around", flex:'end',borderRadius:9,}}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
+
+                            <div>
+                                <div style={{color:'black', fontSize:18, fontWeight:'500'}}
+                                >Datasets for the Insaurance approval </div>
+                                <div style={{paddingTop:12,color:'#667280'}}>There is no better classification and accumulation of data at a single portal on the internet. </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
+                                justifyContent:'space-between', alignItems:'center'}}>
+                                <div style={{color:'gray',fontSize:14}}>23 Mar, 2021 09:10PM</div>
+                                <Button
+                                    variant="outlined"
+                                    sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
+                                        textTransform:'capitalize'}}
+                                >Share</Button>
+                            </div>
+                        </div>
+                    </div>
+
+                </Box>}
+
+            </Box>
+
+            {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                alignItems:'start',marginLeft:2}}>
+
+                <div style={{height:'54ch', minWidth:'82ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                    marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
+                    justifyContent:"space-between",borderRadius:9,  }}>
+                    <div style={{marginTop:18,marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                        lineHeight:"22px", justifyContent:'space-between', width:'80%'
+                    }}
+                         onClick={()=>router.push('/searchresult')} >
+
+                        <div>
+                            <div style={{color:'black', fontSize:20,}}>Analytics</div>
+                            <div style={{paddingTop:12,color:'gray'}}>Non, nisl, tortor id facilisis et elementum ultrices arcu cras. Sit montes, lectus non commodo, lectus auctor. Netus amet leo nascetur neque. Et molestie sem odio dui, curabitur. Ac sapien porta tempor enim.</div>
+                        </div>
+                        <div style={{paddingTop:12,color:'gray', paddingBottom:24}}>23 Mar, 2021 09:10PM</div>
+                    </div>
+                    <div style={{marginTop:12, cursor:'pointer', width:'20%', display:'flex', justifyContent:"center",alignItems:'center'}}
+                         onClick={()=>router.push('/searchresult')} >
+                        <div><CelebrationIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
+                        }}/></div>
+
+                    </div>
+                </div>
+
+                <div>
+                    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
+                        justifyContent:"space-around", flex:'end',borderRadius:9, }}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
+
+                            <div>
+                                <div style={{color:'black', fontSize:18,}}>We would love </div>
+                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8, marginTop:20,
+                        justifyContent:"space-around", flex:'end',borderRadius:9, }}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
+
+                            <div>
+                                <div style={{color:'black', fontSize:18,}}>We would love </div>
+                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,
+                        justifyContent:"space-around", flex:'end',borderRadius:9, }}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
+
+                            <div>
+                                <div style={{color:'black', fontSize:18,}}>We would love </div>
+                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,
+                        justifyContent:"space-around", flex:'end',borderRadius:9, }}>
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        }}
+                             onClick={()=>router.push('/searchresult')} >
+
+                            <div>
+                                <div style={{color:'black', fontSize:18,}}>We would love </div>
+                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                            </div>
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </Box>}
 
       <Modal open={openDetails} onClose={handleCloseDetails}>
           <Box sx={style2}>            
