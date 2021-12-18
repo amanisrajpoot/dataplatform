@@ -42,6 +42,15 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import InputBase from '@mui/material/InputBase';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import RoomServiceOutlinedIcon from '@mui/icons-material/RoomServiceOutlined';
+import MasksOutlinedIcon from '@mui/icons-material/MasksOutlined';
+import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
+import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+const data = [{name: 'Jan', uv: 400, pv: 2400, amt: 2400},{name: 'Feb', uv: 300, pv: 2000, amt: 2000},
+    {name: 'Mar', uv: 200, pv: 2200, amt: 2200},{name: 'Apr', uv: 400, pv: 2400, amt: 2400},
+    {name: 'May', uv: 500, pv: 2400, amt: 2400},{name: 'Jun', uv: 600, pv: 2400, amt: 2400},
+    {name: 'Jul', uv: 550, pv: 2400, amt: 2400},{name: 'Aug', uv: 800, pv: 2400, amt: 2400}];
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -226,7 +235,7 @@ export default function Dashboard({
                     </Box>
 
                 {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
-                    alignItems:'start',}}>
+                    alignItems:'start',paddingTop:1}}>
 
                     <div style={{height:'18ch', minWidth:'74.5ch', maxWidth:'28ch', backgroundColor:'#E4F7FF',
                         marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
@@ -368,100 +377,104 @@ export default function Dashboard({
             </Box>
 
             {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
-                alignItems:'start',marginLeft:2}}>
+                alignItems:'start',marginLeft:2, paddingTop:2}}>
 
                 <div style={{height:'54ch', minWidth:'82ch', maxWidth:'28ch', backgroundColor:'#FFF',
-                    marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
+                    marginRight:14, display:'flex', flexDirection:'row',marginBottom:8,
                     justifyContent:"space-between",borderRadius:9,  }}>
                     <div style={{marginTop:18,marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                        lineHeight:"22px", justifyContent:'space-between', width:'80%'
+                        lineHeight:"22px", justifyContent:'space-between', width:'100%'
                     }}
                          onClick={()=>router.push('/searchresult')} >
 
                         <div>
                             <div style={{color:'black', fontSize:20,}}>Analytics</div>
-                            <div style={{paddingTop:12,color:'gray'}}>Non, nisl, tortor id facilisis et elementum ultrices arcu cras. Sit montes, lectus non commodo, lectus auctor. Netus amet leo nascetur neque. Et molestie sem odio dui, curabitur. Ac sapien porta tempor enim.</div>
                         </div>
-                        <div style={{paddingTop:12,color:'gray', paddingBottom:24}}>23 Mar, 2021 09:10PM</div>
+                        <LineChart width={800} height={450} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                        </LineChart>
                     </div>
-                    <div style={{marginTop:12, cursor:'pointer', width:'20%', display:'flex', justifyContent:"center",alignItems:'center'}}
-                         onClick={()=>router.push('/searchresult')} >
-                        <div><CelebrationIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
-                        }}/></div>
 
-                    </div>
                 </div>
 
                 <div>
                     <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
                         marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
                         justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
+                            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                         }}
                              onClick={()=>router.push('/searchresult')} >
-
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#5A00E2', borderRadius:50,
+                                padding:18, marginRight:18,}}>
+                                <RoomServiceOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
+                            </div>
                             <div>
-                                <div style={{color:'black', fontSize:18,}}>We would love </div>
-                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                                <div style={{color:'black', fontSize:18,}}>Food & Drugs Administration </div>
+                                <div style={{paddingTop:12,color:'#5A00E2', fontSize:28}}>3412</div>
                             </div>
-                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
 
-                            </div>
                         </div>
                     </div>
+
 
                     <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
                         marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8, marginTop:20,
                         justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
+                            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                         }}
                              onClick={()=>router.push('/searchresult')} >
-
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#24BBFF', borderRadius:50,
+                                  padding:18, marginRight:18}}>
+                                <MasksOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
+                            </div>
                             <div>
-                                <div style={{color:'black', fontSize:18,}}>We would love </div>
-                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                                <div style={{color:'black', fontSize:18,}}>Physician </div>
+                                <div style={{paddingTop:12,color:'#24BBFF', fontSize:28}}>4578</div>
                             </div>
-                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
 
-                            </div>
                         </div>
                     </div>
 
                     <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
                         marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,
                         justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
+                            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                         }}
                              onClick={()=>router.push('/searchresult')} >
-
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF9800', borderRadius:50,
+                                padding:18, marginRight:18}}>
+                                <MedicalServicesOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
+                            </div>
                             <div>
-                                <div style={{color:'black', fontSize:18,}}>We would love </div>
-                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                                <div style={{color:'black', fontSize:18,}}>Drugs </div>
+                                <div style={{paddingTop:12,color:'#FF9800', fontSize:28}}>6532</div>
                             </div>
-                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
 
-                            </div>
                         </div>
                     </div>
 
                     <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
                         marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,
                         justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                            lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
+                        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
+                            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                         }}
                              onClick={()=>router.push('/searchresult')} >
-
+                            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF6262', borderRadius:50,
+                                padding:18, marginRight:18}}>
+                                <CorporateFareOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
+                            </div>
                             <div>
-                                <div style={{color:'black', fontSize:18,}}>We would love </div>
-                                <div style={{paddingTop:12,color:'gray'}}>Please feel free  </div>
+                                <div style={{color:'black', fontSize:18,}}>Companies </div>
+                                <div style={{paddingTop:12,color:'#FF6262', fontSize:28}}>7890</div>
                             </div>
-                            <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
 
-                            </div>
                         </div>
                     </div>
 
