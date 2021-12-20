@@ -38,6 +38,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import DatasetDraftCard from "../../components/DatasetDraftCard";
 import InputBase from '@mui/material/InputBase';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -79,7 +81,7 @@ export default function ManageDataset({
                                       }) {
 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => {setOpen(true); handleDownloadButton();};
+    const handleOpen = () => setOpen(true);;
     const handleClose = () => setOpen(false);
     const [userdataset, setUserDataset] = useState([]);
     const [datasetMode, setDatasetMode] = useState(0);
@@ -132,6 +134,9 @@ export default function ManageDataset({
     const handleDownloadButton = async() => {
         const downloadLink = await downloadDatasetsId(token, dataset_id);
         setDownloadLink(downloadLink.url);
+        if(downloadLink.url !== null && downloadLink.url !== undefined){
+            await window.open(downloadLink.url, '_blank');
+        }
     }
 
     const addLocalDatasetcatalog = (data) => {
@@ -174,6 +179,17 @@ export default function ManageDataset({
             'email':user.email
         })
     }, [token, dataset_id]);
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open2 = Boolean();
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+        handleOpen()
+    };
+    const handleClose2 = () => {
+        setAnchorEl(null);
+    };
 
     return (
 
@@ -255,8 +271,24 @@ export default function ManageDataset({
                             {datasetMode==0?<div><DeleteOutlineIcon fontSize="large" sx={{cursor:'pointer',}}
                                                                     onClick={() => deleteF(userdataset)}/></div>:null}
                             <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
-                                    startIcon={<GetAppIcon />} onClick={handleOpen}>
+                                    startIcon={<GetAppIcon />} onClick={handleClick}
+                                    >
                                 {"Export"}</Button>
+                            <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
+
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={()=>handleDownloadButton()}>Download CSV</MenuItem>
+                                <MenuItem onClick={()=>handleClose}>XLS</MenuItem>
+                                <MenuItem onClick={()=>handleClose}>API Configuration</MenuItem>
+                            </Menu>
                             {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
                                                         startIcon={<EditIcon />} onClick={() => setDatasetMode(1)}>
                                 {"Edit"}</Button>: datasetMode === 1 ?
@@ -425,20 +457,20 @@ export default function ManageDataset({
 
                 </Box>
 
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={{ position: 'absolute', bgColor:'#fff',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width:'70%'}}>
-                        <Output data={dataset} downloadLink={downloadLink}/>
-                    </Box>
-                </Modal>
+                {/*<Modal*/}
+                {/*    open={open}*/}
+                {/*    onClose={handleClose}*/}
+                {/*    aria-labelledby="modal-modal-title"*/}
+                {/*    aria-describedby="modal-modal-description"*/}
+                {/*>*/}
+                {/*    <Box sx={{ position: 'absolute', bgColor:'#fff',*/}
+                {/*        top: '50%',*/}
+                {/*        left: '50%',*/}
+                {/*        transform: 'translate(-50%, -50%)',*/}
+                {/*        width:'70%'}}>*/}
+                {/*        <Output data={dataset} downloadLink={downloadLink}/>*/}
+                {/*    </Box>*/}
+                {/*</Modal>*/}
 
             </Box>
         </Box>
