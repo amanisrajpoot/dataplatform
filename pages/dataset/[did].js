@@ -274,7 +274,6 @@ export default function ManageDataset({
                                     startIcon={<GetAppIcon />} onClick={handleClick}
                                     >
                                 {"Export"}</Button>
-                            <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
 
                             <Menu
                                 id="basic-menu"
