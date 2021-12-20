@@ -21,7 +21,7 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
-import {getPublicDatasets, getDatasets, getUser} from '../function/users';
+import {getPublicDatasets, getDatasets, getUser, getPublicDatasetsTopics} from '../function/users';
 import DatasetCard from '../components/DatasetCard';
 import DatasetDraftCard from '../components/DatasetDraftCard';
 import HeaderDatasetCard from '../components/HeaderDatasetCard';
@@ -85,20 +85,33 @@ const style2 = {
   p: 4,
 };
 
-export default function BrowseCatalogue({
+export default function TopicBrowser({
   token,
   setToken,
   dataset,
   userdatasets,
   dataSources,
   setDataSources,
-                                            addDatasetcatalog,
-                                            removeDatasetcatalog,
-
-  
+  addDatasetcatalog,
+  removeDatasetcatalog,
 }) {
+    const router = useRouter()
+    const [search, setSearch] = useState(false);
+    const [localDataset, setLocalDataset] = useState([]);
+    const [searching4, setSearching4] = useState(false);
+    const [topicDatasources, setTopicDatasources] = useState([]);
+    const topic_id = router.query.tid;
 
-  const router = useRouter()
+    useEffect(() => {
+        setSearching4(dataset.catalog);
+        console.log("fetched dataset",searching4);
+    }, [dataset]);
+
+    useEffect(async()=>{
+        const datasources = await getPublicDatasetsTopics(token, topic_id);
+        setTopicDatasources(datasources);
+    }, [token, topic_id]);
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const open2 = Boolean();
@@ -230,22 +243,7 @@ export default function BrowseCatalogue({
                         <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                             alignItems:'space-between'}}>
                             <div style={{fontSize:18, color:'gray'}}>Show:&nbsp;&nbsp;</div>
-                            <div style={{fontSize:18, color:'gray-900'}}>All</div>
-                            <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
 
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose2}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={handleClose}>All</MenuItem>
-                                <MenuItem onClick={handleClose}>Created</MenuItem>
-                                <MenuItem onClick={handleClose}>Draft</MenuItem>
-                            </Menu>
                         </div>
 
                     </Box>
@@ -274,52 +272,8 @@ export default function BrowseCatalogue({
             {/* <SignalTable /> */}
             <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
-                    <Box component="main" sx={{ display:'flex', width:'100%', alignItems:'center',
-                        minHeight:'14vh', px:1.5, borderRadius:4}}>
-                        <Box sx={{ display:'flex', width:'100%',py:4, px:2, alignItems:'left', flexDirection:'column',
-                            minHeight:'18vh',maxHeight:'18vh',bgcolor:"#fff", my:2,  borderRadius:4}}>
-                            <Box sx={{display:'flex',width:'100%', alignItems:'center',}}>
-                            <input variant="outlined" placeholder="Search..."
-                                   value={keyword} onChange={(event)=>setKeyword(event.target.value)}
-                                   label="Keyword" style={{ bgcolor: '#ffffff', minHeight:"5.5vh",maxHeight:'5.5vh',
-                                     border:'1px solid',borderColor:"#E2E2EA",fontSize:20,
-                                    borderRadius:4, width:'100%'}}>
-                                {/*<FilterListIcon sx={{ fontSize: 25,  }}/>*/}
-                            </input>
-
-                        <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
-                            alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
-                            }}
-                                variant="outlined"
-                                onClick={()=>handleKeywordSearch()}>
-                            <FilterListIcon sx={{ fontSize: 25,  }}/>
-                            <div style={{ paddingLeft:12}}>Filter</div>
-                        </Button>
-
-                        <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
-                            alignItems:'center', justifyContent:'center', borderRadius:3, border:0.5, borderColor:'#939EAA',
-                            }}
-                                variant={"outlined"}
-                                onClick={()=>handleKeywordSearch()}>
-                            <SortIcon sx={{ fontSize: 25, }}/>
-                            <div style={{ paddingLeft:12, paddingRight:4}}>Sort</div>
-                        </Button>
-                            </Box>
-                            <Box sx={{display:'flex', pt:2}}>
-                                <div style={{paddingTop:8}}>Appllied Filters: {keyword && keyword.split(/(?:,| )+/).map((word,index)=>index <7 && <Button
-                                    variant="outlined"
-                                    sx={{marginRight:1, borderRadius:4, bgcolor:'#FF49A1',color:'#fff',
-                                        textTransform:'lowercase', borderColor:'#FF49A1',
-                                    }}
-                                    onClick={()=>setKeyword(keyword.split(/(?:,| )+/).filter(key=>key!==word).toString())}
-                                    endIcon={<CancelIcon />}>
-                                    {word +" "}</Button>)}
-                                </div>
-
-                            </Box>
-                        </Box>
-
-                    </Box>
+                    <Box component="main" sx={{ display:'flex', flexDirection:'column',width:'100%', alignItems:'center',
+                        minHeight:'14vh', borderRadius:4, py:2}}>
 
                 {dataSources && dataSources.map((data,index)=><FeatureCard
                     openDetails={openDetails}
@@ -335,6 +289,7 @@ export default function BrowseCatalogue({
                     addDatasetcatalog={addDatasetcatalog}
                 />)}
           </Box>
+            </Box>
       
       </Box>
 

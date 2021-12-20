@@ -55,7 +55,8 @@ export default function DatasetCard(props){
                         <div style={{fontSize:12,display:'flex', alignItems:'center', }}><div style={{paddingRight:4, paddingTop:4}}><b>{"Topics:  "}</b></div>
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
                                  borderRadius:4, border:1, fontSize:10, fontWeight:"bold", marginTop:1,
-                                    marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small">{topic}</Button>)
+                                    marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small"
+                                  onClick={()=>router.push(`/topic/${topic}`)}>{topic}</Button>)
                             : "6"}</div>
                     </div>
                     {/*<div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word",*/}
@@ -107,8 +108,9 @@ export default function DatasetCard(props){
                     <div style={{display:'flex',justifyContent:'center', paddingRight:12,
                         fontSize:14, cursor:'pointer', width:"5%", }}
                         onClick={()=>{
-                          router.push('/dataset1/'+props.data.ID)
-                          mixpanel.track('Dataset Card Operations', {
+                          router.push('/dataset/'+props.data.ID)
+
+                          props.user !== null && props.user !== undefined &&  mixpanel.track('Dataset Card Operations', {
                             'source': "Data Platform Dashboard",
                             'action': "clicked on operations icon",
                             'dataset': props.data.ID,

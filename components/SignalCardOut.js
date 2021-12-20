@@ -42,7 +42,8 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                       <div style={{fontSize:14,display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
                           {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
                                   borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
-                                  color:'#24BBFF'}} size="small">{topic}</Button>)
+                                  color:'#24BBFF'}} size="small"
+                                  onClick={()=>router.push(`/topic/${topic}`)}>{topic}</Button>)
                               : "6"}</div>
                       <div style={{display:'flex',width:'100%', }}>
                           <div style={{display:'flex',wordWrap: "break-word",

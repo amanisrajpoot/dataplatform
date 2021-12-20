@@ -129,7 +129,7 @@ export default function LeftNav({
 
 			<div className={styles.navbar}>
 				<div style={{width:'100%', paddingBottom:12}}>
-					<div style={{width:'100%',textAlign:'center', fontSize:32, paddingTop:12,paddingBottom:12,
+					<div style={{width:'100%',textAlign:'center', fontSize:32, paddingTop:30,paddingBottom:30,
 						fontFamily:'roboto'}}>Data Platform</div>
 					<Divider />
 				</div>
@@ -137,7 +137,7 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						router.push('/dashboard1');
+						router.push('/dashboard');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
 						// 	setLeftAnimation(styles.menuTopClose);
@@ -164,7 +164,7 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						router.push('/dashboard1');
+						router.push('/datasets');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
 						// 	setLeftAnimation(styles.menuTopClose);
@@ -172,7 +172,9 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						color: router.pathname.includes('/dataset1')
+						color: router.pathname.includes('/datasets')||
+						router.pathname.includes('/searchresult')||
+						router.pathname.includes('/dataset/')
 							? '#5A00E2'
 							: 'gray',
 					}}
@@ -182,7 +184,9 @@ export default function LeftNav({
 
 					<p
 						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/dataset1') ? '#5A00E2' : '',
+							color: router.pathname.includes('/datasets') ||
+							router.pathname.includes('/searchresult') ||
+							router.pathname.includes('/dataset/')? '#5A00E2' : '',
 						}}
 					>
 						My Datasets
@@ -199,7 +203,8 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						color: router.pathname.includes('/browsecatalogue')
+						color: router.pathname.includes('/browsecatalogue') ||
+						 	   router.pathname.includes('/topic')
 							? '#5A00E2'
 							: 'gray',
 					}}
@@ -209,7 +214,8 @@ export default function LeftNav({
 
 					<p
 						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/browsecatalogue') ? '#5A00E2' : '',
+							color: router.pathname.includes('/browsecatalogue')||
+							router.pathname.includes('/topic') ? '#5A00E2' : '',
 						}}
 					>
 						Catalogues

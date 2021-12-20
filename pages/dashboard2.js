@@ -46,11 +46,14 @@ import RoomServiceOutlinedIcon from '@mui/icons-material/RoomServiceOutlined';
 import MasksOutlinedIcon from '@mui/icons-material/MasksOutlined';
 import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
 import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
-const data = [{name: 'Jan', uv: 400, pv: 2400, amt: 2400},{name: 'Feb', uv: 300, pv: 2000, amt: 2000},
-    {name: 'Mar', uv: 200, pv: 2200, amt: 2200},{name: 'Apr', uv: 400, pv: 2400, amt: 2400},
-    {name: 'May', uv: 500, pv: 2400, amt: 2400},{name: 'Jun', uv: 600, pv: 2400, amt: 2400},
-    {name: 'Jul', uv: 550, pv: 2400, amt: 2400},{name: 'Aug', uv: 800, pv: 2400, amt: 2400}];
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+const data = [{name: 'Jan', datasets: 400,industry_points: 400,amt: 2400},{name: 'Feb', datasets: 300,industry_points: 500, amt: 2000},
+    {name: 'Mar', datasets: 200,industry_points: 600, amt: 2200},{name: 'Apr', datasets: 400,industry_points: 700, amt: 2400},
+    {name: 'May', datasets: 500,industry_points: 400, amt: 2400},{name: 'Jun', datasets: 600,industry_points: 600, amt: 2400},
+    {name: 'Jul', datasets: 550,industry_points: 800, amt: 2400},{name: 'Aug', datasets: 800,industry_points: 400, amt: 2400},
+    {name: 'Sep', datasets: 500,industry_points: 500, amt: 2400},{name: 'Oct', datasets: 600,industry_points: 600, amt: 2400},
+    {name: 'Nov', datasets: 700,industry_points: 900, amt: 2400},{name: 'Dec', datasets: 800,industry_points: 1000, amt: 2400}];
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -162,6 +165,42 @@ export default function Dashboard({
           console.log("fetched data",userdatasets);
       }
   };
+
+    const CustomTooltip = ({ active, payload, label }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="custom-tooltip" style={{backgroundColor:'#fff', borderRadius:20,
+                    boxShadow: "0px 5px 15px rgba(68, 68, 79, 0.1)", height:140, width:180,  }}>
+                    <div style={{display:'flex', flexDirection:'row', alignItems:'center',paddingLeft:20, paddingTop:18}}>
+                        <FiberManualRecordIcon sx={{color:'#46D989'}}/>
+                        <div style={{paddingLeft:8}}>
+                            <div style={{fontSize:18, color:'#171725'}} >
+                                {`${payload[0].value}`}
+                            </div>
+                            <div style={{fontSize:14, color:'#9A99AD'}}>
+                                {`Datasets`}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div style={{display:'flex', flexDirection:'row', alignItems:'center',paddingLeft:20, paddingTop:24}}>
+                        <FiberManualRecordIcon sx={{color:'#24BBFF'}}/>
+                        <div style={{paddingLeft:8}}>
+                            <div style={{fontSize:18, color:'#171725'}} >
+                                {`${payload[1].value}`}
+                            </div>
+                            <div style={{fontSize:14, color:'#9A99AD'}}>
+                                {`Industry Points`}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            );
+        }
+
+        return null;
+    };
 
   return (
     
@@ -382,19 +421,21 @@ export default function Dashboard({
                 <div style={{height:'54ch', minWidth:'82ch', maxWidth:'28ch', backgroundColor:'#FFF',
                     marginRight:14, display:'flex', flexDirection:'row',marginBottom:8,
                     justifyContent:"space-between",borderRadius:9,  }}>
-                    <div style={{marginTop:18,marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                    <div style={{marginTop:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                         lineHeight:"22px", justifyContent:'space-between', width:'100%'
                     }}
-                         onClick={()=>router.push('/searchresult')} >
+                         >
 
                         <div>
-                            <div style={{color:'black', fontSize:20,}}>Analytics</div>
+                            <div style={{color:'black', fontSize:20,marginLeft:18,}}>Analytics</div>
                         </div>
-                        <LineChart width={800} height={450} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
+                        <LineChart width={800} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                            <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>
+                            <Line type="monotone" strokeWidth={3} dataKey="industry_points" stroke="#24BBFF" />
+                            <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />
+                            <XAxis dataKey="name" axisLine={false} stroke="#92929D"/>
+                            <YAxis axisLine={false} stroke="#92929D"/>
+                            <Tooltip content={<CustomTooltip />}/>
                         </LineChart>
                     </div>
 

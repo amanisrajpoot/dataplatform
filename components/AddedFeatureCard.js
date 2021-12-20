@@ -37,7 +37,7 @@ export default function AddedFeatureCard(props){
               <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'5%',
                   paddingLeft:8, paddingRight:8}}>
 
-                  <Button sx={{borderRadius:6,maxHeight:'38px',maxWidth:'12px',backgroundColor:"#5A00E2", color:"#fff"}}
+                  <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
                           variant="outlined">{parseInt(props.index+1)}</Button>
               </div>
 
@@ -47,7 +47,8 @@ export default function AddedFeatureCard(props){
                   <div style={{fontSize:14,display:'flex', alignItems:'center'}}><div style={{paddingRight:4,}}><b>{"Topics:  "}</b></div>
                       {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
                               borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
-                              color:'#24BBFF'}} size="small">{topic}</Button>)
+                              color:'#24BBFF'}} size="small"
+                              onClick={()=>router.push(`/topic/${topic}`)}>{topic}</Button>)
                           : "6"}</div>
               </div>
 
@@ -67,8 +68,9 @@ export default function AddedFeatureCard(props){
                   </div>
                   <Divider orientation="vertical" variant="middle" flexItem/>
 
-                  <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',}}>
-                      <Button variant="outlined" fontSize="small" sx={{borderRadius:2}}
+                  <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',
+                  maxHeight:36}}>
+                      <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
                               onClick={()=>{
                                   props.handleOpenDetails(props.data)
                                   mixpanel.track('Catalog Card View Details', {
