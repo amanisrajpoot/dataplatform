@@ -47,6 +47,8 @@ import MasksOutlinedIcon from '@mui/icons-material/MasksOutlined';
 import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
 import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
+
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 const data = [{name: 'Jan', datasets: 400,industry_points: 400,amt: 2400},{name: 'Feb', datasets: 300,industry_points: 500, amt: 2000},
     {name: 'Mar', datasets: 200,industry_points: 600, amt: 2200},{name: 'Apr', datasets: 400,industry_points: 700, amt: 2400},
@@ -301,22 +303,24 @@ export default function Dashboard({
                             <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF4E4',
                                 marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'space-between', width:'85%', paddingTop:18
-                                }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                <div style={{marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
+                                    lineHeight:"22px", justifyContent:'space-between', paddingTop:18, paddingRight:12
+                                }}>
 
                                     <div>
                                         <div style={{color:'black', fontSize:18,}}>We would love to hear your opinion </div>
                                         <div style={{paddingTop:12,color:'gray'}}>Please feel free to give your advice and notes on how we can do better to give you more. </div>
                                     </div>
-                                    <div style={{paddingTop:18,color:'gray', paddingBottom:24}}>
+                                    <div style={{paddingTop:18,color:'gray', paddingBottom:24, display:'flex',width:'100%',
+                                                justifyContent:'space-between'}}>
                                         <Button
                                             variant="filled"
                                             sx={{bgcolor:'#FF9800', borderRadius:2, color:"#fff",
-                                                textTransform:'capitalize'}}
+                                                textTransform:'capitalize', maxHeight:42}}
                                             endIcon={<ArrowForwardIcon />}
+                                            onClick={()=>router.push('https://0w6e3b6atr1.typeform.com/to/JliJ1Qvo')}
                                         >Take Survey</Button>
+                                        <PollOutlinedIcon sx={{fontSize:42}}/>
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +346,7 @@ export default function Dashboard({
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push('/dashboard')} >
 
                                     <div>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
@@ -367,7 +371,7 @@ export default function Dashboard({
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push('/dashboard')} >
 
                                     <div>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
@@ -392,7 +396,7 @@ export default function Dashboard({
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push('/dashboard')} >
 
                                     <div>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
@@ -448,7 +452,7 @@ export default function Dashboard({
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
                                     lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push(`/topic/FDA`)} >
                                     <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#5A00E2', borderRadius:50,
                                         padding:18, marginRight:18,}}>
                                         <RoomServiceOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
@@ -468,7 +472,7 @@ export default function Dashboard({
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
                                     lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push(`/topic/Physician`)} >
                                     <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#24BBFF', borderRadius:50,
                                         padding:18, marginRight:18}}>
                                         <MasksOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
@@ -487,7 +491,7 @@ export default function Dashboard({
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
                                     lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push(`/topic/Drugs`)} >
                                     <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF9800', borderRadius:50,
                                         padding:18, marginRight:18}}>
                                         <MedicalServicesOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
@@ -506,7 +510,7 @@ export default function Dashboard({
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
                                     lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push(`/topic/Insurance Companies`)} >
                                     <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF6262', borderRadius:50,
                                         padding:18, marginRight:18}}>
                                         <CorporateFareOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>

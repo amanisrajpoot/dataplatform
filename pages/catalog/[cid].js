@@ -40,6 +40,7 @@ import DatasetDraftCard from "../../components/DatasetDraftCard";
 import InputBase from '@mui/material/InputBase';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import CatalogCardOut from "../../components/CatalogCardOut";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -87,7 +88,8 @@ export default function ManageDataset({
     const [datasetMode, setDatasetMode] = useState(0);
     const [downloadLink, setDownloadLink] = React.useState('');
     const router = useRouter();
-    const dataset_id = router.query.did;
+    const datasource_id = router.query.cid;
+    console.log(datasource_id)
     const [addCatalogMode, setAddCatalogMode] = useState(false);
     const [keyword, setKeyword] = useState('')
     const [localTitle, setLocalTitle] = useState('');
@@ -126,13 +128,13 @@ export default function ManageDataset({
     }
 
     useEffect(async ()=>{
-        const dataset = await getDatasetsId(token, dataset_id);
+        const dataset = await getDatasetsId(token, datasource_id);
         setUserDataset(dataset);
         console.log("fetched dataset data",userdataset);
-    }, [token, dataset_id]);
+    }, [token, datasource_id]);
 
     const handleDownloadButton = async() => {
-        const downloadLink = await downloadDatasetsId(token, dataset_id);
+        const downloadLink = await downloadDatasetsId(token, datasource_id);
         setDownloadLink(downloadLink.url);
         if(downloadLink.url !== null && downloadLink.url !== undefined){
             await window.open(downloadLink.url, '_blank');
@@ -178,7 +180,7 @@ export default function ManageDataset({
             'scrolled first': true,
             'email':user.email
         })
-    }, [token, dataset_id]);
+    }, [token, datasource_id]);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open2 = Boolean();
@@ -267,41 +269,13 @@ export default function ManageDataset({
                                     startIcon={<CachedIcon />} onClick={()=>router.reload()}>
                                 {"Refresh"}</Button>
                         </Box>
-                        <Box sx={{display:"flex", alignItems:'center', justifyContent:'space-between', width:'24%', }}>
-                            {datasetMode==0?<div><DeleteOutlineIcon fontSize="large" sx={{cursor:'pointer',}}
-                                                                    onClick={() => deleteF(userdataset)}/></div>:null}
-                            <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
-                                    startIcon={<GetAppIcon />} onClick={handleClick}
-                                    >
-                                {"Export"}</Button>
-
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={()=>handleDownloadButton()}>Download CSV</MenuItem>
-                                <MenuItem onClick={()=>handleClose}>XLS</MenuItem>
-                                <MenuItem onClick={()=>handleClose}>API Configuration</MenuItem>
-                            </Menu>
-                            {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
-                                                        startIcon={<EditIcon />} onClick={() => setDatasetMode(1)}>
-                                {"Edit"}</Button>: datasetMode === 1 ?
-                                <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
-                                        startIcon={<CheckIcon />} onClick={() => {updateF(userdataset)}}>
-                                    {"Update"}</Button>:null}
-                        </Box>
 
                     </Box>
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,
                             color:'gray-900',justifyContent:'space-around'}}>
-                            <div>Dataset Overview &nbsp;</div>
+                            <div>Catalog Overview &nbsp;</div>
                         </Box>
 
                     </Box>
@@ -309,14 +283,14 @@ export default function ManageDataset({
                     {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
                     <Box sx={{px:2, }}>
                         <Box>{
-                            userdataset !== null && userdataset !== undefined
-                            && <SignalCardOut token={token} localDataset={localDataset} setLocalDataset={setLocalDataset}
-                                              localTitle={localTitle} setLocalTitle={setLocalTitle} localDescription={localDescription}
-                                              setLocalDescription={setLocalDescription} localTopic={localTopic} setLocalTopic={setLocalTopic}
-                                              data={userdataset} datasetMode={datasetMode} setDatasetMode={setDatasetMode}
-                                              userdataset={userdataset} setUserDataset={setUserDataset} deleteF={deleteF} updateF={updateF}
-
-                            />
+                            dataSources !== null && dataSources !== undefined
+                            && dataSources.map((data,index)=> datasource_id == data.ID && <CatalogCardOut token={token} localDataset={localDataset}
+                                              setLocalDataset={setLocalDataset} localTitle={localTitle} setLocalTitle={setLocalTitle}
+                                              localDescription={localDescription}setLocalDescription={setLocalDescription} localTopic={localTopic}
+                                              setLocalTopic={setLocalTopic}data={data} datasetMode={datasetMode} setDatasetMode={setDatasetMode}
+                                              dataSources={dataSources}setDataSources={setDataSources} userdataset={userdataset} setUserDataset={setUserDataset}
+                                              deleteF={deleteF} updateF={updateF}
+                            />)
                         }
                         </Box>
 
@@ -339,13 +313,8 @@ export default function ManageDataset({
                             py: 2, width:'100%', }}>
                             <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',
                                 fontSize:24,font:'roboto',pl:2}}>
-                                <div>{datasetMode === 0? "Included ":'Selected ' }Catalogs &nbsp;</div>
+                                <div>{'Related ' }Catalogs &nbsp;</div>
                             </Box>
-
-                            {datasetMode ===1 ?<Button variant="contained" size="large" sx={{mx:4, py:2,
-                                backgroundColor:'#5A00E2'}}
-                                                       startIcon={addCatalogMode ?<CheckIcon />:<AddIcon />} onClick={()=>setAddCatalogMode(!addCatalogMode)}>
-                                {addCatalogMode ?"Done":"Add Catalog"}</Button>:null}
 
                         </Box>
 
@@ -353,24 +322,9 @@ export default function ManageDataset({
                             alignItems:'center' }}>
                             <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
                                 justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, p:1}}>
-                                {datasetMode === 0 ? userdataset !== null && userdataset !== undefined &&
-                                    userdataset.catalog !== null && userdataset.catalog !== undefined &&
-                                    userdataset.catalog.map((data,index)=><FeatureCard
-                                        key={data.dataset_id}
-                                        data={data}
-                                        index={index}
-                                        token={token}
-                                        user={user}
-                                        datasetMode={datasetMode}
-                                        dataset={userdataset}
-                                        openDetails={openDetails}
-                                        handleOpenDetails={handleOpenDetails}
-                                        handleCloseDetails={handleCloseDetails}/>)
-                                    : datasetMode === 1 ?
-                                        userdataset !== null && userdataset !== undefined &&
-                                        userdataset.catalog !== null && userdataset.catalog !== undefined &&
-                                        userdataset.catalog.map((data,index)=><EditFeatureCard
-                                            key={data.dataset_id}
+                                {       dataSources !== null && dataSources !== undefined &&
+                                        dataSources.map((data,index)=> <FeatureCard
+                                            key={data.ID}
                                             data={data}
                                             index={index}
                                             token={token}
@@ -382,74 +336,10 @@ export default function ManageDataset({
                                             removeLocalDatasetcatalog={removeLocalDatasetcatalog}
                                             handleOpenDetails={handleOpenDetails}
                                             handleCloseDetails={handleCloseDetails}/>)
-                                        : null}
+                                }
                             </Box>
 
                         </Box>
-
-                        {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh',}}>
-
-                            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
-
-                                <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                                    flex: 1, py: 2, px: 2, }}>
-                                    <Typography color="inherit" variant="h5" component="h1">
-                                        <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
-                                            <div>Matching Catalogs &nbsp;</div>
-
-                                        </Box>
-                                    </Typography>
-
-                                </Box>
-
-                                <Box sx={{ width:"100%", display:'flex', flexDirection:'column',
-                                    justifyContent:"center",alignItems:'center', px:2 }}>
-                                    {dataSources && dataSources.map((data,index)=><FeatureCard
-                                        openDetails={openDetails}
-                                        data={data}
-                                        index={index}
-                                        token={token}
-                                        user={user}
-                                        handleOpenDetails={handleOpenDetails}
-                                        handleCloseDetails={handleCloseDetails}
-                                        dataset={userdataset.catalog}
-                                        dataSources={dataSources}
-                                        removeDatasetcatalog={removeLocalDatasetcatalog}
-                                        addDatasetcatalog={addLocalDatasetcatalog}
-                                    />)}
-                                </Box>
-
-                            </Box>
-                        </Box>:null}
-
-                        <div style={{display:'flex', flexDirection:'column'}}>
-
-                            <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                                flex: 1, py: 2, px: 2, }}>
-                                <Typography color="inherit" variant="h5" component="h1">
-                                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
-                                        <div>Matching Datasets &nbsp;</div>
-
-                                    </Box>
-                                </Typography>
-
-                            </Box>
-                            <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2.5, flex:'start',
-                                alignItems:'center',  overflow: "scroll"}}>
-
-                                {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
-                                    userdatasets.map((data, index)=><DatasetDraftCard
-                                        key={data.dataset_id}
-                                        index={index}
-                                        data={data}
-                                        token={token}
-                                        user={user}
-                                        openDetails={openDetails}
-                                        handleOpenDetails={handleOpenDetails}
-                                        handleCloseDetails={handleCloseDetails}/>): null
-                                }
-                            </Box>
-                        </div>
 
                     </Box>
 
