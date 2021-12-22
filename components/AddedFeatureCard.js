@@ -72,7 +72,8 @@ export default function AddedFeatureCard(props){
                   maxHeight:36}}>
                       <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
                               onClick={()=>{
-                                  props.handleOpenDetails(props.data)
+                                  // props.handleOpenDetails(props.data)
+                                  router.push(`/catalog/${props.data.ID}`)
                                   mixpanel.track('Catalog Card View Details', {
                                       'source': router.pathname,
                                       'action': "clicked on view details on catalog card",

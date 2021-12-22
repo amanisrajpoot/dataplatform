@@ -82,7 +82,8 @@ export default function FeatureCard(props){
                   <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',}}>
                       <Button variant="outlined" fontSize="small" sx={{borderRadius:2}}
                               onClick={()=>{
-                                  props.handleOpenDetails(props.data)
+                                  // props.handleOpenDetails(props.data)
+                                  router.push(`/catalog/${props.data.ID}`)
                                   mixpanel.track('Catalog Card View Details', {
                                       'source': router.pathname,
                                       'action': "clicked on view details on catalog card",

@@ -172,18 +172,18 @@ export async function deleteUserDataset({token, data}){
     return res.json()
 }
 
-// export async function updateDoctorProfile({token, doctor}){
-//     const req = {
-//         method:"PUT",
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'authorization': token
-//         },
-//         body: JSON.stringify(doctor)
-//     };
-//     const res = await fetch(BASE_BACKEND+"/updateDoctor", req)
-//     return res.json()
-// }
+export async function updateUserDetails({token, user}){
+    const req = {
+        method:"PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': token
+        },
+        body: JSON.stringify(user)
+    };
+    const res = await fetch(BASE_BACKEND+"/users", req)
+    return res.json()
+}
 
 export async function getReports({token, location}){
     const req = {

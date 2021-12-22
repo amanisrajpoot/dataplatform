@@ -55,11 +55,11 @@ export default function FeatureCard(props){
 
           <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"98%",
                alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
-              textOverflow:'clip', font:'roboto',paddingRight:8,paddingLeft:4, marginLeft:12,marginRight:12,
+              textOverflow:'clip', font:'roboto',paddingRight:8,paddingLeft:4,
           border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
 
               <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'7%',
-                  paddingLeft:18, paddingRight:8,}}>
+                  paddingLeft:18, paddingRight:64,}}>
 
                   <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
                           variant="outlined">{parseInt(props.index+1)}</Button>
@@ -93,32 +93,37 @@ export default function FeatureCard(props){
                     </div>
                         <Divider orientation="vertical" variant="middle" flexItem/>
 
-                    <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',
-                    maxHeight:36}}>
-                        <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
-                        onClick={()=>{
-                          props.handleOpenDetails(props.data)
-                          mixpanel.track('Catalog Card View Details', {
-                            'source': router.pathname,
-                            'action': "clicked on view details on catalog card",
-                            'catalog': props.data.ID,
-                              'email': props.user.email
-                           }) 
-                          }
-                        }>
-                      <div ><b>{props.geo?"View": "View"}</b></div>
-                    </Button>
-                        </div>
+                    <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"27%",alignItems:'center'}}>
+                        <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"100%", justifyContent:'center',
+                        maxHeight:36, alignItems:'center'}}>
+                            <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
+                            onClick={()=>{
+                              // props.handleOpenDetails(props.data)
+                                router.push(`/catalog/${props.data.ID}`)
+                              mixpanel.track('Catalog Card View Details', {
+                                'source': router.pathname,
+                                'action': "clicked on view details on catalog card",
+                                'catalog': props.data.ID,
+                                  'email': props.user.email
+                               })
+                              }
+                            }>
+                          <div ><b>{props.geo?"View": "View"}</b></div>
+                        </Button>
+                            </div>
                     
                     {router.pathname.includes('/dashboard')?"":
                         router.pathname.includes('/browsecatalogue')?"":
+                            router.pathname.includes('/catalog')?"":
+                                router.pathname.includes('/topic')?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 0 ?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 1 ?"":
-                    <div style={{fontSize:14, cursor:'pointer'}} 
+                    <div style={{fontSize:14, cursor:'pointer', alignItems:'center'}}
                         onClick={()=>handleAdd()}>
                       <p>{searchInArray(props.dataset, props.data.ID)? <DoneIcon />: <AddIcon />}</p>
                     </div>}
 
+                    </div>
                     </div>
         
           </div>

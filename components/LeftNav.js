@@ -130,7 +130,8 @@ export default function LeftNav({
 			<div className={styles.navbar}>
 				<div style={{width:'100%', paddingBottom:12}}>
 					<div style={{width:'100%',textAlign:'center', fontSize:32, paddingTop:30,paddingBottom:30,
-						fontFamily:'roboto'}}>Data Platform</div>
+						fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;'}}
+						>Health Data Platform</div>
 					<Divider />
 				</div>
 
@@ -224,7 +225,7 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						router.push('/dashboard1');
+						router.push('/settings');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
 						// 	setLeftAnimation(styles.menuTopClose);
@@ -232,7 +233,7 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						color: router.pathname.includes('/setting')
+						color: router.pathname.includes('/settings')
 							? '#5A00E2'
 							: 'gray',
 					}}
@@ -242,7 +243,7 @@ export default function LeftNav({
 
 					<p
 						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/setting') ? '#5A00E2' : '',
+							color: router.pathname.includes('/settings') ? '#5A00E2' : '',
 						}}
 					>
 						Settings
@@ -251,7 +252,7 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						router.push('/dashboard1');
+						router.push('/support');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
 						// 	setLeftAnimation(styles.menuTopClose);

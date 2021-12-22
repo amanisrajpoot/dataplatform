@@ -77,7 +77,6 @@ export default function DatasetDraftCard(props){
         }
     }
 
-    console.log("fetched dataset",props.data);
     return (
         <div style={{display:"flex", flexDirection:'column', marginRight:8,
                 borderRadius:8, height:'100%', width:'100%',

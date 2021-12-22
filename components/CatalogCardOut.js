@@ -3,15 +3,15 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { deleteUserDataset, updateUserDataset } from "../function/users"
+import {deleteUserDataset, getPublicDatasets, updateUserDataset} from "../function/users"
 import { useRouter } from 'next/router';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 
 
-export default function SignalCardOut({token, data, datasetMode, setDatasetMode,localTitle,setLocalTitle,localDescription,
+export default function CatalogCardOut({token, data, datasetMode, setDatasetMode,localTitle,setLocalTitle,localDescription,
     setLocalDescription, localTopic, setLocalTopic, localDataset, setLocalDataset, userdatasets, setUserDatasets,
-    deleteF, updateF
+    deleteF, updateF, dataSources, setDataSources, currentTopic, setCurrentTopic
 }){
 
     useEffect(() => {
@@ -28,6 +28,11 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
     }, [localTitle, localDescription, localTopic]);
 
     useEffect(() => {console.log("DATATATA",data)})
+
+    useEffect(() => {
+        setCurrentTopic(data.topic)
+    }, [data.topic]);
+
     return (
         <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',borderRadius:16,minHeight:'32vh'}}>
           <div style={{display:"flex", flexDirection:'row', height:'100%', maxHeight:'100%',
@@ -48,7 +53,7 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                       <div style={{display:'flex',width:'100%', }}>
                           <div style={{display:'flex',wordWrap: "break-word",
                               whiteSpace: "pre-wrap", wordBreak: "break-word", paddingRight:128 }}>
-                              <b>Datasources:</b> {data.catalog?data.catalog.length:"0"}
+                              <b>Datasources:</b> {data.data_sources?data.data_sources:"0"}
                           </div>
                           <div style={{display:'flex' }}>
                               <b>No. of Rows: </b>{data.row_count?data.row_count.toLocaleString():"0"}

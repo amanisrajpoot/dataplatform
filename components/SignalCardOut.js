@@ -51,14 +51,14 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                               <b>Datasources:</b> {data.catalog?data.catalog.length:"0"}
                           </div>
                           <div style={{display:'flex' }}>
-                              <b>No. of Rows:</b>{data.row_count?data.row_count:"0"}
+                              <b>No. of Rows: </b>{data.row_count?data.row_count.toLocaleString():"0"}
                           </div>
                       </div>
 
                       <div style={{display:'flex',width:'100%',  }}>
                           <div style={{display:'flex',wordWrap: "break-word",
                               whiteSpace: "pre-wrap", wordBreak: "break-word",paddingRight:64 }}>
-                              <b>Data Points:</b> {data.data_points?data.data_points:""}
+                              <b>Data Points:</b> {data.data_points?data.data_points.toLocaleString():""}
                           </div>
                           <div style={{display:'flex', alignItems:'center', }}><div style={{paddingRight:4,}}><b>Features:</b></div>
                               {data.features?data.features.split(',').map((feature, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
