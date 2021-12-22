@@ -21,7 +21,7 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
-import {getPublicDatasets, getDatasets, getUser} from '../function/users';
+import {getPublicDatasets, getDatasets, getUser, getPublicDatasetsTopics} from '../function/users';
 import DatasetCard from '../components/DatasetCard';
 import DatasetDraftCard from '../components/DatasetDraftCard';
 import HeaderDatasetCard from '../components/HeaderDatasetCard';
@@ -92,10 +92,8 @@ export default function BrowseCatalogue({
   userdatasets,
   dataSources,
   setDataSources,
-                                            addDatasetcatalog,
-                                            removeDatasetcatalog,
-
-  
+  addDatasetcatalog,
+  removeDatasetcatalog,
 }) {
 
   const router = useRouter()
@@ -112,8 +110,9 @@ export default function BrowseCatalogue({
   const [localdataset, setLocaldataset] = useState([]);
 
   const handleOpen2 = () => {                               
-                              setOpen(false);
-                              setOpen2(true);}
+      setOpen(false);
+      setOpen2(true);
+  }
   const handleClose = () => setOpen(false);
 
   const [user, setuser] = useState({});
@@ -131,6 +130,7 @@ export default function BrowseCatalogue({
   const [openDetails, setOpenDetails] = useState(false);
   const [dsDetails, setDSDetails] = useState([]);
   const [showDraft, setShowDraft] = useState(true)
+    const [currentOption, setCurrentOption] = useState("All")
 
   const handleOpenDetails = (data) => {
     setOpenDetails(true);
@@ -141,6 +141,38 @@ export default function BrowseCatalogue({
   };
   
   const [keyword, setKeyword] = useState('');
+  const [localFilterTopics, setLocalFilterTopics] = useState([])
+    const [filterTopics, setFilterTopics] = useState([])
+    const [topicFilteredDataSources, setTopicFilteredDataSources] = useState([])
+    const [keywordFilteredDataSources, setKeywordFilteredDataSources] = useState([])
+    const [searchMode, setSearchMode] = useState(0)
+
+    useEffect(async ()=>{
+        const catalog = await getPublicDatasetsTopics(token, filterTopics.[0]);
+        setTopicFilteredDataSources(catalog);
+        console.log("filtered catalog data",dataSources);
+    }, [filterTopics]);
+
+    const handleTopicFilter = async (topic) => {
+        setLocalFilterTopics([...localFilterTopics,topic])
+        setFilterTopics(localFilterTopics)
+        if(token!==null){
+            const catalog = await getPublicDatasetsTopics(token, filterTopics.[0]);
+            setTopicFilteredDataSources(catalog);
+            console.log("filtered catalog data",catalog);
+            setSearchMode(2)
+            console.log("fetched data",catalog);
+            console.log("fetched data",topicFilteredDataSources);
+        }
+    };
+
+    useEffect(async ()=>{
+        if(!router.pathname.includes("/browsecatalogue")){
+            setSearchMode(0)
+        }
+
+    }, [router]);
+
   const handleKeywordSearch = async (event) => {
       if(token!==null){
           console.log("SEARCH", keyword)
@@ -153,9 +185,10 @@ export default function BrowseCatalogue({
           const data = await getPublicDatasets(
           token,keyword
         );
-          setDataSources(data);
+          setKeywordFilteredDataSources(data);
+          setSearchMode(1)
           console.log("fetched data",data);
-          console.log("fetched data",userdatasets);
+          console.log("fetched data",keywordFilteredDataSources);
       }
   };
 
@@ -226,11 +259,11 @@ export default function BrowseCatalogue({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                        <div style={{fontSize:28}}>Catalouges &nbsp;&nbsp;</div>
+                        <div style={{fontSize:28}}>Catalogs &nbsp;&nbsp;</div>
                         <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                             alignItems:'space-between'}}>
-                            <div style={{fontSize:18, color:'gray'}}>Show:&nbsp;&nbsp;</div>
-                            <div style={{fontSize:18, color:'gray-900'}}>All</div>
+                            <div style={{fontSize:18, color:'gray'}}>Search:&nbsp;&nbsp;</div>
+                            <div style={{fontSize:18, color:'gray-900'}}>{currentOption}</div>
                             <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
 
                             <Menu
@@ -242,9 +275,18 @@ export default function BrowseCatalogue({
                                     'aria-labelledby': 'basic-button',
                                 }}
                             >
-                                <MenuItem onClick={handleClose}>All</MenuItem>
-                                <MenuItem onClick={handleClose}>Created</MenuItem>
-                                <MenuItem onClick={handleClose}>Draft</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    setCurrentOption("All")
+                                    setAnchorEl(null)
+                                }}>All</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    setCurrentOption("Topic")
+                                    setAnchorEl(null)
+                                }}>Topic</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    setCurrentOption("Name")
+                                    setAnchorEl(null)
+                                }}>Name</MenuItem>
                             </Menu>
                         </div>
 
@@ -261,7 +303,12 @@ export default function BrowseCatalogue({
                     color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                       <div>Catalogues &nbsp;</div>
-                  {dataSources !== null && dataSources !== undefined && <div>{"("+ dataSources.length+")"}</div>}
+                  {searchMode === 0 && dataSources !== null && dataSources !== undefined ?
+                  <div>{"("+ dataSources.length+")"}</div>:
+                      searchMode === 1 && keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined ?
+                      <div>{"("+ keywordFilteredDataSources.length+")"}</div>:
+                      searchMode === 2 && topicFilteredDataSources !== null && topicFilteredDataSources !== undefined ?
+                      <div>{"("+ topicFilteredDataSources.length+")"}</div>:null}
                     <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 
                 </Box>
@@ -269,6 +316,7 @@ export default function BrowseCatalogue({
                 <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/>
 
           </Box>
+
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
             {/* <SignalTable /> */}
@@ -289,20 +337,52 @@ export default function BrowseCatalogue({
 
                         <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
                             alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
+                            py:3
                             }}
                                 variant="outlined"
-                                onClick={()=>handleKeywordSearch()}>
+                                onClick={handleClick}>
                             <FilterListIcon sx={{ fontSize: 25,  }}/>
-                            <div style={{ paddingLeft:12}}>Filter</div>
+                            <div style={{ paddingLeft:12}}>Filter By Topics</div>
                         </Button>
+
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={()=> {
+                                        handleClose2()
+                                        setFilterTopics(localFilterTopics)
+                                        setLocalFilterTopics([])
+                                        }
+                                    }
+                                    MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                    }}
+                                >
+                                    {dataSources && dataSources !== null && dataSources !== undefined &&
+                                        dataSources.map((topic, index)=><MenuItem onClick={() => {
+                                        setCurrentOption("All")
+                                        // setAnchorEl(null)
+                                    }}><div style={{display:'flex', alignItems:'center'}}
+                                        onClick={()=>{
+                                            handleTopicFilter(topic.topic.split(",").[0])
+                                        }}>
+                                            <input type={"checkbox"} name="topic" value={topic.topic}/>
+                                            <div style={{paddingLeft:10}}>{topic.topic.split(",").[0]}</div>
+                                        </div>
+                                        </MenuItem>)
+                                    }
+
+                                </Menu>
 
                         <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
                             alignItems:'center', justifyContent:'center', borderRadius:3, border:0.5, borderColor:'#939EAA',
+                            py:3
                             }}
                                 variant={"outlined"}
                                 onClick={()=>handleKeywordSearch()}>
-                            <SortIcon sx={{ fontSize: 25, }}/>
-                            <div style={{ paddingLeft:12, paddingRight:4}}>Sort</div>
+                            <SearchIcon sx={{ fontSize: 25, }}/>
+                            <div style={{ paddingLeft:12, paddingRight:4}}>Search by Keyword</div>
                         </Button>
                             </Box>
                             <Box sx={{display:'flex', pt:2}}>
@@ -321,7 +401,22 @@ export default function BrowseCatalogue({
 
                     </Box>
 
-                {dataSources && dataSources.map((data,index)=><FeatureCard
+                {searchMode === 0 ? dataSources !== null && dataSources !== undefined &&
+                    dataSources.map((data,index)=><FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />):
+                    searchMode === 1 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
+                    keywordFilteredDataSources.map((data,index)=><FeatureCard
                     openDetails={openDetails}
                     data={data}
                     index={index}
@@ -333,7 +428,21 @@ export default function BrowseCatalogue({
                     dataSources={dataSources}
                     removeDatasetcatalog={removeDatasetcatalog}
                     addDatasetcatalog={addDatasetcatalog}
-                />)}
+                />):
+                    searchMode === 2 ? topicFilteredDataSources !== null && topicFilteredDataSources !== undefined &&
+                        topicFilteredDataSources.map((data,index)=><FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />):null}
           </Box>
       
       </Box>

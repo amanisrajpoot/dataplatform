@@ -8,7 +8,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 import DataSourcesDetails from '../components/datasourcesdetails';
-import {getPublicDatasets, createUserDataset, getUser, updateUserDetails} from '../function/users';
+import {getPublicDatasets, createUserDataset, getUser} from '../function/users';
 import TopicsCard from '../components/topicsCard';
 import FormControl from '@mui/material/FormControl';
 import {useRouter} from 'next/router';
@@ -26,17 +26,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {signOut} from "../function/checkAuth";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Divider from "@mui/material/Divider";
-import CachedIcon from "@mui/icons-material/Cached";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import InputBase from '@mui/material/InputBase';
-import Avatar from '@mui/material/Avatar';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
-import LockIcon from '@mui/icons-material/Lock';
 import Switch from '@mui/material/Switch';
-import ModeEditOutlineRoundedIcon from '@mui/icons-material/ModeEditOutlineRounded';
-import EmailIcon from "@mui/icons-material/Email";
-import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import {EMAIL_VALIDATOR} from "../function/constants";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
@@ -86,7 +77,7 @@ const style2 = {
   p: 4,
 };
 
-export default function Settings({
+export default function Support({
   token, 
   setToken, 
   dataset, 
@@ -122,11 +113,6 @@ export default function Settings({
         setValue(newValue);
     };
 
-  useEffect(() => {
-    setSearching4(dataset.catalog);
-    console.log("fetched dataset",searching4);
-  }, [dataset]);
-
     const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
@@ -142,54 +128,6 @@ export default function Settings({
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
     const [editMode, setEditMode] = useState(0)
-    const [localFirstName, setLocalFirstName] = useState("")
-    const [localLastName, setLocalLastName] = useState("")
-    const [localCompany, setLocalCompany] = useState("")
-    const [localUser, setLocalUser] = useState({})
-    const [error, setError] = useState("")
-
-    function checkFields() {
-        if(editMode === 1 && (localFirstName.length < 3 || localLastName.length < 3)) {
-            setError('Name should be atleast 3 letter long');
-        } else if(editMode === 2 && localCompany.length < 3 ) {
-            setError('Invalid Company Name');
-        } else{
-            setError(null);
-            handleUpdateData();
-        }
-    }
-
-    const handleUpdateData = async () => {
-        if(token!==null){
-            const data = await updateUserDetails({
-                token,
-                user: localUser
-            });
-            setLocalUser(data);
-            setuser(data);
-            mixpanel.track('Clicked on Update User Details', {
-                'source': "Create Dataset Page",
-                'scrolled first': true,
-                'email':user.email,
-            })
-            console.log("updated user details",data);
-            editMode=== 1?setEditMode(0):
-            editMode=== 2?setEditMode(0):null
-
-        }
-    };
-
-    useEffect( () => {
-        if(editMode === 1 && localFirstName !== "" && localLastName !== "") {
-            setLocalUser({...user, firstname: localFirstName, lastname: localLastName});
-            setuser({...user,...localUser})
-        } else if(editMode === 2 && localCompany !== "") {
-            setLocalUser({...user, company: localCompany});
-            setuser({...user,...localUser})
-        }
-        console.log("added details",dataset);
-    }, [localFirstName, localLastName, localCompany]);
-
     const handleOpenDetails = (data) => {
       setOpenDetails(true);
       setDSDetails(data);
@@ -221,15 +159,34 @@ export default function Settings({
     console.log("added details",dataset);
   }, [title, description, topic, keywords]);
 
-  useEffect( () => {
-    console.log("added details",dataset);
-  }, [dataset]);
+    const [submitted, setSubmitted] = useState(false);
+    const [queryName, setQueryName] = useState("")
+    const [userEmail, setUserEmail] = useState("")
+    const [queryDescription, setQueryDescription] = useState("")
+    const [query, setQuery] = useState([])
+    const [error, setError] = useState("")
 
-    const getImages = (base64Image, fileImage) => {
-        // Do something with the selected image)
-        console.log(base64Image);
-        console.log(fileImage);
+    const handleSubmit = () => {
+        setQuery([...query,queryName,userEmail,queryDescription])
+        setTimeout(() => {
+            setSubmitted(true);
+            setQuery("")
+        }, 100);
     };
+
+    function checkFields() {
+        if (queryName.length < 3) {
+            setError('Name should be atleast 3 letter long');
+        } else if (!EMAIL_VALIDATOR.test(userEmail)) {
+            setError('Invalid Email ID');
+        } else if (queryDescription.length < 8) {
+            setError('Less query details, must be atleast 16 letter long');
+        } else {
+            setError(null);
+            handleSubmit();
+            router.push(`mailto:support@example.com?subject=${queryName}&body=${queryDescription}`)
+        }
+    }
 
   return (
     <Box sx={{display:'flex', flexDirection:'row'}}>
@@ -298,11 +255,10 @@ export default function Settings({
                              onClick={editMode=== 0?()=>router.back():
                                       editMode=== 1?()=>setEditMode(0):
                                       editMode=== 2?()=>setEditMode(0):
-                                      editMode=== 3?()=>setEditMode(0):
-                                      editMode=== 4?()=>setEditMode(0):null}>
+                                      editMode=== 3?()=>setEditMode(0):null}>
                             {"Back"}</Button>
                     <Divider variant="middle" orientation="vertical" />
-                    <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Settings</div>
+                    <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Support</div>
 
                 </Box>
                 </Box>
@@ -318,258 +274,94 @@ export default function Settings({
                     aria-label="Vertical tabs example"
                     sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', }}
                 >
-                    <Tab sx={{ textAlign: 'left', }} label={"User Profile "} {...a11yProps(0)} />
-                    <Tab disabled sx={{ textAlign: 'left', }} label="Notification" {...a11yProps(1)} />
-                    <Tab disabled sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="API Configurations" {...a11yProps(2)} />
+                    <Tab sx={{ textAlign: 'left', }} label={"Contact Us "} {...a11yProps(0)} onClick={()=>setSubmitted(false)}/>
+                    <Tab disabled sx={{ textAlign: 'left', }} label="Chat Support" {...a11yProps(1)} />
+                    <Tab disabled sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="Get a Call" {...a11yProps(2)} />
 
                 </Tabs>
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
                     <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between', width:'100%'}}>
-                        {editMode=== 0? <Box >
                             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
                              fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                <div>My Account &nbsp;</div>
-                                <Avatar alt="Remy Sharp" sx={{height:175, width:175, marginTop:2}} src="https://picsum.photos/200" />
+                                <div>Contact Us Form &nbsp;</div>
                              </Box>
 
-                            <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', paddingBottom:28}}>
-                                <FormControl fullWidth sx={{width:'100%' }}>
-                                    {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
+                        {submitted !==true ? <><TextField
+                            margin="normal"
+                            required
+                            sx={{width: "100%"}}
+                            name="Query name"
+                            label="What's Your Query About"
+                            type="text"
+                            id="query"
+                            autoComplete="query"
+                            onChange={(e) => setQueryName(e.target.value)}
+                            // InputProps={{
+                            //     startAdornment: (
+                            //         <InputAdornment position="start">
+                            //             <LockIcon/>
+                            //         </InputAdornment>
+                            //     ),
+                            //     placeholder: "Current Password"
+                            // }}
+                        />
 
-                                    <div style={{fontSize:12, paddingTop:4, color:'#939EAA',textTransform:'uppercase'}}>Full Name</div>
-                                    <div style={{display:'flex', alignItems:'center', paddingTop:12, justifyContent:'space-between', width:'60%'}}>
-                                        <div style={{width:'100%', display:'flex'}}>
-                                            <AccountCircleOutlinedIcon sx={{fontSize:28, color:'black'}}/>
-                                            <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
-                                            {user!== null && user !== undefined ? user.firstname+" "+user.lastname: ""}</div>
-                                        </div>
-                                        <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
-                                            onClick={()=>setEditMode(1)}/>
-                                    </div>
+                        <TextField
+                            margin="normal"
+                            required
+                            sx={{width: "100%"}}
+                            name="email"
+                            label="Enter Your Email"
+                            type="email"
+                            id="email"
+                            autoComplete="email"
+                            onChange={(e) => setUserEmail(e.target.value)}
+                            // InputProps={{
+                            //     startAdornment: (
+                            //         <InputAdornment position="start">
+                            //             <LockIcon/>
+                            //         </InputAdornment>
+                            //     ),
+                            //     placeholder: "New Password"
+                            // }}
+                        />
 
-                                    <div style={{fontSize:12, paddingTop:24, color:'#939EAA',textTransform:'uppercase'}}>Company</div>
-                                    <div style={{display:'flex', alignItems:'center', paddingTop:12, justifyContent:'space-between', width:'60%'}}>
-                                        <div style={{width:'100%', display:'flex'}}>
-                                            <BusinessRoundedIcon sx={{fontSize:28, color:'black'}}/>
-                                            <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
-                                                {user!== null && user !== undefined ? user.company: ""}</div>
-                                        </div>
-                                        <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
-                                                                    onClick={()=>setEditMode(2)}/>
-                                    </div>
-
-                                    <div style={{fontSize:12, paddingTop:24, color:'#939EAA',textTransform:'uppercase'}}>Email Address</div>
-                                    <div style={{display:'flex', alignItems:'center', paddingTop:12, justifyContent:'space-between', width:'60%'}}>
-                                        <div style={{width:'100%', display:'flex'}}>
-                                            <AccountCircleOutlinedIcon sx={{fontSize:28, color:'black'}}/>
-                                            <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
-                                                {user!== null && user !== undefined ? user.email: ""}</div>
-                                        </div>
-                                        {/*<ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}*/}
-                                        {/*    onClick={()=>setEditMode(3)}/>*/}
-                                    </div>
-
-                                    {/*<div style={{fontSize:12, paddingTop:24, color:'#939EAA',textTransform:'uppercase'}}>Password</div>*/}
-                                    {/*<div style={{display:'flex', alignItems:'center', paddingTop:12, width:'60%'}}>*/}
-                                    {/*    <div style={{width:'100%', display:'flex'}}>*/}
-                                    {/*        <LockIcon sx={{fontSize:28, color:'black'}}/>*/}
-                                    {/*        <div style={{fontSize:20, paddingLeft:8, color:'#030D55',*/}
-                                    {/*            }} type="password">{"**********"}</div>*/}
-                                    {/*    </div>*/}
-                                    {/*    /!*<ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}*!/*/}
-                                    {/*    /!*    onClick={()=>setEditMode(4)}/>*!/*/}
-                                    {/*</div>*/}
-
-                                </FormControl>
-                            </Box>
-                        </Box>:
-                            editMode === 1?<Box>
-                                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                                    fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                    <div>Edit Name &nbsp;</div>
-                                </Box>
-
-                                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                                    fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                    <TextField
-                                        variant="outlined"
-                                        value={localFirstName}
-                                        onChange={(event)=>setLocalFirstName(event.target.value)}
-                                        sx={{color:'#fff', bgColor:'#fff',pb:2}}
-                                        //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                        label="Full Name"
-                                    />
-
-                                    <TextField
-                                        variant="outlined"
-                                        value={localLastName}
-                                        onChange={(event)=>setLocalLastName(event.target.value)}
-                                        sx={{color:'#fff', bgColor:'#fff',pb:2}}
-                                        //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                        label="Full Name"
-                                    />
-                                </Box>
-
-                                    {error && <>{error}</>}
-                                    <Button variant="contained" size="small" sx={{px:5, py:1.5,pt:2,borderRadius:2,
-                                        backgroundColor:"#5A00E2"}}
-                                            onClick={()=>checkFields()}>
-                                        {"Update"}</Button>
-
-                            </Box>
-                            :
-                            editMode === 2?<Box>
-                                        <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                                            fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                            <div>Edit Company &nbsp;</div>
-                                        </Box>
-
-                                        <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                                            fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                            <TextField
-                                                variant="outlined"
-                                                value={localCompany}
-                                                onChange={(event)=>setLocalCompany(event.target.value)}
-                                                sx={{color:'#fff', bgColor:'#fff',pb:2}}
-                                                //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                                label="Full Name"
-                                            />
-                                        </Box>
-
-                                    {error && <>{error}</>}
-                                    <Button variant="contained" size="small" sx={{px:5, py:1.5,pt:2,borderRadius:2,
-                                        backgroundColor:"#5A00E2"}}
-                                            onClick={()=>checkFields()}>
-                                        {"Update"}</Button>
-
-                                    </Box>
-                                    :
-                            editMode === 3?<Box>
-                                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                                    fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                    <div>Edit Email &nbsp;</div>
-                                </Box>
-
-
-                                    <div style={{display:'flex', alignItems:'center', paddingTop:12, justifyContent:'space-between', alignItem:'center'}}>
-
-                                            <div style={{fontSize:12, color:'#939EAA',textTransform:'uppercase'}}>Current Email Address</div>
-                                            <div style={{fontSize:18, paddingLeft:8, color:'#030D55',}}>
-                                                {user!== null && user !== undefined ? user.email: "123"}</div>
-
-                                    </div>
-
-                                <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                                    fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                    <TextField
-                                        margin="normal"
-                                        required
-                                        sx={{width: "100%"}}
-                                        id="email"
-                                        label="Email Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        autoFocus
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <EmailIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            placeholder: "Email Address"
-                                        }}
-                                    />
-
-                                    <TextField
-                                        margin="normal"
-                                        required
-                                        sx={{width: "100%"}}
-                                        name="password"
-                                        label="Enter Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <LockIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            placeholder: "Enter Password"
-                                        }}
-                                    />
-                                </Box>
-
-                            </Box>:
-                                editMode === 4?<Box>
-                                    <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                                        fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                                        <div>Change Password &nbsp;</div>
-                                    </Box>
-
-                                    <TextField
-                                        margin="normal"
-                                        required
-                                        sx={{width: "100%"}}
-                                        name="password"
-                                        label="Enter Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <LockIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            placeholder: "Current Password"
-                                        }}
-                                    />
-
-                                    <TextField
-                                        margin="normal"
-                                        required
-                                        sx={{width: "100%"}}
-                                        name="password"
-                                        label="Enter Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <LockIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            placeholder: "New Password"
-                                        }}
-                                    />
-
-                                    <TextField
-                                        margin="normal"
-                                        required
-                                        sx={{width: "100%"}}
-                                        name="password"
-                                        label="Enter Password"
-                                        type="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <LockIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            placeholder: "Repeat Password"
-                                        }}
-                                    />
-
-                                </Box>:null}
+                        <TextField
+                            margin="normal"
+                            required
+                            sx={{width: "100%"}}
+                            name="description"
+                            label="Enter Your Complete Query"
+                            type="text"
+                            id="description"
+                            autoComplete="description"
+                            rows={5}
+                            //startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                            label="How can we help you?"
+                            multiline
+                            onChange={(e) => setQueryDescription(e.target.value)}
+                            // InputProps={{
+                            //     startAdornment: (
+                            //         <InputAdornment position="start">
+                            //             <LockIcon/>
+                            //         </InputAdornment>
+                            //     ),
+                            //     placeholder: "Repeat Password"
+                            // }}
+                        />
+                            {error && <>{error}</>}
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,pt:2,mt:2,borderRadius:2,
+                            backgroundColor:"#5A00E2"}}
+                                onClick={()=>{
+                                    checkFields()
+                                }}>
+                            {"Submit"}</Button>
+                        </>:submitted?
+                                <div style={{width:'100%'}}>
+                                    <div style={{fontSize:24}}>Thank you!</div>
+                                    <div style={{fontSize:24}}>We'll be in touch soon.</div>
+                                </div>
+                            :null}
 
                     </Box>
                 </TabPanel>

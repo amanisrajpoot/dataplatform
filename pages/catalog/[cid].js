@@ -15,7 +15,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Output from '../../components/output';
 import {useRouter} from 'next/router';
-import {getDatasetsId, downloadDatasetsId, getUser, deleteUserDataset, updateUserDataset} from '../../function/users';
+import {getDatasetsId, downloadDatasetsId, getUser, deleteUserDataset, updateUserDataset, getPublicDatasetsTopics} from '../../function/users';
 import DataSourcesDetails from '../../components/datasourcesdetails';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -96,6 +96,8 @@ export default function ManageDataset({
     const [localDescription, setLocalDescription] = useState('');
     const [localTopic, setLocalTopic] = useState('');
     const [localDataset, setLocalDataset] = useState({});
+    const [currentTopic, setCurrentTopic] = useState("")
+    const [filteredDataSources, setFilteredDataSources] = useState([])
 
     useEffect(() => {
         if(userdataset !== null && userdataset !== undefined) {
@@ -132,6 +134,12 @@ export default function ManageDataset({
         setUserDataset(dataset);
         console.log("fetched dataset data",userdataset);
     }, [token, datasource_id]);
+
+    useEffect(async ()=>{
+        const catalog = await getPublicDatasetsTopics(token, currentTopic);
+        setFilteredDataSources(catalog);
+        console.log("filtered catalog data",filteredDataSources);
+    }, [token, currentTopic]);
 
     const handleDownloadButton = async() => {
         const downloadLink = await downloadDatasetsId(token, datasource_id);
@@ -289,7 +297,7 @@ export default function ManageDataset({
                                               localDescription={localDescription}setLocalDescription={setLocalDescription} localTopic={localTopic}
                                               setLocalTopic={setLocalTopic}data={data} datasetMode={datasetMode} setDatasetMode={setDatasetMode}
                                               dataSources={dataSources}setDataSources={setDataSources} userdataset={userdataset} setUserDataset={setUserDataset}
-                                              deleteF={deleteF} updateF={updateF}
+                                              deleteF={deleteF} updateF={updateF} currentTopic={currentTopic} setCurrentTopic={setCurrentTopic}
                             />)
                         }
                         </Box>
@@ -322,8 +330,10 @@ export default function ManageDataset({
                             alignItems:'center' }}>
                             <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
                                 justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, p:1}}>
-                                {       dataSources !== null && dataSources !== undefined &&
-                                        dataSources.map((data,index)=> <FeatureCard
+                                {       filteredDataSources !== null && filteredDataSources !== undefined &&
+                                        filteredDataSources.length <= 0? <div>
+                                        We are working on adding more catalogs to our platform.</div>:
+                                            filteredDataSources.map((data,index)=> <FeatureCard
                                             key={data.ID}
                                             data={data}
                                             index={index}
