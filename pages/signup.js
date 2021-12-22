@@ -74,8 +74,9 @@ export default function SignUp({token, setToken}) {
 			email,
 			//phone: '+1' + phone,
 			password,
-			firstname,
+			name:firstname+" "+ lastname,
             lastname,
+            company,
 			
 		});
 		if (erro === null) {

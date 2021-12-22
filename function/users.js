@@ -57,6 +57,29 @@ export async function getPublicDatasets(token,keywords){
     }
 }
 
+export async function getPublicDatasetsTopicKeyword({token,keywords,topics}){
+    if(token!==null){
+        const req = {
+            method:"GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': token
+            },
+        };
+        try {
+            if (keywords === undefined) {
+                const res = await fetch(BASE_BACKEND+`/public/datasets/topics?topics=${topics}&keywords`, req)
+                return res.json()
+            }
+            const res = await fetch(BASE_BACKEND+`/public/datasets/topics?topics=${topics}&keywords=${keywords}`, req)
+            return res.json()
+        } catch (e) {
+            console.log("Error:", e)
+            return null
+        }
+    }
+}
+
 export async function getPublicDatasetsTopics(token,topics){
     if(token!==null){
         const req = {

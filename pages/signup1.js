@@ -112,6 +112,7 @@ const SignUp =({token, setToken}) => {
     }
 
     async function signUpF() {
+        console.log("usercompany", company)
         const erro = await signUp({
             email,
             //phone: '+1' + phone,
@@ -252,7 +253,7 @@ const SignUp =({token, setToken}) => {
                                     <div style={{marginLeft: 125}}>
                                         <div style={{fontSize: 30}}>Verification Code</div>
                                         <div style={{fontSize: 14}}>We've sent a verification code to your email
-                                            address: user@Example.com
+                                            address: <b>{email}</b>
                                         </div>
                                     </div>
                                 </div>
@@ -429,10 +430,14 @@ const SignUp =({token, setToken}) => {
                                             paddingTop: 4, paddingRight: 76, width: '100%', display: 'flex',
                                             justifyContent: 'center', paddingLeft: 64
                                         }}>
-                                            <Link sx={{alignSelf: 'end'}} href="/login" variant="body2">
-                                                {"Didn't receive code?"}
-                                                <div style={{color: "#5A00E2", display: "inline"}}>Resend</div>
-                                            </Link>
+                                                {"Didn't receive code? "}
+                                                <div style={{color: "#5A00E2", display: "inline", cursor:"pointer"}}
+                                                onClick={()=>{
+                                                    setMode(0)
+                                                    setTopPadding(6)
+                                                    setBottomTopPadding(45)
+                                                }}>Resend</div>
+
                                         </div>
                                         : null}
 

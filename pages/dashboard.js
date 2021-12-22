@@ -284,11 +284,11 @@ export default function Dashboard({
                                 <div style={{marginTop:18,marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between', width:'80%'
                                 }}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>router.push('https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/')} >
 
                                     <div>
                                         <div style={{color:'black', fontSize:20,}}>Announcement </div>
-                                        <div style={{paddingTop:12,color:'gray'}}>Non, nisl, tortor id facilisis et elementum ultrices arcu cras. Sit montes, lectus non commodo, lectus auctor. Netus amet leo nascetur neque. Et molestie sem odio dui, curabitur. Ac sapien porta tempor enim.</div>
+                                        <div style={{paddingTop:12,color:'gray'}}>The rest of 2020 and heading into 2021 will be defined by duality of data security and data integration, and providers’ ability to execute on these priorities. That in turn will, in many ways, determine their effectiveness. </div>
                                     </div>
                                     <div style={{paddingTop:12,color:'gray', paddingBottom:24}}>23 Mar, 2021 09:10PM</div>
                                 </div>
@@ -350,12 +350,12 @@ export default function Dashboard({
 
                                     <div>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
-                                        >Datasets for the Insaurance approval </div>
-                                        <div style={{paddingTop:12,color:'#667280'}}>There is no better classification and accumulation of data at a single portal on the internet. </div>
+                                        >Big Data is essential to every significant healthcare undertaking. </div>
+                                        <div style={{paddingTop:12,color:'#667280'}}>Read about the challenges, applications, and potential brilliant future for healthcare big data.</div>
                                     </div>
                                     <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
                                         justifyContent:'space-between', alignItems:'center'}}>
-                                        <div style={{color:'gray',fontSize:14}}>23 Mar, 2021 09:10PM</div>
+                                        <div style={{color:'gray',fontSize:14}}>01 Jan, 2018 09:10PM</div>
                                         <Button
                                             variant="outlined"
                                             sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
@@ -375,8 +375,8 @@ export default function Dashboard({
 
                                     <div>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
-                                        >Datasets for the Insaurance approval </div>
-                                        <div style={{paddingTop:12,color:'#667280'}}>There is no better classification and accumulation of data at a single portal on the internet. </div>
+                                        >How these 4 tech trends are reshaping healthcare  </div>
+                                        <div style={{paddingTop:12,color:'#667280'}}>It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development and implementation of new technologies.</div>
                                     </div>
                                     <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
                                         justifyContent:'space-between', alignItems:'center'}}>

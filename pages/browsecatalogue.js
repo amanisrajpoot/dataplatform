@@ -21,7 +21,7 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
-import {getPublicDatasets, getDatasets, getUser, getPublicDatasetsTopics} from '../function/users';
+import {getPublicDatasets, getDatasets, getUser, getPublicDatasetsTopics, getPublicDatasetsTopicKeyword} from '../function/users';
 import DatasetCard from '../components/DatasetCard';
 import DatasetDraftCard from '../components/DatasetDraftCard';
 import HeaderDatasetCard from '../components/HeaderDatasetCard';
@@ -157,7 +157,7 @@ export default function BrowseCatalogue({
         setLocalFilterTopics([...localFilterTopics,topic])
         setFilterTopics(localFilterTopics)
         if(token!==null){
-            const catalog = await getPublicDatasetsTopics(token, filterTopics.[0]);
+            const catalog = await getPublicDatasetsTopicKeyword({token, keyword,topics:filterTopics});
             setTopicFilteredDataSources(catalog);
             console.log("filtered catalog data",catalog);
             setSearchMode(2)

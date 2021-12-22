@@ -67,12 +67,9 @@ export async function signUp({
 			username: email,
 			password: password,
 			attributes: {
-				email: email,
 				name: name,
-				company:company,
-				password:password,
-
-			},
+				// "custom:company":company
+			}
 		});
 		/* Once the user successfully signs in, update the form state to show the signed in state */
 		// await checkAuth({token, setToken})
