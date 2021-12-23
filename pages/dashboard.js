@@ -457,9 +457,9 @@ export default function Dashboard({
                     </Box>
 
                     {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
-                        alignItems:'start',marginLeft:2, paddingTop:2}}>
+                        alignItems:'start',marginLeft:2,marginRight:2, paddingTop:2}}>
 
-                        <div style={{height:'54ch', minWidth:'82ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                        <div style={{height:'54ch', minWidth:'96%', maxWidth:'28ch', backgroundColor:'#FFF',
                             marginRight:14, display:'flex', flexDirection:'row',marginBottom:8,
                             justifyContent:"space-between",borderRadius:9,  }}>
                             <div style={{marginTop:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -468,7 +468,7 @@ export default function Dashboard({
                             >
 
                                 <div>
-                                    <div style={{color:'black', fontSize:20,marginLeft:18,}}>Analytics</div>
+                                    <div style={{color:'black', fontSize:20,marginLeft:18,}}>Top Dataset Downloads Across Platform</div>
                                 </div>
                                 {/*<LineChart width={800} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>*/}
                                 {/*    <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>*/}
@@ -479,7 +479,7 @@ export default function Dashboard({
                                 {/*    <Tooltip content={<CustomTooltip />}/>*/}
                                 {/*</LineChart>*/}
 
-                                <BarChart width={800} height={450} data={data} margin={{  bottom: 5}} >
+                                <BarChart width={1155} height={450} data={data} margin={{  bottom: 5}} >
                                     <XAxis dataKey="name" axisLine={false} stroke="#92929D" />
                                     <YAxis axisLine={false} stroke="#92929D"/>
                                     <Tooltip />
@@ -490,85 +490,85 @@ export default function Dashboard({
 
                         </div>
 
-                        <div>
-                            <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
-                                marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
-                                justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
-                                    lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
-                                }}
-                                     onClick={()=>router.push(`/topic/FDA`)} >
-                                    <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#5A00E2', borderRadius:50,
-                                        padding:18, marginRight:18,}}>
-                                        <RoomServiceOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
-                                    </div>
-                                    <div>
-                                        <div style={{color:'black', fontSize:18,}}>Food & Drugs Administration </div>
-                                        <div style={{paddingTop:12,color:'#5A00E2', fontSize:28}}>3412</div>
-                                    </div>
+                        {/*<div>*/}
+                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
+                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,*/}
+                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
+                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
+                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
+                        {/*        }}*/}
+                        {/*             onClick={()=>router.push(`/topic/FDA`)} >*/}
+                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#5A00E2', borderRadius:50,*/}
+                        {/*                padding:18, marginRight:18,}}>*/}
+                        {/*                <RoomServiceOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
+                        {/*            </div>*/}
+                        {/*            <div>*/}
+                        {/*                <div style={{color:'black', fontSize:18,}}>Food & Drugs Administration </div>*/}
+                        {/*                <div style={{paddingTop:12,color:'#5A00E2', fontSize:28}}>3412</div>*/}
+                        {/*            </div>*/}
 
-                                </div>
-                            </div>
+                        {/*        </div>*/}
+                        {/*    </div>*/}
 
 
-                            <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
-                                marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8, marginTop:20,
-                                justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
-                                    lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
-                                }}
-                                     onClick={()=>router.push(`/topic/Physician`)} >
-                                    <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#24BBFF', borderRadius:50,
-                                        padding:18, marginRight:18}}>
-                                        <MasksOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
-                                    </div>
-                                    <div>
-                                        <div style={{color:'black', fontSize:18,}}>Physician </div>
-                                        <div style={{paddingTop:12,color:'#24BBFF', fontSize:28}}>4578</div>
-                                    </div>
+                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
+                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8, marginTop:20,*/}
+                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
+                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
+                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
+                        {/*        }}*/}
+                        {/*             onClick={()=>router.push(`/topic/Physician`)} >*/}
+                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#24BBFF', borderRadius:50,*/}
+                        {/*                padding:18, marginRight:18}}>*/}
+                        {/*                <MasksOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
+                        {/*            </div>*/}
+                        {/*            <div>*/}
+                        {/*                <div style={{color:'black', fontSize:18,}}>Physician </div>*/}
+                        {/*                <div style={{paddingTop:12,color:'#24BBFF', fontSize:28}}>4578</div>*/}
+                        {/*            </div>*/}
 
-                                </div>
-                            </div>
+                        {/*        </div>*/}
+                        {/*    </div>*/}
 
-                            <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
-                                marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,
-                                justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
-                                    lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
-                                }}
-                                     onClick={()=>router.push(`/topic/Drugs`)} >
-                                    <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF9800', borderRadius:50,
-                                        padding:18, marginRight:18}}>
-                                        <MedicalServicesOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
-                                    </div>
-                                    <div>
-                                        <div style={{color:'black', fontSize:18,}}>Drugs </div>
-                                        <div style={{paddingTop:12,color:'#FF9800', fontSize:28}}>6532</div>
-                                    </div>
+                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
+                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,*/}
+                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
+                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
+                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
+                        {/*        }}*/}
+                        {/*             onClick={()=>router.push(`/topic/Drugs`)} >*/}
+                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF9800', borderRadius:50,*/}
+                        {/*                padding:18, marginRight:18}}>*/}
+                        {/*                <MedicalServicesOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
+                        {/*            </div>*/}
+                        {/*            <div>*/}
+                        {/*                <div style={{color:'black', fontSize:18,}}>Drugs </div>*/}
+                        {/*                <div style={{paddingTop:12,color:'#FF9800', fontSize:28}}>6532</div>*/}
+                        {/*            </div>*/}
 
-                                </div>
-                            </div>
+                        {/*        </div>*/}
+                        {/*    </div>*/}
 
-                            <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',
-                                marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,
-                                justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',
-                                    lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'
-                                }}
-                                     onClick={()=>router.push(`/topic/Insurance Companies`)} >
-                                    <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF6262', borderRadius:50,
-                                        padding:18, marginRight:18}}>
-                                        <CorporateFareOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
-                                    </div>
-                                    <div>
-                                        <div style={{color:'black', fontSize:18,}}>Insurance Companies </div>
-                                        <div style={{paddingTop:12,color:'#FF6262', fontSize:28}}>7890</div>
-                                    </div>
+                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
+                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,*/}
+                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
+                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
+                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
+                        {/*        }}*/}
+                        {/*             onClick={()=>router.push(`/topic/Insurance Companies`)} >*/}
+                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF6262', borderRadius:50,*/}
+                        {/*                padding:18, marginRight:18}}>*/}
+                        {/*                <CorporateFareOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
+                        {/*            </div>*/}
+                        {/*            <div>*/}
+                        {/*                <div style={{color:'black', fontSize:18,}}>Insurance Companies </div>*/}
+                        {/*                <div style={{paddingTop:12,color:'#FF6262', fontSize:28}}>7890</div>*/}
+                        {/*            </div>*/}
 
-                                </div>
-                            </div>
+                        {/*        </div>*/}
+                        {/*    </div>*/}
 
-                        </div>
+                        {/*</div>*/}
 
                     </Box>}
 

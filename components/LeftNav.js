@@ -310,7 +310,7 @@ export default function LeftNav({
 					<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12, cursor:"pointer"}}
 						 onClick={() => {router.push('/dataset/81')}}>
 						<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
-						<div style={{width:"70%"}}>Drugs Distributers</div>
+						<div style={{width:"70%"}}>Drugs Distributors</div>
 						<div style={{width:"14%", color:'#C5CDD4'}}>756</div>
 					</div></>}
 
