@@ -108,7 +108,7 @@ export default function ManageDataset({
         console.log(dataF)
         const data = await deleteUserDataset({token, data:dataF});
         if(data){
-            window.open("/dashboard1", "_self")
+            window.open("/datasets", "_self")
         }
     }
 
@@ -121,7 +121,7 @@ export default function ManageDataset({
         console.log("updated dataset data", localDataset)
         const data = await updateUserDataset({token, data:localDataset});
         if(data){
-            window.open("/dataset1/"+localDataset.ID, "_self")
+            window.open("/dataset/"+localDataset.ID, "_self")
         }
     }
 
@@ -285,8 +285,8 @@ export default function ManageDataset({
                                 }}
                             >
                                 <MenuItem onClick={()=>handleDownloadButton()}>Download CSV</MenuItem>
-                                <MenuItem onClick={()=>handleClose}>XLS</MenuItem>
-                                <MenuItem onClick={()=>handleClose}>API Configuration</MenuItem>
+                                <MenuItem disabled onClick={()=>handleClose}><div><div>XLS </div><div style={{fontSize:12}}>(Enterprise Version)</div></div> </MenuItem>
+                                <MenuItem disabled onClick={()=>handleClose}><div><div>API Configuration</div> <div style={{fontSize:12}}>(Enterprise Version)</div></div></MenuItem>
                             </Menu>
                             {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
                                                         startIcon={<EditIcon />} onClick={() => setDatasetMode(1)}>

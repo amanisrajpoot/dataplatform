@@ -73,7 +73,7 @@ export default function DatasetDraftCard(props){
         console.log(dataF)
         const data = await deleteUserDataset({token:props.token, data:dataF});
         if(data){
-            window.open("/dashboard/", "_self")
+            router.reload()
         }
     }
 
@@ -141,16 +141,7 @@ export default function DatasetDraftCard(props){
                         </div>:
                     <div style={{display:'flex',alignItems:'space-between', justifyContent:'space-between',
                         fontSize:14, cursor:'pointer', width:'96%', paddingRight:9 }}
-                        onClick={()=>{
-                          router.push('/dataset/'+props.data.ID)
-                          mixpanel.track('Dataset Card Operations', {
-                            'source': "Data Platform Dashboard",
-                            'action': "clicked on operations icon",
-                            'dataset': props.data.ID,
-                              'email': props.user.email
-                          });
-                          }
-                        }>
+                        >
                         {router.pathname.includes("/dataset/")?null:<>
                             <div><Button sx={{borderRadius:2, color:'#FF6262',paddingTop:1,borderColor:"#FF6262", }}
                                          variant="outlined"

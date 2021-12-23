@@ -289,25 +289,28 @@ export default function LeftNav({
 
 				</div>
 
-				{favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,
-				textAlign:'left'}}>
+				{favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer",
+				textAlign:'left'}} onClick={() => {router.push('/dataset/78')}}>
 					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}} /></div>
 					<div style={{width:"70%"}}>Healthcare</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>345</div>
 				</div>
-				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12}}>
+				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer"}}
+					 onClick={() => {router.push('/dataset/80')}}>
 					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
 					<div style={{width:"70%"}}>FDA Drugs</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>123</div>
 				</div>
-				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12}}>
+				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,cursor:"pointer"}}
+					 onClick={() => {router.push('/dataset/81')}}>
 					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
 					<div style={{width:"70%"}}>Insurance Inc.</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>456</div>
 				</div>
-					<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12}}>
+					<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12, cursor:"pointer"}}
+						 onClick={() => {router.push('/dataset/81')}}>
 						<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
-						<div style={{width:"70%"}}>Test Dataset</div>
+						<div style={{width:"70%"}}>Drugs Distributers</div>
 						<div style={{width:"14%", color:'#C5CDD4'}}>756</div>
 					</div></>}
 
@@ -329,7 +332,8 @@ export default function LeftNav({
 					<div style={{width:'80%'}}>Start New Set</div>
 				</div>
 
-				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center',  }}>
+				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center', cursor:"pointer" }}
+					 onClick={() => {router.push('/dataset/81')}}>
 					<div style={{width:"21%"}}>
 						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
 							textAlign:'center',paddingTop:6}}>
@@ -338,7 +342,8 @@ export default function LeftNav({
 					<div style={{width:"75%"}}>HealthCare</div>
 					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#46D989'}}/></div>
 				</div>
-				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,alignItems:'center',}}>
+				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,alignItems:'center',cursor:"pointer"}}
+					 onClick={() => {router.push('/dataset/81')}}>
 					<div style={{width:"21%"}}>
 						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
 							textAlign:'center', paddingTop:6}}>

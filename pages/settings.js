@@ -318,9 +318,10 @@ export default function Settings({
                     aria-label="Vertical tabs example"
                     sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', }}
                 >
-                    <Tab sx={{ textAlign: 'left', }} label={"User Profile "} {...a11yProps(0)} />
-                    <Tab disabled sx={{ textAlign: 'left', }} label="Notification" {...a11yProps(1)} />
-                    <Tab disabled sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="API Configurations" {...a11yProps(2)} />
+                    <Tab sx={{ textAlign: 'left', textTransform:'capitalize'}} label={"User Profile "} {...a11yProps(0)} />
+                    <Tab disabled sx={{ textAlign: 'left', textTransform:'capitalize'}} label={"Notification (Enterprise Version)"}
+                         {...a11yProps(1)} />
+                    <Tab disabled sx={{ textAlign: 'left', active: {color:'#5A00E2' }, textTransform:'capitalize'}} label="API Configurations (Enterprise Version)" {...a11yProps(2)} />
 
                 </Tabs>
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
@@ -397,7 +398,7 @@ export default function Settings({
                                         onChange={(event)=>setLocalFirstName(event.target.value)}
                                         sx={{color:'#fff', bgColor:'#fff',pb:2}}
                                         //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                        label="Full Name"
+                                        label="First Name"
                                     />
 
                                     <TextField
@@ -406,7 +407,7 @@ export default function Settings({
                                         onChange={(event)=>setLocalLastName(event.target.value)}
                                         sx={{color:'#fff', bgColor:'#fff',pb:2}}
                                         //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                        label="Full Name"
+                                        label="Last Name"
                                     />
                                 </Box>
 
@@ -432,7 +433,7 @@ export default function Settings({
                                                 onChange={(event)=>setLocalCompany(event.target.value)}
                                                 sx={{color:'#fff', bgColor:'#fff',pb:2}}
                                                 //startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                                label="Full Name"
+                                                label="Company Name"
                                             />
                                         </Box>
 

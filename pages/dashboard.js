@@ -479,7 +479,7 @@ export default function Dashboard({
                                 {/*    <Tooltip content={<CustomTooltip />}/>*/}
                                 {/*</LineChart>*/}
 
-                                <BarChart width={800} height={450} data={data} >
+                                <BarChart width={800} height={450} data={data} margin={{  bottom: 5}} >
                                     <XAxis dataKey="name" axisLine={false} stroke="#92929D" />
                                     <YAxis axisLine={false} stroke="#92929D"/>
                                     <Tooltip />

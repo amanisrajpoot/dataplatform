@@ -252,8 +252,8 @@ export default function Support({
                     color:'gray-700', alignItems:'center'}}>
                     <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                             justifyContent:'center'}} startIcon={<ArrowBackIcon />}
-                             onClick={editMode=== 0?()=>router.back():
-                                      editMode=== 1?()=>setEditMode(0):
+                             onClick={submitted === false?()=>router.back():
+                                      submitted=== true?()=>setSubmitted(false):
                                       editMode=== 2?()=>setEditMode(0):
                                       editMode=== 3?()=>setEditMode(0):null}>
                             {"Back"}</Button>
@@ -275,8 +275,8 @@ export default function Support({
                     sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', }}
                 >
                     <Tab sx={{ textAlign: 'left', }} label={"Contact Us "} {...a11yProps(0)} onClick={()=>setSubmitted(false)}/>
-                    <Tab disabled sx={{ textAlign: 'left', }} label="Chat Support" {...a11yProps(1)} />
-                    <Tab disabled sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="Get a Call" {...a11yProps(2)} />
+                    <Tab disabled sx={{ textAlign: 'left',textTransform:'capitalize' }} label="Chat Support (Enterprise Version)" {...a11yProps(1)} />
+                    <Tab disabled sx={{ textAlign: 'left', active: {color:'#5A00E2' },textTransform:'capitalize'}} label="Get a Call (Enterprise Version)" {...a11yProps(2)} />
 
                 </Tabs>
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
