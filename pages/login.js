@@ -113,7 +113,7 @@ const Login =({token, setToken}) => {
             setError(err.message);
         } else {
             setError("");
-            await router.push("/dashboard1");
+            await router.push("/dashboard");
         }
     }
 
@@ -223,7 +223,7 @@ const Login =({token, setToken}) => {
                     </div>
 
                 </div>
-
+                {error && <p style={{color:"red"}}>{error}</p>}
               <Button
                 type="submit"
                 variant="contained"

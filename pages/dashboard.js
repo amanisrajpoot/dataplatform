@@ -48,14 +48,17 @@ import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutl
 import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
+import { RWebShare } from "react-web-share";
 
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-const data = [{name: 'Jan', datasets: 400,industry_points: 400,amt: 2400},{name: 'Feb', datasets: 300,industry_points: 500, amt: 2000},
-    {name: 'Mar', datasets: 200,industry_points: 600, amt: 2200},{name: 'Apr', datasets: 400,industry_points: 700, amt: 2400},
-    {name: 'May', datasets: 500,industry_points: 400, amt: 2400},{name: 'Jun', datasets: 600,industry_points: 600, amt: 2400},
-    {name: 'Jul', datasets: 550,industry_points: 800, amt: 2400},{name: 'Aug', datasets: 800,industry_points: 400, amt: 2400},
-    {name: 'Sep', datasets: 500,industry_points: 500, amt: 2400},{name: 'Oct', datasets: 600,industry_points: 600, amt: 2400},
-    {name: 'Nov', datasets: 700,industry_points: 900, amt: 2400},{name: 'Dec', datasets: 800,industry_points: 1000, amt: 2400}];
+
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, } from 'recharts';
+const data = [
+    // {name: 'Jan', datasets: 400,industry_points: 400,amt: 2400},{name: 'Feb', datasets: 300,industry_points: 500, amt: 2000},
+    // {name: 'Mar', datasets: 200,industry_points: 600, amt: 2200},{name: 'Apr', datasets: 400,industry_points: 700, amt: 2400},
+    // {name: 'May', datasets: 500,industry_points: 400, amt: 2400},{name: 'Jun', datasets: 600,industry_points: 600, amt: 2400},
+    {name: 'COV-19 Mortality', datasets: 550,industry_points: 800, amt: 2400},{name: 'COV-19 Vaccination', datasets: 800,industry_points: 400, amt: 2400},
+    {name: 'COV-19 Surveillance', datasets: 500,industry_points: 500, amt: 2400},{name: 'Insurance Coverage', datasets: 600,industry_points: 600, amt: 2400},
+    {name: 'Disability', datasets: 700,industry_points: 900, amt: 2400},];
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -167,6 +170,12 @@ export default function Dashboard({
             console.log("fetched data",userdatasets);
         }
     };
+
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const today  = new Date();
+    const post1 = new Date(2018, 0, 1, 10, 33);
+    const post2 = new Date(2020, 1, 18, 9, 33);
+    const post3 = new Date(2020, 12, 21, 11, 33);
 
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
@@ -288,9 +297,9 @@ export default function Dashboard({
 
                                     <div>
                                         <div style={{color:'black', fontSize:20,}}>Announcement </div>
-                                        <div style={{paddingTop:12,color:'gray'}}>The rest of 2020 and heading into 2021 will be defined by duality of data security and data integration, and providers’ ability to execute on these priorities. That in turn will, in many ways, determine their effectiveness. </div>
+                                        <div style={{paddingTop:12,color:'gray'}}>The health data platform is in public beta, for a limited time period we are offering our professional version of the platform for free to the early adopters. Please take our product for a test drive and let us know what you think.</div>
                                     </div>
-                                    <div style={{paddingTop:12,color:'gray', paddingBottom:24}}>23 Mar, 2021 09:10PM</div>
+                                    <div style={{paddingTop:12,color:'gray', paddingBottom:24}}>{today.toLocaleDateString("en-US", options)}</div>
                                 </div>
                                 <div style={{marginTop:12, cursor:'pointer', width:'20%', display:'flex', justifyContent:"center",alignItems:'center'}}
                                      onClick={()=>router.push('/searchresult')} >
@@ -340,77 +349,105 @@ export default function Dashboard({
                         {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
-                            <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'20ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
                                 }}
-                                     onClick={()=>router.push('/dashboard')} >
+                                >
 
-                                    <div>
+                                    <div onClick={()=>router.push('https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290')}>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
                                         >Big Data is essential to every significant healthcare undertaking. </div>
-                                        <div style={{paddingTop:12,color:'#667280'}}>Read about the challenges, applications, and potential brilliant future for healthcare big data.</div>
+                                        <div style={{paddingTop:12,color:'#667280'}}
+                                        >Read about the challenges, applications, and potential brilliant future for healthcare big data.</div>
                                     </div>
                                     <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
                                         justifyContent:'space-between', alignItems:'center'}}>
-                                        <div style={{color:'gray',fontSize:14}}>01 Jan, 2018 09:10PM</div>
-                                        <Button
-                                            variant="outlined"
-                                            sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
-                                                textTransform:'capitalize'}}
-                                        >Share</Button>
+                                        <div style={{color:'gray',fontSize:14}}>{post1.toLocaleDateString("en-US", options)}</div>
+                                        <RWebShare
+                                            data={{
+                                                text: "Read about the challenges, applications, and potential brilliant future for healthcare big data.",
+                                                url: "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
+                                                title: "Big Data is essential to every significant healthcare undertaking.",
+                                            }}
+                                            onClick={() => console.log("shared successfully!")}
+                                        >
+                                            <Button
+                                                variant="outlined"
+                                                sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
+                                                    textTransform:'capitalize'}}
+                                            >Share</Button>
+                                        </RWebShare>
+
                                     </div>
                                 </div>
                             </div>
 
-                            <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'20ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
                                 }}
-                                     onClick={()=>router.push('/dashboard')} >
-
-                                    <div>
+                                >
+                                    <div onClick={()=>router.push('https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/')}>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
-                                        >How these 4 tech trends are reshaping healthcare  </div>
-                                        <div style={{paddingTop:12,color:'#667280'}}>It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development and implementation of new technologies.</div>
+                                        >How these 4 tech trends are reshaping healthcare</div>
+                                        <div style={{paddingTop:12,color:'#667280'}}>It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development.</div>
                                     </div>
                                     <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
                                         justifyContent:'space-between', alignItems:'center'}}>
-                                        <div style={{color:'gray',fontSize:14}}>23 Mar, 2021 09:10PM</div>
-                                        <Button
-                                            variant="outlined"
-                                            sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
-                                                textTransform:'capitalize'}}
-                                        >Share</Button>
+                                        <div style={{color:'gray',fontSize:14}}>{post2.toLocaleDateString("en-US", options)}</div>
+                                        <RWebShare
+                                            data={{
+                                                text: "It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development.",
+                                                url: "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
+                                                title: "How these 4 tech trends are reshaping healthcare",
+                                            }}
+                                            onClick={() => console.log("shared successfully!")}
+                                        >
+                                            <Button
+                                                variant="outlined"
+                                                sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
+                                                    textTransform:'capitalize'}}
+                                            >Share</Button>
+                                        </RWebShare>
                                     </div>
                                 </div>
                             </div>
 
-                            <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'20ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
                                 }}
-                                     onClick={()=>router.push('/dashboard')} >
+                                >
 
-                                    <div>
+                                    <div onClick={()=>router.push('https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html')}>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
-                                        >Datasets for the Insaurance approval </div>
-                                        <div style={{paddingTop:12,color:'#667280'}}>There is no better classification and accumulation of data at a single portal on the internet. </div>
+                                        >Five distinct trends are converging to determine</div>
+                                        <div style={{paddingTop:12,color:'#667280'}}>Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health.</div>
                                     </div>
                                     <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
                                         justifyContent:'space-between', alignItems:'center'}}>
-                                        <div style={{color:'gray',fontSize:14}}>23 Mar, 2021 09:10PM</div>
-                                        <Button
-                                            variant="outlined"
-                                            sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
-                                                textTransform:'capitalize'}}
-                                        >Share</Button>
+                                        <div style={{color:'gray',fontSize:14}}>{post3.toLocaleDateString("en-US", options)}</div>
+                                        <RWebShare
+                                            data={{
+                                                text: "Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health.",
+                                                url: "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
+                                                title: "Five distinct trends are converging.",
+                                            }}
+                                            onClick={() => console.log("shared successfully!")}
+                                        >
+                                            <Button
+                                                variant="outlined"
+                                                sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
+                                                    textTransform:'capitalize'}}
+                                            >Share</Button>
+                                        </RWebShare>
                                     </div>
                                 </div>
                             </div>
@@ -433,14 +470,22 @@ export default function Dashboard({
                                 <div>
                                     <div style={{color:'black', fontSize:20,marginLeft:18,}}>Analytics</div>
                                 </div>
-                                <LineChart width={800} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                                    <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>
-                                    <Line type="monotone" strokeWidth={3} dataKey="industry_points" stroke="#24BBFF" />
-                                    <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />
-                                    <XAxis dataKey="name" axisLine={false} stroke="#92929D"/>
+                                {/*<LineChart width={800} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>*/}
+                                {/*    <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>*/}
+                                {/*    <Line type="monotone" strokeWidth={3} dataKey="industry_points" stroke="#24BBFF" />*/}
+                                {/*    <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />*/}
+                                {/*    <XAxis dataKey="name" axisLine={false} stroke="#92929D"/>*/}
+                                {/*    <YAxis axisLine={false} stroke="#92929D"/>*/}
+                                {/*    <Tooltip content={<CustomTooltip />}/>*/}
+                                {/*</LineChart>*/}
+
+                                <BarChart width={800} height={450} data={data} >
+                                    <XAxis dataKey="name" axisLine={false} stroke="#92929D" />
                                     <YAxis axisLine={false} stroke="#92929D"/>
-                                    <Tooltip content={<CustomTooltip />}/>
-                                </LineChart>
+                                    <Tooltip />
+                                    <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />
+                                    <Bar dataKey="datasets" fill="#8884d8" barSize={50} />
+                                </BarChart>
                             </div>
 
                         </div>
@@ -516,7 +561,7 @@ export default function Dashboard({
                                         <CorporateFareOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>
                                     </div>
                                     <div>
-                                        <div style={{color:'black', fontSize:18,}}>Companies </div>
+                                        <div style={{color:'black', fontSize:18,}}>Insurance Companies </div>
                                         <div style={{paddingTop:12,color:'#FF6262', fontSize:28}}>7890</div>
                                     </div>
 

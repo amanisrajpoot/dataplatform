@@ -302,7 +302,7 @@ export default function LeftNav({
 				</div>
 				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12}}>
 					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
-					<div style={{width:"70%"}}>Insaurance inc.</div>
+					<div style={{width:"70%"}}>Insurance Inc.</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>456</div>
 				</div>
 					<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12}}>
@@ -343,7 +343,7 @@ export default function LeftNav({
 						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
 							textAlign:'center', paddingTop:6}}>
 							CT</div></div>
-					<div style={{width:"75%"}}>Cancer Treate</div>
+					<div style={{width:"75%"}}>Cancer Treat..</div>
 					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#46D989'}} /></div>
 				</div></>}
 
