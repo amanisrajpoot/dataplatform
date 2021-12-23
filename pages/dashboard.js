@@ -468,7 +468,7 @@ export default function Dashboard({
                             >
 
                                 <div>
-                                    <div style={{color:'black', fontSize:20,marginLeft:18,}}>Top Dataset Downloads Across Platform</div>
+                                    <div style={{color:'black', fontSize:20,marginLeft:18,}}>Top Downloads by Topic</div>
                                 </div>
                                 {/*<LineChart width={800} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>*/}
                                 {/*    <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>*/}
