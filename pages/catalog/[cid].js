@@ -98,6 +98,11 @@ export default function ManageDataset({
     const [localDataset, setLocalDataset] = useState({});
     const [currentTopic, setCurrentTopic] = useState("")
     const [filteredDataSources, setFilteredDataSources] = useState([])
+    const [currentRouteTitle, setCurrentRouteTitle] = useState("")
+
+    useEffect(()=>{
+        setCurrentRouteTitle(router.pathname)
+    },[])
 
     useEffect(() => {
         if(userdataset !== null && userdataset !== undefined) {
@@ -180,6 +185,8 @@ export default function ManageDataset({
         }
 
         console.log('userP', userP);
+        console.log("the route", router.query.origin)
+        console.log("the route", router.query.currentRouteTitle)
     }, [token]);
 
     useEffect(async ()=>{
@@ -272,7 +279,7 @@ export default function ManageDataset({
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                                     {"Back"}</Button>:null}
                             <Divider variant="middle" orientation="vertical" />
-                            <div style={{paddingLeft:8,paddingRight:2,}}>{userdataset !== null && userdataset !== undefined && <div>{userdataset.title}</div>}</div>
+                            <div style={{paddingLeft:8,paddingRight:2,textTransform:'capitalize'}}><div>Go Back to {router.query.currentRouteTitle}</div></div>
                             <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2,  color:'#939EAA', borderColor:'#939EAA' }}
                                     startIcon={<CachedIcon />} onClick={()=>router.reload()}>
                                 {"Refresh"}</Button>
@@ -283,7 +290,8 @@ export default function ManageDataset({
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,
                             color:'gray-900',justifyContent:'space-around'}}>
-                            <div>Catalog Overview &nbsp;</div>
+                            <div>Catalog Overview: &nbsp;</div>{dataSources !== null && dataSources !== undefined &&
+                                dataSources.map((data,index)=> datasource_id == data.ID && <div>{data.title}</div>)}
                         </Box>
 
                     </Box>
@@ -329,7 +337,7 @@ export default function ManageDataset({
                         <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 2,
                             alignItems:'center' }}>
                             <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
-                                justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, p:1}}>
+                                justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
                                 {       filteredDataSources !== null && filteredDataSources !== undefined &&
                                         filteredDataSources.length <= 0? <div>
                                         We are working on adding more catalogs to our platform.</div>:
@@ -339,6 +347,7 @@ export default function ManageDataset({
                                             index={index}
                                             token={token}
                                             user={user}
+                                            currentRouteTitle={currentRouteTitle}
                                             datasetMode={datasetMode}
                                             dataset={userdataset}
                                             openDetails={openDetails}

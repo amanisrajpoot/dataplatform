@@ -99,7 +99,19 @@ export default function FeatureCard(props){
                             <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
                             onClick={()=>{
                               // props.handleOpenDetails(props.data)
-                                router.push(`/catalog/${props.data.ID}`)
+                                router.pathname.includes('/dataset')? router.push({
+                                        pathname:`/catalog/${props.data.ID}`,
+                                        query:{
+                                            currentRouteTitle:props.currentRouteTitle ?props.currentRouteTitle:""
+                                        }
+                                    }):
+                                router.pathname.includes('/catalog')? router.push({
+                                            pathname:`/catalog/${props.data.ID}`,
+                                            query:{
+                                                currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:''
+                                            }
+                                        }):null
+
                               mixpanel.track('Catalog Card View Details', {
                                 'source': router.pathname,
                                 'action': "clicked on view details on catalog card",

@@ -4,16 +4,12 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 import SignalCardOut from '../../components/SignalCardOut';
 import FeatureCard from '../../components/FeatureCard';
 import EditFeatureCard from '../../components/EditFeatureCard';
 import Modal from '@mui/material/Modal';
 import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import Output from '../../components/output';
 import {useRouter} from 'next/router';
 import {getDatasetsId, downloadDatasetsId, getUser, deleteUserDataset, updateUserDataset} from '../../function/users';
 import DataSourcesDetails from '../../components/datasourcesdetails';
@@ -94,6 +90,7 @@ export default function ManageDataset({
     const [localDescription, setLocalDescription] = useState('');
     const [localTopic, setLocalTopic] = useState('');
     const [localDataset, setLocalDataset] = useState({});
+    const currentRouteTitle = (userdataset !== null && userdataset !== undefined && userdataset.title);
 
     useEffect(() => {
         if(userdataset !== null && userdataset !== undefined) {
@@ -262,7 +259,7 @@ export default function ManageDataset({
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                                     {"Back"}</Button>:null}
                             <Divider variant="middle" orientation="vertical" />
-                            <div style={{paddingLeft:8,paddingRight:2,}}>{userdataset !== null && userdataset !== undefined && <div>{userdataset.title}</div>}</div>
+                            <div style={{paddingLeft:8,paddingRight:2,}}>Go Back to {datasetMode ===0 ?" My Datasets": currentRouteTitle}</div>
                             <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2,  color:'#939EAA', borderColor:'#939EAA' }}
                                     startIcon={<CachedIcon />} onClick={()=>router.reload()}>
                                 {"Refresh"}</Button>
@@ -298,10 +295,10 @@ export default function ManageDataset({
 
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,
-                            color:'gray-900',justifyContent:'space-around'}}>
-                            <div>Dataset Overview &nbsp;</div>
+                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between', width:'100%'}}>
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,width:'100%',
+                            color:'gray-900', flex:'start'}}>
+                            <div>Dataset Overview: &nbsp;</div> {userdataset !== null && userdataset !== undefined && <div>{userdataset.title}</div>}
                         </Box>
 
                     </Box>
@@ -352,7 +349,7 @@ export default function ManageDataset({
                         <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 2,
                             alignItems:'center' }}>
                             <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
-                                justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, p:1}}>
+                                justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
                                 {datasetMode === 0 ? userdataset !== null && userdataset !== undefined &&
                                     userdataset.catalog !== null && userdataset.catalog !== undefined &&
                                     userdataset.catalog.map((data,index)=><FeatureCard
@@ -361,6 +358,7 @@ export default function ManageDataset({
                                         index={index}
                                         token={token}
                                         user={user}
+                                        currentRouteTitle={currentRouteTitle}
                                         datasetMode={datasetMode}
                                         dataset={userdataset}
                                         openDetails={openDetails}
@@ -375,6 +373,7 @@ export default function ManageDataset({
                                             index={index}
                                             token={token}
                                             user={user}
+                                            currentRouteTitle={currentRouteTitle}
                                             datasetMode={datasetMode}
                                             dataset={userdataset}
                                             openDetails={openDetails}
@@ -410,6 +409,7 @@ export default function ManageDataset({
                                         index={index}
                                         token={token}
                                         user={user}
+                                        currentRouteTitle={currentRouteTitle}
                                         handleOpenDetails={handleOpenDetails}
                                         handleCloseDetails={handleCloseDetails}
                                         dataset={userdataset.catalog}
@@ -444,6 +444,7 @@ export default function ManageDataset({
                                         data={data}
                                         token={token}
                                         user={user}
+                                        currentRouteTitle={currentRouteTitle}
                                         openDetails={openDetails}
                                         handleOpenDetails={handleOpenDetails}
                                         handleCloseDetails={handleCloseDetails}/>): null

@@ -374,7 +374,7 @@ export default function Datasets({
                         <Box sx={{ width:"98%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
-                                userdatasets.map((data, index)=><DatasetCard
+                                userdatasets.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data, index)=><DatasetCard
                                     key={data.dataset_id}
                                     index={index}
                                     data={data}
