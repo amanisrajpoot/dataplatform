@@ -236,17 +236,23 @@ export default function TopicBrowser({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', }}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', width:'55%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'center'}}>
-                            <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                            <div style={{display:'flex', alignItems:'center'}}>
+                                <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                                 justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                                 {"Back"}</Button>
-                            <Divider variant="middle" orientation="vertical" />
-                            <div style={{fontSize:28, paddingLeft:24}}>Topic &nbsp;&nbsp;</div>
-                            <div style={{ paddingLeft:8,display:'flex', flexDirection:'row', justifyContent:'space-between',
-                                alignItems:'center'}}>
-                                <div style={{paddingTop:12,fontSize:18, color:'gray', textTransform:'capitalize'}}>{topic_id}</div>
+                                <Divider variant="middle" orientation="vertical" flexItem />
+                                <div style={{paddingLeft:8,paddingRight:2,textTransform:'capitalize'}}>Go Back to {router.query.currentRouteTitle}</div>
+                            </div>
 
+                            <div style={{display:'flex', alignItems:'center'}}>
+                                <div style={{fontSize:28, paddingLeft:24}}>Topic &nbsp;&nbsp;</div>
+                                <div style={{ paddingLeft:8,display:'flex', flexDirection:'row', justifyContent:'space-between',
+                                    alignItems:'center'}}>
+                                    <div style={{paddingTop:12,fontSize:18, color:'gray', textTransform:'capitalize'}}>{topic_id}</div>
+
+                                </div>
                             </div>
 
                         </Box>

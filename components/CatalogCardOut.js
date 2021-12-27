@@ -48,7 +48,14 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                           {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
                                   borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
                                   color:'#24BBFF'}} size="small"
-                                  onClick={()=>router.push(`/topic/${topic}`)}>{topic}</Button>)
+                                  onClick={()=>router.push({
+                                  pathname: `/topic/${topic}`,
+                                  query:{
+                                      currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                          router.pathname.includes('/catalog')?data.title:
+                                              router.query.tid
+                                  }
+                                  })}>{topic}</Button>)
                               : "6"}</div>
                       <div style={{display:'flex',width:'100%', }}>
                           <div style={{display:'flex',wordWrap: "break-word",

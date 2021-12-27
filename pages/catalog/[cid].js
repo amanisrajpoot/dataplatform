@@ -101,7 +101,8 @@ export default function ManageDataset({
     const [currentRouteTitle, setCurrentRouteTitle] = useState("")
 
     useEffect(()=>{
-        setCurrentRouteTitle(router.pathname)
+        dataSources !== null && dataSources !== undefined &&
+        dataSources.map((data,index)=> datasource_id == data.ID && setCurrentRouteTitle(data.title))
     },[])
 
     useEffect(() => {

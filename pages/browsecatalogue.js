@@ -302,7 +302,7 @@ export default function BrowseCatalogue({
               <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                     color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                      <div>Catalogues &nbsp;</div>
+                      <div>Catalogs &nbsp;</div>
                   {searchMode === 0 && dataSources !== null && dataSources !== undefined ?
                   <div>{"("+ dataSources.length+")"}</div>:
                       searchMode === 1 && keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined ?

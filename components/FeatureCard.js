@@ -73,7 +73,17 @@ export default function FeatureCard(props){
                                     borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
                                     color:'#24BBFF'}}
                                     size="small"
-                                    onClick={()=>router.push(`/topic/${topic}`)}>{topic}</Button>)
+                                    onClick={()=>router.push({
+                                        pathname: `/topic/${topic}`,
+                                        query:{
+                                            currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                                router.pathname.includes('/datasets')?"Browsing Your Datasets":
+                                                router.pathname.includes('/catalog')?"Browsing Catalog":
+                                                router.pathname.includes('/dataset')?props.data.title:
+                                                router.query.tid
+                                        }
+                                    })
+                                    }>{topic}</Button>)
                                 : "6"}</div>
                     </div>
 
@@ -110,7 +120,19 @@ export default function FeatureCard(props){
                                             query:{
                                                 currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:''
                                             }
-                                        }):null
+                                        }):
+                                router.pathname.includes('/browsecatalogue')? router.push({
+                                        pathname:`/catalog/${props.data.ID}`,
+                                        query:{
+                                            currentRouteTitle:"Catalogs"
+                                        }
+                                    }):
+                                router.pathname.includes('/topic')? router.push({
+                                        pathname:`/catalog/${props.data.ID}`,
+                                        query:{
+                                            currentRouteTitle:"Topic Browser"
+                                        }
+                                    }):null
 
                               mixpanel.track('Catalog Card View Details', {
                                 'source': router.pathname,

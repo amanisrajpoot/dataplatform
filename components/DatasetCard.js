@@ -56,7 +56,14 @@ export default function DatasetCard(props){
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
                                  borderRadius:4, border:1, fontSize:10, fontWeight:"bold", marginTop:1,
                                     marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small"
-                                  onClick={()=>router.push(`/topic/${topic}`)}>{topic}</Button>)
+                                 onClick={()=>router.push({
+                                    pathname: `/topic/${topic}`,
+                                    query:{
+                                        currentRouteTitle:router.pathname.includes('/datasets')?"Browsing My Datasets":
+                                            router.pathname.includes('/catalog')?data.title:
+                                                router.query.tid
+                                    }
+                                    })}>{topic}</Button>)
                             : "6"}</div>
                     </div>
                     {/*<div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word",*/}
