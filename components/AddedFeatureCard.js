@@ -43,7 +43,7 @@ export default function AddedFeatureCard(props){
 
               <div style={{fontSize:14, minWidth:"47%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
                   <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title: "FDA Approved Drugs"}</b></div>
-                  <div style={{paddingBottom:8}}>{props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</div>
+                  <div style={{paddingBottom:8, color:'#939EAA'}}>{props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</div>
                   <div style={{fontSize:14,display:'flex', alignItems:'center'}}><div style={{paddingRight:4,}}><b>{"Topics:  "}</b></div>
                       {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
                               borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
@@ -82,7 +82,7 @@ export default function AddedFeatureCard(props){
                                   })
                               }
                               }>
-                          <div><b>{props.geo?"View": "View"}</b></div>
+                          <div style={{textTransform:'capitalize'}}>View</div>
                       </Button>
                   </div>
 

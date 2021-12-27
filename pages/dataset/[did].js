@@ -401,8 +401,10 @@ export default function ManageDataset({
 
                                 </Box>
 
-                                <Box sx={{ width:"100%", display:'flex', flexDirection:'column',
-                                    justifyContent:"center",alignItems:'center', px:2 }}>
+                                <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 2,
+                                    alignItems:'center' }}>
+                                    <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
+                                        justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
                                     {dataSources && dataSources.map((data,index)=><FeatureCard
                                         openDetails={openDetails}
                                         data={data}
@@ -417,6 +419,7 @@ export default function ManageDataset({
                                         removeDatasetcatalog={removeLocalDatasetcatalog}
                                         addDatasetcatalog={addLocalDatasetcatalog}
                                     />)}
+                                    </Box>
                                 </Box>
 
                             </Box>

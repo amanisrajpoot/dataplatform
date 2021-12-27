@@ -219,7 +219,7 @@ export default function LeftNav({
 							router.pathname.includes('/topic') ? '#5A00E2' : '',
 						}}
 					>
-						Catalogues
+						Catalogs
 					</p>
 				</div>
 

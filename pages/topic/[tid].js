@@ -267,7 +267,7 @@ export default function TopicBrowser({
                             <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                                 color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                                 <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                                <div>Catalogues &nbsp;</div>
+                                <div>Catalogs &nbsp;</div>
                                 {topicDatasources !== null && topicDatasources !== undefined && <div>{"("+ topicDatasources.length+")"}</div>}
                                 <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 

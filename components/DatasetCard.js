@@ -125,7 +125,7 @@ export default function DatasetCard(props){
                           });
                           }
                         }>
-                        <Button sx={{borderRadius:2, borderColor:'#5A00E2', color:'#5A00E2'}} variant="outlined">View</Button>
+                        <Button sx={{borderRadius:2, borderColor:'#5A00E2', color:'#5A00E2', textTransform:'capitalize'}} variant="outlined">View</Button>
                     </div>}
               </div>
           </div>
