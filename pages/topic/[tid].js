@@ -43,6 +43,8 @@ import SortIcon from '@mui/icons-material/Sort';
 import {FormControl} from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -112,15 +114,27 @@ export default function TopicBrowser({
     }, [token, topic_id]);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
     const open = Boolean(anchorEl);
+    const openUser = Boolean(anchorElUser);
     const open2 = Boolean();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleClickUser = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
     const handleClose2 = () => {
         setAnchorEl(null);
     };
+
+    const handleCloseUser = () => {
+        setAnchorElUser(null);
+    };
+
     const [localdataset, setLocaldataset] = useState([]);
 
     const handleOpen2 = () => {
@@ -228,9 +242,26 @@ export default function TopicBrowser({
                             &nbsp;&nbsp;&nbsp;
                             <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
                             &nbsp;&nbsp;&nbsp;
-                            <div onClick={()=>signOut({path:router.pathname})}>
+                            <div
+                                // onClick={()=>signOut({path:router.pathname})}
+                                onClick={handleClickUser}
+                            >
                                 <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
                             </div>
+
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElUser}
+                                open={openUser}
+                                onClose={handleCloseUser}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                            </Menu>
                         </div>
                     </Box>
 

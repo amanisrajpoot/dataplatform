@@ -5,12 +5,6 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import TextField from '@mui/material/TextField';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import FeatureCard from '../components/FeatureCard';
-import HelpCenterCard from '../components/HelpCenterCard';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Modal from '@mui/material/Modal';
@@ -23,8 +17,6 @@ import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
 import {getPublicDatasets, getDatasets, getUser} from '../function/users';
 import DatasetCard from '../components/DatasetCard';
-import DatasetDraftCard from '../components/DatasetDraftCard';
-import HeaderDatasetCard from '../components/HeaderDatasetCard';
 import LeftNav from "../components/LeftNav";
 import mixpanel from 'mixpanel-browser';
 import InputAdornment from "@mui/material/InputAdornment";
@@ -35,10 +27,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TableViewOutlinedIcon from '@mui/icons-material/TableViewOutlined'
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
 import InputBase from '@mui/material/InputBase';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
@@ -93,15 +84,28 @@ export default function Datasets({
 
     const router = useRouter()
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
     const open = Boolean(anchorEl);
+    const openUser = Boolean(anchorElUser);
     const open2 = Boolean();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleClickUser = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
     const handleClose2 = () => {
         setAnchorEl(null);
     };
+
+    const handleCloseUser = () => {
+        setAnchorElUser(null);
+    };
+
+
     const [localdataset, setLocaldataset] = useState([]);
 
     const handleOpen2 = () => {
@@ -209,9 +213,26 @@ export default function Datasets({
                             &nbsp;&nbsp;&nbsp;
                             <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
                             &nbsp;&nbsp;&nbsp;
-                            <div onClick={()=>signOut({path:router.pathname})}>
+                            <div
+                                // onClick={()=>signOut({path:router.pathname})}
+                                onClick={handleClickUser}
+                            >
                                 <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
                             </div>
+
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElUser}
+                                open={openUser}
+                                onClose={handleCloseUser}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                            </Menu>
                         </div>
                     </Box>
 

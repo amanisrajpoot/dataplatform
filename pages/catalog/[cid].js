@@ -41,6 +41,7 @@ import InputBase from '@mui/material/InputBase';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import CatalogCardOut from "../../components/CatalogCardOut";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -199,14 +200,24 @@ export default function ManageDataset({
     }, [token, datasource_id]);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const openUser = Boolean(anchorElUser);
     const open2 = Boolean();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        handleOpen()
     };
+
+    const handleClickUser = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
     const handleClose2 = () => {
         setAnchorEl(null);
+    };
+
+    const handleCloseUser = () => {
+        setAnchorElUser(null);
     };
 
     return (
@@ -263,9 +274,26 @@ export default function ManageDataset({
                             &nbsp;&nbsp;&nbsp;
                             <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
                             &nbsp;&nbsp;&nbsp;
-                            <div onClick={()=>signOut({path:router.pathname})}>
+                            <div
+                                // onClick={()=>signOut({path:router.pathname})}
+                                onClick={handleClickUser}
+                            >
                                 <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
                             </div>
+
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElUser}
+                                open={openUser}
+                                onClose={handleCloseUser}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                            </Menu>
                         </div>
                     </Box>
 

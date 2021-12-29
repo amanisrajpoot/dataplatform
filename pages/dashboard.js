@@ -52,6 +52,8 @@ import { RWebShare } from "react-web-share";
 
 
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, } from 'recharts';
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 const data = [
     // {name: 'Jan', datasets: 400,industry_points: 400,amt: 2400},{name: 'Feb', datasets: 300,industry_points: 500, amt: 2000},
     // {name: 'Mar', datasets: 200,industry_points: 600, amt: 2200},{name: 'Apr', datasets: 400,industry_points: 700, amt: 2400},
@@ -112,15 +114,27 @@ export default function Dashboard({
 
     const router = useRouter()
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
     const open = Boolean(anchorEl);
+    const openUser = Boolean(anchorElUser);
     const open2 = Boolean();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleClickUser = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
     const handleClose2 = () => {
         setAnchorEl(null);
     };
+
+    const handleCloseUser = () => {
+        setAnchorElUser(null);
+    };
+
     const [localdataset, setLocaldataset] = useState([]);
 
     const handleOpen2 = () => {
@@ -270,9 +284,26 @@ export default function Dashboard({
                             &nbsp;&nbsp;&nbsp;
                             <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
                             &nbsp;&nbsp;&nbsp;
-                            <div onClick={()=>signOut({path:router.pathname})}>
+                            <div
+                                // onClick={()=>signOut({path:router.pathname})}
+                                onClick={handleClickUser}
+                            >
                                 <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
                             </div>
+
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElUser}
+                                open={openUser}
+                                onClose={handleCloseUser}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                            </Menu>
                         </div>
                     </Box>
 

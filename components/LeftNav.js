@@ -1,14 +1,8 @@
 import styles from '../styles/LeftNav.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { signOut } from '../function/checkAuth';
-// import AddSamples from './AddSamples';
-// import AddPatients from './AddPatients';
 import { useEffect, useState } from 'react';
 import { Modal } from '@material-ui/core';
-// import { getDoctor } from '../function/doctor';
-// import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
-// import LocationModal from './LocationModal';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -220,60 +214,6 @@ export default function LeftNav({
 						}}
 					>
 						Catalogs
-					</p>
-				</div>
-
-				<div
-					onClick={() => {
-						router.push('/settings');
-						// if (width !== null && width <= 800) {
-						// 	setmenu(false);
-						// 	setLeftAnimation(styles.menuTopClose);
-						// }
-					}}
-					className={styles.items}
-					style={{
-						color: router.pathname.includes('/settings')
-							? '#5A00E2'
-							: 'gray',
-					}}
-				>
-						<SettingsIcon fontSize="medium" sx={{fontSize:28,}}/>
-
-
-					<p
-						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/settings') ? '#5A00E2' : '',
-						}}
-					>
-						Settings
-					</p>
-				</div>
-
-				<div
-					onClick={() => {
-						router.push('/support');
-						// if (width !== null && width <= 800) {
-						// 	setmenu(false);
-						// 	setLeftAnimation(styles.menuTopClose);
-						// }
-					}}
-					className={styles.items}
-					style={{
-						color: router.pathname.includes('/support')
-							? '#5A00E2'
-							: 'gray',
-					}}
-				>
-						<LiveHelpIcon fontSize="medium" sx={{ fontSize:28, }}/>
-
-
-					<p
-						style={{ fontSize:20,font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/support') ? '#5A00E2' : '',
-						}}
-					>
-						Support
 					</p>
 				</div>
 

@@ -59,7 +59,7 @@ function BrandName(props) {
 
 const theme = createTheme();
 
-const SignUp =({token, setToken}) => {
+const SignUp =({token, setToken, name, setName, email, setEmail, company, setCompany}) => {
 	const signingLoading = () => {
 		if (email !== '' && password !== '') {
 			setisLoading(true);
@@ -92,9 +92,9 @@ const SignUp =({token, setToken}) => {
 	));
 
     const router = useRouter()
-    const [name, setName] = useState("")
-    const [company, setCompany] = useState("")
-    const [email, setEmail] = useState("");
+    // const [name, setName] = useState("")
+    // const [company, setCompany] = useState("")
+    // const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
@@ -138,10 +138,10 @@ const SignUp =({token, setToken}) => {
         if (erro === null) {
             await router.push('/accountcreated')
             await signIn({email, password, token, setToken});
-            // sleep(2000);
+            sleep(2000);
             // const ret = await createUser({email,firstname,lastname,company,token});
             // sleep(1000);
-            // await router.push('/dashboard');
+            await router.push('/accountcreated2');
             // await signIn({ email, password, token, setToken: createDoctor });
         }
         setError(erro);

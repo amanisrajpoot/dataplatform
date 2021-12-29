@@ -17,7 +17,7 @@ export async function getUser(token){
     }
 }
 
-export async function createUser({email,firstname,lastname,company,token}){
+export async function createUser({email,name,company,token}){
     console.log("Hello", token)
     if (token === null || token === undefined || token === "") {
         return null;
@@ -28,7 +28,7 @@ export async function createUser({email,firstname,lastname,company,token}){
             'Content-Type': 'application/json',
             'authorization': token
         },
-        body: JSON.stringify({firstname, lastname, email, company})
+        body: JSON.stringify({firstname:name, lastname:name, email, company})
     };
     const res = await fetch(BASE_BACKEND+"/users", req)
     return res.json()

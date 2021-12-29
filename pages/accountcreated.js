@@ -1,13 +1,6 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import InputAdornment from '@mui/material/InputAdornment';
-import LockIcon from '@mui/icons-material/Lock';
-import EmailIcon from '@mui/icons-material/Email';
-import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import Divider from '@mui/material/Divider';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import Checkbox from '@mui/material/Checkbox';
@@ -15,7 +8,6 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import ScreenLockPortraitOutlinedIcon from '@mui/icons-material/ScreenLockPortraitOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
@@ -23,8 +15,6 @@ import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
 import mixpanel from 'mixpanel-browser';
-import PasswordStrengthBar from 'react-password-strength-bar';
-
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -59,38 +49,6 @@ function BrandName(props) {
 const theme = createTheme();
 
 const AccountCreated =() => {
-
-	const signingLoading = () => {
-		if (email !== '' && password !== '') {
-			setisLoading(true);
-			signIn();
-		}
-	};
-
-  const CustomCheckBox = withStyles({
-		root: {
-			color: '#0DB1A1',
-			'&$checked': {
-				color: '#0DB1A1',
-			},
-		},
-		checked: {},
-	})((props) => (
-		<Checkbox
-			color='default'
-			{...props}
-			style={{
-				background: 'white',
-				width: '30px',
-				height: '30px',
-				margin: '0px',
-				display: 'flex',
-				justifyContent: 'center',
-				marginTop: '6px',
-			}}
-		/>
-	));
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -109,26 +67,6 @@ const AccountCreated =() => {
     const [isLoading, setisLoading] = useState(false);
     const [mode, setMode] = useState(0);
     const [top, setTop] = useState(36);
-
-    async function signInF(){
-        const err = await signIn({email, password});
-        setisLoading(false);
-        if (err && err.code==="UserNotConfirmedException"){
-            await router.push("/reconfirm");
-        } else if (err){
-            setError(err.message);
-        } else {
-            setError("");
-            await router.push("/dashboard");
-        }
-    }
-
-    async function resetPassword(){
-
-        setMode(1);
-        setTop(36)
-
-    }
 
   return (
     <ThemeProvider theme={theme}>
