@@ -61,20 +61,6 @@ function Copyright() {
   );
 }
 
-const drawerWidth = 256;
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 700,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 const style2 = {
   position: 'absolute',
   top: '50%',
@@ -236,18 +222,6 @@ export default function BrowseCatalogue({
                 />
                 </Box>
 
-                {/*<TextField fullWidth id="outlined-basic"*/}
-                {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                {/*           InputProps={{*/}
-                {/*               startAdornment: (*/}
-                {/*                   <InputAdornment position="start">*/}
-                {/*                       <SearchIcon />*/}
-                {/*                   </InputAdornment>*/}
-                {/*               ),*/}
-                {/*               placeholder:"Search..."*/}
-                {/*           }}*/}
-                {/*/>*/}
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                     alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                     <Link href='/login'>

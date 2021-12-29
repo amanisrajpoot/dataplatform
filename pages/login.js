@@ -113,6 +113,11 @@ const Login =({token, setToken}) => {
             setError(err.message);
         } else {
             setError("");
+            mixpanel.track('Logged In', {
+                'source': "Data Platform Login Page",
+                'signed in': true,
+                'email':user.email
+            });
             await router.push("/dashboard");
         }
     }
