@@ -1,30 +1,15 @@
 import {useState, useEffect } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import TextField from '@mui/material/TextField';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import FeatureCard from '../components/FeatureCard';
-import HelpCenterCard from '../components/HelpCenterCard';
-import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Modal from '@mui/material/Modal';
-import { Grid } from '@material-ui/core';
-import Divider from '@mui/material/Divider';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
 import {getPublicDatasets, getDatasets, getUser} from '../function/users';
-import DatasetCard from '../components/DatasetCard';
-import DatasetDraftCard from '../components/DatasetDraftCard';
-import HeaderDatasetCard from '../components/HeaderDatasetCard';
 import LeftNav from "../components/LeftNav";
 import mixpanel from 'mixpanel-browser';
 import InputAdornment from "@mui/material/InputAdornment";
@@ -34,23 +19,12 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SettingsIcon from '@mui/icons-material/Settings';
-import TableViewOutlinedIcon from '@mui/icons-material/TableViewOutlined'
-import IconButton from '@mui/material/IconButton';
-import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import InputBase from '@mui/material/InputBase';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import RoomServiceOutlinedIcon from '@mui/icons-material/RoomServiceOutlined';
-import MasksOutlinedIcon from '@mui/icons-material/MasksOutlined';
-import MedicalServicesOutlinedIcon from '@mui/icons-material/MedicalServicesOutlined';
-import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
 import { RWebShare } from "react-web-share";
-
-
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, } from 'recharts';
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -75,20 +49,6 @@ function Copyright() {
         </Typography>
     );
 }
-
-const drawerWidth = 256;
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 700,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
 
 const style2 = {
     position: 'absolute',
@@ -257,18 +217,6 @@ export default function Dashboard({
                             />
                         </Box>
 
-                        {/*<TextField fullWidth id="outlined-basic"*/}
-                        {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                        {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                        {/*           InputProps={{*/}
-                        {/*               startAdornment: (*/}
-                        {/*                   <InputAdornment position="start">*/}
-                        {/*                       <SearchIcon />*/}
-                        {/*                   </InputAdornment>*/}
-                        {/*               ),*/}
-                        {/*               placeholder:"Search..."*/}
-                        {/*           }}*/}
-                        {/*/>*/}
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
@@ -302,7 +250,14 @@ export default function Dashboard({
                             >
                                 <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
                                 <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Sign Out', {
+                                        'source': "Dashboard Page",
+                                        'action': "Signed Out from User Menu",
+                                        'email': user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    signOut({path:router.pathname})
+                                }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
                     </Box>
@@ -321,10 +276,10 @@ export default function Dashboard({
                             <div style={{height:'18ch', minWidth:'74.5ch', maxWidth:'28ch', backgroundColor:'#E4F7FF',
                                 marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
                                 justifyContent:"space-between",borderRadius:9,  }}>
-                                <div style={{marginTop:18,marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                                <div style={{marginTop:18,marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'space-between', width:'80%'
                                 }}
-                                     onClick={()=>router.push('https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/')} >
+                                >
 
                                     <div>
                                         <div style={{color:'black', fontSize:20,}}>Announcement </div>
@@ -358,7 +313,14 @@ export default function Dashboard({
                                             sx={{bgcolor:'#FF9800', borderRadius:2, color:"#fff",
                                                 textTransform:'capitalize', maxHeight:42}}
                                             endIcon={<ArrowForwardIcon />}
-                                            onClick={()=>router.push('https://0w6e3b6atr1.typeform.com/to/JliJ1Qvo')}
+                                            onClick={()=>{
+                                                mixpanel.track('Redirected to Survey Page', {
+                                                    'source': "Dashboard Page",
+                                                    'action': "Survey Button Clicked",
+                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                });
+                                                router.push('https://0w6e3b6atr1.typeform.com/to/JliJ1Qvo')
+                                            }}
                                         >Take Survey</Button>
                                         <PollOutlinedIcon sx={{fontSize:42}}/>
                                     </div>
@@ -388,7 +350,15 @@ export default function Dashboard({
                                 }}
                                 >
 
-                                    <div onClick={()=>router.push('https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290')}>
+                                    <div onClick={()=>{
+                                        mixpanel.track('Redirected to 1st Industry Wide Trends URL', {
+                                            'source': "Dashboard Page",
+                                            'action': "1st Industry Wide Trends Clicked",
+                                            "url": "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
+                                            'email': user.email !== null && user.email !== undefined && user.email,
+                                        });
+                                        router.push('https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290')
+                                    }}>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
                                         >Big Data is essential to every significant healthcare undertaking. </div>
                                         <div style={{paddingTop:12,color:'#667280'}}
@@ -403,7 +373,15 @@ export default function Dashboard({
                                                 url: "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
                                                 title: "Big Data is essential to every significant healthcare undertaking.",
                                             }}
-                                            onClick={() => console.log("shared successfully!")}
+                                            onClick={() => {
+                                                mixpanel.track('Shared 1st Industry Wide Trends URL', {
+                                                    'source': "Dashboard Page",
+                                                    'action': "Clicked on Share button of 1st Industry Wide Trends",
+                                                    "url": "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
+                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                });
+                                                console.log("shared successfully!")
+                                            }}
                                         >
                                             <Button
                                                 variant="outlined"
@@ -423,7 +401,15 @@ export default function Dashboard({
                                     lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
                                 }}
                                 >
-                                    <div onClick={()=>router.push('https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/')}>
+                                    <div onClick={()=>{
+                                        mixpanel.track('Redirected to 2nd Industry Wide Trends URL', {
+                                            'source': "Dashboard Page",
+                                            'action': "2nd Industry Wide Trends Clicked",
+                                            "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
+                                            'email': user.email !== null && user.email !== undefined && user.email,
+                                        });
+                                        router.push('https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/')
+                                    }}>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
                                         >How these 4 tech trends are reshaping healthcare</div>
                                         <div style={{paddingTop:12,color:'#667280'}}>It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development.</div>
@@ -437,7 +423,15 @@ export default function Dashboard({
                                                 url: "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
                                                 title: "How these 4 tech trends are reshaping healthcare",
                                             }}
-                                            onClick={() => console.log("shared successfully!")}
+                                            onClick={() => {
+                                                mixpanel.track('Shared 2nd Industry Wide Trends URL', {
+                                                    'source': "Dashboard Page",
+                                                    'action': "Clicked on Share button of 2nd Industry Wide Trends",
+                                                    "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
+                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                });
+                                                console.log("shared successfully!")
+                                            }}
                                         >
                                             <Button
                                                 variant="outlined"
@@ -457,7 +451,15 @@ export default function Dashboard({
                                 }}
                                 >
 
-                                    <div onClick={()=>router.push('https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html')}>
+                                    <div onClick={()=>{
+                                        mixpanel.track('Redirected to 3rd Industry Wide Trends URL', {
+                                            'source': "Dashboard Page",
+                                            'action': "3rd Industry Wide Trends Clicked",
+                                            "url": "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
+                                            'email': user.email !== null && user.email !== undefined && user.email,
+                                        });
+                                        router.push('https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html')
+                                    }}>
                                         <div style={{color:'black', fontSize:18, fontWeight:'500'}}
                                         >Five distinct trends are converging to determine</div>
                                         <div style={{paddingTop:12,color:'#667280'}}>Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health.</div>
@@ -471,7 +473,15 @@ export default function Dashboard({
                                                 url: "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
                                                 title: "Five distinct trends are converging.",
                                             }}
-                                            onClick={() => console.log("shared successfully!")}
+                                            onClick={() => {
+                                                mixpanel.track('Shared 3rd Industry Wide Trends URL', {
+                                                    'source': "Dashboard Page",
+                                                    'action': "Clicked on share button of 3rd Industry Wide Trends",
+                                                    'url': "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
+                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                });
+                                                console.log("shared successfully!")
+                                            }}
                                         >
                                             <Button
                                                 variant="outlined"
