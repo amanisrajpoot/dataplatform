@@ -339,7 +339,8 @@ export default function Datasets({
                                 <Divider variant="middle"/>
                             </Box>
 
-                            <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/>
+                            <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
+                                onClick={()=>router.push("/settings")}/>
 
                             <Modal
                                 open={open2}

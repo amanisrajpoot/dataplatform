@@ -325,7 +325,8 @@ export default function BrowseCatalogue({
 
                 </Box>
               <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
-                <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/>
+                <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
+                    onClick={()=>router.push("/settings")}/>
 
           </Box>
 
