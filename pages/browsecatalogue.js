@@ -271,7 +271,7 @@ export default function BrowseCatalogue({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                        <div style={{fontSize:28}}>Catalogs &nbsp;&nbsp;</div>
+                        <div style={{fontSize:28}}>Data Catalogs &nbsp;&nbsp;</div>
                         <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                             alignItems:'space-between'}}>
                             <div style={{fontSize:18, color:'gray'}}>Search:&nbsp;&nbsp;</div>
@@ -314,7 +314,7 @@ export default function BrowseCatalogue({
               <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                     color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                      <div>Catalogs &nbsp;</div>
+                      <div>Data Catalogs &nbsp;</div>
                   {searchMode === 0 && dataSources !== null && dataSources !== undefined ?
                   <div>{"("+ dataSources.length+")"}</div>:
                       searchMode === 1 && keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined ?

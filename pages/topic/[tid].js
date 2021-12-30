@@ -279,7 +279,7 @@ export default function TopicBrowser({
 
                             <div style={{display:'flex', alignItems:'center'}}>
                                 <div style={{fontSize:28, paddingLeft:24}}>Topic &nbsp;&nbsp;</div>
-                                <div style={{ paddingLeft:8,display:'flex', flexDirection:'row', justifyContent:'space-between',
+                                <div style={{ paddingLeft:8,display:'flex', flexDirection:'column', justifyContent:'space-between',
                                     alignItems:'center'}}>
                                     <div style={{paddingTop:12,fontSize:18, color:'gray', textTransform:'capitalize'}}>{topic_id}</div>
 
@@ -298,7 +298,7 @@ export default function TopicBrowser({
                             <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                                 color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                                 <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                                <div>Catalogs &nbsp;</div>
+                                <div>Data Catalogs &nbsp;</div>
                                 {topicDatasources !== null && topicDatasources !== undefined && <div>{"("+ topicDatasources.length+")"}</div>}
                                 <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 

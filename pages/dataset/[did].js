@@ -278,7 +278,7 @@ export default function ManageDataset({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"50%",
                             color:'gray-700', alignItems:'center'}}>
                             {datasetMode ===1 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setDatasetMode(0)}>
@@ -288,7 +288,7 @@ export default function ManageDataset({
                                     {"Back"}</Button>:null}
                             <Divider variant="middle" orientation="vertical" />
                             <div style={{paddingLeft:8,paddingRight:2,}}>Go Back to {datasetMode ===0 ?" My Datasets": currentRouteTitle}</div>
-                            <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2,  color:'#939EAA', borderColor:'#939EAA' }}
+                            <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2, paddingLeft:2,paddingRight:2, color:'#939EAA', borderColor:'#939EAA' }}
                                     startIcon={<CachedIcon />} onClick={()=>router.reload()}>
                                 {"Refresh"}</Button>
                         </Box>
@@ -364,13 +364,13 @@ export default function ManageDataset({
                             py: 2, width:'100%', }}>
                             <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',
                                 fontSize:24,font:'roboto',pl:2}}>
-                                <div>{datasetMode === 0? "Included ":'Selected ' }Catalogs &nbsp;</div>
+                                <div>{datasetMode === 0? "Included ":'Selected ' }Data Catalogs &nbsp;</div>
                             </Box>
 
                             {datasetMode ===1 ?<Button variant="contained" size="large" sx={{mx:4, py:2,
                                 backgroundColor:'#5A00E2'}}
                                                        startIcon={addCatalogMode ?<CheckIcon />:<AddIcon />} onClick={()=>setAddCatalogMode(!addCatalogMode)}>
-                                {addCatalogMode ?"Done":"Add Catalog"}</Button>:null}
+                                {addCatalogMode ?"Done":"Add More"}</Button>:null}
 
                         </Box>
 
@@ -422,7 +422,7 @@ export default function ManageDataset({
                                     flex: 1, py: 2, px: 2, }}>
                                     <Typography color="inherit" variant="h5" component="h1">
                                         <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
-                                            <div>Matching Catalogs &nbsp;</div>
+                                            <div>Matching Data Catalogs &nbsp;</div>
 
                                         </Box>
                                     </Typography>

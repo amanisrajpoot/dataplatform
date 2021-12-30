@@ -299,7 +299,7 @@ export default function ManageDataset({
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"50%",
                             color:'gray-700', alignItems:'center'}}>
                             {datasetMode ===1 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setDatasetMode(0)}>
@@ -319,7 +319,7 @@ export default function ManageDataset({
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,
                             color:'gray-900',justifyContent:'space-around'}}>
-                            <div>Catalog Overview: &nbsp;</div>{dataSources !== null && dataSources !== undefined &&
+                            <div>Data Catalog Overview: &nbsp;</div>{dataSources !== null && dataSources !== undefined &&
                                 dataSources.map((data,index)=> datasource_id == data.ID && <div>{data.title}</div>)}
                         </Box>
 
@@ -358,7 +358,7 @@ export default function ManageDataset({
                             py: 2, width:'100%', }}>
                             <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', justifyContent:'space-between',
                                 fontSize:24,font:'roboto',pl:2}}>
-                                <div>{'Related ' }Catalogs &nbsp;</div>
+                                <div>{'Related ' }Data Catalogs &nbsp;</div>
                             </Box>
 
                         </Box>
