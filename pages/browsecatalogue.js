@@ -157,6 +157,13 @@ export default function BrowseCatalogue({
         setLocalFilterTopics([...localFilterTopics,topic])
         setFilterTopics(localFilterTopics)
         if(token!==null){
+            mixpanel.track('Topic Filtered Keyword Search for Catalogs', {
+                'source': "Browse Catalog page",
+                'action': "keyword search",
+                'keyword': keyword,
+                'topic': topic,
+                'email': user.email,
+            });
             const catalog = await getPublicDatasetsTopicKeyword({token, keyword,topics:filterTopics});
             setTopicFilteredDataSources(catalog);
             console.log("filtered catalog data",catalog);
@@ -177,7 +184,7 @@ export default function BrowseCatalogue({
       if(token!==null){
           console.log("SEARCH", keyword)
           mixpanel.track('Keyword Search for Catalogs', {
-            'source': "Data Platform Dashboard",
+            'source': "Browse Catalog page",
             'action': "keyword search",
             'keyword': keyword,
               'email': user.email,
@@ -396,7 +403,15 @@ export default function BrowseCatalogue({
                                     sx={{marginRight:1, borderRadius:4, bgcolor:'#FF49A1',color:'#fff',
                                         textTransform:'lowercase', borderColor:'#FF49A1',
                                     }}
-                                    onClick={()=>setKeyword(keyword.split(/(?:,| )+/).filter(key=>key!==word).toString())}
+                                    onClick={()=>{
+                                        mixpanel.track('Keywords Entered in the Search Bar', {
+                                            'source': "Browse Catalog page",
+                                            'action': "Keyword Entered",
+                                            'keywords': keyword.split(/(?:,| )+/).filter(key=>key!==word).toString(),
+                                            'email': user.email,
+                                        });
+                                        setKeyword(keyword.split(/(?:,| )+/).filter(key=>key!==word).toString())
+                                    }}
                                     endIcon={<CancelIcon />}>
                                     {word +" "}</Button>)}
                                 </div>
