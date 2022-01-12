@@ -241,7 +241,7 @@ export default function Datasets({
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
                             <div style={{fontSize:28}}>My Datasets &nbsp;&nbsp;</div>
-                            <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
+                            {/* <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                                 alignItems:'space-between'}}>
                                 <div style={{fontSize:18, color:'gray'}}>Show:&nbsp;&nbsp;</div>
                                 <div style={{fontSize:18, color:'gray-900'}}>All</div>
@@ -260,7 +260,7 @@ export default function Datasets({
                                     <MenuItem onClick={handleClose}>Created</MenuItem>
                                     <MenuItem onClick={handleClose}>Draft</MenuItem>
                                 </Menu>
-                            </div>
+                            </div> */}
 
                         </Box>
                         <Button variant="contained" size="large"
