@@ -59,7 +59,7 @@ export default function LeftNav({
 	return (
 		<div className={`${styles.header} ${leftAnimation}`} style={{ fontStyle:'normal',
 			fontWeight:400,border: "1px solid #dedede",
-			boxShadow: "10px 0 5px -2px #888"}}>
+			}}>
 			{/* ADD SAMPLES */}
 			<Modal
 				open={addSampleModalVisible}
@@ -231,25 +231,25 @@ export default function LeftNav({
 
 				{favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer",
 				textAlign:'left'}} onClick={() => {router.push('/dataset/78')}}>
-					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}} /></div>
+					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}} /></div>
 					<div style={{width:"70%"}}>Healthcare</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>345</div>
 				</div>
 				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer"}}
 					 onClick={() => {router.push('/dataset/80')}}>
-					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
+					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}}/></div>
 					<div style={{width:"70%"}}>FDA Drugs</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>123</div>
 				</div>
 				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,cursor:"pointer"}}
 					 onClick={() => {router.push('/dataset/81')}}>
-					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
+					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}}/></div>
 					<div style={{width:"70%"}}>Insurance Inc.</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>456</div>
 				</div>
 					<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12, cursor:"pointer"}}
 						 onClick={() => {router.push('/dataset/81')}}>
-						<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#FF6262"}}/></div>
+						<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}}/></div>
 						<div style={{width:"70%"}}>Drugs Distributors</div>
 						<div style={{width:"14%", color:'#C5CDD4'}}>756</div>
 					</div></>}
@@ -280,7 +280,7 @@ export default function LeftNav({
 							HC
 						</div></div>
 					<div style={{width:"75%"}}>HealthCare</div>
-					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#46D989'}}/></div>
+					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#9147ff'}}/></div>
 				</div>
 				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,alignItems:'center',cursor:"pointer"}}
 					 onClick={() => {router.push('/dataset/81')}}>
@@ -289,7 +289,7 @@ export default function LeftNav({
 							textAlign:'center', paddingTop:6}}>
 							CT</div></div>
 					<div style={{width:"75%"}}>Cancer Treat..</div>
-					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#46D989'}} /></div>
+					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#9147ff'}} /></div>
 				</div></>}
 
 				<div

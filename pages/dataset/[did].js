@@ -204,11 +204,13 @@ export default function ManageDataset({
         <Box sx={{display:'flex',width:'100%', flexDirection:'row'}}>
 
             <Box sx={{width:"18%"}}>
-                <LeftNav />
+                <Box sx={{width:"18%", position:'fixed'}}>
+                    <LeftNav />
+                </Box>
             </Box>
             <Box sx={{width:"82%"}}>
                 <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
-                    <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+                    <Box component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
@@ -276,7 +278,7 @@ export default function ManageDataset({
                         </div>
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between'}}>
+                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between', paddingTop:10}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"50%",
                             color:'gray-700', alignItems:'center'}}>

@@ -161,11 +161,13 @@ export default function Datasets({
         <Box>
             {/*<Navbar token={token} setToken={setToken}/>*/}
             <Box sx={{display:'flex', fontStyle:'roboto'}}>
-                <Box sx={{width:"18%"}}>
-                    <LeftNav />
+                <Box sx={{width:"18%",}}>
+                    <Box sx={{width:"18%",position:'fixed'}}>
+                        <LeftNav />
+                    </Box>
                 </Box>
                 <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-                    <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+                    <Box component="main" sx={{  minWidth:'82%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
@@ -236,7 +238,7 @@ export default function Datasets({
                         </div>
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between'}}>
+                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', paddingTop:10}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
