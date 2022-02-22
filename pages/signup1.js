@@ -388,7 +388,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 placeholder: "Confirm Password"
                                             }}
                                         />
-`                                       {error? <>{error}</>:null}
+                                       <div style={{color:'red'}}>{error? <>{error}</>:null}</div>
                                         <Button
                                             type="submit"
                                             variant="contained"

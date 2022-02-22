@@ -238,7 +238,7 @@ export default function Datasets({
                         </div>
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', paddingTop:10}}>
+                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', paddingTop:12}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
@@ -395,7 +395,7 @@ export default function Datasets({
 
                         {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
                         {/* <SignalTable /> */}
-                        <Box sx={{ width:"98%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
+                        <Box sx={{ width:"97.3%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
                                 userdatasets.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data, index)=><DatasetCard

@@ -219,7 +219,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                         sm={4}
                         md={6}
                         sx={{
-                            backgroundImage: 'url(/login-background01.png)',
+                            backgroundImage: 'url(/doctor-with-stethoscope-hands-hospital-background.jpg)',
                             // backgroundRepeat: 'no-repeat',
                             width:"100%",
 
@@ -241,7 +241,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                             justifyContent: 'end'
                         }}>
                             <Link sx={{alignSelf: 'end'}} href="/login" variant="body2">
-                                {"Already have an account?"}
+                                {"Already have an account? "}
                                 <div style={{color: "#5A00E2", display: "inline"}}>Log In</div>
                             </Link>
                         </div> : mode === 1 ? null : null}
@@ -388,7 +388,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 placeholder: "Confirm Password"
                                             }}
                                         />
-`                                       {error? <>{error}</>:null}
+                                       <div style={{color:'red'}}>{error? <>{error}</>:null}</div>
                                         <Button
                                             type="submit"
                                             variant="contained"

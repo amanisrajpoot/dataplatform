@@ -212,7 +212,7 @@ export default function BrowseCatalogue({
         <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
             <Box component="main" sx={{  width:'82%', display:'flex',position:'fixed' }}>
                 <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                    <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                    {/* <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                         <SearchIcon />
                     </Box>
 
@@ -228,7 +228,7 @@ export default function BrowseCatalogue({
                         ),
                         placeholder:"Search..."
                     }}
-                />
+                /> */}
                 </Box>
 
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
@@ -269,7 +269,7 @@ export default function BrowseCatalogue({
                 </div>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',paddingTop:14 }}>
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',paddingTop:13 }}>
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
@@ -338,10 +338,11 @@ export default function BrowseCatalogue({
             <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                     <Box component="main" sx={{ display:'flex', width:'100%', alignItems:'center',
-                        minHeight:'14vh', px:1.5, borderRadius:4}}>
+                        minHeight:'14vh', px:1.3, borderRadius:4}}>
                         <Box sx={{ display:'flex', width:'100%',py:4, px:2, alignItems:'left', flexDirection:'column',
                             minHeight:'18vh',maxHeight:'18vh',bgcolor:"#fff", my:2,  borderRadius:4}}>
                             <Box sx={{display:'flex',width:'100%', alignItems:'center',}}>
+                                
                             <input variant="outlined" placeholder="Search..."
                                    value={keyword} onChange={(event)=>setKeyword(event.target.value)}
                                    label="Keyword" style={{ bgcolor: '#ffffff', minHeight:"5.5vh",maxHeight:'5.5vh',

@@ -189,7 +189,7 @@ export default function Dashboard({
 
     return (
 
-        <Box>
+        <Box sx={{width:'100%'}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
             <Box sx={{display:'flex', fontStyle:'roboto'}}>
                 <Box sx={{width:"18%",}}>
@@ -197,10 +197,11 @@ export default function Dashboard({
                     <LeftNav />
                     </Box>
                 </Box>
-                <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+                <Box sx={{ display: 'flex', minWidth:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',paddingLeft:32, maxWidth: "100%",
+    overflowX:'hidden'}}>
                     <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', 
-                        height:"70px", }} >
+                        height:"70px",marginLeft:0.5, }} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
                             </Box>
@@ -265,7 +266,7 @@ export default function Dashboard({
                         </div>
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection:'column', py: 2,px:2,justifyContent:'space-between',paddingTop:10}}>
+                    <Box sx={{ minWidth:'100%',width:'100%',display: 'flex', flexDirection:'column', py: 2,px:2,justifyContent:'space-between',paddingTop:10}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
@@ -273,10 +274,10 @@ export default function Dashboard({
 
                         </Box>
 
-                        {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                        {showDraft && <Box sx={{ minWidth:"100%", width:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start',paddingTop:1}}>
 
-                            <div style={{height:'18ch', minWidth:'74.5ch', maxWidth:'28ch', backgroundColor:'#E4F7FF',
+                            <div style={{height:'18ch', minWidth:'63%', maxWidth:'28ch', backgroundColor:'#E4F7FF',
                                 marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
                                 justifyContent:"space-between",borderRadius:9,  }}>
                                 <div style={{marginTop:18,marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
@@ -298,7 +299,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'18ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF4E4',
+                            <div style={{height:'18ch', minWidth:'35.8%', maxWidth:'35.8%', backgroundColor:'#FFF4E4',
                                 marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9, }}>
                                 <div style={{marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
@@ -345,7 +346,7 @@ export default function Dashboard({
                         {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
-                            <div style={{height:'20ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'20ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -397,7 +398,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'20ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'20ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -446,7 +447,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'20ch', minWidth:'36.5ch', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'20ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -503,7 +504,7 @@ export default function Dashboard({
                     {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                         alignItems:'start',marginLeft:2,marginRight:2, paddingTop:2}}>
 
-                        <div style={{height:'54ch', minWidth:'96%', maxWidth:'28ch', backgroundColor:'#FFF',
+                        <div style={{height:'54ch', minWidth:'97.2%', backgroundColor:'#FFF',
                             marginRight:14, display:'flex', flexDirection:'row',marginBottom:8,
                             justifyContent:"space-between",borderRadius:9,  }}>
                             <div style={{marginTop:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',

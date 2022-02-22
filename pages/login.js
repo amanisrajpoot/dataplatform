@@ -22,6 +22,7 @@ import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
 import mixpanel from 'mixpanel-browser';
+import {EMAIL_VALIDATOR} from "../function/constants";
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
@@ -122,6 +123,18 @@ const Login =({token, setToken}) => {
         }
     }
 
+    function checkFields() {
+      if (!EMAIL_VALIDATOR.test(email)) {
+          setError('Invalid Email ID');
+          console.log("email issue",email.split("@")[1])
+      } else if (password.length < 8) {
+          setError('Invalid password, must be atleast 8 letter long');
+      } else {
+          setError(null);
+          signInF();
+      }
+  }
+
   return (
     <ThemeProvider theme={theme}>
 
@@ -133,7 +146,7 @@ const Login =({token, setToken}) => {
           sm={4}
           md={6}
           sx={{
-            backgroundImage: 'url(/login-background.jpg)',
+            backgroundImage: 'url(/doctor-with-stethoscope-hands-hospital-background.jpg)',
             // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -144,7 +157,7 @@ const Login =({token, setToken}) => {
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
             flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
             <div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'end'}}>
-                <Link sx={{alignSelf:'end'}} href="/signup1" variant="body2">
+                <Link sx={{alignSelf:'end'}} href="/signup" variant="body2">
                     {"Don't have an account?"} <div style={{color:"#5A00E2", display:"inline"}}>Sign Up</div>
                 </Link>
             </div>
@@ -228,12 +241,12 @@ const Login =({token, setToken}) => {
                     </div>
 
                 </div>
-                {error && <p style={{color:"red"}}>{error}</p>}
+                {error && <div style={{color:"red"}}>{error}</div>}
               <Button
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
-                onClick={signInF}
+                onClick={()=>checkFields()}
                 // href="/dashboard"
               >
                 Log In
