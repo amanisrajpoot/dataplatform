@@ -137,6 +137,8 @@ const Login =({token, setToken}) => {
           setUsernameError(false)
       } else {
           setError(null);
+          setPasswordError(false)
+          setUsernameError(false)
           signInF();
       }
   }

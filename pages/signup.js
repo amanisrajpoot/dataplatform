@@ -103,6 +103,11 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     const [bottomTopPadding, setBottomTopPadding] = useState(45)
     const [mode, setMode] = useState(0)
     const [otp, setOtp] = useState(0)
+    const [nameError, setNameError] = useState(false)
+    const [usernameError, setUsernameError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
+    const [confirmPasswordError, setConfirmPasswordError] = useState(false)
+    const [companyError, setCompanyError] = useState(false)
 
     async function signInFK(){
         setMode(1);
@@ -172,17 +177,54 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     function checkFields() {
         if (name.length < 3) {
             setError('Name should be atleast 3 letter long');
+            setNameError(true)
+            setCompanyError(false)
+            setUsernameError(false)
+            setPasswordError(false)
+            setConfirmPasswordError(false)
+        } else if (company.length < 3) {
+            setError('Company Name should be atleast 3 letter long');
+            setCompanyError(true)
+            setNameError(false)
+            setUsernameError(false)
+            setPasswordError(false)
+            setConfirmPasswordError(false)
         } else if (!EMAIL_VALIDATOR.test(email)) {
             setError('Invalid Email ID');
+            setUsernameError(true)
+            setNameError(false)
+            setCompanyError(false)
+            setPasswordError(false)
+            setConfirmPasswordError(false)
             console.log("email issue",email.split("@")[1])
         } else if (!filterEmail()) {
             setError('Public Email Not Allowed');
+            setUsernameError(true)
+            setNameError(false)
+            setCompanyError(false)
+            setPasswordError(false)
+            setConfirmPasswordError(false)
         } else if (password.length < 8) {
             setError('Invalid password, must be atleast 8 letter long');
+            setPasswordError(true)
+            setNameError(false)
+            setCompanyError(false)
+            setUsernameError(false)
+            setConfirmPasswordError(false)
         } else if (password !== confirmPassword) {
             setError("Passwords don't match.");
+            setConfirmPasswordError(true)
+            setNameError(false)
+            setCompanyError(false)
+            setUsernameError(false)
+            setPasswordError(false)
         } else {
             setError(null);
+            setConfirmPasswordError(false)
+            setNameError(false)
+            setCompanyError(false)
+            setUsernameError(false)
+            setPasswordError(false)
             signUpF();
         }
     }
@@ -289,7 +331,8 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                      width: '100%'
                                  }}>
 
-                                {mode === 0 ? <><TextField
+                                {mode === 0 ? <>{nameError ? <TextField
+                                        error
                                         margin="normal"
                                         required
                                         sx={{width: "65%"}}
@@ -297,6 +340,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                         label="Full Name"
                                         name="name"
                                         autoComplete="name"
+                                        helperText="Incorrect entry."
                                         autoFocus
                                         onChange={(e) => setName(e.target.value)}
                                         InputProps={{
@@ -307,9 +351,47 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                             ),
                                             placeholder: "Your Name"
                                         }}
-                                    />
+                                    /> : <TextField
+                                            margin="normal"
+                                            required
+                                            sx={{width: "65%"}}
+                                            id="name"
+                                            label="Full Name"
+                                            name="name"
+                                            autoComplete="name"
+                                            autoFocus
+                                            onChange={(e) => setName(e.target.value)}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <AccountCircleIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Your Name"
+                                            }}
+                                        /> }
 
-                                        <TextField
+                                        {companyError ? <TextField
+                                            error
+                                            margin="normal"
+                                            required
+                                            sx={{width: "65%"}}
+                                            id="company"
+                                            label="Company Name"
+                                            name="company"
+                                            autoComplete="company"
+                                            helperText="Incorrect entry."
+                                            autoFocus
+                                            onChange={(e) => setCompany(e.target.value)}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <BusinessIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Company Name"
+                                            }}
+                                        /> : <TextField
                                             margin="normal"
                                             required
                                             sx={{width: "65%"}}
@@ -327,9 +409,29 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 ),
                                                 placeholder: "Company Name"
                                             }}
-                                        />
+                                        />}
 
-                                        <TextField
+                                        {usernameError ? <TextField
+                                            error
+                                            margin="normal"
+                                            required
+                                            sx={{width: "65%"}}
+                                            id="email"
+                                            label="Email Address"
+                                            name="email"
+                                            autoComplete="email"
+                                            autoFocus
+                                            helperText="Invalid Email ID"
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <EmailIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Email Address"
+                                            }}
+                                        /> : <TextField
                                             margin="normal"
                                             required
                                             sx={{width: "65%"}}
@@ -347,9 +449,29 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 ),
                                                 placeholder: "Email Address"
                                             }}
-                                        />
+                                        />}
 
-                                        <TextField
+                                        {passwordError ? <TextField
+                                            error
+                                            margin="normal"
+                                            required
+                                            sx={{width: "65%"}}
+                                            name="password"
+                                            label="Enter Password"
+                                            type="password"
+                                            id="password"
+                                            autoComplete="current-password"
+                                            helperText="Invalid Password"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <LockIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Enter Password"
+                                            }}
+                                        /> : <TextField
                                             margin="normal"
                                             required
                                             sx={{width: "65%"}}
@@ -367,9 +489,29 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 ),
                                                 placeholder: "Enter Password"
                                             }}
-                                        />
+                                        />}
 
-                                        <TextField
+                                        {confirmPasswordError ? <TextField
+                                            error
+                                            margin="normal"
+                                            required
+                                            sx={{width: "65%"}}
+                                            name="confirmPassword"
+                                            label="Confirm Password"
+                                            type="password"
+                                            id="confirmpassword"
+                                            autoComplete="confirmPassword"
+                                            helperText="Please match the password"
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <LockIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Confirm Password"
+                                            }}
+                                        /> : <TextField
                                             margin="normal"
                                             required
                                             sx={{width: "65%"}}
@@ -387,7 +529,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 ),
                                                 placeholder: "Confirm Password"
                                             }}
-                                        />
+                                        />}
                                        <div style={{color:'red'}}>{error? <>{error}</>:null}</div>
                                         <Button
                                             type="submit"
@@ -461,7 +603,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                     setMode(0)
                                                     setTopPadding(6)
                                                     setBottomTopPadding(45)
-                                                }}>Resend</div>
+                                                }}>&nbsp;Resend</div>
 
                                         </div>
                                         : null}
