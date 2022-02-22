@@ -104,6 +104,8 @@ const Login =({token, setToken}) => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
+    const [usernameError, setUsernameError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
 
     async function signInF(){
         const err = await signIn({email, password});
@@ -126,9 +128,13 @@ const Login =({token, setToken}) => {
     function checkFields() {
       if (!EMAIL_VALIDATOR.test(email)) {
           setError('Invalid Email ID');
+          setUsernameError(true)
+          setPasswordError(false)
           console.log("email issue",email.split("@")[1])
       } else if (password.length < 8) {
           setError('Invalid password, must be atleast 8 letter long');
+          setPasswordError(true)
+          setUsernameError(false)
       } else {
           setError(null);
           signInF();
@@ -185,7 +191,8 @@ const Login =({token, setToken}) => {
                  sx={{ pt: 1, display:'flex', flexDirection:'column', alignItems:'center',
                     width:'100%'}}>
 
-                <TextField
+                {usernameError ? <TextField
+                    error
                     margin="normal"
                     required
                     sx={{width:"65%"}}
@@ -193,6 +200,7 @@ const Login =({token, setToken}) => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    helperText="Incorrect entry."
                     autoFocus
                     onChange={(e) => setEmail(e.target.value)}
                     InputProps={{
@@ -203,8 +211,27 @@ const Login =({token, setToken}) => {
                         ),
                         placeholder:"Email Address"
                     }}
-                  />
-                  <TextField
+                  /> : <TextField
+                  margin="normal"
+                  required
+                  sx={{width:"65%"}}
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  onChange={(e) => setEmail(e.target.value)}
+                  InputProps={{
+                      startAdornment: (
+                          <InputAdornment position="start">
+                              <EmailIcon />
+                          </InputAdornment>
+                      ),
+                      placeholder:"Email Address"
+                  }}
+                />}
+                  {passwordError ? <TextField
+                    error
                     margin="normal"
                     required
                     sx={{width:"65%"}}
@@ -213,6 +240,7 @@ const Login =({token, setToken}) => {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    helperText="Incorrect entry."
                     onChange={(e) => setPassword(e.target.value)}
                     InputProps={{
                         startAdornment: (
@@ -222,7 +250,27 @@ const Login =({token, setToken}) => {
                         ),
                         placeholder:"Enter Password"
                     }}
-                  />
+                  />:
+                    <TextField
+                      margin="normal"
+                      required
+                      sx={{width:"65%"}}
+                      name="password"
+                      label="Enter Password"
+                      type="password"
+                      id="password"
+                      autoComplete="current-password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      InputProps={{
+                          startAdornment: (
+                              <InputAdornment position="start">
+                                  <LockIcon />
+                              </InputAdornment>
+                          ),
+                          placeholder:"Enter Password"
+                      }}
+                    />
+                  }
                 <div style={{paddingLeft:125,display:'flex', width:'100%',}}>
                     <div style={{display:'flex', justifyContent:'space-around' }}>
                         <div>
@@ -241,7 +289,7 @@ const Login =({token, setToken}) => {
                     </div>
 
                 </div>
-                {error && <div style={{color:"red"}}>{error}</div>}
+                {/* {error && <div style={{color:"red"}}>{error}</div>} */}
               <Button
                 type="submit"
                 variant="contained"
