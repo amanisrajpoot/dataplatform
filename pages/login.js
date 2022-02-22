@@ -202,7 +202,7 @@ const Login =({token, setToken}) => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    helperText="Incorrect entry."
+                    helperText="Incorrect Username"
                     autoFocus
                     onChange={(e) => setEmail(e.target.value)}
                     InputProps={{
@@ -242,7 +242,7 @@ const Login =({token, setToken}) => {
                     type="password"
                     id="password"
                     autoComplete="current-password"
-                    helperText="Incorrect entry."
+                    helperText="Incorrect Password"
                     onChange={(e) => setPassword(e.target.value)}
                     InputProps={{
                         startAdornment: (

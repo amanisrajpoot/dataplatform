@@ -340,7 +340,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                         label="Full Name"
                                         name="name"
                                         autoComplete="name"
-                                        helperText="Incorrect entry."
+                                        helperText="Incorrect Name"
                                         autoFocus
                                         onChange={(e) => setName(e.target.value)}
                                         InputProps={{
@@ -380,7 +380,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                             label="Company Name"
                                             name="company"
                                             autoComplete="company"
-                                            helperText="Incorrect entry."
+                                            helperText="Incorrect Company Name"
                                             autoFocus
                                             onChange={(e) => setCompany(e.target.value)}
                                             InputProps={{
