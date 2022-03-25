@@ -136,8 +136,13 @@ const ResetPassword =(props) => {
 
     async function resetPassword(){
         if(mode===0){
-            setMode(1);
-            setTop(24)
+            if(otp.length <6){
+                setError("OTP is not valid")
+            } else {
+                setError("")
+                setMode(1);
+                setTop(24)
+            }
         } else if(mode===1){
             const erro = await forgotPasswordSubmit({email, otp, password})
             if(erro === null) {
