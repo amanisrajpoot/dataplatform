@@ -344,7 +344,7 @@ export default function Dashboard({
                         {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
-                            <div style={{height:'20ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -396,7 +396,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'20ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -445,7 +445,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'20ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
