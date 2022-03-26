@@ -502,7 +502,7 @@ export default function Dashboard({
                     {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                         alignItems:'start',marginLeft:2,marginRight:2, paddingTop:2}}>
 
-                        <div style={{height:'54ch', minWidth:'97.2%', backgroundColor:'#FFF',
+                        <div style={{height:'58ch', minWidth:'97.2%', backgroundColor:'#FFF',
                             marginRight:14, display:'flex', flexDirection:'row',marginBottom:8,
                             justifyContent:"space-between",borderRadius:9,  }}>
                             <div style={{marginTop:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
