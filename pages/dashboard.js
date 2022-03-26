@@ -189,7 +189,7 @@ export default function Dashboard({
 
     return (
 
-        <Box sx={{width:'100%'}}>
+        <Box>
             {/*<Navbar token={token} setToken={setToken}/>*/}
             <Box sx={{display:'flex', fontStyle:'roboto'}}>
                 <Box sx={{width:"18%",}}>
@@ -197,11 +197,9 @@ export default function Dashboard({
                     <LeftNav />
                     </Box>
                 </Box>
-                <Box sx={{ display: 'flex', minWidth:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',paddingLeft:32, maxWidth: "100%",
-    overflowX:'hidden'}}>
+                <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
                     <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
-                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', 
-                        height:"70px",marginLeft:0.5, }} >
+                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
                             </Box>
