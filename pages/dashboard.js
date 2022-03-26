@@ -275,11 +275,11 @@ export default function Dashboard({
                         {showDraft && <Box sx={{ minWidth:"100%", width:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start',paddingTop:1}}>
 
-                            <div style={{height:'18ch', minWidth:'63%', maxWidth:'28ch', backgroundColor:'#E4F7FF',
+                            <div style={{height:'22ch', minWidth:'63%', maxWidth:'28ch', backgroundColor:'#E4F7FF',
                                 marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
                                 justifyContent:"space-between",borderRadius:9,  }}>
                                 <div style={{marginTop:18,marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'space-between', width:'80%'
+                                    lineHeight:"22px", justifyContent:'space-between', width:'80%', overflow:'hidden',
                                 }}
                                 >
 
@@ -297,11 +297,11 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'18ch', minWidth:'35.8%', maxWidth:'35.8%', backgroundColor:'#FFF4E4',
+                            <div style={{height:'22ch', minWidth:'35.8%', maxWidth:'35.8%', backgroundColor:'#FFF4E4',
                                 marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9, }}>
-                                <div style={{marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'space-between', paddingTop:18, paddingRight:12
+                                <div style={{marginLeft:18, display:'flex', flex:"start", flexDirection:'column',height:'100%',
+                                    lineHeight:"22px", justifyContent:'space-between', justifyItems:'space-between',paddingTop:18, paddingRight:12
                                 }}>
 
                                     <div>
