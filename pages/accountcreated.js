@@ -14,7 +14,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
+import {createUser} from "../function/users";
 import mixpanel from 'mixpanel-browser';
+import {useEffect} from 'react';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -48,7 +50,7 @@ function BrandName(props) {
 
 const theme = createTheme();
 
-const AccountCreated =() => {
+const AccountCreated =({name, setName, email, setEmail, company, setCompany, token, setToken}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -60,7 +62,6 @@ const AccountCreated =() => {
   };
 
     const router = useRouter()
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
@@ -68,6 +69,28 @@ const AccountCreated =() => {
     const [mode, setMode] = useState(0);
     const [top, setTop] = useState(36);
 
+    useEffect(async ()=> {
+      console.log("usercompany", company)
+      const erro = await createUser({
+          email,
+          //phone: '+1' + phone,
+          name,
+          company,
+          token
+
+      });
+
+      // setError(erro);
+      console.log('user created response', erro)
+      // await sleep(2000);
+       if(erro !== null){
+        router.push("/dashboard")
+       }
+
+      console.log('server error', erro)
+      //setMode(0);
+  },[])
+  
   return (
     <ThemeProvider theme={theme}>
 

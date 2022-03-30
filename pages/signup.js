@@ -150,7 +150,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
             await sleep(2000);
             // const ret = await createUser({email,firstname,lastname,company,token});
             // sleep(1000);
-            await router.push('/accountcreated2');
+            await router.push('/accountcreated');
             // await signIn({ email, password, token, setToken: createDoctor });
         }
         setError(erro);
