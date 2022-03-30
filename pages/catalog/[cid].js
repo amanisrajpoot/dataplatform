@@ -231,7 +231,7 @@ export default function ManageDataset({
             </Box>
             <Box sx={{width:"82%"}}>
                 <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
-                    <Box component="main" sx={{  minWidth:'100%', display:'flex', position:'fixed'}}>
+                    <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed'}}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />

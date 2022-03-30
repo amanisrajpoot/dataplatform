@@ -130,7 +130,7 @@ export default function ManageDataset({
     }, [token, dataset_id]);
 
     const handleDownloadButton = async() => {
-        const downloadLink = await downloadDatasetsId(token, dataset_id);
+        const downloadLink = await downloadDatasetsId(token, dataset_id, user.email);
         setDownloadLink(downloadLink.url);
         if(downloadLink.url !== null && downloadLink.url !== undefined){
             await window.open(downloadLink.url, '_blank');
@@ -184,6 +184,7 @@ export default function ManageDataset({
     const open2 = Boolean();
 
     const handleClick = (event) => {
+        handleDownloadButton();
         setAnchorEl(event.currentTarget);
     };
 
@@ -201,7 +202,7 @@ export default function ManageDataset({
 
     return (
 
-        <Box sx={{display:'flex',width:'100%', flexDirection:'row'}}>
+        <Box sx={{display:'flex', flexDirection:'row'}}>
 
             <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
@@ -210,7 +211,7 @@ export default function ManageDataset({
             </Box>
             <Box sx={{width:"82%"}}>
                 <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
-                    <Box component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
+                    <Box component="main" sx={{  minWidth:'82%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />

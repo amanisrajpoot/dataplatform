@@ -137,7 +137,7 @@ export async function getDatasetsId(token,dataset_id){
     }
 }
 
-export async function downloadDatasetsId(token,dataset_id){
+export async function downloadDatasetsId(token,dataset_id,email){
     if(token!==null){
         const req = {
         method:"GET",
@@ -147,7 +147,7 @@ export async function downloadDatasetsId(token,dataset_id){
         },
     };
     try {
-        const res = await fetch(BASE_BACKEND+"/datasets/download?dataset_id="+dataset_id, req)
+        const res = await fetch("https://54.204.92.31"+"/datasets/download?dataset_id="+dataset_id+"&email="+email, req)
         return res.json()
     } catch (e) {
         console.log("Error:", e)

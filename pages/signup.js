@@ -30,6 +30,10 @@ import {EMAIL_VALIDATOR} from "../function/constants";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -141,9 +145,9 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     async function confirmSignUpF() {
         const erro = await confirmSignUp({ email,otp,token, setToken  });
         if (erro === null) {
-            await router.push('/accountcreated')
+            // await router.push('/accountcreated')
             await signIn({email, password, token, setToken});
-            sleep(2000);
+            await sleep(2000);
             // const ret = await createUser({email,firstname,lastname,company,token});
             // sleep(1000);
             await router.push('/accountcreated2');

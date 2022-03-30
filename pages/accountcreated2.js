@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import mixpanel from 'mixpanel-browser';
 import {confirmSignUp, signIn, signUp} from "../function/checkAuth";
 import {createUser} from "../function/users";
+import SelectInput from '@mui/material/Select/SelectInput';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -65,6 +66,10 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
     const [mode, setMode] = useState(0);
     const [top, setTop] = useState(36);
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     useEffect(async()=> {
         console.log("usercompany", company)
         const erro = await createUser({
@@ -76,7 +81,13 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
 
         });
 
-        setError(erro);
+        // setError(erro);
+        console.log('user created response', erro)
+        // await sleep(2000);
+         if(erro !== null){
+          router.push("/dashboard")
+         }
+
         console.log('server error', erro)
         //setMode(0);
     },[])
