@@ -264,11 +264,12 @@ export default function Dashboard({
                         </div>
                     </Box>
 
-                    <Box sx={{ minWidth:'100%',width:'100%',display: 'flex', flexDirection:'column', py: 2,px:2,justifyContent:'space-between',paddingTop:10}}>
+                    <Box sx={{ minWidth:'100%',width:'100%',display: 'flex', flexDirection:'column', py: 2,px:2,
+                        justifyContent:'space-between',paddingTop:11}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                            <div style={{fontSize:24, paddingBottom:12}}>Dashboard &nbsp;&nbsp;</div>
+                            <div style={{fontSize:28, paddingBottom:10}}>Dashboard &nbsp;&nbsp;</div>
 
                         </Box>
 

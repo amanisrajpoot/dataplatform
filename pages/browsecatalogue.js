@@ -261,7 +261,8 @@ export default function BrowseCatalogue({
                 </div>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',paddingTop:13 }}>
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
+                paddingTop:11 }}>
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>

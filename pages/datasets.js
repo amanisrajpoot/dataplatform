@@ -238,7 +238,8 @@ export default function Datasets({
                         </div>
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', paddingTop:12}}>
+                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', 
+                        paddingTop:10}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>

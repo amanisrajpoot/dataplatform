@@ -233,7 +233,7 @@ export default function ManageDataset({
                 <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
                     <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed'}}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                            <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                            {/* <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
                             </Box>
 
@@ -249,7 +249,7 @@ export default function ManageDataset({
                                     ),
                                     placeholder:"Search..."
                                 }}
-                            />
+                            /> */}
                         </Box>
 
                         {/*<TextField fullWidth id="outlined-basic"*/}
