@@ -309,10 +309,10 @@ export default function BrowseCatalogue({
               <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                     color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                      <div>Data Catalogs &nbsp;</div>
-                  {searchMode === 0 && dataSources !== null && dataSources !== undefined ?
-                  <div>{"("+ dataSources.length+")"}</div>:
-                      searchMode === 1 && keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined ?
+                      <div>Search Data Catalogs &nbsp;</div>
+                  {/* {searchMode === 0 && dataSources !== null && dataSources !== undefined ?
+                  <div>{"("+ dataSources.length+")"}</div>: */}
+                      {searchMode === 1 && keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined ?
                       <div>{"("+ keywordFilteredDataSources.length+")"}</div>:
                       searchMode === 2 && topicFilteredDataSources !== null && topicFilteredDataSources !== undefined ?
                       <div>{"("+ topicFilteredDataSources.length+")"}</div>:null}
@@ -419,19 +419,20 @@ export default function BrowseCatalogue({
                     </Box>
 
                 {searchMode === 0 ? dataSources !== null && dataSources !== undefined &&
-                    dataSources.map((data,index)=><FeatureCard
-                        openDetails={openDetails}
-                        data={data}
-                        index={index}
-                        token={token}
-                        user={user}
-                        handleOpenDetails={handleOpenDetails}
-                        handleCloseDetails={handleCloseDetails}
-                        dataset={dataset.catalog}
-                        dataSources={dataSources}
-                        removeDatasetcatalog={removeDatasetcatalog}
-                        addDatasetcatalog={addDatasetcatalog}
-                    />):
+                    // dataSources.map((data,index)=><FeatureCard
+                    //     openDetails={openDetails}
+                    //     data={data}
+                    //     index={index}
+                    //     token={token}
+                    //     user={user}
+                    //     handleOpenDetails={handleOpenDetails}
+                    //     handleCloseDetails={handleCloseDetails}
+                    //     dataset={dataset.catalog}
+                    //     dataSources={dataSources}
+                    //     removeDatasetcatalog={removeDatasetcatalog}
+                    //     addDatasetcatalog={addDatasetcatalog}
+                    // />)
+                    "":
                     searchMode === 1 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
                     keywordFilteredDataSources.map((data,index)=><FeatureCard
                     openDetails={openDetails}
@@ -448,6 +449,42 @@ export default function BrowseCatalogue({
                 />):
                     searchMode === 2 ? topicFilteredDataSources !== null && topicFilteredDataSources !== undefined &&
                         topicFilteredDataSources.map((data,index)=><FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />):null}
+          </Box>
+
+          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', width:'100%',
+              justifyContent:'space-between'}}>
+
+              <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
+                    color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
+                    <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
+                      <div>Newly Added Data Catalogs &nbsp;</div>
+                      <div>{"("+ dataSources.length+")"}</div>
+                    <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
+
+                </Box>
+              <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
+                <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
+                    onClick={()=>router.push("/settings")}/>
+
+          </Box>
+
+          <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
+              justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
+
+                {(searchMode === 0 || searchMode === 1 || searchMode === 2 ) ? dataSources !== null && dataSources !== undefined &&
+                    dataSources.map((data,index)=><FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
