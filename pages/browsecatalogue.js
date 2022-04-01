@@ -470,7 +470,8 @@ export default function BrowseCatalogue({
                     color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                       <div>Newly Added Data Catalogs &nbsp;</div>
-                      <div>{"("+ dataSources.length+")"}</div>
+                      { dataSources !== null && dataSources !== undefined &&
+                        <div>{"("+ dataSources.length+")"}</div> }
                     <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 
                 </Box>
