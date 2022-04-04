@@ -140,7 +140,7 @@ export default function BrowseCatalogue({
     const [searchMode, setSearchMode] = useState(0)
 
     useEffect(async ()=>{
-        const catalog = await getPublicDatasetsTopics(token, filterTopics.[0]);
+        const catalog = await getPublicDatasetsTopics(token, filterTopics.toString());
         setTopicFilteredDataSources(catalog);
         console.log("filtered catalog data",dataSources);
     }, [filterTopics]);
@@ -395,7 +395,8 @@ export default function BrowseCatalogue({
                         </Button>
                             </Box>
                             <Box sx={{display:'flex', pt:2}}>
-                                <div style={{paddingTop:8}}>Appllied Filters: {keyword && keyword.split(/(?:,| )+/).map((word,index)=>index <7 && <Button
+                                <div style={{paddingTop:8}}>Applied Filters: {filterTopics && filterTopics.length >0 && 
+                                    filterTopics.toString().split(/(?:,| )+/).map((word,index)=> index <7 && <Button
                                     variant="outlined"
                                     sx={{marginRight:1, borderRadius:4, bgcolor:'#FF49A1',color:'#fff',
                                         textTransform:'lowercase', borderColor:'#FF49A1',
@@ -407,7 +408,7 @@ export default function BrowseCatalogue({
                                             'keywords': keyword.split(/(?:,| )+/).filter(key=>key!==word).toString(),
                                             'email': user.email,
                                         });
-                                        setKeyword(keyword.split(/(?:,| )+/).filter(key=>key!==word).toString())
+                                        setFilterTopics(filterTopics.toString().split(/(?:,| )+/).filter(key=>key!==word).toString())
                                     }}
                                     endIcon={<CancelIcon />}>
                                     {word +" "}</Button>)}
