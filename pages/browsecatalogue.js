@@ -195,7 +195,7 @@ export default function BrowseCatalogue({
     
     <Box>
       {/*<Navbar token={token} setToken={setToken}/>*/}
-        <Box sx={{display:'flex', fontStyle:'roboto', maxWidth:'100%'}}>
+        <Box sx={{display:'flex', fontStyle:'roboto', minWidth:"100%",maxWidth:'100%'}}>
             <Box sx={{width:"18%"}}>
             <Box sx={{width:"18%", position:'fixed'}}>
                 <LeftNav />
@@ -336,13 +336,19 @@ export default function BrowseCatalogue({
                             minHeight:'18vh',maxHeight:'18vh',bgcolor:"#fff", my:2,  borderRadius:4}}>
                             <Box sx={{display:'flex',width:'100%', alignItems:'center',}}>
                                 
-                            <input variant="outlined" placeholder="Search..."
+                            {/* <input variant="outlined" placeholder="Search..."
                                    value={keyword} onChange={(event)=>setKeyword(event.target.value)}
                                    label="Keyword" style={{ bgcolor: '#ffffff', minHeight:"5.5vh",maxHeight:'5.5vh',
                                      border:'1px solid',borderColor:"#E2E2EA",fontSize:20,
-                                    borderRadius:4, width:'100%'}}>
+                                    borderRadius:4, width:'100%'}}
+                                    onKeyDown={()=>handleKeywordSearch()}>
                                 {/*<FilterListIcon sx={{ fontSize: 25,  }}/>*/}
-                            </input>
+                            {/*</input> */}
+
+                            <TextField fullWidth id="outlined-basic" variant="outlined"
+                                           value={keyword} onChange={(e) => setKeyword(e.target.value)}
+                                           label="Keyword" sx={{ bgcolor: '#ffffff', }}
+                                           onKeyDown={()=>handleKeywordSearch()}/>
 
                         <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
                             alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
@@ -350,8 +356,9 @@ export default function BrowseCatalogue({
                             }}
                                 variant="outlined"
                                 onClick={handleClick}>
-                            <FilterListIcon sx={{ fontSize: 25,  }}/>
-                            <div style={{ paddingLeft:12}}>Filter By Topics</div>
+                            <FilterListIcon sx={{ fontSize: "2em",  }}/>
+                            <div style={{ paddingLeft:12,fontSize: "1em",
+                                lineHeight: "125%"}}>Filter By Topics</div>
                         </Button>
 
                                 <Menu
@@ -374,6 +381,8 @@ export default function BrowseCatalogue({
                                         // setAnchorEl(null)
                                     }}><div style={{display:'flex', alignItems:'center'}}
                                         onClick={()=>{
+                                            setFilterTopics(localFilterTopics)
+                                            setLocalFilterTopics([])
                                             handleTopicFilter(topic.topic.split(",").[0])
                                         }}>
                                             <input type={"checkbox"} name="topic" value={topic.topic}/>
@@ -390,8 +399,9 @@ export default function BrowseCatalogue({
                             }}
                                 variant={"outlined"}
                                 onClick={()=>handleKeywordSearch()}>
-                            <SearchIcon sx={{ fontSize: 25, }}/>
-                            <div style={{ paddingLeft:12, paddingRight:4}}>Search by Keyword</div>
+                            <SearchIcon sx={{ fontSize: "2em", }}/>
+                            <div style={{ paddingLeft:12, paddingRight:4, fontSize: "1em",
+                                lineHeight: "125%"}}>Search by Keyword</div>
                         </Button>
                             </Box>
                             <Box sx={{display:'flex', pt:2}}>
