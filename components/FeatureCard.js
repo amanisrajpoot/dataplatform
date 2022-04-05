@@ -70,7 +70,7 @@ export default function FeatureCard(props){
                         <div style={{paddingBottom:8, color:'#939EAA'}}>{props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</div>
                         <div style={{display:'flex', alignItems:'center', fontSize:"0.9em"}}><div style={{paddingRight:4,paddingBottom:4}}><b>{"Topics:  "}</b></div>
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
-                                    borderRadius:4, border:1, fontSize:"0.75em",fontWeight:'bold', mr:1,
+                                    borderRadius:4, border:1, fontSize:"0.7em", mr:1,
                                     color:'#24BBFF'}}
                                     size="small"
                                     onClick={()=>router.push({

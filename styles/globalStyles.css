@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: "Plus Jakarta Sans";
     src: url("/fonts/PlusJakarta_Sans-2.5/static/PlusJakartaSans-Regular.ttf");
     font-style: normal;
@@ -42,4 +42,8 @@ a {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
+
+.inputRounded .MuiOutlinedInput-root {
+    border-radius: 20px;
+  }

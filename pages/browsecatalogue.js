@@ -1,4 +1,5 @@
 import {useState, useEffect } from 'react';
+// import '../styles/globalStyles.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -346,8 +347,8 @@ export default function BrowseCatalogue({
                             {/*</input> */}
 
                             <TextField fullWidth id="outlined-basic" variant="outlined"
-                                           value={keyword} onChange={(e) => setKeyword(e.target.value)}
-                                           label="Keyword" sx={{ bgcolor: '#ffffff', }}
+                                        className="inputRounded" value={keyword} onChange={(e) => setKeyword(e.target.value)}
+                                           label="Keyword" sx={{ bgcolor: '#ffffff',borderRadius:16, }}
                                            onKeyDown={()=>handleKeywordSearch()}/>
 
                         <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',

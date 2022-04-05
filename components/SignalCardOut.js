@@ -29,7 +29,7 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
 
     useEffect(() => {console.log("DATATATA",data)})
     return (
-        <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',borderRadius:16,minHeight:'32vh'}}>
+        <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',borderRadius:16,minHeight:'34vh', fontSize:'1em'}}>
           <div style={{display:"flex", flexDirection:'row', height:'100%', maxHeight:'100%',
             justifyContent:'space-between', paddingRight:76 ,paddingLeft: '1.5ch'}}>
               
@@ -39,9 +39,9 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
    
                     <div><b>{data.title?data.title:""}</b></div>
                     <div>{data.description?data.description:""} </div>
-                      <div style={{fontSize:14,display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
+                      <div style={{display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
                           {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
-                                  borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
+                                  borderRadius:4, border:1, fontSize:'0.65em', mr:1,
                                   color:'#24BBFF'}} size="small"
                               onClick={()=>router.push({
                                   pathname: `/topic/${topic}`,
@@ -69,7 +69,7 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                           </div>
                           <div style={{display:'flex', alignItems:'center', }}><div style={{paddingRight:4,}}><b>Key Features:</b></div>
                               {data.features?data.features.split(',').map((feature, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
-                                      borderRadius:4, border:1, fontSize:10, fontWeight:"bold",mr:1,
+                                      borderRadius:4, border:1, fontSize:'0.6em', mr:1,
                                       color:'#24BBFF'}} size="small">{feature}</Button>)
                                   : "6"}</div>
                       </div>
