@@ -347,7 +347,7 @@ export default function Searchresult({
                         sx={{
                             '& > :not(style)': {},
                             display: 'flex', flexDirection: 'row', flex:'1', py: 2,
-                            justifyContent: 'space-between',}}
+                            justifyContent: 'space-between',height:'100%'}}
                         noValidate
                         autoComplete="off"
                     >
@@ -374,8 +374,12 @@ export default function Searchresult({
 
                     </Box>
 
-                    <Box sx={{ width:"100%", display:'flex', flexDirection:'column',
-                        justifyContent:"center",alignItems:'center', }}>
+                    <Box sx={{  display:'flex', flexDirection:'column', maxHeight:'60vh',
+                        justifyContent:"center",alignItems:'center',overflowY:"auto", 
+                        overflowX:"hidden", overflowY:"auto"}}>
+
+                        <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
+                    overflowY:'auto', maxHeight:'60vh', paddingLeft:1.5, paddingRight:-8}}>    
                         {dataSources && dataSources.map((data,index)=><FeatureCard
                             openDetails={openDetails}
                             data={data}
@@ -389,6 +393,7 @@ export default function Searchresult({
                             removeDatasetcatalog={removeDatasetcatalog}
                             addDatasetcatalog={addDatasetcatalog}
                         />)}
+                        </Box>
                     </Box>
 
                     <Divider sx={{width:'100%', marginBottom:2}} />

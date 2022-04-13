@@ -39,6 +39,7 @@ import {FormControl} from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { minHeight } from '@mui/system';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -430,7 +431,9 @@ export default function BrowseCatalogue({
 
                     </Box>
 
-                {searchMode === 0 ? dataSources !== null && dataSources !== undefined &&
+                <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
+                    overflowY:'auto', maxHeight:'60vh', paddingLeft:1.5, paddingRight:-8}}>
+                    {searchMode === 0 ? dataSources !== null && dataSources !== undefined &&
                     // dataSources.map((data,index)=><FeatureCard
                     //     openDetails={openDetails}
                     //     data={data}
@@ -446,7 +449,7 @@ export default function BrowseCatalogue({
                     // />)
                     "":
                     searchMode === 1 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
-                    keywordFilteredDataSources.map((data,index)=><FeatureCard
+                    keywordFilteredDataSources.map((data,index)=> <FeatureCard
                     openDetails={openDetails}
                     data={data}
                     index={index}
@@ -460,7 +463,7 @@ export default function BrowseCatalogue({
                     addDatasetcatalog={addDatasetcatalog}
                 />):
                     searchMode === 2 ? topicFilteredDataSources !== null && topicFilteredDataSources !== undefined &&
-                        topicFilteredDataSources.map((data,index)=><FeatureCard
+                        topicFilteredDataSources.map((data,index)=> <FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
@@ -473,6 +476,7 @@ export default function BrowseCatalogue({
                         removeDatasetcatalog={removeDatasetcatalog}
                         addDatasetcatalog={addDatasetcatalog}
                     />):null}
+                    </Box>
           </Box>
 
           <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', width:'100%',
@@ -483,7 +487,7 @@ export default function BrowseCatalogue({
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                       <div>Newly Added Data Catalogs &nbsp;</div>
                       { dataSources !== null && dataSources !== undefined &&
-                        <div>{"("+ dataSources.length+")"}</div> }
+                        <div>{"("+ 4 +")"}</div> }
                     <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 
                 </Box>
@@ -497,7 +501,7 @@ export default function BrowseCatalogue({
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
 
                 {(searchMode === 0 || searchMode === 1 || searchMode === 2 ) ? dataSources !== null && dataSources !== undefined &&
-                    dataSources.map((data,index)=><FeatureCard
+                    dataSources.map((data,index)=> index < 4 && <FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
