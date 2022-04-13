@@ -63,7 +63,7 @@ export default function DatasetCard(props){
                                             router.pathname.includes('/catalog')?data.title:
                                                 router.query.tid
                                     }
-                                    })}>{topic}</Button>)
+                                    })}>{topic.substring(0,19)}</Button>)
                             : "6"}</div>
                     </div>
                     {/*<div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word",*/}

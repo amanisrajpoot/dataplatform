@@ -83,7 +83,7 @@ export default function FeatureCard(props){
                                                 router.query.tid
                                         }
                                     })
-                                    }>{topic}</Button>)
+                                    }>{topic.substring(0,19)}</Button>)
                                 : "6"}</div>
                     </div>
 
