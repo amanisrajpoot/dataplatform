@@ -137,6 +137,7 @@ export default function BrowseCatalogue({
   const [keyword, setKeyword] = useState('');
   const [localFilterTopics, setLocalFilterTopics] = useState([])
     const [filterTopics, setFilterTopics] = useState([])
+    const [uniqueTopics, setUniqueTopics] = useState();
     const [topicFilteredDataSources, setTopicFilteredDataSources] = useState([])
     const [keywordFilteredDataSources, setKeywordFilteredDataSources] = useState([])
     const [searchMode, setSearchMode] = useState(0)
@@ -173,6 +174,13 @@ export default function BrowseCatalogue({
         }
 
     }, [router]);
+
+    useEffect(async ()=>{
+        if(dataSources && dataSources !== null && dataSources !== undefined && dataSources.length > 0){
+        setUniqueTopics([...new Set(dataSources.map(item => item.topic))])
+        console.log("unique topics",uniqueTopics);
+        }
+    }, [dataSources])
 
   const handleKeywordSearch = async (event) => {
       if(token!==null){
@@ -377,18 +385,18 @@ export default function BrowseCatalogue({
                                         'aria-labelledby': 'basic-button',
                                     }}
                                 >
-                                    {dataSources && dataSources !== null && dataSources !== undefined &&
-                                        dataSources.map((topic, index)=><MenuItem onClick={() => {
+                                    {uniqueTopics && uniqueTopics !== null && uniqueTopics !== undefined && uniqueTopics.length > 0 &&
+                                         uniqueTopics.map((topic, index)=><MenuItem onClick={() => {
                                         setCurrentOption("All")
                                         // setAnchorEl(null)
                                     }}><div style={{display:'flex', alignItems:'center'}}
                                         onClick={()=>{
                                             setFilterTopics(localFilterTopics)
                                             setLocalFilterTopics([])
-                                            handleTopicFilter(topic.topic.split(",").[0])
+                                            handleTopicFilter(topic.split(",").[0])
                                         }}>
-                                            <input type={"checkbox"} name="topic" value={topic.topic}/>
-                                            <div style={{paddingLeft:10}}>{topic.topic.split(",").[0]}</div>
+                                            <input type={"checkbox"} name="topic" value={topic}/>
+                                            <div style={{paddingLeft:10}}>{topic.split(",").[0]}</div>
                                         </div>
                                         </MenuItem>)
                                     }
