@@ -49,9 +49,9 @@ export default function DatasetCard(props){
 
                     <div style={{ width:"32%", overflow:'hidden',
                         flexDirection:'column',display:'flex',justifyContent:'center', }}>
-                      <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title: "Sample Dataset"+props.data.ID}</b><br></br>
+                      <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title.substring(0,51): "Sample Dataset"+props.data.ID}</b><br></br>
                             </div>
-                        <div style={{color:'gray'}}>{props.data.description?props.data.description.substring(0,99): "Dataset Description"}</div>
+                        <div style={{color:'gray'}}>{props.data.description?props.data.description.substring(0,51): "Dataset Description"}</div>
                         <div style={{fontSize:'0.9em',display:'flex', alignItems:'center', }}><div style={{paddingRight:4, paddingTop:4}}><b>{"Topics:  "}</b></div>
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
                                  borderRadius:4, border:1, fontSize:"0.7em", marginTop:1,
