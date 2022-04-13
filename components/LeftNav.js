@@ -13,6 +13,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import Divider from '@mui/material/Divider';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import Link from 'next/link'
+
 
 export default function LeftNav({
 	setmenu,
@@ -123,9 +125,11 @@ export default function LeftNav({
 
 			<div className={styles.navbar}>
 				<div style={{width:'100%', paddingBottom:12}}>
-					<div style={{width:'100%',textAlign:'center', fontSize:32, paddingTop:30,paddingBottom:30,
+					<Link href='/dashboard'><div style={{width:'100%',textAlign:'center', fontSize:32, 
+						paddingTop:30,paddingBottom:30, cursor:"pointer",
 						fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;'}}
 						>Health Data Platform</div>
+						</Link>
 					<Divider />
 				</div>
 
