@@ -29,62 +29,101 @@ export default function AddedFeatureCard(props){
 
     return (
 
-          <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', minWidth:"100%", maxWidth:'100%',
-              alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
-              textOverflow:'clip',
-              border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
+        <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'12px', width:"98%",
+        alignItems:'center' ,backgroundColor:'#fff', marginBottom:16, flex:'start', borderRadius:16,
+       textOverflow:'clip', font:'roboto',paddingRight:0,paddingLeft:2, fontSize:'0.9em',
+   border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
 
-              <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'5%',
-                  paddingLeft:8, paddingRight:8}}>
+       <div style={{flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px', minWidth:'7%',
+           paddingLeft:18, paddingRight:64,}}>
 
-                  <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
-                          variant="outlined">{parseInt(props.index+1)}</Button>
-              </div>
+           <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
+                   variant="outlined">{parseInt(props.index+1)}</Button>
+       </div>
 
-              <div style={{fontSize:14, minWidth:"47%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
-                  <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title: "FDA Approved Drugs"}</b></div>
-                  <div style={{paddingBottom:8, color:'#939EAA'}}>{props.data.description?props.data.description.substring(0,40):"FDA has been very responsible in controlling drug flow"}</div>
-                  <div style={{fontSize:14,display:'flex', alignItems:'center'}}><div style={{paddingRight:4,}}><b>{"Topics:  "}</b></div>
-                      {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
-                              borderRadius:4, border:1, fontSize:10, fontWeight:"bold", mr:1,
-                              color:'#24BBFF'}} size="small"
-                              onClick={()=>router.push(`/topic/${topic}`)}>{topic}</Button>)
-                          : "6"}</div>
-              </div>
+       <div style={{fontSize:"1em", minWidth:"47%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
+                        <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title.substring(0,99): "FDA Approved Drugs"}</b></div>
+                        <div style={{paddingBottom:8, color:'#939EAA'}}>{props.data.description?props.data.description.substring(0,51):"FDA has been very responsible in controlling drug flow"}</div>
+                        <div style={{display:'flex', alignItems:'center', fontSize:"0.9em"}}><div style={{paddingRight:4,paddingBottom:4}}><b>{"Topics:  "}</b></div>
+                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
+                                    borderRadius:4, border:1, fontSize:"0.7em", mr:1,
+                                    color:'#24BBFF'}}
+                                    size="small"
+                                    onClick={()=>router.push({
+                                        pathname: `/topic/${topic}`,
+                                        query:{
+                                            currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                                router.pathname.includes('/datasets')?"Browsing Your Datasets":
+                                                router.pathname.includes('/catalog')?"Browsing Catalog":
+                                                router.pathname.includes('/dataset')?props.data.title:
+                                                router.query.tid
+                                        }
+                                    })
+                                    }>{topic.substring(0,19)}</Button>)
+                                : "6"}</div>
+                    </div>
 
 
-              <div style={{minWidth:'43%', display:'flex', flex:'end',justifyContent:'space-between', }}>
-                  <Divider orientation="vertical" variant="middle" flexItem/>
-                  <div style={{fontSize:14, width:"25%"}}>
-                      <div>No. of Features<br></br>
-                      </div>
-                      <div><b>{props.data.features?props.data.features.split(",").length: "0"}</b></div>
-                  </div>
-                  <Divider orientation="vertical" variant="middle" flexItem/>
-                  <div style={{fontSize:14,width:"25%"}}>
-                      <div>No. of Rows<br></br>
-                      </div>
-                      <div><b>{props.data.row_count?props.data.row_count: "0"}</b></div>
-                  </div>
-                  <Divider orientation="vertical" variant="middle" flexItem/>
+                    <div style={{minWidth:'43%', display:'flex', flex:'end',justifyContent:'space-between', }}>
+                        <Divider orientation="vertical" variant="middle" flexItem/>
+                    <div style={{ width:"25%"}}>
+                        <div>Key Features<br></br>
+                         </div>
+                        <div><b>{props.data.features?props.data.features.split(",").length.toLocaleString(): "0"}</b></div>
+                    </div>
+                        <Divider orientation="vertical" variant="middle" flexItem/>
+                    <div style={{width:"25%"}}>
+                        <div>No. of Rows<br></br>
+                        </div>
+                        <div><b>{props.data.row_count?props.data.row_count.toLocaleString(): "0"}</b></div>
+                    </div>
+                        <Divider orientation="vertical" variant="middle" flexItem/>
 
-                  <div style={{display:'flex',fontSize:12, cursor:'pointer',width:"25%", justifyContent:'center',
-                  maxHeight:36}}>
-                      <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
-                              onClick={()=>{
-                                  // props.handleOpenDetails(props.data)
-                                  router.push(`/catalog/${props.data.ID}`)
-                                  mixpanel.track('Catalog Card View Details', {
-                                      'source': router.pathname,
-                                      'action': "clicked on view details on catalog card",
-                                      'catalog': props.data.ID,
-                                      'email': props.user.email
-                                  })
+                        <div style={{display:'flex', cursor:'pointer',width:"27%",alignItems:'center'}}>
+                        <div style={{display:'flex', cursor:'pointer',width:"100%", justifyContent:'center',
+                        maxHeight:36, alignItems:'center'}}>
+                            <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
+                            onClick={()=>{
+                              // props.handleOpenDetails(props.data)
+                                router.pathname.includes('/dataset')? router.push({
+                                        pathname:`/catalog/${props.data.ID}`,
+                                        query:{
+                                            currentRouteTitle:props.currentRouteTitle ?props.currentRouteTitle:""
+                                        }
+                                    }):
+                                router.pathname.includes('/catalog')? router.push({
+                                            pathname:`/catalog/${props.data.ID}`,
+                                            query:{
+                                                currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:''
+                                            }
+                                        }):
+                                router.pathname.includes('/browsecatalogue')? router.push({
+                                        pathname:`/catalog/${props.data.ID}`,
+                                        query:{
+                                            currentRouteTitle:"Catalogs"
+                                        }
+                                    }):
+                                router.pathname.includes('/topic')? router.push({
+                                        pathname:`/catalog/${props.data.ID}`,
+                                        query:{
+                                            currentRouteTitle:"Topic Browser"
+                                        }
+                                    }):null
+
+                              mixpanel.track('Catalog Card View Details', {
+                                'source': router.pathname,
+                                'action': "clicked on view details on catalog card",
+                                'catalog': props.data.ID,
+                                  'email': props.user.email
+                               })
                               }
-                              }>
+                            }>
                           <div style={{textTransform:'capitalize'}}>View</div>
-                      </Button>
-                  </div>
+                        </Button>
+                        </div>
+                        </div>
+                        
+                    
 
                     {router.pathname.includes('/dashboard')?"":
                         router.pathname.includes('/createsignalsecond')?

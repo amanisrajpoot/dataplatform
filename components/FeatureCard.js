@@ -144,7 +144,7 @@ export default function FeatureCard(props){
                             }>
                           <div style={{textTransform:'capitalize'}}>View</div>
                         </Button>
-                            </div>
+                    </div>
                     
                     {router.pathname.includes('/dashboard')?"":
                         router.pathname.includes('/browsecatalogue')?"":

@@ -465,11 +465,11 @@ export default function Searchresult({
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleClickChange(1)}>
                             {"Previous"}</Button>
-                        <Button variant="outlined" size="small" sx={{ml:2,ml:56.5,color:'#5A00E2',borderRadius:4,
+                        {/* <Button variant="outlined" size="small" sx={{ml:2,ml:56.5,color:'#5A00E2',borderRadius:4,
                             borderColor:'#5A00E2'}}
                                 onClick={()=>router.push('/dashboard')}>
-                            {"Save as Draft"}</Button>
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
+                            {"Save as Draft"}</Button> */}
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:73.5,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleSendData()}>
                             {"Create"}</Button>
