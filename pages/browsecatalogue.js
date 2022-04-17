@@ -509,7 +509,7 @@ export default function BrowseCatalogue({
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
 
                 {(searchMode === 0 || searchMode === 1 || searchMode === 2 ) ? dataSources !== null && dataSources !== undefined &&
-                    dataSources.map((data,index)=> index < 4 && <FeatureCard
+                    dataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 4 && <FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
