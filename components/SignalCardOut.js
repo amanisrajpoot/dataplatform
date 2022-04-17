@@ -50,7 +50,7 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                                           router.pathname.includes('/dataset')?data.title:
                                               router.query.tid
                                   }
-                              })}>{topic}</Button>)
+                              })}>{topic.substring(0,19)}</Button>)
                               : "6"}</div>
                       <div style={{display:'flex',width:'100%', }}>
                           <div style={{display:'flex',wordWrap: "break-word",
