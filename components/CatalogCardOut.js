@@ -73,9 +73,9 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                               <b>Data Points:</b> {data.data_points?data.data_points.toLocaleString():""}
                           </div>
                           <div style={{display:'flex', alignItems:'center', }}><div style={{paddingRight:4,}}><b>Key Features:</b></div>
-                              {data.features?data.features.split(',').map((feature, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
+                              {data.features?data.features.split(',').map((feature, index)=>index < 7 && <Button sx={{backgroundColor:"#E4F7FF",
                                       borderRadius:4, border:1, fontSize:"0.6em",mr:1,
-                                      color:'#24BBFF'}} size="small">{feature}</Button>)
+                                      color:'#24BBFF'}} size="small">{feature.substring(0.16)}</Button>)
                                   : "6"}</div>
                       </div>
 
