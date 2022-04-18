@@ -82,7 +82,7 @@ export default function ManageDataset({
     const handleClose = () => setOpen(false);
     const [userdataset, setUserDataset] = useState([]);
     const [datasetMode, setDatasetMode] = useState(0);
-    const [downloadLink, setDownloadLink] = React.useState('');
+    const [downloadableLink, setDownloadableLink] = React.useState('');
     const router = useRouter();
     const dataset_id = router.query.did;
     const [addCatalogMode, setAddCatalogMode] = useState(false);
@@ -131,11 +131,16 @@ export default function ManageDataset({
 
     const handleDownloadButton = async() => {
         const downloadLink = await downloadDatasetsId(token, dataset_id, user.email);
-        setDownloadLink("https://download.devi.ai/"+downloadLink.url);
+        setDownloadableLink("https://download.devi.ai/"+downloadLink.url);
         if(downloadLink.url !== null && downloadLink.url !== undefined){
-            await window.open(downloadLink, '_blank');
+            await window.open(downloadableLink, '_blank');
         }
     }
+
+    // useEffect(async()=>
+    //     if(downloadLink.url !== null && downloadLink.url !== undefined){
+    //     await window.open(downloadLink, '_blank');
+    // })
 
     const addLocalDatasetcatalog = (data) => {
         setUserDataset({...userdataset,catalog:[...userdataset.catalog,data]});
