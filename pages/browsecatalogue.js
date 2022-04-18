@@ -194,7 +194,7 @@ export default function BrowseCatalogue({
     }, [dataSources])
 
   const handleKeywordSearch = async (event) => {
-      if(token!==null){
+      if(token!==null && keyword!==''){
           console.log("SEARCH", keyword)
           mixpanel.track('Keyword Search for Catalogs', {
             'source': "Browse Catalog page",
@@ -288,35 +288,14 @@ export default function BrowseCatalogue({
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
                         <div style={{fontSize:28}}>Data Catalogs &nbsp;&nbsp;</div>
-                        <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
+                        {/* <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
                             alignItems:'space-between'}}>
                             <div style={{fontSize:18, color:'gray'}}>Search:&nbsp;&nbsp;</div>
                             <div style={{fontSize:18, color:'gray-900'}}>{currentOption}</div>
                             <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
 
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose2}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={()=>{
-                                    setCurrentOption("All")
-                                    setAnchorEl(null)
-                                }}>All</MenuItem>
-                                <MenuItem onClick={()=>{
-                                    setCurrentOption("Topic")
-                                    setAnchorEl(null)
-                                }}>Topic</MenuItem>
-                                <MenuItem onClick={()=>{
-                                    setCurrentOption("Name")
-                                    setAnchorEl(null)
-                                }}>Name</MenuItem>
-                            </Menu>
-                        </div>
+                            
+                        </div> */}
 
                     </Box>
 
@@ -368,10 +347,10 @@ export default function BrowseCatalogue({
 
                             <TextField fullWidth id="outlined-basic" variant="outlined"
                                         className="inputRounded" value={keyword} onChange={(e) => setKeyword(e.target.value)}
-                                           label="Keyword" sx={{ bgcolor: '#ffffff',borderRadius:16, }}
+                                           label="Keyword" sx={{ display:'flex',bgcolor: '#ffffff',borderRadius:16, }}
                                            onKeyDown={()=>handleKeywordSearch()}/>
 
-                        <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
+                        <Button sx={{minWidth:'75px', minHeight:'7vh',maxHeight:'7vh', display:'flex',ml:2,color:'#939EAA',
                             alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
                             py:3
                             }}
@@ -414,8 +393,8 @@ export default function BrowseCatalogue({
 
                                 </Menu>
 
-                        <Button sx={{minWidth:'75px', height:'45px', display:'flex',ml:2,color:'#939EAA',
-                            alignItems:'center', justifyContent:'center', borderRadius:3, border:0.5, borderColor:'#939EAA',
+                        <Button sx={{minWidth:'75px', minHeight:'7vh',maxHeight:'7vh', display:'flex',ml:2,color:'#939EAA',
+                            alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'#939EAA',
                             py:3
                             }}
                                 variant={"outlined"}

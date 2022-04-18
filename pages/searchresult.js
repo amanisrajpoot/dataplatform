@@ -380,7 +380,7 @@ export default function Searchresult({
 
                         <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
                     overflowY:'auto', maxHeight:'60vh', paddingLeft:1.5, paddingRight:-8}}>    
-                        {dataSources && dataSources.map((data,index)=><FeatureCard
+                        {dataSources && dataSources.map((data,index)=>index <21 && <FeatureCard
                             openDetails={openDetails}
                             data={data}
                             index={index}
