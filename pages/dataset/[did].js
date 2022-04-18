@@ -133,7 +133,7 @@ export default function ManageDataset({
         const downloadLink = await downloadDatasetsId(token, dataset_id, user.email);
         setDownloadLink("https://download.devi.ai/"+downloadLink.url);
         if(downloadLink.url !== null && downloadLink.url !== undefined){
-            await window.open(downloadLink.url, '_blank');
+            await window.open(downloadLink, '_blank');
         }
     }
 
