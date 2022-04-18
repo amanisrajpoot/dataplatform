@@ -168,7 +168,7 @@ export default function ManageDataset({
         }
 
         console.log('userP', userP);
-    }, [token]);
+    }, [token, router]);
 
     useEffect(async ()=>{
         mixpanel.track('Viewed Dataset', {

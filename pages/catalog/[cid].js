@@ -189,7 +189,7 @@ export default function ManageDataset({
         console.log('userP', userP);
         console.log("the route", router.query.origin)
         console.log("the route", router.query.currentRouteTitle)
-    }, [token]);
+    }, [token, router]);
 
     useEffect(async ()=>{
         mixpanel.track('Viewed Dataset', {

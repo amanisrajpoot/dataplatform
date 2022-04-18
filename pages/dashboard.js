@@ -112,7 +112,7 @@ export default function Dashboard({
             setuser(userP)
         }
         console.log('userP', userP);
-    }, [token]);
+    }, [token, router]);
 
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);

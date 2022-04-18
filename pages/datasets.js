@@ -125,7 +125,7 @@ export default function Datasets({
             setuser(userP)
         }
         console.log('userP', userP);
-    }, [token]);
+    }, [token, router]);
 
     useEffect(async () => {
         const data = await getDatasets(
