@@ -31,6 +31,7 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import InputBase from '@mui/material/InputBase';
+import { route } from 'next/dist/server/router';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -77,6 +78,7 @@ export default function Datasets({
                                       setToken,
                                       dataset,
                                       userdatasets,
+                                      setUserdatasets,
                                       dataSources,
                                       setDataSources,
 
@@ -124,6 +126,14 @@ export default function Datasets({
         }
         console.log('userP', userP);
     }, [token]);
+
+    useEffect(async () => {
+        const data = await getDatasets(
+            token
+        );
+        setUserdatasets(data);
+    console.log("fetched datasets",data);
+    }, [token,router]);
 
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);

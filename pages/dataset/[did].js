@@ -287,7 +287,7 @@ export default function ManageDataset({
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setDatasetMode(0)}>
                                     {"Back"}</Button>:
                                 datasetMode ===0 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
-                                    justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
+                                    justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.push('/datasets')}>
                                     {"Back"}</Button>:null}
                             <Divider variant="middle" orientation="vertical" />
                             <div style={{paddingLeft:8,paddingRight:2,}}>Go Back to {datasetMode ===0 ?" My Datasets": currentRouteTitle}</div>
