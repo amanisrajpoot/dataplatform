@@ -372,7 +372,7 @@ export default function ManageDataset({
                                 {       filteredDataSources !== null && filteredDataSources !== undefined &&
                                         filteredDataSources.length <= 0? <div>
                                         We are working on adding more catalogs to our platform.</div>:
-                                            filteredDataSources.map((data,index)=> <FeatureCard
+                                            filteredDataSources.map((data,index)=> index < 5 && <FeatureCard
                                             key={data.ID}
                                             data={data}
                                             index={index}

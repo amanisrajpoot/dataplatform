@@ -176,6 +176,16 @@ export default function BrowseCatalogue({
 
     }, [router]);
 
+    useEffect(async () => {
+		if(token!==null){
+      const data = await getPublicDatasets(
+			token
+		);
+			setDataSources(data);
+      console.log("fetched data",data);
+      }
+  }, [token, router]);
+
     useEffect(async ()=>{
         if(dataSources && dataSources !== null && dataSources !== undefined && dataSources.length > 0){
         setUniqueTopics([...new Set(dataSources.map(item => item.topic))])
@@ -204,7 +214,7 @@ export default function BrowseCatalogue({
 
   return (
     
-    <Box>
+    <Box sx={{minHeight:"100%", minWidth:'100%'}}>
       {/*<Navbar token={token} setToken={setToken}/>*/}
         <Box sx={{display:'flex', fontStyle:'roboto', minWidth:"100%",maxWidth:'100%'}}>
             <Box sx={{width:"18%"}}>
