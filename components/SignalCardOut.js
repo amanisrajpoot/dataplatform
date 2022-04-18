@@ -29,7 +29,8 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
 
     useEffect(() => {console.log("DATATATA",data)})
     return (
-        <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',borderRadius:16,minHeight:'34vh', fontSize:'1em'}}>
+        <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',borderRadius:16,
+            minHeight:'36vh', maxHeight:'36vh',fontSize:'1em'}}>
           <div style={{display:"flex", flexDirection:'row', height:'100%', maxHeight:'100%',
             justifyContent:'space-between', paddingRight:76 ,paddingLeft: '1.5ch'}}>
               

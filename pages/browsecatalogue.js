@@ -8,6 +8,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import TextField from '@mui/material/TextField';
+import InputUnstyled from '@mui/base/InputUnstyled';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FeatureCard from '../components/FeatureCard';
@@ -494,8 +495,8 @@ export default function BrowseCatalogue({
                     color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                       <div>Newly Added Data Catalogs &nbsp;</div>
-                      { dataSources !== null && dataSources !== undefined &&
-                        <div>{"("+ 4 +")"}</div> }
+                      {/* { dataSources !== null && dataSources !== undefined &&
+                        <div>{"("+ 4 +")"}</div> } */}
                     <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 
                 </Box>
@@ -505,11 +506,11 @@ export default function BrowseCatalogue({
 
           </Box>
 
-          <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
+          <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2, pt:1,
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
 
                 {(searchMode === 0 || searchMode === 1 || searchMode === 2 ) ? dataSources !== null && dataSources !== undefined &&
-                    dataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 4 && <FeatureCard
+                    dataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 5 && <FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
