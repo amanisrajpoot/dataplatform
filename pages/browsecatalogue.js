@@ -114,7 +114,7 @@ export default function BrowseCatalogue({
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);
-        if(user === null){
+        if(userP === null){
             setuser({});
         }else{
             setuser(userP)

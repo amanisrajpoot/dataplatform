@@ -22,7 +22,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
-import {confirmSignUp, signIn, signUp} from "../function/checkAuth";
+import {confirmSignUp, signIn, signUp, recieveOTP} from "../function/checkAuth";
+import {getUser} from "../function/users";
 import OtpInput from 'react-otp-input';
 import mixpanel from 'mixpanel-browser';
 import OTPForm from "../components/OtpScreen";
@@ -112,6 +113,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     const [passwordError, setPasswordError] = useState(false)
     const [confirmPasswordError, setConfirmPasswordError] = useState(false)
     const [companyError, setCompanyError] = useState(false)
+    const [user, setUser] = useState(false)
 
     async function signInFK(){
         setMode(1);
@@ -133,6 +135,24 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
 
         });
         if (erro === null) {
+            setError(erro);
+            setMode(1)
+            setTopPadding(28)
+            setBottomTopPadding(202)
+        } else {
+            setError(erro);
+            console.log('server error', erro)
+            setMode(0);
+        }
+    }
+
+    async function resendOTP() {
+        console.log("usercompany", company)
+        const erro = await recieveOTP({
+            email,
+        });
+        if (erro === null) {
+            setError(erro);
             setMode(1)
             setTopPadding(28)
             setBottomTopPadding(202)
@@ -144,16 +164,27 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
 
     async function confirmSignUpF() {
         const erro = await confirmSignUp({ email,otp,token, setToken  });
+        setError(erro);
+        console.log("signup error:",erro)
+        
         if (erro === null) {
-            // await router.push('/accountcreated')
+            await router.push('/accountcreated')
             await signIn({email, password, token, setToken});
             await sleep(2000);
-            // const ret = await createUser({email,firstname,lastname,company,token});
-            // sleep(1000);
-            await router.push('/accountcreated');
-            // await signIn({ email, password, token, setToken: createDoctor });
+            const userP = await getUser(token);
+            if(userP){
+                setError(userP.error);
+                console.log("signup error:",error)
+            } else if(userP === null){
+                setUser({});
+            } else if (!userP.error){
+                setUser(userP)
+                await router.push('/dashboard')
+            }
+            console.log('userP', userP);
+
         }
-        setError(erro);
+        
     }
 
     function filterEmail(){
@@ -604,9 +635,10 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 {"Didn't receive code? "}
                                                 <div style={{color: "#5A00E2", display: "inline", cursor:"pointer"}}
                                                 onClick={()=>{
-                                                    setMode(0)
-                                                    setTopPadding(6)
-                                                    setBottomTopPadding(45)
+                                                    // setMode(0)
+                                                    // setTopPadding(6)
+                                                    // setBottomTopPadding(45)
+                                                    resendOTP()
                                                 }}>&nbsp;Resend</div>
 
                                         </div>
