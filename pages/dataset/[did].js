@@ -138,7 +138,7 @@ export default function ManageDataset({
     }
 
      useEffect(async()=>{
-         if(downloadableLink !== null && downloadableLink !== undefined){
+         if(downloadableLink !== null && downloadableLink !== undefined && downloadableLink !== ''){
          await window.open(downloadableLink, '_blank');
      }}, [downloadableLink])
 
