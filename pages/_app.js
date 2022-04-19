@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }) {
     const [email, setEmail] = useState("");
     const [company, setCompany] = useState("")
     const [password, setPassword] = useState("");
+    const [downloadableLink, setDownloadableLink] = React.useState('');
 
     useEffect(() => {
       Hub.listen('auth', (data) => {
@@ -119,6 +120,7 @@ function MyApp({ Component, pageProps }) {
           setUserdatasets={setUserdatasets} removeDatasetcatalog={removeDatasetcatalog} 
           addDatasetcatalog={addDatasetcatalog} dataSources={dataSources} setDataSources={setDataSources}
           title={title} description={description} setTitle={setTitle} setDescription={setDescription}
+          downloadableLink={downloadableLink} setDownloadableLink={setDownloadableLink}
           {...pageProps} name={name} setName={setName} email={email} setEmail={setEmail} company={company} setCompany={setCompany}/>
       {/* <Footer /> */}
     </>

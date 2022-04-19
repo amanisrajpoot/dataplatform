@@ -74,7 +74,9 @@ export default function ManageDataset({
                                           dataSources,
                                           setDataSources,
                                           addDatasetcatalog,
-                                          removeDatasetcatalog
+                                          removeDatasetcatalog,
+                                          downloadableLink,
+                                          setDownloadableLink,
                                       }) {
 
     const [open, setOpen] = React.useState(false);
@@ -82,7 +84,6 @@ export default function ManageDataset({
     const handleClose = () => setOpen(false);
     const [userdataset, setUserDataset] = useState([]);
     const [datasetMode, setDatasetMode] = useState(0);
-    const [downloadableLink, setDownloadableLink] = React.useState('');
     const router = useRouter();
     const dataset_id = router.query.did;
     const [addCatalogMode, setAddCatalogMode] = useState(false);
