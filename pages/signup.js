@@ -168,21 +168,22 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         console.log("signup error:",erro)
         
         if (erro === null) {
-            await router.push('/accountcreated')
             await signIn({email, password, token, setToken});
             await sleep(2000);
             const userP = await getUser(token);
             if(userP){
-                setError(userP.error);
-                console.log("signup error:",error)
+                if (userP.error){
+                    setError(userP.error);
+                    console.log("signup error:",error)
+                    await router.push('/signup');
+                } else {
+                    setUser(userP);
+                    await router.push('/accountcreated')
+                }
             } else if(userP === null){
                 setUser({});
-            } else if (!userP.error){
-                setUser(userP)
-                await router.push('/dashboard')
             }
             console.log('userP', userP);
-
         }
         
     }
