@@ -80,10 +80,10 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
 
       });
 
-      setError(erro);
+      // setError(erro);
       console.log('user created response', erro)
-      await sleep(2000);
-      if(erro === null){
+      // await sleep(2000);
+       if(erro !== null){
         router.push("/dashboard")
        }
 

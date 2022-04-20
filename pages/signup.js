@@ -23,7 +23,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {confirmSignUp, signIn, signUp, recieveOTP} from "../function/checkAuth";
-import {getUser, createUser} from "../function/users";
+import {getUser} from "../function/users";
 import OtpInput from 'react-otp-input';
 import mixpanel from 'mixpanel-browser';
 import OTPForm from "../components/OtpScreen";
@@ -605,7 +605,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 width: "65%",
                                                 backgroundColor: "#5A00E2"
                                             }}
-                                            onClick={()=>checkFields2()}
+                                            onClick={checkFields2}
                                             // onClick={() => {
                                             //     setMode(0)
                                             //     setTopPadding(6)
