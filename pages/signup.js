@@ -165,44 +165,18 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
 
     async function confirmSignUpF() {
         const erro = await confirmSignUp({ email,otp,token, setToken  });
-        setError(erro);
         console.log("signup error:",erro)
-        
         if (erro === null) {
-            const erro = await createUser({
-                email,
-                //phone: '+1' + phone,
-                name,
-                company,
-                token
-      
-            });
-      
-            // setError(erro);
-            console.log('user created response', erro)
-            // await sleep(2000);
-            //  if(erro === null){
-            //   router.push("/dashboard")
+            await router.push('/accountcreated')
             await sleep(2000);
             await signIn({email, password, token, setToken});
-            await sleep(2000);
-            const userP = await getUser(token);
-            if(userP){
-                if (userP.error){
-                    setError(userP.error);
-                    console.log("signup error:",error)
-                    await router.push('/signup');
-                } else {
-                    setUser(userP);
-                    await router.push('/accountcreated')
-                }
-            } else if(userP === null){
-                setUser({});
-            }
-            console.log('userP', userP);
-             }
-            
+            // const ret = await createUser({email,firstname,lastname,company,token});
+            // sleep(1000);
+            // await router.push('/accountcreated');
+            // await signIn({ email, password, token, setToken: createDoctor });
         }
+        setError(erro);
+    }
 
     function filterEmail(){
         const corporates = ["gmail.com", "yahoo.com", "aol.com", "hotmail.co.uk", "hotmail.fr", "msn.com", "yahoo.fr", 
@@ -631,7 +605,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 width: "65%",
                                                 backgroundColor: "#5A00E2"
                                             }}
-                                            onClick={checkFields2}
+                                            onClick={()=>checkFields2()}
                                             // onClick={() => {
                                             //     setMode(0)
                                             //     setTopPadding(6)

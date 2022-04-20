@@ -69,27 +69,27 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
     const [mode, setMode] = useState(0);
     const [top, setTop] = useState(36);
 
-  //   useEffect(async ()=> {
-  //     console.log("usercompany", company)
-  //     const erro = await createUser({
-  //         email,
-  //         //phone: '+1' + phone,
-  //         name,
-  //         company,
-  //         token
+    useEffect(async ()=> {
+      console.log("usercompany", company)
+      const erro = await createUser({
+          email,
+          //phone: '+1' + phone,
+          name,
+          company,
+          token
 
-  //     });
+      });
 
-  //     // setError(erro);
-  //     console.log('user created response', erro)
-  //     // await sleep(2000);
-  //      if(erro === null){
-  //       router.push("/dashboard")
-  //      }
+      setError(erro);
+      console.log('user created response', erro)
+      await sleep(2000);
+      if(erro === null){
+        router.push("/dashboard")
+       }
 
-  //     console.log('server error', erro)
-  //     //setMode(0);
-  // },[])
+      console.log('server error', erro)
+      //setMode(0);
+  },[])
   
   return (
     <ThemeProvider theme={theme}>
