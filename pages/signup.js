@@ -23,7 +23,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {confirmSignUp, signIn, signUp, recieveOTP} from "../function/checkAuth";
-import {getUser} from "../function/users";
+import {getUser, createUser} from "../function/users";
 import OtpInput from 'react-otp-input';
 import mixpanel from 'mixpanel-browser';
 import OTPForm from "../components/OtpScreen";
@@ -134,6 +134,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
             setToken
 
         });
+        await sleep(2000);
         if (erro === null) {
             setError(erro);
             setMode(1)
@@ -168,6 +169,21 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         console.log("signup error:",erro)
         
         if (erro === null) {
+            const erro = await createUser({
+                email,
+                //phone: '+1' + phone,
+                name,
+                company,
+                token
+      
+            });
+      
+            // setError(erro);
+            console.log('user created response', erro)
+            // await sleep(2000);
+            //  if(erro === null){
+            //   router.push("/dashboard")
+            await sleep(2000);
             await signIn({email, password, token, setToken});
             await sleep(2000);
             const userP = await getUser(token);
@@ -184,9 +200,9 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                 setUser({});
             }
             console.log('userP', userP);
+             }
+            
         }
-        
-    }
 
     function filterEmail(){
         const corporates = ["gmail.com", "yahoo.com", "aol.com", "hotmail.co.uk", "hotmail.fr", "msn.com", "yahoo.fr", 
@@ -630,17 +646,25 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
 
                                 {mode === 0 ? <BrandName sx={{pt: 1}}/>
                                     : mode === 1 ? <div style={{
-                                            paddingTop: 4, paddingRight: 76, width: '100%', display: 'flex',
-                                            justifyContent: 'center', paddingLeft: 64
+                                            paddingTop: 4, paddingRight: 76, minWidth: '100%', display: 'flex',
+                                            justifyContent: 'center', paddingLeft: 64, flexDirection:'column',alignItems:'center',
                                         }}>
-                                                {"Didn't receive code? "}
-                                                <div style={{color: "#5A00E2", display: "inline", cursor:"pointer"}}
+                                                <div style={{ display:'flex'}}>{"Didn't receive code? "}
+                                                <div style={{color: "#5A00E2", display: "inline", cursor:"pointer", display: "block"}}
                                                 onClick={()=>{
                                                     // setMode(0)
                                                     // setTopPadding(6)
                                                     // setBottomTopPadding(45)
                                                     resendOTP()
                                                 }}>&nbsp;Resend</div>
+                                                </div>
+                                            
+                                                <div style={{display: "block",}}>
+                                                    {" Already have an account? "}
+                                                    <Link sx={{alignSelf: 'end'}} href="/login" variant="body2">
+                                                    <div style={{color: "#5A00E2", display: "inline"}}>Log In</div>
+                                                </Link>
+                                                </div>
 
                                         </div>
                                         : null}
