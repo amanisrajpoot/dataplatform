@@ -318,7 +318,7 @@ export default function Searchresult({
                     value={value}
                     onChange={handleChange}
                     aria-label="Vertical tabs example"
-                    sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', }}
+                    sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', minWidth:'22ch',maxWidth:'22ch' }}
                 >
                     <Tab sx={{ textAlign: 'left', }} label={"1. Dataset Information "} {...a11yProps(0)} />
                     <Tab sx={{ textAlign: 'left', }} label="2. Add Catalogues" {...a11yProps(1)} />
@@ -380,7 +380,12 @@ export default function Searchresult({
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                         <Box sx={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto', fontSize:20}}>
-                            <div>ADD CATALOG &nbsp;</div>
+                                <div style={{display:'flex'}}>
+                                    <div>ADD CATALOG &nbsp;</div>
+                                    {dataSources !== null && dataSources !== undefined &&
+                                    <div>{"("+ dataSources.length+")"}</div>}
+                                </div>
+
                             <div style={{fontSize:12, paddingTop:4,color:'gray'}}>*Search from a wide range of healthcare catalogs..</div>
                         </Box>
 
@@ -389,7 +394,7 @@ export default function Searchresult({
                         sx={{
                             '& > :not(style)': {},
                             display: 'flex', flexDirection: 'row', flex:'1', py: 2,
-                            justifyContent: 'space-between',height:'100%'}}
+                            justifyContent: 'space-between',height:'100%', width:'100%',}}
                         noValidate
                         autoComplete="off"
                     >
@@ -416,12 +421,12 @@ export default function Searchresult({
 
                     </Box>
 
-                    <Box sx={{  display:'flex', flexDirection:'column', maxHeight:'60vh',
-                        justifyContent:"center",alignItems:'center',overflowY:"auto", 
+                    <Box sx={{  display:'flex', flexDirection:'column', maxHeight:'54vh',
+                        justifyContent:"center",alignItems:'center',overflowY:"auto", width:'100%',
                         overflowX:"hidden", overflowY:"auto"}}>
 
                         <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
-                    overflowY:'auto', maxHeight:'60vh', paddingLeft:1.5, paddingRight:-8}}>    
+                    overflowY:'auto', maxHeight:'54vh', paddingLeft:1.5, paddingRight:-8}}>    
                         {dataSources && dataSources.map((data,index)=>index <21 && <FeatureCard
                             openDetails={openDetails}
                             data={data}
