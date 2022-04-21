@@ -23,7 +23,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {confirmSignUp, signIn, signUp, recieveOTP} from "../function/checkAuth";
-import {getUser} from "../function/users";
+import {getUser, createUser} from "../function/users";
 import OtpInput from 'react-otp-input';
 import mixpanel from 'mixpanel-browser';
 import OTPForm from "../components/OtpScreen";
@@ -170,9 +170,11 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
             //await router.push('/accountcreated')
             //await sleep(2000);
             //await signIn({email, password, token, setToken});
-            // const ret = await createUser({email,firstname,lastname,company,token});
-            await  sleep(2000);
-            await router.push('/accountcreated');
+            const ret = await createUser({email,name,company,token});
+            await sleep(2000);
+            if(ret !== null){
+                await router.push('/accountcreated');
+            }
             // await signIn({ email, password, token, setToken: createDoctor });
         }
         setError(erro);

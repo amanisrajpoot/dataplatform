@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
+import {getUser} from "../function/users";
 import {createUser} from "../function/users";
 import mixpanel from 'mixpanel-browser';
 import {useEffect} from 'react';
@@ -31,6 +32,10 @@ function Copyright(props) {
       {'.'}
     </Typography>
   );
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function BrandName(props) {
@@ -68,27 +73,34 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
     const [isLoading, setisLoading] = useState(false);
     const [mode, setMode] = useState(0);
     const [top, setTop] = useState(36);
+    const [user, setuser] = useState({});
 
     useEffect(async ()=> {
       console.log("usercompany", company)
-      const erro = await createUser({
-          email,
-          //phone: '+1' + phone,
-          name,
-          company,
-          token
+      // const erro = await createUser({
+      //     email,
+      //     //phone: '+1' + phone,
+      //     name,
+      //     company,
+      //     token
 
-      });
+      // });
+          console.log('user call token', token);
+          const userP = await getUser(token);
+          if(user === null){
+              setuser({});
+          }else{
+              setuser(userP)
+          }
+          console.log('userP', userP);
 
-      setError(erro);
-      console.log('user created response', erro)
-      await sleep(10000);
-      if(erro !== null){
+      console.log('user created response', user)
+      await sleep(2000);
+      if(user !== null){
           await signIn({email, password, token, setToken});
            //router.push("/dashboard")
         }
 
-      console.log('server error', erro)
       //setMode(0);
   },[]);
   
