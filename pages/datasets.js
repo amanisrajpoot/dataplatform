@@ -220,7 +220,8 @@ export default function Datasets({
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link href='/login'>
-                                <AccountCircleIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                                <AccountCircleIcon onClick={()=>router.push("/settings")} 
+                                    fontSize="large" sx={{color:'#939EAA'}}/>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>

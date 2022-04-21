@@ -232,14 +232,15 @@ export default function TopicBrowser({
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
-                                <NotificationsIcon
+                                {/* <NotificationsIcon
                                     fontSize="large"
                                     sx={{color:'#939EAA', cursor:'pointer'}}
-                                />
+                                /> */}
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link href='/login'>
-                                <AccountCircleIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                                <AccountCircleIcon onClick={()=>router.push("/settings")}
+                                    fontSize="large" sx={{color:'#939EAA'}}/>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
@@ -267,11 +268,12 @@ export default function TopicBrowser({
                         </div>
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',paddingTop:10 }}>
+                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
+                        paddingTop:10, width:'100%', alignItems:'center' }}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', width:'55%',
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', width:'100%',marginRight:2,
                             color:'gray-700',justifyContent:'space-between', alignItems:'center'}}>
-                            <div style={{display:'flex', alignItems:'center'}}>
+                            <div style={{display:'flex', alignItems:'center', width:'44%'}}>
                                 <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                                 justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                                 {"Back"}</Button>
@@ -279,13 +281,10 @@ export default function TopicBrowser({
                                 <div style={{paddingLeft:8,paddingRight:2,textTransform:'capitalize'}}>Go Back to {router.query.currentRouteTitle}</div>
                             </div>
 
-                            <div style={{display:'flex', alignItems:'center'}}>
-                                <div style={{fontSize:28, paddingLeft:24}}>Topic &nbsp;&nbsp;</div>
-                                <div style={{ paddingLeft:8,display:'flex', flexDirection:'column', justifyContent:'space-between',
-                                    alignItems:'center'}}>
-                                    <div style={{paddingTop:12,fontSize:18, color:'gray', textTransform:'capitalize'}}>{topic_id}</div>
+                            <div style={{display:'flex', width:'55%', alignItems:'center', }}>
+                                    <div style={{fontSize:28,}}>Topic &nbsp;</div>
+                                    <div style={{fontSize:18, color:'gray', textTransform:'capitalize'}}>{topic_id}</div>
 
-                                </div>
                             </div>
 
                         </Box>

@@ -267,11 +267,12 @@ export default function ManageDataset({
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
-                                <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                                {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> */}
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link href='/login'>
-                                <AccountCircleIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                                <AccountCircleIcon onClick={()=>router.push("/settings")} fontSize="large" 
+                                    sx={{color:'#939EAA'}}/>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
