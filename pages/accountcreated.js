@@ -79,9 +79,9 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
     useEffect(async ()=> {
       console.log("usercompany", company)
       const erro = await createUser({
-          email:Auth.user.attributes.email,
+          email:Auth.user.attributes.email?Auth.user.attributes.email:email,
           //phone: '+1' + phone,
-          name:Auth.user.attributes.name,
+          name:Auth.user.attributes.name?Auth.user.attributes.name:name,
           company:Auth.user.attributes.company?Auth.user.attributes.company:company,
           token
 

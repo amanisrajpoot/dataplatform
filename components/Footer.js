@@ -200,7 +200,7 @@ export default function Footer() {
           <Toolbar component="nav" variant="dense" className="flex-row"
           sx={{justifyContent:'space-between', width:'50%'}}>
             <Grid item sx={{display:'flex', justifyContent: 'space-around' , width:'91%', color:'#BCBCBC'}}>
-              <Button
+              {/* <Button
                 sx={{ borderColor: lightColor }}
                 color="inherit"
                 size="medium"
@@ -219,7 +219,7 @@ export default function Footer() {
                 
                 color="inherit"
                 size="medium"
-              >
+              > 
                 Contact Support
               </Button>
 
@@ -236,7 +236,7 @@ export default function Footer() {
                       &nbsp;&nbsp;
                       <YouTubeIcon />
                       
-              </div>
+              </div>*/}
 
 
             </Grid>

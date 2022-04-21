@@ -347,39 +347,6 @@ export default function Home() {
             </Box>
       
         </Box>
-
-        <Box sx={{ display: 'flex', flexDirection:'column', 
-              height:'55vh', bgcolor: '#3e3e33', 
-               justifyContent:'center', color:'#000',  
-              backgroundImage:'https://wallpapertag.com/wallpaper/full/0/6/8/315901-science-background-1920x1080-windows-xp.jpg',
-               pb:4
-              }}>
-        
-            <Box sx={{pt:8, px:14,}}>
-                <Box sx={{width:'85%'}}>
-                  <p style={{fontSize:32, color:'#bcbcbc'}}>Data Platform</p>
-                </Box>
-
-                <Box sx={{textAlign:'right', color:'#BCBCBC'}}>
-                  <Box>
-                      <p>ABOUT US</p>
-                      <p>SERVICES</p>
-                      <p>CONTACT US</p>
-                      <p>HELP CENTERy</p>
-                      <p>{"BLOG & RESOURCES"}</p>
-                      <p>TERMS OF USE</p>
-                      <p>PRIVACY POLICY</p>
-                  </Box>
-                </Box>
-            </Box>
-
-            <Box sx={{pt:8, px:14,pb:4}}>
-                <Box sx={{width:'90%', color:'#BCBCBC'}}>
-                  <p>contact@dataplatform.com </p>
-                  <p>212, Sector-43</p>
-                </Box>
-            </Box>
-          </Box>
     
       <Footer />
     </Box>

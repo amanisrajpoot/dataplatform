@@ -53,9 +53,9 @@ function Header({token,setToken,onDrawerToggle}) {
         </Toolbar>
 
         <Toolbar component="nav" variant="dense" className="flex-row"
-          sx={{justifyContent:'space-between', width:'50%'}}>
+          sx={{justifyContent:'space-between', width:'30%'}}>
             <Grid item sx={{display:'flex', justifyContent: 'space-around' , width:'80%'}}>
-              <Button
+              {/* <Button
                 sx={{ borderColor: lightColor }}
                 color="inherit"
                 size="large"
@@ -65,20 +65,23 @@ function Header({token,setToken,onDrawerToggle}) {
               </Button>
               
                 <div style={{fontSize:24, paddingTop:8}}>|
-                </div>
+                </div> */}
             
             
              <div style={{display:"flex",flexDirection:'row', 
-                alignItems: 'center',cursor: 'pointer'}}>
+                alignItems: 'center',cursor: 'pointer', fontSize:'1.25em'}}>
                      <Link href='/login'>
-                      <PersonIcon />
-                    </Link>
-                      &nbsp;&nbsp;
-                      <p>{user && user.firstname ? user.firstname : 'Account'} </p> 
-                      &nbsp;&nbsp;
-                      <div onClick={()=>signOut({path:router.pathname})}>
-                        <LogoutIcon />
+                      <div style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
+                        <PersonIcon />
+                        &nbsp;&nbsp;
+                        <p>{user && user.firstname ? user.firstname : 'Log In'} </p> 
+                        &nbsp;&nbsp;
                       </div>
+                    </Link>
+                      
+                      {/* <div onClick={()=>signOut({path:router.pathname})}>
+                        <LogoutIcon />
+                      </div> */}
               </div>
 
             </Grid>
