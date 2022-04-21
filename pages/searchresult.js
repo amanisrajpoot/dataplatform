@@ -33,6 +33,12 @@ import Divider from "@mui/material/Divider";
 import CachedIcon from "@mui/icons-material/Cached";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import InputBase from '@mui/material/InputBase';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -146,6 +152,21 @@ export default function Searchresult({
 
   const [keyword, setKeyword] = useState('');
   const [keywordSearch, setKeywordSearch] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const openUser = Boolean(anchorElUser);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    };
+
+    const handleClickUser = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseUser = () => {
+        setAnchorElUser(null);
+    };
 
   useEffect(() => {
     setLocalDataset(dataset);
@@ -199,7 +220,7 @@ export default function Searchresult({
   return (
     <Box sx={{display:'flex', flexDirection:'row'}}>
         <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
-            <LeftNav />
+            <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box>
 
         <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
