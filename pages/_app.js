@@ -45,9 +45,10 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
       if (token !== 0 && !token && !nonAuthRoutes.includes(router.pathname)){
           router.push("/login").then(r => {console.log("Redirected to Login")})
-      } else if (token && nonAuthRoutes.includes(router.pathname)){
-          router.push("/dashboard").then(r => {console.log("Redirected to Dashboard")})
-      }
+        }
+    //   } else if (token && nonAuthRoutes.includes(router.pathname)){
+    //       router.push("/dashboard").then(r => {console.log("Redirected to Dashboard")})
+    //   }
   }, [token]);
 
   useEffect(() => {
