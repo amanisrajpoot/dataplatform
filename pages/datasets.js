@@ -213,10 +213,10 @@ export default function Datasets({
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
-                                <NotificationsIcon
+                                {/* <NotificationsIcon
                                     fontSize="large"
                                     sx={{color:'#939EAA', cursor:'pointer'}}
-                                />
+                                /> */}
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link href='/login'>
