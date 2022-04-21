@@ -169,7 +169,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         if (erro === null) {
             //await router.push('/accountcreated')
             //await sleep(2000);
-            await signIn({email, password, token, setToken});
+            //await signIn({email, password, token, setToken});
             // const ret = await createUser({email,firstname,lastname,company,token});
             await  sleep(2000);
             await router.push('/accountcreated');

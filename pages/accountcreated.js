@@ -82,10 +82,11 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
 
       setError(erro);
       console.log('user created response', erro)
-      await sleep(2000);
-      // if(erro !== null){
-      //    router.push("/dashboard")
-      //  }
+      await sleep(10000);
+      if(erro !== null){
+          await signIn({email, password, token, setToken});
+           //router.push("/dashboard")
+        }
 
       console.log('server error', erro)
       //setMode(0);
