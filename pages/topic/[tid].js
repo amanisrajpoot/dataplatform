@@ -45,7 +45,6 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import {getPublicDatasets, getDatasets, getUser} from '../function/users';
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
