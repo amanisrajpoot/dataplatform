@@ -99,6 +99,8 @@ export default function Searchresult({
   userdatasets,
   addDatasetcatalog,
   removeDatasetcatalog,
+  user,
+  setuser,
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -128,7 +130,6 @@ export default function Searchresult({
     console.log("fetched dataset",searching4);
   }, [dataset]);
 
-    const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);
@@ -334,7 +335,8 @@ export default function Searchresult({
                         <div style={{fontSize:12, paddingTop:4, color:'gray',}}>*Enter a title and description for your signal.</div>
                          </Box>
 
-                    <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', paddingBottom:28}}>
+                    <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', 
+                        paddingBottom:32}}>
                         <FormControl fullWidth sx={{width:'100%' }}>
                             {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                             <TextField
@@ -421,12 +423,12 @@ export default function Searchresult({
 
                     </Box>
 
-                    <Box sx={{  display:'flex', flexDirection:'column', maxHeight:'54vh',
+                    <Box sx={{  display:'flex', flexDirection:'column', maxHeight:'51.5vh',
                         justifyContent:"center",alignItems:'center',overflowY:"auto", width:'100%',
                         overflowX:"hidden", overflowY:"auto"}}>
 
                         <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
-                    overflowY:'auto', maxHeight:'54vh', paddingLeft:1.5, paddingRight:-8}}>    
+                    overflowY:'auto', maxHeight:'51.5vh', paddingLeft:1.5, paddingRight:-8}}>    
                         {dataSources && dataSources.map((data,index)=>index <21 && <FeatureCard
                             openDetails={openDetails}
                             data={data}

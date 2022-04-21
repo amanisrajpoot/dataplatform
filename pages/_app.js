@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {nonAuthRoutes, adminUsers, adminRoute} from "../function/constants";
 import {useRouter} from "next/router";
 import {checkAuth} from "../function/checkAuth";
-import { getDatasets, getPublicDatasets } from '../function/users';
+import { getDatasets, getPublicDatasets, getUser } from '../function/users';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -21,6 +21,18 @@ function MyApp({ Component, pageProps }) {
     const [email, setEmail] = useState("");
     const [company, setCompany] = useState("")
     const [password, setPassword] = useState("");
+    const [user, setuser] = useState({});
+
+    useEffect(async () => {
+        console.log('user call token', token);
+        const userP = await getUser(token);
+        if(userP === null || userP === undefined ){
+            setuser({})
+        } else{
+            setuser(userP)
+        }
+        console.log('userP', userP);
+    }, [token]);
 
     useEffect(() => {
       Hub.listen('auth', (data) => {
@@ -117,10 +129,12 @@ function MyApp({ Component, pageProps }) {
       {/*<Navbar />*/}
       <Component role={role} setLocation={setLocation} token={token} location={location} 
           setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
+          user={user} setuser={setuser}
           setUserdatasets={setUserdatasets} removeDatasetcatalog={removeDatasetcatalog} 
           addDatasetcatalog={addDatasetcatalog} dataSources={dataSources} setDataSources={setDataSources}
           title={title} description={description} setTitle={setTitle} setDescription={setDescription}
-          {...pageProps} name={name} setName={setName} email={email} setEmail={setEmail} company={company} setCompany={setCompany}/>
+          {...pageProps} name={name} setName={setName} email={email} setEmail={setEmail} company={company} setCompany={setCompany}
+          />
       {/* <Footer /> */}
     </>
   )

@@ -105,6 +105,8 @@ export default function Settings({
   userdatasets,
   addDatasetcatalog,
   removeDatasetcatalog,
+  user,
+  setuser,
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -155,7 +157,6 @@ export default function Settings({
     console.log("fetched dataset",searching4);
   }, [dataset]);
 
-    const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);

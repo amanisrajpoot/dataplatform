@@ -73,6 +73,8 @@ export default function Dashboard({
                                       setUserdatasets,
                                       dataSources,
                                       setDataSources,
+                                      user,
+                                      setuser,
 
                                   }) {
 
@@ -106,7 +108,6 @@ export default function Dashboard({
         setOpen2(true);}
     const handleClose = () => setOpen(false);
 
-    const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);
@@ -119,9 +120,9 @@ export default function Dashboard({
     }, [token, router]);
 
     useEffect(async () => {
-        console.log("user aws",Auth.user.attributes.email);
-        console.log("user aws",Auth.user.attributes.name);
-        console.log("user aws",Auth.user.attributes.company);
+        // console.log("user aws",Auth.user.attributes.email);
+        // console.log("user aws",Auth.user.attributes.name);
+        // console.log("user aws",Auth.user.attributes.company);
     },[router]);
 
     useEffect(async () => {

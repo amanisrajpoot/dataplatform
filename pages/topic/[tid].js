@@ -97,6 +97,8 @@ export default function TopicBrowser({
                                          setDataSources,
                                          addDatasetcatalog,
                                          removeDatasetcatalog,
+                                         user,
+                                         setuser,
                                      }) {
     const router = useRouter()
     const [search, setSearch] = useState(false);
@@ -144,7 +146,6 @@ export default function TopicBrowser({
         setOpen2(true);}
     const handleClose = () => setOpen(false);
 
-    const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);

@@ -96,6 +96,8 @@ export default function Support({
   userdatasets,
   addDatasetcatalog,
   removeDatasetcatalog,
+  user,
+  setuser,
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -140,7 +142,6 @@ export default function Support({
         setValue(newValue);
     };
 
-    const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);

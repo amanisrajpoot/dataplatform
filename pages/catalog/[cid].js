@@ -81,7 +81,9 @@ export default function ManageDataset({
                                           dataSources,
                                           setDataSources,
                                           addDatasetcatalog,
-                                          removeDatasetcatalog
+                                          removeDatasetcatalog,
+                                          user,
+                                          setuser,
                                       }) {
 
     const [open, setOpen] = React.useState(false);
@@ -178,7 +180,6 @@ export default function ManageDataset({
         setOpenDetails(false);
     };
 
-    const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);

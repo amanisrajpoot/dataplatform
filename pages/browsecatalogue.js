@@ -79,6 +79,8 @@ export default function BrowseCatalogue({
   setDataSources,
   addDatasetcatalog,
   removeDatasetcatalog,
+  user,
+setuser,
 }) {
 
   const router = useRouter()
@@ -112,7 +114,6 @@ export default function BrowseCatalogue({
   }
   const handleClose = () => setOpen(false);
 
-  const [user, setuser] = useState({});
     useEffect(async () => {
         console.log('user call token', token);
         const userP = await getUser(token);
