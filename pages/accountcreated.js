@@ -18,6 +18,7 @@ import {getUser} from "../function/users";
 import {createUser} from "../function/users";
 import mixpanel from 'mixpanel-browser';
 import {useEffect} from 'react';
+import { Auth } from 'aws-amplify';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -77,28 +78,19 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
 
     useEffect(async ()=> {
       console.log("usercompany", company)
-      // const erro = await createUser({
-      //     email,
-      //     //phone: '+1' + phone,
-      //     name,
-      //     company,
-      //     token
+      const erro = await createUser({
+          email:Auth.user.attributes.email,
+          //phone: '+1' + phone,
+          name:Auth.user.attributes.name,
+          company:Auth.user.attributes.company?Auth.user.attributes.company:company,
+          token
 
-      // });
-          console.log('user call token', token);
-          const userP = await getUser(token);
-          if(user === null){
-              setuser({});
-          }else{
-              setuser(userP)
-          }
-          console.log('userP', userP);
+      });
 
       console.log('user created response', user)
       await sleep(2000);
-      if(user !== null){
-          await signIn({email, password, token, setToken});
-           //router.push("/dashboard")
+      if(erro !== null){
+           router.push("/dashboard")
         }
 
       //setMode(0);

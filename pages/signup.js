@@ -28,6 +28,8 @@ import OtpInput from 'react-otp-input';
 import mixpanel from 'mixpanel-browser';
 import OTPForm from "../components/OtpScreen";
 import {EMAIL_VALIDATOR} from "../function/constants";
+import { Auth } from 'aws-amplify';
+
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -166,15 +168,14 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     async function confirmSignUpF() {
         const erro = await confirmSignUp({ email,otp,token, setToken  });
         console.log("signup error:",erro)
+        // await sleep(2000);
         if (erro === null) {
             //await router.push('/accountcreated')
             //await sleep(2000);
-            //await signIn({email, password, token, setToken});
-            const ret = await createUser({email,name,company,token});
+            await signIn({email, password, token, setToken});
             await sleep(2000);
-            if(ret !== null){
-                await router.push('/accountcreated');
-            }
+            await router.push('/accountcreated');
+            // }
             // await signIn({ email, password, token, setToken: createDoctor });
         }
         setError(erro);
