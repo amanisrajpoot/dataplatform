@@ -167,12 +167,12 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         const erro = await confirmSignUp({ email,otp,token, setToken  });
         console.log("signup error:",erro)
         if (erro === null) {
-            await router.push('/accountcreated')
-            await sleep(2000);
+            //await router.push('/accountcreated')
+            //await sleep(2000);
             await signIn({email, password, token, setToken});
             // const ret = await createUser({email,firstname,lastname,company,token});
-            // sleep(1000);
-            // await router.push('/accountcreated');
+            await  sleep(2000);
+            await router.push('/accountcreated');
             // await signIn({ email, password, token, setToken: createDoctor });
         }
         setError(erro);

@@ -68,7 +68,8 @@ export async function signUp({
 			password: password,
 			attributes: {
 				name: name,
-				// "custom:company":company
+				"custom:company":company,
+				email: email,
 			}
 		});
 		/* Once the user successfully signs in, update the form state to show the signed in state */
