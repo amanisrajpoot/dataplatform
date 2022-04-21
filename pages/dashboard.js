@@ -30,6 +30,7 @@ import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Auth } from 'aws-amplify';
 
+
 const data = [
     // {name: 'Jan', datasets: 400,industry_points: 400,amt: 2400},{name: 'Feb', datasets: 300,industry_points: 500, amt: 2000},
     // {name: 'Mar', datasets: 200,industry_points: 600, amt: 2200},{name: 'Apr', datasets: 400,industry_points: 700, amt: 2400},
@@ -69,6 +70,7 @@ export default function Dashboard({
                                       setToken,
                                       dataset,
                                       userdatasets,
+                                      setUserdatasets,
                                       dataSources,
                                       setDataSources,
 
@@ -121,8 +123,15 @@ export default function Dashboard({
         console.log("user aws",Auth.user.attributes.name);
         console.log("user aws",Auth.user.attributes.company);
     },[router]);
-        
 
+    useEffect(async () => {
+        const data = await getDatasets(
+            token
+        );
+        setUserdatasets(data);
+    console.log("fetched datasets",data);
+    }, [token,router]);
+        
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
     const [showDraft, setShowDraft] = useState(true)
@@ -203,7 +212,7 @@ export default function Dashboard({
             <Box sx={{display:'flex', fontStyle:'roboto'}}>
                 <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
-                    <LeftNav />
+                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
                 </Box>
                 <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>

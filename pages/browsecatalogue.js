@@ -42,6 +42,7 @@ import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { minHeight } from '@mui/system';
 
+
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 function Copyright() {
@@ -73,6 +74,7 @@ export default function BrowseCatalogue({
   setToken,
   dataset,
   userdatasets,
+  setUserdatasets,
   dataSources,
   setDataSources,
   addDatasetcatalog,
@@ -177,6 +179,14 @@ export default function BrowseCatalogue({
     }, [router]);
 
     useEffect(async () => {
+        const data = await getDatasets(
+            token
+        );
+        setUserdatasets(data);
+    console.log("fetched datasets",data);
+    }, [token,router]);
+
+    useEffect(async () => {
 		if(token!==null){
       const data = await getPublicDatasets(
 			token
@@ -219,7 +229,7 @@ export default function BrowseCatalogue({
         <Box sx={{display:'flex', fontStyle:'roboto', minWidth:"100%",maxWidth:'100%'}}>
             <Box sx={{width:"18%"}}>
             <Box sx={{width:"18%", position:'fixed'}}>
-                <LeftNav />
+                <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
             </Box>
             </Box>
         <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>

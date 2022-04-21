@@ -173,7 +173,7 @@ export default function Datasets({
             <Box sx={{display:'flex', fontStyle:'roboto'}}>
                 <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
-                        <LeftNav />
+                        <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
                 </Box>
                 <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>

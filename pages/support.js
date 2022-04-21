@@ -34,6 +34,8 @@ import MenuItem from "@mui/material/MenuItem";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { getDatasets} from '../function/users';
+
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -150,6 +152,14 @@ export default function Support({
         console.log('userP', userP);
     }, [token]);
 
+    useEffect(async () => {
+        const data = await getDatasets(
+            token
+        );
+        setUserdatasets(data);
+    console.log("fetched datasets",data);
+    }, [token,router]);
+
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
     const [editMode, setEditMode] = useState(0)
@@ -216,7 +226,7 @@ export default function Support({
   return (
     <Box sx={{display:'flex', flexDirection:'row'}}>
         <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
-            <LeftNav />
+            <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box>
 
         <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>

@@ -14,6 +14,7 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import Divider from '@mui/material/Divider';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import Link from 'next/link'
+import {getPublicDatasets, getDatasets, getUser} from '../function/users';
 
 
 export default function LeftNav({
@@ -22,6 +23,8 @@ export default function LeftNav({
 	setLeftAnimation,
 	role,
 	setLocation,
+	userdatasets,
+	setUserdatasets,
 	location,
 	menu,
 	token,
@@ -39,24 +42,13 @@ export default function LeftNav({
 		await router.push(route);
 	}
 	const [doctor, setDoctor] = useState(null);
-	// useEffect(async () => {
-	// 	const doctorP = await getDoctor({ token });
-	// 	setDoctor(doctorP);
-	// 	console.log('doctorP', doctorP);
-	// }, [token]);
-
-	// useEffect(() => {
-	// 	window.addEventListener('resize', function () {
-	// 		setWidth(window.innerWidth);
-	// 	});
-	// }, []);
-	//
-	// useEffect(() => {
-	// 	window.addEventListener('resize', function () {
-	// 		setWidth(window.innerWidth);
-	// 		if (width >= 800) setLeftAnimation(styles.menuTopOpen);
-	// 	});
-	// }, [width]);
+	useEffect(async () => {
+        const data = await getDatasets(
+            token
+        );
+        setUserdatasets(data);
+    console.log("fetched datasets",data);
+    }, [token,router]);
 
 	return (
 		<div className={`${styles.header} ${leftAnimation}`} style={{ fontStyle:'normal',
@@ -233,7 +225,16 @@ export default function LeftNav({
 
 				</div>
 
-				{favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer",
+				{favourite && <>{userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
+                        userdatasets.sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=> index <3 &&
+						<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer",
+				textAlign:'left'}} onClick={() => {router.push(`/dataset/${data.ID}`)}}>
+					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}} /></div>
+					<div style={{width:"70%"}}>{data.title.substring(0,16)}</div>
+					<div style={{width:"14%", color:'#C5CDD4'}}>{data.data_sources}</div>
+				</div>):null} </>}
+
+				{/* {favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer",
 				textAlign:'left'}} onClick={() => {router.push('/dataset/78')}}>
 					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}} /></div>
 					<div style={{width:"70%"}}>Healthcare</div>
@@ -256,7 +257,7 @@ export default function LeftNav({
 						<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}}/></div>
 						<div style={{width:"70%"}}>Drugs Distributors</div>
 						<div style={{width:"14%", color:'#C5CDD4'}}>756</div>
-					</div></>}
+					</div></>} */}
 
 				<div style={{paddingTop:24, paddingBottom:24}}>
 					<Divider />
@@ -270,13 +271,26 @@ export default function LeftNav({
 
 				</div>
 
-				{recently && <><div style={{display:'flex', flex:'start', paddingBottom:9, color:"#5A00E2", alignItems:'center',
+				 {recently && <><div style={{display:'flex', flex:'start', paddingBottom:9, color:"#5A00E2", alignItems:'center',
 				cursor:'pointer', justifyContent:'center'}} onClick={()=>router.push("/searchresult")}>
 					<div style={{width:'20%'}}><AddCircleOutlineOutlinedIcon color="disabled" style={{fontSize:28,color:"gray",marginRight:24}} /></div>
 					<div style={{width:'80%'}}>Start New Set</div>
 				</div>
 
-				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center', cursor:"pointer" }}
+					{userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
+                        userdatasets.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data, index)=> index <3 && 
+						<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center', cursor:"pointer" }}
+							onClick={() => {router.push(`/dataset/${data.ID}`)}}>
+							<div style={{width:"21%"}}>
+								<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
+									textAlign:'center',paddingTop:6}}>
+									{data.title.charAt(0).toUpperCase()}
+								</div></div>
+							<div style={{width:"75%"}}>{data.title.substring(0,19)}</div>
+							<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#9147ff'}}/></div>
+						</div>):null}
+				</>}
+				{/* <div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center', cursor:"pointer" }}
 					 onClick={() => {router.push('/dataset/81')}}>
 					<div style={{width:"21%"}}>
 						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
@@ -294,7 +308,8 @@ export default function LeftNav({
 							CT</div></div>
 					<div style={{width:"75%"}}>Cancer Treat..</div>
 					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#9147ff'}} /></div>
-				</div></>}
+				</div>*/}
+				
 
 				<div
 					className={`${styles.items} ${styles.loc}`}

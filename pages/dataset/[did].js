@@ -70,7 +70,7 @@ export default function ManageDataset({
                                           dataset,
                                           setDataset,
                                           userdatasets,
-                                          setUserDatasets,
+                                          setUserdatasets,
                                           dataSources,
                                           setDataSources,
                                           addDatasetcatalog,
@@ -128,6 +128,14 @@ export default function ManageDataset({
         setUserDataset(dataset);
         console.log("fetched dataset data",userdataset);
     }, [token, dataset_id]);
+
+    useEffect(async () => {
+        const data = await getDatasets(
+            token
+        );
+        setUserdatasets(data);
+    console.log("fetched datasets",data);
+    }, [token,router]);
 
     const handleDownloadButton = async() => {
         const downloadLink = await downloadDatasetsId(token, dataset_id, user.email);
@@ -211,7 +219,7 @@ export default function ManageDataset({
 
             <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
-                    <LeftNav />
+                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                 </Box>
             </Box>
             <Box sx={{width:"82%"}}>
