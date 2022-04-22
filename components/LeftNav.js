@@ -116,12 +116,16 @@ export default function LeftNav({
 			</Modal>
 
 			<div className={styles.navbar}>
-				<div style={{width:'100%', paddingBottom:12}}>
-					<Link href='/dashboard'><div style={{width:'100%',textAlign:'center', fontSize:32, 
+				<div style={{width:'100%',}}>
+					 	<div style={{ width:'100%', }} onClick={()=>router.push("/dashboard")}>
+							 <img src='/logo02.png' layout="responsive" width='100%' style={{cursor:'pointer'}}
+								></img>
+						{/*<div style={{width:'100%',textAlign:'center', fontSize:32, 
 						paddingTop:30,paddingBottom:30, cursor:"pointer",
-						fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;'}}
-						>Health Data Platform</div>
-						</Link>
+						fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;',
+						backgroundImage: 'url(/logo01.png)',}}
+						>Health Data Platform</div> */}
+						</div>
 					<Divider />
 				</div>
 
