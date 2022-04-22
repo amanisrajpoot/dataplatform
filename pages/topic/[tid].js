@@ -228,18 +228,6 @@ export default function TopicBrowser({
                             />
                         </Box>
 
-                        {/*<TextField fullWidth id="outlined-basic"*/}
-                        {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                        {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                        {/*           InputProps={{*/}
-                        {/*               startAdornment: (*/}
-                        {/*                   <InputAdornment position="start">*/}
-                        {/*                       <SearchIcon />*/}
-                        {/*                   </InputAdornment>*/}
-                        {/*               ),*/}
-                        {/*               placeholder:"Search..."*/}
-                        {/*           }}*/}
-                        {/*/>*/}
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
@@ -249,7 +237,7 @@ export default function TopicBrowser({
                                 /> */}
                             </Link>
                             &nbsp;&nbsp;&nbsp;
-                            <Link href='/login'>
+                            <Link >
                                 <AccountCircleIcon onClick={()=>router.push("/settings")}
                                     fontSize="large" sx={{color:'#939EAA'}}/>
                             </Link>

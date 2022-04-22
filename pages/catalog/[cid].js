@@ -244,44 +244,15 @@ export default function ManageDataset({
                 <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
                     <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed'}}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                            {/* <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                                <SearchIcon />
-                            </Box>
-
-                            <InputBase
-                                // onChange={setVal}
-                                sx={{ bgcolor:'white',width:'90%'}}
-                                placeholder="Search Google Maps"
-                                inputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                    placeholder:"Search..."
-                                }}
-                            /> */}
                         </Box>
 
-                        {/*<TextField fullWidth id="outlined-basic"*/}
-                        {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                        {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                        {/*           InputProps={{*/}
-                        {/*               startAdornment: (*/}
-                        {/*                   <InputAdornment position="start">*/}
-                        {/*                       <SearchIcon />*/}
-                        {/*                   </InputAdornment>*/}
-                        {/*               ),*/}
-                        {/*               placeholder:"Search..."*/}
-                        {/*           }}*/}
-                        {/*/>*/}
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
                                 {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> */}
                             </Link>
                             &nbsp;&nbsp;&nbsp;
-                            <Link href='/login'>
+                            <Link >
                                 <AccountCircleIcon onClick={()=>router.push("/settings")} fontSize="large" 
                                     sx={{color:'#939EAA'}}/>
                             </Link>

@@ -314,7 +314,7 @@ export default function Settings({
                             {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> */}
                         </Link>
                         &nbsp;&nbsp;&nbsp;
-                        <Link href='/login'>
+                        <Link>
                             <AccountCircleIcon onClick={()=>router.push("/settings")} fontSize="large" 
                                 sx={{color:'#939EAA'}}/>
                         </Link>

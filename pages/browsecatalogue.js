@@ -275,7 +275,7 @@ setuser,
                         /> */}
                     </Link>
                     &nbsp;&nbsp;&nbsp;
-                    <Link href='/login'>
+                    <Link >
                         <AccountCircleIcon onClick={()=>router.push("/settings")} 
                             fontSize="large" sx={{color:'#939EAA'}}/>
                     </Link>
