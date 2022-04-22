@@ -297,53 +297,6 @@ export default function Datasets({
 
                     <Box>
 
-                        {/*<Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', justifyContent:'space-between'}}>*/}
-
-                        {/*    <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,*/}
-                        {/*        color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>*/}
-                        {/*        <div ><ArrowDropDownIcon*/}
-                        {/*            fontSize="large"*/}
-                        {/*            sx={{color:'#92929D'}}*/}
-                        {/*            onClick={()=>setShowDraft(!showDraft)}*/}
-                        {/*        /></div>*/}
-                        {/*        <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>*/}
-                        {/*        <div>Drafts &nbsp;</div>*/}
-                        {/*        {userdatasets !== null && userdatasets !== undefined && <div>{"("+ userdatasets.length+")"}</div>}*/}
-                        {/*        <Divider variant="middle"/>*/}
-                        {/*    </Box>*/}
-
-                        {/*    <Box>*/}
-                        {/*        <ArrowBackIosNewOutlinedIcon fontSize="small" sx={{cursor:'pointer'}}/>*/}
-                        {/*        <ArrowForwardIosOutlinedIcon fontSize="small" sx={{cursor:'pointer'}}/>*/}
-                        {/*    </Box>*/}
-                        {/*</Box>*/}
-
-                        {/*{showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', px:2, flex:'start',*/}
-                        {/*    alignItems:'center',  overflow: "scroll"}}>*/}
-
-                        {/*    <div style={{height:'28ch', minWidth:'26ch', maxWidth:'28ch',borderStyle: "dashed", backgroundColor:'#fff', textAlign:'center',*/}
-                        {/*        marginRight:12, marginBottom:12, display:'flex', flexDirection:'column', alignItems:'center',*/}
-                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, border:'1.5px dashed #bfbfbf', marginBottom:7 }}>*/}
-                        {/*        <div style={{marginTop:12, cursor:'pointer'}} onClick={()=>router.push('/searchresult')} >*/}
-                        {/*            <div><AddCircleOutlinedIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,*/}
-                        {/*            }}/></div>*/}
-                        {/*            <div style={{color:'black', fontSize:20, paddingBottom:12}}>Create New Set</div>*/}
-                        {/*            <div style={{color:'gray'}}>First steps to create the great analysis is to start with data sets</div>*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-                        {/*    {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?*/}
-                        {/*        userdatasets.map((data, index)=><DatasetDraftCard*/}
-                        {/*            key={data.dataset_id}*/}
-                        {/*            index={index}*/}
-                        {/*            data={data}*/}
-                        {/*            token={token}*/}
-                        {/*            user={user}*/}
-                        {/*            openDetails={openDetails}*/}
-                        {/*            handleOpenDetails={handleOpenDetails}*/}
-                        {/*            handleCloseDetails={handleCloseDetails}/>): null*/}
-                        {/*    }*/}
-                        {/*</Box>}*/}
-
                         <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
 
                             <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
@@ -411,7 +364,7 @@ export default function Datasets({
                         <Box sx={{ width:"97.3%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
-                                userdatasets.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data, index)=><DatasetCard
+                                userdatasets.sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=><DatasetCard
                                     key={data.dataset_id}
                                     index={index}
                                     data={data}

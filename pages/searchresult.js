@@ -38,6 +38,8 @@ import MenuItem from '@mui/material/MenuItem';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import LoadingOverlay from 'react-loading-overlay';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
@@ -115,7 +117,8 @@ export default function Searchresult({
   const [keywords, setKeywords] = React.useState('');
   const [localdataset, setLocaldataset] = React.useState({title: '', description: '', topic: '', keywords: ''});
   const router = useRouter()
-    const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0);
+  const [isActive, setIsActive] = React.useState(false);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -182,10 +185,12 @@ export default function Searchresult({
             'keyword': keyword,
             'email': user.email,
         });
+        setIsActive(true);
         const data = await getPublicDatasets(
         token,keyword
       );
         setDataSources(data);
+        setIsActive(false);
         console.log("fetched data",data);
         console.log("previous dataset",dataset);
     }
@@ -193,11 +198,13 @@ export default function Searchresult({
 
   const handleSendData = async () => {
       if(token!==null){
+        setIsActive(true);
         const data = await createUserDataset({
           token,
           dataset
         });
         setUserdatasets(data);
+        setIsActive(false);
         mixpanel.track('Clicked on Create', {
           'source': "Create Dataset Page",
           'scrolled first': true,
@@ -220,11 +227,13 @@ export default function Searchresult({
 
   return (
     <Box sx={{display:'flex', flexDirection:'row'}}>
+        
         <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box>
 
         <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
+                     
                 <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
                     <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                         <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
@@ -309,7 +318,12 @@ export default function Searchresult({
 
                 </Box>
                 </Box>
-
+            
+            <LoadingOverlay
+                active={isActive}
+                spinner={<SyncLoader />}
+                // text='Loading your content...'
+                > 
             <Box
                 sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2}}
             >
@@ -426,10 +440,12 @@ export default function Searchresult({
                     <Box sx={{  display:'flex', flexDirection:'column', maxHeight:'51.5vh',
                         justifyContent:"center",alignItems:'center',overflowY:"auto", width:'100%',
                         overflowX:"hidden", overflowY:"auto"}}>
-
+                    
+                    
                         <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
-                    overflowY:'auto', maxHeight:'51.5vh', paddingLeft:1.5, paddingRight:-8}}>    
-                        {dataSources && dataSources.map((data,index)=>index <21 && <FeatureCard
+                    overflowY:'auto', maxHeight:'51.5vh', paddingLeft:1.5, paddingRight:-8}}>   
+                        
+                        {dataSources && dataSources.length > 0 ? dataSources.map((data,index)=>index <21 && <FeatureCard
                             openDetails={openDetails}
                             data={data}
                             index={index}
@@ -441,8 +457,10 @@ export default function Searchresult({
                             dataSources={dataSources}
                             removeDatasetcatalog={removeDatasetcatalog}
                             addDatasetcatalog={addDatasetcatalog}
-                        />)}
+                        />):<div>We are trying to add more catalogs to the platform.</div>}
+                            
                         </Box>
+
                     </Box>
 
                     <Divider sx={{width:'100%', marginBottom:2}} />
@@ -526,8 +544,9 @@ export default function Searchresult({
                     </Box>
 
                 </TabPanel>
-
+                
             </Box>
+            </LoadingOverlay>
 
       <Modal open={openDetails} onClose={handleCloseDetails}>
           <Box sx={style2}>            
@@ -603,6 +622,7 @@ export default function Searchresult({
         </Box>
     </Box>   */}
 
+            
         </Box>
     </Box>
   );

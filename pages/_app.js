@@ -6,6 +6,7 @@ import {nonAuthRoutes, adminUsers, adminRoute} from "../function/constants";
 import {useRouter} from "next/router";
 import {checkAuth} from "../function/checkAuth";
 import { getDatasets, getPublicDatasets, getUser } from '../function/users';
+import NextNProgress from 'nextjs-progressbar';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -127,6 +128,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {/*<Navbar />*/}
+      <NextNProgress />
       <Component role={role} setLocation={setLocation} token={token} location={location} 
           setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
           user={user} setuser={setuser}

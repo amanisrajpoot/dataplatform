@@ -51,7 +51,7 @@ export default function LeftNav({
     }, [token,router]);
 
 	return (
-		<div className={`${styles.header} ${leftAnimation}`} style={{ fontStyle:'normal',
+		<div className={`${styles.header} ${leftAnimation}`} style={{ fontStyle:'normal', minHeight:'100vh',
 			fontWeight:400,border: "1px solid #dedede",
 			}}>
 			{/* ADD SAMPLES */}
@@ -213,7 +213,7 @@ export default function LeftNav({
 					</p>
 				</div>
 
-				<div style={{paddingTop:24, paddingBottom:24}}>
+				{/* <div style={{paddingTop:18, paddingBottom:24}}>
 					<Divider />
 				</div>
 
@@ -232,39 +232,14 @@ export default function LeftNav({
 					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}} /></div>
 					<div style={{width:"70%"}}>{data.title.substring(0,16)}</div>
 					<div style={{width:"14%", color:'#C5CDD4'}}>{data.data_sources}</div>
-				</div>):null} </>}
+				</div>):null} </>} */}
 
-				{/* {favourite && <><div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer",
-				textAlign:'left'}} onClick={() => {router.push('/dataset/78')}}>
-					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}} /></div>
-					<div style={{width:"70%"}}>Healthcare</div>
-					<div style={{width:"14%", color:'#C5CDD4'}}>345</div>
-				</div>
-				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,cursor:"pointer"}}
-					 onClick={() => {router.push('/dataset/80')}}>
-					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}}/></div>
-					<div style={{width:"70%"}}>FDA Drugs</div>
-					<div style={{width:"14%", color:'#C5CDD4'}}>123</div>
-				</div>
-				<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,cursor:"pointer"}}
-					 onClick={() => {router.push('/dataset/81')}}>
-					<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}}/></div>
-					<div style={{width:"70%"}}>Insurance Inc.</div>
-					<div style={{width:"14%", color:'#C5CDD4'}}>456</div>
-				</div>
-					<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12, cursor:"pointer"}}
-						 onClick={() => {router.push('/dataset/81')}}>
-						<div style={{width:"20%"}}><FiberManualRecordIcon color="error" fontSize="small" sx={{color:"#5A00E2"}}/></div>
-						<div style={{width:"70%"}}>Drugs Distributors</div>
-						<div style={{width:"14%", color:'#C5CDD4'}}>756</div>
-					</div></>} */}
-
-				<div style={{paddingTop:24, paddingBottom:24}}>
+				<div style={{paddingTop:18, paddingBottom:24}}>
 					<Divider />
 				</div>
 
 				<div style={{display:'flex', justifyContent:'space-between',  paddingBottom:12}}>
-					<div style={{textTransform: "capitalize", color:'#939EAA', fontSize:14}}>RECENT SETS</div>
+					<div style={{textTransform: "capitalize", color:'#939EAA', fontSize:14}}>RECENT DATASETS</div>
 					<div onClick={()=>setRecently(!recently)}>
 						{recently?<ExpandLessIcon />:<ExpandMoreIcon/>}
 					</div>
@@ -290,27 +265,7 @@ export default function LeftNav({
 							<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#9147ff'}}/></div>
 						</div>):null}
 				</>}
-				{/* <div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center', cursor:"pointer" }}
-					 onClick={() => {router.push('/dataset/81')}}>
-					<div style={{width:"21%"}}>
-						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
-							textAlign:'center',paddingTop:6}}>
-							HC
-						</div></div>
-					<div style={{width:"75%"}}>HealthCare</div>
-					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#9147ff'}}/></div>
-				</div>
-				<div style={{display:'flex', justifyContent:'space-between', paddingBottom:12,alignItems:'center',cursor:"pointer"}}
-					 onClick={() => {router.push('/dataset/81')}}>
-					<div style={{width:"21%"}}>
-						<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
-							textAlign:'center', paddingTop:6}}>
-							CT</div></div>
-					<div style={{width:"75%"}}>Cancer Treat..</div>
-					<div style={{width:"10%"}}><FiberManualRecordIcon color="success" fontSize="small" sx={{color:'#9147ff'}} /></div>
-				</div>*/}
-				
-
+			
 				<div
 					className={`${styles.items} ${styles.loc}`}
 					onClick={() => setLocationModalVisible(true)}

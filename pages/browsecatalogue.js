@@ -41,6 +41,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { minHeight } from '@mui/system';
+import LoadingOverlay from 'react-loading-overlay';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
@@ -89,6 +91,7 @@ setuser,
     const open = Boolean(anchorEl);
     const openUser = Boolean(anchorElUser);
     const open2 = Boolean();
+    const [isActive, setIsActive] = React.useState(false);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -147,8 +150,10 @@ setuser,
     const [searchMode, setSearchMode] = useState(0)
 
     useEffect(async ()=>{
+        setIsActive(true);
         const catalog = await getPublicDatasetsTopics(token, filterTopics.toString());
         setTopicFilteredDataSources(catalog);
+        setIsActive(false);
         console.log("filtered catalog data",dataSources);
     }, [filterTopics]);
 
@@ -163,8 +168,10 @@ setuser,
                 'topic': topic,
                 'email': user.email,
             });
+            setIsActive(true);
             const catalog = await getPublicDatasetsTopicKeyword({token, keyword,topics:filterTopics});
             setTopicFilteredDataSources(catalog);
+            setIsActive(false);
             console.log("filtered catalog data",catalog);
             setSearchMode(2)
             console.log("fetched data",catalog);
@@ -189,10 +196,12 @@ setuser,
 
     useEffect(async () => {
 		if(token!==null){
-      const data = await getPublicDatasets(
+            setIsActive(true);
+            const data = await getPublicDatasets(
 			token
-		);
+		    );
 			setDataSources(data);
+            setIsActive(false);
       console.log("fetched data",data);
       }
   }, [token, router]);
@@ -213,10 +222,12 @@ setuser,
             'keyword': keyword,
               'email': user.email,
           });
+          setIsActive(true);
           const data = await getPublicDatasets(
           token,keyword
         );
           setKeywordFilteredDataSources(data);
+          setIsActive(false);
           setSearchMode(1)
           console.log("fetched data",data);
           console.log("fetched data",keywordFilteredDataSources);
@@ -340,6 +351,11 @@ setuser,
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
             {/* <SignalTable /> */}
+            <LoadingOverlay
+                active={isActive}
+                spinner={<SyncLoader />}
+                // text='Loading your content...'
+                > 
             <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                     <Box component="main" sx={{ display:'flex', width:'100%', alignItems:'center',
@@ -488,6 +504,7 @@ setuser,
                     />):null}
                     </Box>
           </Box>
+          </LoadingOverlay>
 
           <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', width:'100%',
               justifyContent:'space-between'}}>
