@@ -119,6 +119,7 @@ export default function Searchresult({
   const router = useRouter()
   const [value, setValue] = React.useState(0);
   const [isActive, setIsActive] = React.useState(false);
+  const [error, setError] = React.useState('');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -197,7 +198,20 @@ export default function Searchresult({
 };
 
   const handleSendData = async () => {
-      if(token!==null){
+      
+    if(localDataset.title ===''){
+        setError('Please enter an appropriate Title');
+        return
+    }
+    if(localDataset.description ===''){
+        setError('Please enter an appropriate Description.');
+        return
+    }
+    if(dataset.catalog.length < 1){
+        setError('Please add atleast one catalog to your Dataset.');
+        return
+    }
+    if(token!==null){
         setIsActive(true);
         const data = await createUserDataset({
           token,
@@ -223,6 +237,7 @@ export default function Searchresult({
 
   useEffect( () => {
     console.log("added details",dataset);
+    setError('')
   }, [dataset]);
 
   return (
@@ -325,7 +340,7 @@ export default function Searchresult({
                 // text='Loading your content...'
                 > 
             <Box
-                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2}}
+                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2, minWidth:'100%'}}
             >
                 <Tabs
                     orientation="vertical"
@@ -340,9 +355,9 @@ export default function Searchresult({
                     <Tab sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="3. Review and Save" {...a11yProps(2)} />
 
                 </Tabs>
-                <TabPanel value={value} index={0} sx={{width:'100%',}}>
-                    <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between', }}>
-                    <Box >
+                <TabPanel value={value} index={0} sx={{minWidth:'100%',}}>
+                    <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between',minWidth:'100%', }}>
+                    <Box sx={{minWidth:'100%',}}>
                         <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
                          fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
                         <div>BASIC INFO &nbsp;</div>
@@ -350,13 +365,16 @@ export default function Searchresult({
                          </Box>
 
                     <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', 
-                        paddingBottom:32}}>
+                        paddingBottom:32, minWidth:'100%'}}>
                         <FormControl fullWidth sx={{width:'100%' }}>
                             {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
                             <TextField
                                 variant="outlined"
                                 value={title}
-                                onChange={(event)=>setTitle(event.target.value)}
+                                onChange={(event)=>{
+                                    setTitle(event.target.value)
+                                    setError('')
+                                }}
                                 sx={{color:'#fff', bgColor:'#fff',pb:2}}
                                 //startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                 label="Title"
@@ -365,7 +383,10 @@ export default function Searchresult({
                             <TextField
                                 variant="outlined"
                                 value={description}
-                                onChange={(event)=>setDescription(event.target.value)}
+                                onChange={(event)=>{
+                                    setDescription(event.target.value)
+                                    setError('')
+                                }}
                                 sx={{color:'#fff',pb:2}}
                                 rows={5}
                                 //startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -379,12 +400,12 @@ export default function Searchresult({
                         <Divider sx={{width:'100%', marginBottom:2}} />
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
-                            fontSize:20,pb:2,  ml:73.5, flex:'end'}}>
+                            fontSize:20,pb:2,  ml:95, flex:'end'}}>
 
-                            <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
+                            {/* <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
                                 borderColor:'#5A00E2'}}
                                      onClick={()=>router.push('/dashboard')}>
-                                {"Save as Draft"}</Button>
+                                {"Save as Draft"}</Button> */}
                         <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                  onClick={()=>handleClickChange(1)}>
@@ -410,12 +431,12 @@ export default function Searchresult({
                         sx={{
                             '& > :not(style)': {},
                             display: 'flex', flexDirection: 'row', flex:'1', py: 2,
-                            justifyContent: 'space-between',height:'100%', width:'100%',}}
+                            justifyContent: 'space-between',height:'100%', minWidth:'100%',}}
                         noValidate
                         autoComplete="off"
                     >
                         <Box sx={{ display: 'flex', flexDirection: 'row', flex:'1', }}>
-                            <Box component="main" sx={{  minWidth: '45vw', pr:4 }}>
+                            <Box component="main" sx={{  minWidth: '46vw', pr:2 }}>
                                 <TextField fullWidth id="outlined-basic" variant="outlined"
                                            value={keyword} onChange={(e) => setKeyword(e.target.value)}
                                            label="Keyword" sx={{ bgcolor: '#ffffff'}}
@@ -443,7 +464,7 @@ export default function Searchresult({
                     
                     
                         <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
-                    overflowY:'auto', maxHeight:'51.5vh', paddingLeft:1.5, paddingRight:-8}}>   
+                    overflowY:'auto', maxHeight:'51.5vh', paddingRight:-8}}>   
                         
                         {dataSources && dataSources.length > 0 ? dataSources.map((data,index)=>index <21 && <FeatureCard
                             openDetails={openDetails}
@@ -472,21 +493,26 @@ export default function Searchresult({
                                 onClick={()=>handleClickChange(0)}>
                             {"Previous"}</Button>
 
-                        <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',ml:58.5,borderRadius:4,
+                        {/* <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',ml:58.5,borderRadius:4,
                             borderColor:'#5A00E2'
                             }}
                                 onClick={()=>router.push('/dashboard')}>
-                            {"Save as Draft"}</Button>
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
+                            {"Save as Draft"}</Button> */}
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:78.25,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleClickChange(2)}>
                             {"Next"}</Button>
                     </Box>
 
                 </TabPanel>
-                <TabPanel value={value} index={2}>
-                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto',fontSize:20,mr:75}}>
-                        <div>REVIEW AND SAVE &nbsp;</div>
+                <TabPanel value={value} index={2} sx={{width:'100%'}}>
+                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto',fontSize:20,mr:75,
+                        width:'100%'}}>
+                        <div style={{display:'flex', width:'100%', }}>
+                            <div>REVIEW AND SAVE &nbsp;</div>
+                            {error? <><div style={{color:'#fc4103'}}>({error})</div></>:null}
+                            </div>
+                        
                         <div style={{fontSize:12, paddingTop:4,color:'gray'}}>*Go through the entries and selection you've made.</div>
 
                     </Box>
@@ -505,12 +531,14 @@ export default function Searchresult({
                             <Box component="main" sx={{ flex: 1, py: 2, }}>
                                     <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',fontSize:20}}>
                                         <div>Added Data Sources &nbsp;</div>
+                                        {searching4 !== null && searching4 !== undefined &&
+                                        <div>{"("+ searching4.length+")"}</div>}
 
                                     </Box>
                             </Box>
 
-                            <Box sx={{ minWidth:"100%", display:'flex', flexDirection:'column',
-                                justifyContent:"center",alignItems:'center' }}>
+                            <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
+                                overflowY:'auto', maxHeight:'44vh', paddingRight:-8}}> 
                                 {searching4.map((data, index)=><AddedFeatureCard
                                     openDetails={openDetails}
                                     data={data}
@@ -536,7 +564,8 @@ export default function Searchresult({
                             borderColor:'#5A00E2'}}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button> */}
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:73.5,borderRadius:4,
+                            
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:76.5,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleSendData()}>
                             {"Create"}</Button>
