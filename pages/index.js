@@ -60,8 +60,8 @@ export default function Home() {
   
   return (
     
-    <Box>
-      <Navbar />
+    <Box sx={{width:'100%'}}>
+        <Navbar />
         <Box sx={{ display: 'flex', flexDirection:'column', 
               py: 6, px: 14, height:'88vh', bgcolor: '#94bbe9', 
               alignItems:'center', justifyContent:'center', color:'#eeeeee',

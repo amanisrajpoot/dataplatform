@@ -173,7 +173,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
             //await router.push('/accountcreated')
             //await sleep(2000);
             await signIn({email, password, token, setToken});
-            await sleep(2000);
+            await sleep(500);
             await router.push('/accountcreated');
             // }
             // await signIn({ email, password, token, setToken: createDoctor });
