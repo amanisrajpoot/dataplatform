@@ -45,7 +45,7 @@ function BrandName(props) {
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Product by '}
             <Link color="inherit" href="/">
-                {'String Ventures © '}
+                {'Data Platform © '}
             </Link>{' '}
 
             {/*{new Date().getFullYear()}*/}
