@@ -411,10 +411,10 @@ setuser,
                                         onClick={()=>{
                                             setFilterTopics(localFilterTopics)
                                             setLocalFilterTopics([])
-                                            handleTopicFilter(topic.split(",").[0])
+                                            handleTopicFilter(topic.split(",")[0])
                                         }}>
                                             <input type={"checkbox"} name="topic" value={topic}/>
-                                            <div style={{paddingLeft:10}}>{topic.split(",").[0]}</div>
+                                            <div style={{paddingLeft:10}}>{topic.split(",")[0]}</div>
                                         </div>
                                         </MenuItem>)
                                     }
