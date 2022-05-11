@@ -88,6 +88,7 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
       });
 
       console.log('user created response', user)
+      console.log('error while creating user using api call', erro)
       await sleep(2000);
       if(erro !== null){
            router.push("/dashboard")
