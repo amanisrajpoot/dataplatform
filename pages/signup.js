@@ -166,7 +166,6 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     }
 
     async function confirmSignUpF() {
-        if(token !== 0 && token && token !== null && token !== undefined){
             const erro = await confirmSignUp({ email,otp,token, setToken  });
             console.log("signup error:",erro)
             // await sleep(2000);
@@ -180,7 +179,6 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                 // await signIn({ email, password, token, setToken: createDoctor });
             }
             setError(erro);
-        }
     }
 
     function filterEmail(){
