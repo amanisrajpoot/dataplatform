@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(async () => {
         console.log('user call token', token);
-        if(token !== 0 && token && token !== null && token !== undefined){
+        if(token !== 0 && token && token !== null && token !== undefined && !nonAuthRoutes.includes(router.pathname)){
             const userP = await getUser(token);
             if(userP === null || userP === undefined ){
                 setuser({})
