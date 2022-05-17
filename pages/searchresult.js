@@ -135,14 +135,17 @@ export default function Searchresult({
   }, [dataset]);
 
     useEffect(async () => {
-        console.log('user call token', token);
-        const userP = await getUser(token);
-        if(userP === null || userP === undefined ){
-            setuser({})
-        } else{
-            setuser(userP)
+        if(token !== 0 && token && token !== null && token !== undefined && 
+            user !== {} && user !== null && user !== undefined){
+            console.log('user call token', token);
+            const userP = await getUser(token);
+            if(userP === null || userP === undefined ){
+                setuser({})
+            } else{
+                setuser(userP)
+            }
+            console.log('userP', userP);
         }
-        console.log('userP', userP);
     }, [token]);
 
     const [openDetails, setOpenDetails] = useState(false);

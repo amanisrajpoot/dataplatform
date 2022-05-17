@@ -78,21 +78,23 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
 
     useEffect(async ()=> {
       console.log("usercompany", company)
-      const erro = await createUser({
-          email:Auth.user.attributes.email?Auth.user.attributes.email:email,
-          //phone: '+1' + phone,
-          name:Auth.user.attributes.name?Auth.user.attributes.name:name,
-          company:Auth.user.attributes.company?Auth.user.attributes.company:company,
-          token
+      if(token !== 0 && token && token !== null && token !== undefined){
+        const erro = await createUser({
+            email:Auth.user.attributes.email?Auth.user.attributes.email:email,
+            //phone: '+1' + phone,
+            name:Auth.user.attributes.name?Auth.user.attributes.name:name,
+            company:Auth.user.attributes.company?Auth.user.attributes.company:company,
+            token
 
-      });
+        });
 
-      console.log('user created response', user)
-      console.log('error while creating user using api call', erro)
-      await sleep(2000);
-      if(erro !== null){
-           router.push("/dashboard")
-        }
+        console.log('user created response', user)
+        console.log('error while creating user using api call', erro)
+        await sleep(2000);
+        if(erro !== null){
+            router.push("/dashboard")
+          }
+      }
 
       //setMode(0);
   },[]);
@@ -108,7 +110,7 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
           sm={4}
           md={6}
           sx={{
-            backgroundImage: 'url(/login-background.jpg)',
+            //backgroundImage: 'url(/login-background.jpg)',
             // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

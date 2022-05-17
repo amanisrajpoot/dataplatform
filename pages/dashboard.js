@@ -110,13 +110,16 @@ export default function Dashboard({
 
     useEffect(async () => {
         console.log('user call token', token);
-        const userP = await getUser(token);
-        if(user === null){
-            setuser({});
-        }else{
-            setuser(userP)
+        if(token !== 0 && token && token !== null && token !== undefined && 
+            user !== {} && user !== null && user !== undefined){
+            const userP = await getUser(token);
+            if(user === null){
+                setuser({});
+            }else{
+                setuser(userP)
+            }
+            console.log('userP', userP);
         }
-        console.log('userP', userP);
     }, [token, router]);
 
     useEffect(async () => {
@@ -126,11 +129,13 @@ export default function Dashboard({
     },[router]);
 
     useEffect(async () => {
-        const data = await getDatasets(
-            token
-        );
-        setUserdatasets(data);
-    console.log("fetched datasets",data);
+        if(token !== 0 && !token && token !== null && token !== undefined && userdatasets !== [] && userdatasets !== null){
+            const data = await getDatasets(
+                token
+            );
+            setUserdatasets(data);
+            console.log("fetched datasets",data);
+        }
     }, [token,router]);
         
     const [openDetails, setOpenDetails] = useState(false);
@@ -147,7 +152,7 @@ export default function Dashboard({
 
     const [keyword, setKeyword] = useState('');
     const handleKeywordSearch = async (event) => {
-        if(token!==null){
+        if(token !== 0 && !token && token !== null && token !== undefined){
             console.log("SEARCH", keyword)
             mixpanel.track('Keyword Search for Catalogs', {
                 'source': "Data Platform Dashboard",

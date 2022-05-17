@@ -26,13 +26,15 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(async () => {
         console.log('user call token', token);
-        const userP = await getUser(token);
-        if(userP === null || userP === undefined ){
-            setuser({})
-        } else{
-            setuser(userP)
+        if(token !== 0 && !token && token !== null && token !== undefined){
+            const userP = await getUser(token);
+            if(userP === null || userP === undefined ){
+                setuser({})
+            } else{
+                setuser(userP)
+            }
+            console.log('userP', userP);
         }
-        console.log('userP', userP);
     }, [token]);
 
     useEffect(() => {
@@ -92,11 +94,13 @@ function MyApp({ Component, pageProps }) {
 
     const [userdatasets, setUserdatasets] = useState([]);
     useEffect(async () => {
+        if(token !== 0 && !token && token !== null && token !== undefined){
             const data = await getDatasets(
                 token
             );
             setUserdatasets(data);
         console.log("fetched datasets",data);
+        }
     }, [token]);
 
     const addDatasetcatalog = (data) => {
@@ -116,8 +120,8 @@ function MyApp({ Component, pageProps }) {
 
     const [dataSources, setDataSources] = useState([]);
     useEffect(async () => {
-		if(token!==null){
-      const data = await getPublicDatasets(
+		if(token !== 0 && !token && token !== null && token !== undefined){
+            const data = await getPublicDatasets(
 			token
 		);
 			setDataSources(data);

@@ -144,7 +144,7 @@ const ForgotPassword =() => {
           sm={4}
           md={6}
           sx={{
-            backgroundImage: 'url(/doctor-with-stethoscope-hands-hospital-background.jpg)',
+            backgroundImage: 'url(/new-background-login.jpg)',
             // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

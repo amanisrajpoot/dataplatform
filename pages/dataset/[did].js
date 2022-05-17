@@ -128,17 +128,23 @@ export default function ManageDataset({
     }
 
     useEffect(async ()=>{
-        const dataset = await getDatasetsId(token, dataset_id);
-        setUserDataset(dataset);
-        console.log("fetched dataset data",userdataset);
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            userdataset !== [] && userdataset !== null && userdataset !== undefined){
+            const dataset = await getDatasetsId(token, dataset_id);
+            setUserDataset(dataset);
+            console.log("fetched dataset data",userdataset);
+        }
     }, [token, dataset_id]);
 
     useEffect(async () => {
-        const data = await getDatasets(
-            token
-        );
-        setUserdatasets(data);
-    console.log("fetched datasets",data);
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            userdataset !== [] && userdataset !== null && userdataset !== undefined){
+            const data = await getDatasets(
+                token
+            );
+            setUserdatasets(data);
+            console.log("fetched datasets",data);
+        }
     }, [token,router]);
 
     const handleDownloadButton = async() => {
@@ -175,15 +181,18 @@ export default function ManageDataset({
     };
 
     useEffect(async () => {
-        console.log('user call token', token);
-        const userP = await getUser(token);
-        if(userP === null) {
-            setuser({})
-        }else {
-            setuser(userP);
-        }
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            user !== {} && user !== null && user !== undefined){
+            console.log('user call token', token);
+            const userP = await getUser(token);
+            if(userP === null) {
+                setuser({})
+            }else {
+                setuser(userP);
+            }
 
-        console.log('userP', userP);
+            console.log('userP', userP);
+        }
     }, [token, router]);
 
     useEffect(async ()=>{

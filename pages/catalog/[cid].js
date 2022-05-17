@@ -141,15 +141,19 @@ export default function ManageDataset({
     }
 
     useEffect(async ()=>{
-        const dataset = await getDatasetsId(token, datasource_id);
-        setUserDataset(dataset);
-        console.log("fetched dataset data",userdataset);
+        if(token !== 0 && token && token !== null && token !== undefined){
+            const dataset = await getDatasetsId(token, datasource_id);
+            setUserDataset(dataset);
+            console.log("fetched dataset data",userdataset);
+        }
     }, [token, datasource_id]);
 
     useEffect(async ()=>{
-        const catalog = await getPublicDatasetsTopics(token, currentTopic);
-        setFilteredDataSources(catalog);
-        console.log("filtered catalog data",filteredDataSources);
+        if(token !== 0 && token && token !== null && token !== undefined){
+            const catalog = await getPublicDatasetsTopics(token, currentTopic);
+            setFilteredDataSources(catalog);
+            console.log("filtered catalog data",filteredDataSources);
+        }
     }, [token, currentTopic]);
 
     const handleDownloadButton = async() => {
@@ -181,25 +185,31 @@ export default function ManageDataset({
     };
 
     useEffect(async () => {
-        console.log('user call token', token);
-        const userP = await getUser(token);
-        if(userP === null) {
-            setuser({})
-        }else {
-            setuser(userP);
-        }
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            user !=={} && user !== null && user !== undefined){
+            console.log('user call token', token);
+            const userP = await getUser(token);
+            if(userP === null) {
+                setuser({})
+            }else {
+                setuser(userP);
+            }
 
-        console.log('userP', userP);
-        console.log("the route", router.query.origin)
-        console.log("the route", router.query.currentRouteTitle)
+            console.log('userP', userP);
+            console.log("the route", router.query.origin)
+            console.log("the route", router.query.currentRouteTitle)
+        }
     }, [token, router]);
 
     useEffect(async () => {
-        const data = await getDatasets(
-            token
-        );
-        setUserdatasets(data);
-    console.log("fetched datasets",data);
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            userdataset != [] && userdataset !== null && userdataset !== undefined){
+            const data = await getDatasets(
+                token
+            );
+            setUserdatasets(data);
+            console.log("fetched datasets",data);
+        }
     }, [token,router]);
 
     useEffect(async ()=>{

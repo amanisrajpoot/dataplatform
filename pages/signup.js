@@ -166,19 +166,21 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     }
 
     async function confirmSignUpF() {
-        const erro = await confirmSignUp({ email,otp,token, setToken  });
-        console.log("signup error:",erro)
-        // await sleep(2000);
-        if (erro === null) {
-            //await router.push('/accountcreated')
-            //await sleep(2000);
-            await signIn({email, password, token, setToken});
-            await sleep(2000);
-            await router.push('/accountcreated');
-            // }
-            // await signIn({ email, password, token, setToken: createDoctor });
+        if(token !== 0 && token && token !== null && token !== undefined){
+            const erro = await confirmSignUp({ email,otp,token, setToken  });
+            console.log("signup error:",erro)
+            // await sleep(2000);
+            if (erro === null) {
+                //await router.push('/accountcreated')
+                //await sleep(2000);
+                await signIn({email, password, token, setToken});
+                await sleep(2000);
+                await router.push('/accountcreated');
+                // }
+                // await signIn({ email, password, token, setToken: createDoctor });
+            }
+            setError(erro);
         }
-        setError(erro);
     }
 
     function filterEmail(){
@@ -290,7 +292,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                         sm={4}
                         md={6}
                         sx={{
-                            backgroundImage: 'url(/doctor-with-stethoscope-hands-hospital-background.jpg)',
+                            backgroundImage: 'url(/new-background-login.jpg)',
                             // backgroundRepeat: 'no-repeat',
                             width:"100%",
 

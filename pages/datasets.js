@@ -119,21 +119,27 @@ export default function Datasets({
 
     useEffect(async () => {
         console.log('user call token', token);
-        const userP = await getUser(token);
-        if(user === null){
-            setuser({});
-        }else{
-            setuser(userP)
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            user !== {} && user !== null && user !== undefined){
+            const userP = await getUser(token);
+            if(user === null){
+                setuser({});
+            }else{
+                setuser(userP)
+            }
+            console.log('userP', userP);
         }
-        console.log('userP', userP);
     }, [token, router]);
 
     useEffect(async () => {
-        const data = await getDatasets(
-            token
-        );
-        setUserdatasets(data);
-    console.log("fetched datasets",data);
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            userdatasets !== [] && userdatasets !== null && userdatasets !== undefined){
+            const data = await getDatasets(
+                token
+            );
+            setUserdatasets(data);
+            console.log("fetched datasets",data);
+        }
     }, [token,router]);
 
     const [openDetails, setOpenDetails] = useState(false);

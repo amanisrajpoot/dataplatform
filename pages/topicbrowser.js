@@ -108,8 +108,10 @@ export default function TopicBrowser({
     }, [dataset]);
 
     useEffect(async()=>{
-        const datasources = await getPublicDatasetsTopics(token, topic_id);
-        setTopicDatasources(datasources);
+        if(token !== 0 && token && token !== null && token !== undefined){
+          const datasources = await getPublicDatasetsTopics(token, topic_id);
+          setTopicDatasources(datasources);
+        }
     }, [token, topic_id]);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -131,14 +133,17 @@ export default function TopicBrowser({
 
   const [user, setuser] = useState({});
     useEffect(async () => {
-        console.log('user call token', token);
-        const userP = await getUser(token);
-        if(user === null){
-            setuser({});
-        }else{
-            setuser(userP)
+        if(token !== 0 && token && token !== null && token !== undefined &&
+          user !== {} && user !== null && user !== undefined){
+          console.log('user call token', token);
+          const userP = await getUser(token);
+          if(user === null){
+              setuser({});
+          }else{
+              setuser(userP)
+          }
+          console.log('userP', userP);
         }
-        console.log('userP', userP);
     }, [token]);
 
   const [openDetails, setOpenDetails] = useState(false);
