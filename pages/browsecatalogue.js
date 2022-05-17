@@ -43,7 +43,6 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { minHeight } from '@mui/system';
 import LoadingOverlay from 'react-loading-overlay';
 import SyncLoader from 'react-spinners/SyncLoader';
-import { useDateRangeValidation } from '@mui/lab/internal/pickers/hooks/useValidation';
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
@@ -119,8 +118,9 @@ setuser,
   const handleClose = () => setOpen(false);
 
     useEffect(async () => {
-        console.log('user call token', token);
-        if(token !== 0 && token && token !== null && token !== undefined){
+        if(token !== 0 && token && token !== null && token !== undefined && 
+            user !== {} && user !== null && user !== undefined){
+            console.log('user call token', token);
             const userP = await getUser(token);
             if(userP === null){
                 setuser({});
@@ -154,18 +154,16 @@ setuser,
 
     useEffect(async ()=>{
         setIsActive(true);
-        if(token !== 0 && token && token !== null && token !== undefined){
-            const catalog = await getPublicDatasetsTopics(token, filterTopics.toString());
-            setTopicFilteredDataSources(catalog);
-            setIsActive(false);
-            console.log("filtered catalog data",dataSources);
-        }
+        const catalog = await getPublicDatasetsTopics(token, filterTopics.toString());
+        setTopicFilteredDataSources(catalog);
+        setIsActive(false);
+        console.log("filtered catalog data",dataSources);
     }, [filterTopics]);
 
     const handleTopicFilter = async (topic) => {
         setLocalFilterTopics([...localFilterTopics,topic])
         setFilterTopics(localFilterTopics)
-        if(token !== 0 && token && token !== null && token !== undefined){
+        if(token!==null){
             mixpanel.track('Topic Filtered Keyword Search for Catalogs', {
                 'source': "Browse Catalog page",
                 'action': "keyword search",
@@ -192,27 +190,26 @@ setuser,
     }, [router]);
 
     useEffect(async () => {
-        if(token !== 0 && token && token !== null && token !== undefined &&
-            userdatasets !== [] && userdatasets !== null && userdatasets !== undefined){
+        if(token !== 0 && token && token !== null && token !== undefined && 
+            user !== {} && user !== null && user !== undefined){
             const data = await getDatasets(
                 token
             );
             setUserdatasets(data);
-        }
-    console.log("fetched datasets",data);
+            console.log("fetched datasets",data);
+            }
     }, [token,router]);
 
     useEffect(async () => {
-		if(token !== 0 && token && token !== null && token !== undefined && 
-            dataSources !== [] && dataSources !== null && dataSources !== undefined){
+		if(token!==null){
             setIsActive(true);
             const data = await getPublicDatasets(
 			token
 		    );
 			setDataSources(data);
             setIsActive(false);
-            console.log("fetched data",data);
-        }
+      console.log("fetched data",data);
+      }
   }, [token, router]);
 
     useEffect(async ()=>{
