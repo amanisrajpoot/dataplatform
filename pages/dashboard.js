@@ -95,7 +95,9 @@ export default function Dashboard({
 
     useEffect(async ()=> {
         console.log("dashboard page reached for account creation")
-        if(token !== 0 && token && token !== null && token !== undefined){
+
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            user === {} || user === null){
           console.log('token in the dashboard page', token)
           console.log('creating user in the backend')
           const erro = await createUser({
@@ -104,7 +106,7 @@ export default function Dashboard({
               name:Auth.user.attributes.name?Auth.user.attributes.name:name,
               company:Auth.user.attributes.company?Auth.user.attributes.company:company,
               token
-  
+            
           });
   
           console.log('user created response', user)
@@ -144,7 +146,7 @@ export default function Dashboard({
     useEffect(async () => {
         console.log('get user call token', token);
         if(token !== 0 && token && token !== null && token !== undefined && 
-            user === {} && user !== null && user !== undefined){
+            user === {} && user === null && user === undefined){
             console.log("token used to get users",token)   
             const userP = await getUser(token);
             if(user === null){
@@ -292,7 +294,7 @@ export default function Dashboard({
                                     fontSize="large" sx={{color:'#939EAA'}}/>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
-                            <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
+                            <p style={{fontSize:20}}>{user && user.firstname? user.firstname: 'Account'} </p>
                             &nbsp;&nbsp;&nbsp;
                             <div
                                 // onClick={()=>signOut({path:router.pathname})}

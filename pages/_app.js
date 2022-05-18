@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
     const [user, setuser] = useState({});
 
     useEffect(async () => {
-        if(token !== 0 && token && token !== null && token !== undefined && !nonAuthRoutes.includes(router.pathname)){
+        if(token !== 0 && token && token !== null && token !== undefined && nonAuthRoutes.includes(router.pathname)){
             console.log('get user call token', token);
             const userP = await getUser(token);
             if(userP === null || userP === undefined ){
