@@ -29,6 +29,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, }
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Auth } from 'aws-amplify';
+import {createUser} from "../function/users";
 
 
 const data = [
@@ -74,6 +75,9 @@ export default function Dashboard({
                                       dataSources,
                                       setDataSources,
                                       user,
+                                      name,
+                                      email, 
+                                      company,
                                       setuser,
 
                                   }) {
@@ -88,6 +92,31 @@ export default function Dashboard({
     useEffect(()=>{
         console.log("dashboard token", token)
     },[token])
+
+    useEffect(async ()=> {
+        console.log("dashboard page reached for account creation")
+        if(token !== 0 && token && token !== null && token !== undefined){
+          console.log('token in the dashboard page', token)
+          console.log('creating user in the backend')
+          const erro = await createUser({
+              email:Auth.user.attributes.email?Auth.user.attributes.email:email,
+              //phone: '+1' + phone,
+              name:Auth.user.attributes.name?Auth.user.attributes.name:name,
+              company:Auth.user.attributes.company?Auth.user.attributes.company:company,
+              token
+  
+          });
+  
+          console.log('user created response', user)
+          console.log('error while creating user using api call', erro)
+          await sleep(2000);
+          if(erro !== null){
+              router.push("/dashboard")
+            }
+        }
+  
+        //setMode(0);
+    },[]);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
