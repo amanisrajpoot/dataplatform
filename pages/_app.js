@@ -51,9 +51,9 @@ function MyApp({ Component, pageProps }) {
       })
     }, [])
 
-  useEffect(()=>{
-    console.log("app token",token)
-  })
+//   useEffect(()=>{
+//     console.log("app token",token)
+//   })
 
   useEffect(() => {checkAuth({token, setToken, role, setRole, setLocation}).then(r => {console.log("Set first time token")})}, [])
 

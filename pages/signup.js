@@ -166,19 +166,25 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     }
 
     async function confirmSignUpF() {
+            console.log('token in the confirm signup function page 11', token)
             const erro = await confirmSignUp({ email,otp,token, setToken  });
-            console.log("signup error:",erro)
+            console.log("signup confirmation error",erro)
             // await sleep(2000);
             if (erro === null) {
                 //await router.push('/accountcreated')
                 //await sleep(2000);
+                console.log("confirmSignup after confirming from amplify:",erro)
                 await signIn({email, password, token, setToken});
                 await sleep(2000);
+                console.log('token in the confirm signup function page 12', token)
                 await router.push('/accountcreated');
                 // }
                 // await signIn({ email, password, token, setToken: createDoctor });
+            } else {
+                console.log('confirmation of user failed with the error', erro)
+                setError(erro);
+                
             }
-            setError(erro);
     }
 
     function filterEmail(){

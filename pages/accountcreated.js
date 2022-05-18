@@ -77,8 +77,10 @@ const AccountCreated =({name, setName, email, setEmail, company, setCompany, tok
     const [user, setuser] = useState({});
 
     useEffect(async ()=> {
-      console.log("usercompany", company)
+      console.log("account created page reached")
       if(token !== 0 && token && token !== null && token !== undefined){
+        console.log('token in the accountcreated page', token)
+        console.log('craeting user in the backend')
         const erro = await createUser({
             email:Auth.user.attributes.email?Auth.user.attributes.email:email,
             //phone: '+1' + phone,

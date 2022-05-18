@@ -80,9 +80,10 @@ export async function signUp({
 			'signed up': true,
 			'action': "account created",
 		  });
+		console.log("first time user created");
 		return null;
 	} catch (err) {
-		console.log({ err });
+		console.log("first time registering the user on amplify",{ err });
 		return err.message;
 	}
 }
@@ -98,9 +99,11 @@ export async function confirmSignUp({ email, otp, token, setToken }) {
 			'signed up': true,
 			'action': "account verified successfully",
 		  });
+
+		console.log("signup confimed in the confirm signup api call");
 		return null;
 	} catch (err) {
-		console.log({ err });
+		console.log("confirming the user using the OTP",{ err });
 		return err.message;
 	}
 }
