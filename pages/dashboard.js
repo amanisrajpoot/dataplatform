@@ -146,7 +146,7 @@ export default function Dashboard({
     useEffect(async () => {
         console.log('get user call token', token);
         if(token !== 0 && token && token !== null && token !== undefined && 
-            user === {} && user === null && user === undefined){
+            user === {} || user === null || user.error){
             console.log("token used to get users",token)   
             const userP = await getUser(token);
             if(user === null){
