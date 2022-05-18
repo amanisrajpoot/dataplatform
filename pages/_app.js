@@ -25,8 +25,8 @@ function MyApp({ Component, pageProps }) {
     const [user, setuser] = useState({});
 
     useEffect(async () => {
-        console.log('user call token', token);
         if(token !== 0 && token && token !== null && token !== undefined && !nonAuthRoutes.includes(router.pathname)){
+            console.log('user call token', token);
             const userP = await getUser(token);
             if(userP === null || userP === undefined ){
                 setuser({})
@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }) {
               })
           }
       })
-  }, [])
+    }, [])
 
   useEffect(()=>{
     console.log("app token",token)
@@ -66,18 +66,18 @@ function MyApp({ Component, pageProps }) {
       }
   }, [token]);
 
-  useEffect(() => {
-      if ("serviceWorker" in navigator) {
-          navigator.serviceWorker
-              .register("/service-worker.js")
-              .then(serviceWorker => {
-                  console.log("Service Worker registered: ", serviceWorker);
-              })
-              .catch(error => {
-                  console.error("Error registering the Service Worker: ", error);
-              });
-      }
-  }, [])
+//   useEffect(() => {
+//       if ("serviceWorker" in navigator) {
+//           navigator.serviceWorker
+//               .register("/service-worker.js")
+//               .then(serviceWorker => {
+//                   console.log("Service Worker registered: ", serviceWorker);
+//               })
+//               .catch(error => {
+//                   console.error("Error registering the Service Worker: ", error);
+//               });
+//       }
+//   }, [])
 
   const [dataset, setDataset] = useState({
         user_email:'',
