@@ -57,6 +57,11 @@ function BrandName(props) {
 const theme = createTheme();
 
 const AccountCreated =({name, setName, email, setEmail, company, setCompany, token, setToken}) => {
+
+  useEffect(()=>{
+    console.log("token for the account created page", token)
+  },[token])
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

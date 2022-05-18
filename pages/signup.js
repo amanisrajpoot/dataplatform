@@ -29,6 +29,7 @@ import mixpanel from 'mixpanel-browser';
 import OTPForm from "../components/OtpScreen";
 import {EMAIL_VALIDATOR} from "../function/constants";
 import { Auth } from 'aws-amplify';
+import {useEffect} from "react";
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
@@ -67,6 +68,11 @@ function BrandName(props) {
 const theme = createTheme();
 
 const SignUp =({token, setToken, name, setName, email, setEmail, company, setCompany}) => {
+
+    useEffect(()=>{
+        console.log("signup page token for the confirm user function", token)
+    },[token])
+
 	const signingLoading = () => {
 		if (email !== '' && password !== '') {
 			setisLoading(true);
@@ -125,7 +131,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     }
 
     async function signUpF() {
-        console.log("usercompany", company)
+        console.log("starting user first time registration", company)
         const erro = await signUp({
             email,
             //phone: '+1' + phone,
