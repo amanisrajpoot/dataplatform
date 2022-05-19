@@ -138,7 +138,7 @@ export default function TopicBrowser({
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
           user !== {} && user !== null && user !== undefined){
-          console.log('user call token', token);
+            console.log('get users called from topicbrowser', token);
           const userP = await getUser(token);
           if(user === null){
               setuser({});

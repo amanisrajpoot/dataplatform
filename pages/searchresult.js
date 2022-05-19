@@ -146,7 +146,7 @@ export default function Searchresult({
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined && 
             user !== {} && user !== null && user !== undefined){
-            console.log('user call token', token);
+            console.log('get users called from create datasets', token);
             const userP = await getUser(token);
             if(userP === null || userP === undefined ){
                 setuser({})

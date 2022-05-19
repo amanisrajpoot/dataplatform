@@ -124,7 +124,7 @@ export default function Dashboard({
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
             user !== {} && user !== null && user !== undefined){
-            console.log('user call token', token);
+            console.log('get users called from dashboard', token);
             const userP = await getUser(token);
             if(userP === null || userP === undefined ){
                 setuser({})
@@ -167,6 +167,7 @@ export default function Dashboard({
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined && 
             userdatasets !== [] && userdatasets !== null){
+            console.log('get users called from dashboard', token);
             const data = await getDatasets(
                 token
             );

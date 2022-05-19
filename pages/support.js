@@ -148,7 +148,7 @@ export default function Support({
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined){
-            console.log('user call token', token);
+            console.log('get users called from support', token);
             const userP = await getUser(token);
             if(userP === null || userP === undefined ){
                 setuser({})
@@ -188,17 +188,6 @@ export default function Support({
         }
     },[]);
 
-    useEffect(async () => {
-        if(token !== 0 && token && token !== null && token !== undefined &&
-            userdatasets !== [] && userdatasets !== null && userdatasets !== undefined){
-            const data = await getDatasets(
-                token
-            );
-            setUserdatasets(data);
-            console.log("fetched datasets",data);
-        }
-    }, [token,router]);
-
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
     const [editMode, setEditMode] = useState(0)
@@ -209,23 +198,6 @@ export default function Support({
     const handleCloseDetails = () => {
       setOpenDetails(false);
     };
-
-  const handleSendData = async () => {
-      if(token!==null){
-        const data = await createUserDataset({
-          token,
-          dataset
-        });
-        setUserdatasets(data);
-        mixpanel.track('Clicked on Create', {
-          'source': "Create Dataset Page",
-          'scrolled first': true,
-            'email':user.email,
-        })
-        console.log("created dataset",data);
-        router.push('/dataset/'+data.ID);
-      }
-  };
 
   useEffect( () => {
     setLocaldataset({title, description,});

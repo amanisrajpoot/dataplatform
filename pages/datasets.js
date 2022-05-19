@@ -130,6 +130,7 @@ export default function Datasets({
         console.log('user call token', token);
         if(token !== 0 && token && token !== null && token !== undefined &&
             user !== {} && user !== null && user !== undefined){
+            console.log('get users called from datasets page', token);
             const userP = await getUser(token);
             if(user === null){
                 setuser({});
@@ -168,6 +169,7 @@ export default function Datasets({
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
             userdatasets !== [] && userdatasets !== null && userdatasets !== undefined){
+            console.log('get datasets called from datasets page', token);
             const data = await getDatasets(
                 token
             );
