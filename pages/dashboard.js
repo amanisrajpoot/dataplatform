@@ -157,8 +157,8 @@ export default function Dashboard({
   
           console.log('user created response', user)
           console.log('error while creating user using api call', erro)
-           await sleep(2000);
-           if("ID" in erro){
+          await sleep(2000);
+          if("ID" in erro){
                router.reload()
              }
         }
@@ -166,15 +166,15 @@ export default function Dashboard({
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined && 
-            userdatasets !== [] && userdatasets !== null){
-            console.log('get users called from dashboard', token);
+            (userdatasets === [] || userdatasets === null)){
+            console.log('get datasets called from dashboard', token);
             const data = await getDatasets(
                 token
             );
             setUserdatasets(data);
             console.log("fetched datasets",data);
         }
-    }, [token,router]);
+    }, [token]);
         
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);

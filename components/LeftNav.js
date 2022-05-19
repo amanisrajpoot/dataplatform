@@ -43,13 +43,16 @@ export default function LeftNav({
 	}
 	const [doctor, setDoctor] = useState(null);
 	useEffect(async () => {
-		console.log('get datasets called from leftnav', token);
-        const data = await getDatasets(
+		if(token !== 0 && token && token !== null && token !== undefined && 
+            (userdatasets === [] || userdatasets === null)){
+			console.log('get datasets called from leftnav', token);
+        	const data = await getDatasets(
             token
-        );
+       		 );
         setUserdatasets(data);
-    console.log("fetched datasets",data);
-    }, [token,router]);
+    	console.log("fetched datasets",data);
+		}
+    }, [token]);
 
 	return (
 		<div className={`${styles.header} ${leftAnimation}`} style={{ fontStyle:'normal', minHeight:'100vh',
