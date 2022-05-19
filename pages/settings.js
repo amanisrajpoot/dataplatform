@@ -206,7 +206,7 @@ export default function Settings({
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
-            userdatasets !== [] && userdatasets !== null && userdatasets !== undefined){
+            (userdatasets === [] || userdatasets !== null || userdatasets !== undefined)){
             console.log('get users called from settings', token);
             const data = await getDatasets(
                 token
@@ -214,7 +214,7 @@ export default function Settings({
             setUserdatasets(data);
             console.log("fetched datasets",data);
         }
-    }, [token,router]);
+    }, [token]);
 
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);

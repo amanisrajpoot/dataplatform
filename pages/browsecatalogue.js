@@ -224,7 +224,7 @@ setuser,
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined && 
-            user !== {} && user !== null && user !== undefined){
+            (userdatasets === [] || userdatasets === null || userdatasets !== undefined)){
             console.log('get datasets called from catalog page', token);
             const data = await getDatasets(
                 token
@@ -232,7 +232,7 @@ setuser,
             setUserdatasets(data);
             console.log("fetched datasets",data);
             }
-    }, [token,router]);
+    }, [token]);
 
     useEffect(async () => {
 		if(token!==null){

@@ -168,7 +168,7 @@ export default function Datasets({
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
-            userdatasets !== [] && userdatasets !== null && userdatasets !== undefined){
+            (userdatasets === [] || userdatasets === null || userdatasets !== undefined)){
             console.log('get datasets called from datasets page', token);
             const data = await getDatasets(
                 token
