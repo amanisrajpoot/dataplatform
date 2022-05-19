@@ -44,7 +44,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { getDatasets, } from '../function/users';
-
+import { Auth } from 'aws-amplify';
+import {createUser} from "../function/users";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -107,6 +108,9 @@ export default function Settings({
   removeDatasetcatalog,
   user,
   setuser,
+  name,
+  email,
+  company
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -170,6 +174,35 @@ export default function Settings({
             console.log('userP', userP);
         }
     }, [token]);
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+    useEffect(async ()=> {
+        if(token !== 0 && token !== null && token !== undefined &&
+            (user === {} || user === null || user.error)){
+            console.log("settings page reached for account creation")
+
+          console.log('token in the dashboard page', token)
+          console.log('creating user in the backend')
+          const erro = await createUser({
+              email: email?email:Auth.user.attributes.email,
+              //phone: '+1' + phone,
+              name:name?name:Auth.user.attributes.name,
+              company:company?company:Auth.user.attributes.company,
+              token
+            
+          });
+  
+          console.log('user created response', user)
+          console.log('error while creating user using api call', erro)
+           await sleep(2000);
+           if("ID" in erro){
+               router.reload()
+             }
+        }
+    },[]);
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
@@ -325,7 +358,7 @@ export default function Settings({
                                 sx={{color:'#939EAA'}}/>
                         </Link>
                         &nbsp;&nbsp;&nbsp;
-                        <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
+                        <p style={{fontSize:20}}>{name?name: Auth.user?Auth.user.attributes.name: 'Account'} </p>
                         &nbsp;&nbsp;&nbsp;
                         <div
                             // onClick={()=>signOut({path:router.pathname})}

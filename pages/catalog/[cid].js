@@ -196,7 +196,7 @@ export default function ManageDataset({
             }
 
             console.log('userP', userP);
-            console.log("the route", router.query.origin)
+            console.log("the route", router.query)
             console.log("the route", router.query.currentRouteTitle)
         }
     }, [token, router]);

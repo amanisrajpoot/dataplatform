@@ -184,6 +184,12 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                 await sleep(2000);
                 console.log('token in the confirm signup function page 12', token)
                 //await router.push('/accountcreated');
+                router.push({
+                    pathname: `/dashboard/`,
+                    query:{
+                        currentRouteTitle:"signup",
+                    }
+                })
                 // }
                 // await signIn({ email, password, token, setToken: createDoctor });
             } else {

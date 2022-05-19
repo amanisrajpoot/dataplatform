@@ -24,8 +24,14 @@ function MyApp({ Component, pageProps }) {
     const [password, setPassword] = useState("");
     const [user, setuser] = useState({});
 
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      
     useEffect(async () => {
-        if(token !== 0 && token && token !== null && token !== undefined && nonAuthRoutes.includes(router.pathname)){
+        if(token !== 0 && token && token !== null && token !== undefined && 
+            nonAuthRoutes.includes(router.pathname) &&
+            (user === {} || user === null || user === undefined)){
             console.log('get user call token', token);
             const userP = await getUser(token);
             if(userP === null || userP === undefined ){
@@ -36,6 +42,31 @@ function MyApp({ Component, pageProps }) {
             console.log('userP', userP);
         }
     }, [token]);
+
+    // useEffect(async ()=> {
+    //     if(token !== 0 && token !== null && token !== undefined &&
+    //         (user === {} || user === null || user.error)){
+    //         console.log("app page reached for account creation")
+
+    //       console.log('token in the app page', token)
+    //       console.log('creating user in the backend')
+    //       const erro = await createUser({
+    //           email: email?email:Auth.user.attributes.email,
+    //           //phone: '+1' + phone,
+    //           name:name?name:Auth.user.attributes.name,
+    //           company:company?company:Auth.user.attributes.company,
+    //           token
+            
+    //       });
+  
+    //       console.log('user created response', user)
+    //       console.log('error while creating user using api call', erro)
+    //       await sleep(2000);
+    //       if("ID" in erro){
+    //            router.reload()
+    //          }
+    //     }
+    // },[]);
 
     useEffect(() => {
       Hub.listen('auth', (data) => {
@@ -49,7 +80,7 @@ function MyApp({ Component, pageProps }) {
               })
           }
       })
-    }, [])
+    }, [token,router])
 
 //   useEffect(()=>{
 //     console.log("app token",token)

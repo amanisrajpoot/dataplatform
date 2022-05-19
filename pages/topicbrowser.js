@@ -44,6 +44,8 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import SortIcon from '@mui/icons-material/Sort';
 import {FormControl} from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
+import { Auth } from 'aws-amplify';
+import {createUser} from "../function/users";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -88,6 +90,7 @@ const style2 = {
 export default function TopicBrowser({
   token,
   setToken,
+  name,
   dataset,
   userdatasets,
   dataSources,
@@ -232,7 +235,7 @@ export default function TopicBrowser({
                         <AccountCircleIcon fontSize="large" sx={{color:'#939EAA'}}/>
                     </Link>
                     &nbsp;&nbsp;&nbsp;
-                    <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
+                    <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
                     &nbsp;&nbsp;&nbsp;
                     <div onClick={()=>signOut({path:router.pathname})}>
                         <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
