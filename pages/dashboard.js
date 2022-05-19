@@ -158,9 +158,9 @@ export default function Dashboard({
           console.log('user created response', user)
           console.log('error while creating user using api call', erro)
           await sleep(2000);
-          if("ID" in erro){
-               router.reload()
-             }
+        //   if("ID" in erro){
+        //        router.reload()
+        //      }
         }
     }),[])
 
