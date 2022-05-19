@@ -43,6 +43,7 @@ export default function LeftNav({
 	}
 	const [doctor, setDoctor] = useState(null);
 	useEffect(async () => {
+		console.log('get datasets called from leftnav', token);
         const data = await getDatasets(
             token
         );
