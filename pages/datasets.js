@@ -152,7 +152,7 @@ export default function Datasets({
               email: email?email:Auth.user.attributes.email,
               //phone: '+1' + phone,
               name:name?name:Auth.user.attributes.name,
-              company:company?company:Auth.user.attributes.company,
+              company:company?company:Auth.user.attributes['custom:company'],
               token
             
           });
