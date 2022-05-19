@@ -436,7 +436,7 @@ export default function Settings({
                                         <div style={{width:'100%', display:'flex'}}>
                                             <AccountCircleOutlinedIcon sx={{fontSize:28, color:'black'}}/>
                                             <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
-                                            {user!== null && user !== undefined && user.firstname? user.firstname+" "+user.lastname: ""}</div>
+                                            {user!== null && user !== undefined && user.firstname? user.firstname+" "+user.lastname: "loading.."}</div>
                                         </div>
                                         <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
                                             onClick={()=>setEditMode(1)}/>
@@ -447,7 +447,7 @@ export default function Settings({
                                         <div style={{width:'100%', display:'flex'}}>
                                             <BusinessRoundedIcon sx={{fontSize:28, color:'black'}}/>
                                             <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
-                                                {user!== null && user !== undefined && user.company?user.company: ""}</div>
+                                                {user!== null && user !== undefined && user.company?user.company: "loading.."}</div>
                                         </div>
                                         <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
                                                                     onClick={()=>setEditMode(2)}/>
@@ -458,7 +458,7 @@ export default function Settings({
                                         <div style={{width:'100%', display:'flex'}}>
                                             <AccountCircleOutlinedIcon sx={{fontSize:28, color:'black'}}/>
                                             <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
-                                                {user!== null && user !== undefined && user.email?user.email: ""}</div>
+                                                {user!== null && user !== undefined && user.email?user.email: "loading.."}</div>
                                         </div>
                                         {/*<ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}*/}
                                         {/*    onClick={()=>setEditMode(3)}/>*/}
