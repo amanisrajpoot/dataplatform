@@ -98,33 +98,6 @@ export default function Dashboard({
         console.log("dashboard token", token)
     },[token])
 
-    // useEffect(async ()=> {
-    //     console.log("dashboard page reached for account creation")
-
-    //     if(token !== 0 && token !== null && token !== undefined &&
-    //         (user === {} || user === null || user.error)){
-    //       console.log('token in the dashboard page', token)
-    //       console.log('creating user in the backend')
-    //       const erro = await createUser({
-    //           email: email?email:Auth.user.attributes.email,
-    //           //phone: '+1' + phone,
-    //           name:name?name:Auth.user.attributes.name,
-    //           company:company?company:Auth.user.attributes.company,
-    //           token
-            
-    //       });
-  
-    //       console.log('user created response', user)
-    //       console.log('error while creating user using api call', erro)
-    //       await sleep(2000);
-    //       if(erro !== null){
-    //           router.push("/dashboard")
-    //         }
-    //     }
-  
-    //     //setMode(0);
-    // },[token, router]);
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -168,7 +141,7 @@ export default function Dashboard({
         console.log("cameFrom",router.query.cameFrom)
         console.log("origin",router.query.origin)
         sleep(2000);
-        if(token){
+        if(token && (user === {} || user === null || user.error)){
           console.log("cleared the conditions to create user")
 
           console.log('token in the dashboard page', token)
@@ -622,86 +595,6 @@ export default function Dashboard({
                             </div>
 
                         </div>
-
-                        {/*<div>*/}
-                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
-                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,*/}
-                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
-                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
-                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
-                        {/*        }}*/}
-                        {/*             onClick={()=>router.push(`/topic/FDA`)} >*/}
-                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#5A00E2', borderRadius:50,*/}
-                        {/*                padding:18, marginRight:18,}}>*/}
-                        {/*                <RoomServiceOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
-                        {/*            </div>*/}
-                        {/*            <div>*/}
-                        {/*                <div style={{color:'black', fontSize:18,}}>Food & Drugs Administration </div>*/}
-                        {/*                <div style={{paddingTop:12,color:'#5A00E2', fontSize:28}}>3412</div>*/}
-                        {/*            </div>*/}
-
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-
-
-                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
-                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8, marginTop:20,*/}
-                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
-                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
-                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
-                        {/*        }}*/}
-                        {/*             onClick={()=>router.push(`/topic/Physician`)} >*/}
-                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#24BBFF', borderRadius:50,*/}
-                        {/*                padding:18, marginRight:18}}>*/}
-                        {/*                <MasksOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
-                        {/*            </div>*/}
-                        {/*            <div>*/}
-                        {/*                <div style={{color:'black', fontSize:18,}}>Physician </div>*/}
-                        {/*                <div style={{paddingTop:12,color:'#24BBFF', fontSize:28}}>4578</div>*/}
-                        {/*            </div>*/}
-
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-
-                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
-                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,*/}
-                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
-                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
-                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
-                        {/*        }}*/}
-                        {/*             onClick={()=>router.push(`/topic/Drugs`)} >*/}
-                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF9800', borderRadius:50,*/}
-                        {/*                padding:18, marginRight:18}}>*/}
-                        {/*                <MedicalServicesOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
-                        {/*            </div>*/}
-                        {/*            <div>*/}
-                        {/*                <div style={{color:'black', fontSize:18,}}>Drugs </div>*/}
-                        {/*                <div style={{paddingTop:12,color:'#FF9800', fontSize:28}}>6532</div>*/}
-                        {/*            </div>*/}
-
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-
-                        {/*    <div style={{height:'12ch', minWidth:'29ch', maxWidth:'28ch', backgroundColor:'#FFF',*/}
-                        {/*        marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,marginTop:20,*/}
-                        {/*        justifyContent:"space-around", flex:'end',borderRadius:9, }}>*/}
-                        {/*        <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'row',*/}
-                        {/*            lineHeight:"22px", width:'85%', paddingTop:18, alignItems:'center'*/}
-                        {/*        }}*/}
-                        {/*             onClick={()=>router.push(`/topic/Insurance Companies`)} >*/}
-                        {/*            <div style={{paddingTop:18,color:'gray', paddingBottom:24, backgroundColor:'#FF6262', borderRadius:50,*/}
-                        {/*                padding:18, marginRight:18}}>*/}
-                        {/*                <CorporateFareOutlinedIcon fontSize="large" sx={{color:"#fff"}}/>*/}
-                        {/*            </div>*/}
-                        {/*            <div>*/}
-                        {/*                <div style={{color:'black', fontSize:18,}}>Insurance Companies </div>*/}
-                        {/*                <div style={{paddingTop:12,color:'#FF6262', fontSize:28}}>7890</div>*/}
-                        {/*            </div>*/}
-
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-
-                        {/*</div>*/}
 
                     </Box>}
 
