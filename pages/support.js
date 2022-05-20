@@ -182,9 +182,9 @@ export default function Support({
           console.log('user created response', user)
           console.log('error while creating user using api call', erro)
            await sleep(2000);
-           if("ID" in erro){
-               router.reload()
-             }
+        //    if("ID" in erro){
+        //        router.reload()
+        //      }
         }
     },[]);
 
@@ -230,7 +230,7 @@ export default function Support({
         } else {
             setError(null);
             handleSubmit();
-            router.push(`mailto:support@example.com?subject=${queryName}&body=${queryDescription}`)
+            router.push(`mailto:support@devi.ai?subject=${queryName}&body=${queryDescription}`)
         }
     }
 

@@ -7,6 +7,7 @@ export const nonAuthRoutes = [
 	'/signup',
 	'/signup1',
 	'/forgotpassword',
+	'/forgetpassword',
 	'/forgotpassword1',
 	'/resetpassword',
 	'/helpcenter',

@@ -93,10 +93,6 @@ const Login =({token, setToken}) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
     const router = useRouter()
@@ -284,7 +280,7 @@ const Login =({token, setToken}) => {
                         </div>
 
                         <div style={{paddingLeft:200}}>
-                            <Link href="/forgotpassword1" variant="body2">
+                            <Link href="/forgetpassword" variant="body2">
                                 <a>Forgot password?</a>
                             </Link>
                         </div>

@@ -131,7 +131,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     }
 
     async function signUpF() {
-        console.log("starting user first time registration", company)
+        console.log("starting user first time registration")
         const erro = await signUp({
             email,
             //phone: '+1' + phone,
@@ -156,7 +156,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     }
 
     async function resendOTP() {
-        console.log("usercompany", company)
+        console.log("resending OTP")
         const erro = await recieveOTP({
             email,
         });
@@ -165,16 +165,16 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
             setMode(1)
             setTopPadding(28)
             setBottomTopPadding(202)
+        }else{
+            setError(erro);
+            console.log('server error', erro)
+            //setMode(0);
         }
-        setError(erro);
-        console.log('server error', erro)
-        //setMode(0);
     }
 
     async function confirmSignUpF() {
-            console.log('token in the confirm signup function page 11', token)
             const erro = await confirmSignUp({ email,otp,token, setToken  });
-            console.log("signup confirmation error",erro)
+            console.log("signup confirmation response",erro)
             // await sleep(2000);
             if (erro === null) {
                 //await router.push('/accountcreated')
@@ -289,7 +289,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         event.preventDefault();
         // const data = new FormData(event.currentTarget);
         console.log("wrong OTP", error)
-        console.log(email,password,company, name, otp)
+
         if(mode===0){
             checkFields()
         } else if(mode===1){
