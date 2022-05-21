@@ -113,25 +113,29 @@ export default function FeatureCard(props){
                                 router.pathname.includes('/dataset')? router.push({
                                         pathname:`/catalog/${props.data.ID}`,
                                         query:{
-                                            currentRouteTitle:props.currentRouteTitle ?props.currentRouteTitle:""
+                                            currentRouteTitle:props.currentRouteTitle ?props.currentRouteTitle:"",
+                                            catalogID:props.data.ID
                                         }
                                     }):
                                 router.pathname.includes('/catalog')? router.push({
                                             pathname:`/catalog/${props.data.ID}`,
                                             query:{
-                                                currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:''
+                                                currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:'',
+                                                catalogID:props.data.ID
                                             }
                                         }):
                                 router.pathname.includes('/browsecatalogue')? router.push({
                                         pathname:`/catalog/${props.data.ID}`,
                                         query:{
-                                            currentRouteTitle:"Catalogs"
+                                            currentRouteTitle:"Catalogs",
+                                            catalogID:props.data.ID
                                         }
                                     }):
                                 router.pathname.includes('/topic')? router.push({
                                         pathname:`/catalog/${props.data.ID}`,
                                         query:{
-                                            currentRouteTitle:"Topic Browser"
+                                            currentRouteTitle:"Topic Browser",
+                                            catalogID:props.data.ID
                                         }
                                     }):null
 

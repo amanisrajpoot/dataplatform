@@ -94,6 +94,7 @@ export default function ManageDataset({
     const [downloadLink, setDownloadLink] = React.useState('');
     const router = useRouter();
     const datasource_id = router.query.cid;
+    const catalogID = router.query.catalogID;
     console.log(datasource_id)
     const [addCatalogMode, setAddCatalogMode] = useState(false);
     const [keyword, setKeyword] = useState('')
@@ -363,9 +364,9 @@ export default function ManageDataset({
                             <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
                                 justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
                                 {       filteredDataSources !== null && filteredDataSources !== undefined &&
-                                        filteredDataSources.length <= 0? <div>
-                                        We are working on adding more catalogs to our platform.</div>:
-                                            filteredDataSources.map((data,index)=> index < 5 && <FeatureCard
+                                        filteredDataSources.length <= 0? <div>We are working on adding more catalogs to our platform.</div>:
+                                        filteredDataSources.find((data)=> data.ID === catalogID) ? <div>We are working on adding more catalogs to our platform.</div>:
+                                            filteredDataSources.map((data,index)=> index < 5 && String(data.ID) !== String(catalogID) && <FeatureCard
                                             key={data.ID}
                                             data={data}
                                             index={index}
