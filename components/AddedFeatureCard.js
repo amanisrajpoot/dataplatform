@@ -52,7 +52,7 @@ export default function AddedFeatureCard(props){
                                     onClick={()=>router.push({
                                         pathname: `/topic/${topic}`,
                                         query:{
-                                            currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                            currentRouteTitle:router.pathname.includes('/browsecatalogs')?"Browsing Catalogs":
                                                 router.pathname.includes('/datasets')?"Browsing Your Datasets":
                                                 router.pathname.includes('/catalog')?"Browsing Catalog":
                                                 router.pathname.includes('/dataset')?props.data.title:
@@ -97,7 +97,7 @@ export default function AddedFeatureCard(props){
                                                 currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:''
                                             }
                                         }):
-                                router.pathname.includes('/browsecatalogue')? router.push({
+                                router.pathname.includes('/browsecatalogs')? router.push({
                                         pathname:`/catalog/${props.data.ID}`,
                                         query:{
                                             currentRouteTitle:"Catalogs"

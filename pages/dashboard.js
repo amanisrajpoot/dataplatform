@@ -103,6 +103,11 @@ export default function Dashboard({
     };
 
     const handleClickUser = (event) => {
+        mixpanel.track('Clicked on Top Right Arrow for Settings Options', {
+            'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+            'action': "Viewed Settings Options on Dashboard Page",
+            'email': user && user.email !== null && user.email !== undefined && user.email,
+        });
         setAnchorElUser(event.currentTarget);
     };
 
@@ -193,10 +198,10 @@ export default function Dashboard({
         if(token !== 0 && !token && token !== null && token !== undefined){
             console.log("SEARCH", keyword)
             mixpanel.track('Keyword Search for Catalogs', {
-                'source': "Data Platform Dashboard",
+                'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                 'action': "keyword search",
                 'keyword': keyword,
-                'email': user.email,
+                'email': user && user.email,
             });
             const data = await getPublicDatasets(
                 token,keyword
@@ -256,7 +261,8 @@ export default function Dashboard({
             <Box sx={{display:'flex', fontStyle:'roboto'}}>
                 <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
-                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}
+                        user={user}/>
                     </Box>
                 </Box>
                 <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
@@ -291,7 +297,14 @@ export default function Dashboard({
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link >
-                                <AccountCircleIcon onClick={()=>router.push("/settings")} 
+                                <AccountCircleIcon onClick={()=>{
+                                    mixpanel.track('Clicked on Profile Icon', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Rediceted to Profile Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push("/settings")
+                                }} 
                                     fontSize="large" sx={{color:'#939EAA'}}/>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
@@ -313,13 +326,27 @@ export default function Dashboard({
                                     'aria-labelledby': 'basic-button',
                                 }}
                             >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Settings From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Settings Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/settings')
+                                }}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Support From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Support Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/support')
+                                }}><LiveHelpIcon/>&nbsp; Support</MenuItem>
                                 <MenuItem onClick={()=>{
                                     mixpanel.track('Sign Out', {
-                                        'source': "Dashboard Page",
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                         'action': "Signed Out from User Menu",
-                                        'email': user.email !== null && user.email !== undefined && user.email,
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
                                     });
                                     signOut({path:router.pathname})
                                 }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
@@ -381,9 +408,9 @@ export default function Dashboard({
                                             endIcon={<ArrowForwardIcon />}
                                             onClick={()=>{
                                                 mixpanel.track('Redirected to Survey Page', {
-                                                    'source': "Dashboard Page",
+                                                    'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                                     'action': "Survey Button Clicked",
-                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                    'email': user && user.email !== null && user.email !== undefined && user.email,
                                                 });
                                                 router.push('https://0w6e3b6atr1.typeform.com/to/JliJ1Qvo')
                                             }}
@@ -418,10 +445,10 @@ export default function Dashboard({
 
                                     <div onClick={()=>{
                                         mixpanel.track('Redirected to 1st Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
+                                            'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                             'action': "1st Industry Wide Trends Clicked",
                                             "url": "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
+                                            'email': user && user.email !== null && user.email !== undefined && user.email,
                                         });
                                         router.push('https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290')
                                     }}>
@@ -441,10 +468,10 @@ export default function Dashboard({
                                             }}
                                             onClick={() => {
                                                 mixpanel.track('Shared 1st Industry Wide Trends URL', {
-                                                    'source': "Dashboard Page",
+                                                    'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                                     'action': "Clicked on Share button of 1st Industry Wide Trends",
                                                     "url": "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
-                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                    'email': user && user.email !== null && user.email !== undefined && user.email,
                                                 });
                                                 console.log("shared successfully!")
                                             }}
@@ -469,10 +496,10 @@ export default function Dashboard({
                                 >
                                     <div onClick={()=>{
                                         mixpanel.track('Redirected to 2nd Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
+                                            'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                             'action': "2nd Industry Wide Trends Clicked",
                                             "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
+                                            'email': user && user.email !== null && user.email !== undefined && user.email,
                                         });
                                         router.push('https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/')
                                     }}>
@@ -491,10 +518,10 @@ export default function Dashboard({
                                             }}
                                             onClick={() => {
                                                 mixpanel.track('Shared 2nd Industry Wide Trends URL', {
-                                                    'source': "Dashboard Page",
+                                                    'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                                     'action': "Clicked on Share button of 2nd Industry Wide Trends",
                                                     "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
-                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                    'email': user && user.email !== null && user.email !== undefined && user.email,
                                                 });
                                                 console.log("shared successfully!")
                                             }}
@@ -519,10 +546,10 @@ export default function Dashboard({
 
                                     <div onClick={()=>{
                                         mixpanel.track('Redirected to 3rd Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
+                                            'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                             'action': "3rd Industry Wide Trends Clicked",
                                             "url": "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
+                                            'email': user && user.email !== null && user.email !== undefined && user.email,
                                         });
                                         router.push('https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html')
                                     }}>
@@ -541,10 +568,10 @@ export default function Dashboard({
                                             }}
                                             onClick={() => {
                                                 mixpanel.track('Shared 3rd Industry Wide Trends URL', {
-                                                    'source': "Dashboard Page",
+                                                    'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                                     'action': "Clicked on share button of 3rd Industry Wide Trends",
                                                     'url': "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
-                                                    'email': user.email !== null && user.email !== undefined && user.email,
+                                                    'email': user && user.email !== null && user.email !== undefined && user.email,
                                                 });
                                                 console.log("shared successfully!")
                                             }}

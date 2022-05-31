@@ -77,7 +77,7 @@ export default function FeatureCard(props){
                                     onClick={()=>router.push({
                                         pathname: `/topic/${topic}`,
                                         query:{
-                                            currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                            currentRouteTitle:router.pathname.includes('/browsecatalogs')?"Browsing Catalogs":
                                                 router.pathname.includes('/datasets')?"Browsing Your Datasets":
                                                 router.pathname.includes('/catalog')?"Browsing Catalog":
                                                 router.pathname.includes('/dataset')?props.data.title:
@@ -124,7 +124,7 @@ export default function FeatureCard(props){
                                                 catalogID:props.data.ID
                                             }
                                         }):
-                                router.pathname.includes('/browsecatalogue')? router.push({
+                                router.pathname.includes('/browsecatalogs')? router.push({
                                         pathname:`/catalog/${props.data.ID}`,
                                         query:{
                                             currentRouteTitle:"Catalogs",
@@ -152,7 +152,7 @@ export default function FeatureCard(props){
                     </div>
                     
                     {router.pathname.includes('/dashboard')?"":
-                        router.pathname.includes('/browsecatalogue')?"":
+                        router.pathname.includes('/browsecatalogs')?"":
                             router.pathname.includes('/catalog')?"":
                                 router.pathname.includes('/topic')?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 0 ?"":

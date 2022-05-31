@@ -211,7 +211,8 @@ export default function TopicBrowser({
             <Box sx={{display:'flex', fontStyle:'roboto', maxWidth:'100%'}}>
                 <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
-                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}
+                        user={user}/>
                 </Box>
                 </Box>
                 <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
