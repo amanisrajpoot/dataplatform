@@ -257,7 +257,7 @@ export default function LeftNav({
 				 {recently && <><div style={{display:'flex', flex:'start', paddingBottom:9, color:"#5A00E2", alignItems:'center',
 				cursor:'pointer', justifyContent:'center'}} onClick={()=>router.push("/searchresult")}>
 					<div style={{width:'20%'}}><AddCircleOutlineOutlinedIcon color="disabled" style={{fontSize:28,color:"gray",marginRight:24}} /></div>
-					<div style={{width:'80%'}}>Start New Set</div>
+					<div style={{width:'80%'}}>Start New Dataset</div>
 				</div>
 
 					{userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
