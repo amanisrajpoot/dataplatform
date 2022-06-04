@@ -53,7 +53,7 @@ export default function FeatureCard(props){
 
     return (
 
-          <div style={{display:"flex", flexDirection:'row', minHeight:'14vh',maxHeight:'14vh', width:"98%",
+        <div style={{display:"flex", flexDirection:'row', minHeight:'16vh',maxHeight:'16vh', width:"98%",
                alignItems:'center' ,backgroundColor:'#fff', marginBottom:14, flex:'start', borderRadius:16,
               textOverflow:'clip', font:'roboto',paddingRight:0,paddingLeft:2, fontSize:'0.9em',
               overflow: 'hidden',
@@ -66,11 +66,12 @@ export default function FeatureCard(props){
                           variant="outlined">{parseInt(props.index+1)}</Button>
               </div>
 
-                    <div style={{fontSize:"1em", minWidth:"47%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
-                        <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title.substring(0,89): "FDA Approved Drugs"}</b></div>
-                        <div style={{paddingBottom:8, color:'#939EAA'}}>{props.data.description?props.data.description.substring(0,149)+"..":"FDA has been very responsible in controlling drug flow"}</div>
+              <div style={{fontSize:"1em", minWidth:"55%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
+                        <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8, paddingRight:'2ch'}}><b>{props.data.title?props.data.title.substring(0,89): "FDA Approved Drugs"}</b></div>
+                        <div style={{paddingBottom:8, color:'#939EAA',paddingRight:'4ch'}}>{props.data.description?(router.pathname.includes("/searchresult")?props.data.description.substring(0,119):props.data.description.substring(0,149))+
+                            "..":"FDA has been very responsible in controlling drug flow"}</div>
                         <div style={{display:'flex', alignItems:'center', fontSize:"0.9em"}}><div style={{paddingRight:4,paddingBottom:4}}><b>{"Topics:  "}</b></div>
-                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
+                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{
                                     borderRadius:4, border:1, fontSize:"0.7em", mr:1,
                                     color:'#24BBFF'}}
                                     size="small"
@@ -88,67 +89,72 @@ export default function FeatureCard(props){
                                 : "6"}</div>
                     </div>
 
+                
 
-                    <div style={{minWidth:'43%', display:'flex', flex:'end',justifyContent:'space-between', }}>
-                        <Divider orientation="vertical" variant="middle" flexItem/>
-                    <div style={{ width:"25%"}}>
-                        <div>Key Features<br></br>
-                         </div>
-                        <div><b>{props.data.features?props.data.features.split(",").length.toLocaleString(): "0"}</b></div>
-                    </div>
-                        <Divider orientation="vertical" variant="middle" flexItem/>
-                    <div style={{width:"25%"}}>
-                        <div>No. of Rows<br></br>
+                    <div style={{minWidth:'35%', minHeight:'16vh',maxHeight:'16vh',display:'flex', 
+                        flex:'end',justifyContent:'space-between', alignItems:'center', paddingTop:"2vh", paddingBottom:'2vh' }}>
+                        <Divider orientation="vertical" flexItem variant="middle"/>
+                        <div style={{ }}>
+                            <div>{router.pathname.includes("/searchresult")?"Features":"Key Features"}<br></br>
+                            </div>
+                            <div><b>{props.data.features?props.data.features.split(",").length.toLocaleString(): "0"}</b></div>
                         </div>
-                        <div><b>{props.data.row_count?props.data.row_count.toLocaleString(): "0"}</b></div>
-                    </div>
+
+                        <Divider orientation="vertical" variant="middle" flexItem/>
+                        <div style={{}}>
+                            <div>{router.pathname.includes("/searchresult")?"Rows":"No. of Rows"}<br></br>
+                            </div>
+                            <div><b>{props.data.row_count?props.data.row_count.toLocaleString(): "0"}</b></div>
+                        </div>
                         <Divider orientation="vertical" variant="middle" flexItem/>
 
-                    <div style={{display:'flex', cursor:'pointer',width:"27%",alignItems:'center'}}>
-                        <div style={{display:'flex', cursor:'pointer',width:"100%", justifyContent:'center',
-                        maxHeight:36, alignItems:'center'}}>
-                            <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
-                            onClick={()=>{
-                              // props.handleOpenDetails(props.data)
-                                router.pathname.includes('/dataset')? router.push({
-                                        pathname:`/catalog/${props.data.ID}`,
-                                        query:{
-                                            currentRouteTitle:props.currentRouteTitle ?props.currentRouteTitle:"",
-                                            catalogID:props.data.ID
-                                        }
-                                    }):
-                                router.pathname.includes('/catalog')? router.push({
+                        <div style={{display:'flex', cursor:'pointer',alignItems:'center', 
+                            paddingRight:router.pathname.includes("/searchresult")?0:"1em"}}>
+                            <div style={{display:'flex', cursor:'pointer',width:"100%", justifyContent:'center',
+                            maxHeight:36, alignItems:'center'}}>
+                                <Button variant="outlined" fontSize="small" sx={{borderRadius:2, color:'#5A00E2', borderColor:'#5A00E2'}}
+                                onClick={()=>{
+                                // props.handleOpenDetails(props.data)
+                                    router.pathname.includes('/dataset')? router.push({
                                             pathname:`/catalog/${props.data.ID}`,
                                             query:{
-                                                currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:'',
+                                                currentRouteTitle:props.currentRouteTitle ?props.currentRouteTitle:"",
                                                 catalogID:props.data.ID
                                             }
                                         }):
-                                router.pathname.includes('/browsecatalogue')? router.push({
-                                        pathname:`/catalog/${props.data.ID}`,
-                                        query:{
-                                            currentRouteTitle:"Catalogs",
-                                            catalogID:props.data.ID
-                                        }
-                                    }):
-                                router.pathname.includes('/topic')? router.push({
-                                        pathname:`/catalog/${props.data.ID}`,
-                                        query:{
-                                            currentRouteTitle:"Topic Browser",
-                                            catalogID:props.data.ID
-                                        }
-                                    }):null
+                                    router.pathname.includes('/catalog')? router.push({
+                                                pathname:`/catalog/${props.data.ID}`,
+                                                query:{
+                                                    currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:'',
+                                                    catalogID:props.data.ID
+                                                }
+                                            }):
+                                    router.pathname.includes('/browsecatalogue')? router.push({
+                                            pathname:`/catalog/${props.data.ID}`,
+                                            query:{
+                                                currentRouteTitle:"Catalogs",
+                                                catalogID:props.data.ID
+                                            }
+                                        }):
+                                    router.pathname.includes('/topic')? router.push({
+                                            pathname:`/catalog/${props.data.ID}`,
+                                            query:{
+                                                currentRouteTitle:"Topic Browser",
+                                                catalogID:props.data.ID
+                                            }
+                                        }):null
 
-                              mixpanel.track('Catalog Card View Details', {
-                                'source': router.pathname,
-                                'action': "clicked on view details on catalog card",
-                                'catalog': props.data.ID,
-                                  'email': props.user.email
-                               })
-                              }
-                            }>
-                          <div style={{textTransform:'capitalize'}}>View</div>
-                        </Button>
+                                mixpanel.track('Catalog Card View Details', {
+                                    'source': router.pathname,
+                                    'action': "clicked on view details on catalog card",
+                                    'catalog': props.data.ID,
+                                    'email': props.user.email
+                                })
+                                }
+                                }>
+                            <div style={{textTransform:'capitalize'}}>View</div>
+                            </Button>
+                        </div>
                     </div>
                     
                     {router.pathname.includes('/dashboard')?"":
@@ -157,15 +163,14 @@ export default function FeatureCard(props){
                                 router.pathname.includes('/topic')?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 0 ?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 1 ?"":
-                    <div style={{ cursor:'pointer', alignItems:'center'}}
+                    <div style={{ cursor:'pointer', alignItems:'center', paddingRight:"1em"}}
                         onClick={()=>handleAdd()}>
                       <p>{searchInArray(props.dataset, props.data.ID)? <DoneIcon />: <AddIcon />}</p>
                     </div>}
 
                     </div>
-                    </div>
+            </div>
         
-          </div>
     )
 
 }

@@ -91,6 +91,7 @@ export default function TopicBrowser({
   token,
   setToken,
   name,
+  user,
   dataset,
   userdatasets,
   dataSources,
@@ -134,7 +135,6 @@ export default function TopicBrowser({
                               setOpen2(true);}
   const handleClose = () => setOpen(false);
 
-  const [user, setuser] = useState({});
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
           user !== {} && user !== null && user !== undefined){

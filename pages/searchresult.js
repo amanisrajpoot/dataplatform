@@ -102,10 +102,10 @@ export default function Searchresult({
   name,
   email,
   company,
-  dataset, 
+  dataset,
+  setDataset, 
   dataSources,
   setDataSources,
-  setDataset,
   setUserdatasets, 
   title, setTitle, description, setDescription,
   userdatasets,
@@ -157,6 +157,24 @@ export default function Searchresult({
             console.log('userP', userP);
         }
     }, [token]);
+
+    useEffect(async () => {
+        setDataset({
+            user_email:'',
+            title:'',
+            description:'',
+            topic:'',
+            row_count:0,
+            data_points:0,
+            data_sources:0,  
+            status:'',
+            template:false,
+            catalog:[]
+        });
+        setLocalDataset({title: '', description: '', topic: '', keywords: ''});
+        setTitle('');
+        setDescription('');
+    }, [router]);
 
     useEffect(async ()=> {
         if(token !== 0 && token !== null && token !== undefined &&
@@ -263,8 +281,22 @@ export default function Searchresult({
             'email':user.email,
         })
         console.log("created dataset",data);
-        setLocalDataset({title: '', description: '', topic: '', keywords: ''});
         router.push('/dataset/'+data.ID);
+        setDataset({
+            user_email:'',
+            title:'',
+            description:'',
+            topic:'',
+            row_count:0,
+            data_points:0,
+            data_sources:0,  
+            status:'',
+            template:false,
+            catalog:[],
+        });
+        setLocalDataset({title: '', description: '', topic: '', keywords: ''});
+        setTitle('');
+        setDescription('');
       }
   };
 
@@ -505,7 +537,7 @@ export default function Searchresult({
                         <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
                     overflowY:'auto', maxHeight:'51.5vh', paddingRight:-8}}>   
                         
-                        {dataSources && dataSources.length > 0 ? dataSources.map((data,index)=>index <21 && <ToAddFeatureCard
+                        {dataSources && dataSources.length > 0 ? dataSources.map((data,index)=>index <21 && <FeatureCard
                             openDetails={openDetails}
                             data={data}
                             index={index}

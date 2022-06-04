@@ -36,9 +36,9 @@ export default function DatasetCard(props){
         <div style={{display:"flex", flexDirection:'column', width:"99.5%", borderRadius:9,paddingRight:9,
              backgroundColor:"#FAFAFB",font:'roboto', fontSize:'0.9em',overflow: 'hidden',
               }}>
-          <div style={{display:"flex", flexDirection:'row', minHeight:'15vh',maxHeight:'15vh', width:"100%",
+          <div style={{display:"flex", flexDirection:'row', minHeight:'16vh',maxHeight:'16vh', width:"100%",
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
-              textOverflow:'clip',  }}>
+              textOverflow:'clip', paddingTop:"2vh", paddingBottom:'2vh' }}>
 
                   <div style={{
                       flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px'}}>
@@ -47,14 +47,14 @@ export default function DatasetCard(props){
                               variant="outlined">{parseInt(props.index+1)}</Button>
                   </div>
 
-                    <div style={{ width:"32%", overflow:'hidden',
+                    <div style={{ width:"45%", overflow:'hidden',
                         flexDirection:'column',display:'flex',justifyContent:'center', }}>
                       <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title.substring(0,51): "Sample Dataset"+props.data.ID}</b><br></br>
                             </div>
-                        <div style={{color:'gray'}}>{props.data.description?props.data.description.substring(0,44)+"..": "Dataset Description"}</div>
+                        <div style={{color:'gray'}}>{props.data.description?props.data.description.substring(0,129)+"..": "Dataset Description"}</div>
                         <div style={{fontSize:'0.9em',display:'flex', alignItems:'center', }}><div style={{paddingRight:4, paddingTop:4}}><b>{"Topics:  "}</b></div>
-                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{backgroundColor:"#E4F7FF",
-                                 borderRadius:4, border:1, fontSize:"0.7em", marginTop:1,
+                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{
+                                 borderRadius:4, border:1, fontSize:"0.8em", marginTop:1,textTransform:'capitalize',
                                     marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small"
                                  onClick={()=>router.push({
                                     pathname: `/topic/${topic}`,
@@ -76,29 +76,29 @@ export default function DatasetCard(props){
                      <Divider orientation="vertical" flexItem variant="middle"/>
 
                     <div style={{width:"7%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
-                      <div style={{color:'gray', paddingBottom:8}}>Row Count:</div>
-                        <div style={{fontWeight:'bold', fontSize:17}}>{props.data.row_count?props.data.row_count.toLocaleString(): "123"}</div>
+                      <div style={{color:'#939EAA', paddingBottom:8}}>Row Count:</div>
+                        <div style={{fontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.row_count?props.data.row_count.toLocaleString(): "0"}</div>
                     </div>
 
                       <Divider orientation="vertical" flexItem variant="middle"/>
 
                       <div style={{width:"8%",flexDirection:'column',display:'flex',justifyContent:'center',}}>
-                          <div style={{color:'gray', paddingBottom:8}} >Data Points:</div>
-                          <div style={{fontWeight:'bold', fontSize:17}}>{props.data.data_points?props.data.data_points.toLocaleString(): "567"}</div>
+                          <div style={{color:'#939EAA', paddingBottom:8}} >Data Points:</div>
+                          <div style={{fontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.data_points?props.data.data_points.toLocaleString(): "0"}</div>
                       </div>
 
                     <Divider orientation="vertical" flexItem variant="middle"/>
 
-              <div style={{width:"6%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18,}}>
-                  <div style={{color:'gray', paddingBottom:8}}>Datasources:</div>
-                  <div style={{fontWeight:'bold', fontSize:17}}>{props.data.data_sources?props.data.data_sources: "123"}</div>
+              <div style={{width:"7%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
+                  <div style={{color:'#939EAA', paddingBottom:8}}>Datasources:</div>
+                  <div style={{ffontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.data_sources?props.data.data_sources: "0"}</div>
               </div>
 
               <Divider orientation="vertical" flexItem variant="middle"/>
 
-              <div style={{width:"3%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18, }}>
-                  <div style={{color:'gray', paddingBottom:8,}}>Topics:&nbsp;</div>
-                  <div style={{fontWeight:'bold', fontSize:17}}>{props.data.topic?props.data.topic.split(",").length: "6"}</div>
+              <div style={{width:"4%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18, }}>
+                  <div style={{color:'#939EAA', paddingBottom:8,}}>Topics:&nbsp;</div>
+                  <div style={{fontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.topic?props.data.topic.split(",").length: "0"}</div>
               </div>
 
               <Divider orientation="vertical" flexItem variant="middle"/>
