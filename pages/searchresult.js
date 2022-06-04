@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FeatureCard from '../components/FeatureCard';
 import AddedFeatureCard from '../components/AddedFeatureCard';
+import ToAddFeatureCard from '../components/AddedFeatureCard';
 import Modal from '@mui/material/Modal';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import {getPublicDatasets, createUserDataset, getUser} from '../function/users';
@@ -262,6 +263,7 @@ export default function Searchresult({
             'email':user.email,
         })
         console.log("created dataset",data);
+        setLocalDataset({title: '', description: '', topic: '', keywords: ''});
         router.push('/dataset/'+data.ID);
       }
   };
@@ -503,7 +505,7 @@ export default function Searchresult({
                         <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
                     overflowY:'auto', maxHeight:'51.5vh', paddingRight:-8}}>   
                         
-                        {dataSources && dataSources.length > 0 ? dataSources.map((data,index)=>index <21 && <FeatureCard
+                        {dataSources && dataSources.length > 0 ? dataSources.map((data,index)=>index <21 && <ToAddFeatureCard
                             openDetails={openDetails}
                             data={data}
                             index={index}

@@ -308,7 +308,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                         sm={4}
                         md={6}
                         sx={{
-                            backgroundImage: 'url(/new-background-login.jpg)',
+                            backgroundImage: 'url(/big-data-logon-screen.jpg)',
                             // backgroundRepeat: 'no-repeat',
                             width:"100%",
 
