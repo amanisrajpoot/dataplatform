@@ -15,7 +15,10 @@ import Divider from '@mui/material/Divider';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import Link from 'next/link'
 import {getPublicDatasets, getDatasets, getUser} from '../function/users';
+import mixpanel from 'mixpanel-browser';
 
+
+mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
 export default function LeftNav({
 	setmenu,
@@ -27,6 +30,7 @@ export default function LeftNav({
 	setUserdatasets,
 	location,
 	menu,
+	user,
 	token,
 }) {
 	const router = useRouter();
@@ -121,7 +125,14 @@ export default function LeftNav({
 
 			<div className={styles.navbar}>
 				<div style={{width:'100%',}}>
-					 	<div style={{ width:'100%', }} onClick={()=>router.push("/dashboard")}>
+					 	<div style={{ width:'100%', }} onClick={()=>{
+							 mixpanel.track(`Clicked on Logo`, {
+								'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+								'action': "Clicked on Logo in the " + router.pathname.split("/")[1].toUpperCase() + " Page",
+								'email': user.email && user.email !== null && user.email !== undefined && user.email,
+							  });
+							  console.log(router.pathname.split("/")[1].toUpperCase());
+							 router.push("/dashboard")}}>
 							 <img src='/logo02.png' layout="responsive" width='100%' style={{cursor:'pointer'}}
 								></img>
 						{/*<div style={{width:'100%',textAlign:'center', fontSize:32, 
@@ -136,6 +147,11 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
+						mixpanel.track(`Clicked on Dashboard`, {
+							'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+							'action': "Clicked on Dashboard in the " + router.pathname.split("/")[1].toUpperCase() + " Page",
+							'email': user.email && user.email !== null && user.email !== undefined && user.email,
+						  });
 						router.push('/dashboard');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
@@ -163,6 +179,11 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
+						mixpanel.track(`Clicked on Datasets`, {
+							'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+							'action': "Clicked on Datasets in the " + router.pathname.split("/")[1].toUpperCase() + " Page",
+							'email': user.email && user.email !== null && user.email !== undefined && user.email,
+						  });
 						router.push('/datasets');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
@@ -194,7 +215,12 @@ export default function LeftNav({
 
 				<div
 					onClick={() => {
-						router.push('/browsecatalogue');
+						mixpanel.track(`Clicked on Catalogs`, {
+							'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+							'action': "Clicked on Catalogs in the " + router.pathname.split("/")[1].toUpperCase() + " Page",
+							'email': user.email && user.email !== null && user.email !== undefined && user.email,
+						  });
+						router.push('/browsecatalogs');
 						// if (width !== null && width <= 800) {
 						// 	setmenu(false);
 						// 	setLeftAnimation(styles.menuTopClose);
@@ -202,7 +228,7 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						color: router.pathname.includes('/browsecatalogue') ||
+						color: router.pathname.includes('/browsecatalogs') ||
 						 	   router.pathname.includes('/topic')
 							? '#5A00E2'
 							: 'gray',
@@ -213,7 +239,7 @@ export default function LeftNav({
 
 					<p
 						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/browsecatalogue')||
+							color: router.pathname.includes('/browsecatalogs')||
 							router.pathname.includes('/topic') ? '#5A00E2' : '',
 						}}
 					>
@@ -255,7 +281,13 @@ export default function LeftNav({
 				</div>
 
 				 {recently && <><div style={{display:'flex', flex:'start', paddingBottom:9, color:"#5A00E2", alignItems:'center',
-				cursor:'pointer', justifyContent:'center'}} onClick={()=>router.push("/searchresult")}>
+				cursor:'pointer', justifyContent:'center'}} onClick={()=>{
+					mixpanel.track(`Clicked on Create a Dataset`, {
+						'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+						'action': "Clicked on Create a Dataset in the " + router.pathname.split("/")[1].toUpperCase() + " Page",
+						'email': user.email && user.email !== null && user.email !== undefined && user.email,
+					  });
+					router.push("/searchresult")}}>
 					<div style={{width:'20%'}}><AddCircleOutlineOutlinedIcon color="disabled" style={{fontSize:28,color:"gray",marginRight:24}} /></div>
 					<div style={{width:'80%'}}>Start New Dataset</div>
 				</div>
@@ -263,7 +295,13 @@ export default function LeftNav({
 					{userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
                         userdatasets.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data, index)=> index <3 && 
 						<div style={{display:'flex', justifyContent:'space-between',paddingBottom:12,alignItems:'center', cursor:"pointer" }}
-							onClick={() => {router.push(`/dataset/${data.ID}`)}}>
+							onClick={() => {
+								mixpanel.track(`Clicked on one of the Recent Dataset`, {
+									'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+									'action': `Clicked on ${data.title} Dataset in the ` + router.pathname.split("/")[1].toUpperCase() + " Page",
+									'email': user.email && user.email !== null && user.email !== undefined && user.email,
+								  });
+								router.push(`/dataset/${data.ID}`)}}>
 							<div style={{width:"21%"}}>
 								<div style={{backgroundColor:"#5A00E2", borderRadius:'50%', height:32, width:32, color:'white',
 									textAlign:'center',paddingTop:6}}>

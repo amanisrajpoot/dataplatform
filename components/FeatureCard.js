@@ -78,7 +78,7 @@ export default function FeatureCard(props){
                                     onClick={()=>router.push({
                                         pathname: `/topic/${topic}`,
                                         query:{
-                                            currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                            currentRouteTitle:router.pathname.includes('/browsecatalogs')?"Browsing Catalogs":
                                                 router.pathname.includes('/datasets')?"Browsing Your Datasets":
                                                 router.pathname.includes('/catalog')?"Browsing Catalog":
                                                 router.pathname.includes('/dataset')?props.data.title:
@@ -122,6 +122,7 @@ export default function FeatureCard(props){
                                                 catalogID:props.data.ID
                                             }
                                         }):
+                                    
                                     router.pathname.includes('/catalog')? router.push({
                                                 pathname:`/catalog/${props.data.ID}`,
                                                 query:{
@@ -129,7 +130,7 @@ export default function FeatureCard(props){
                                                     catalogID:props.data.ID
                                                 }
                                             }):
-                                    router.pathname.includes('/browsecatalogue')? router.push({
+                                    router.pathname.includes('/browsecatalogs')? router.push({
                                             pathname:`/catalog/${props.data.ID}`,
                                             query:{
                                                 currentRouteTitle:"Catalogs",
@@ -144,21 +145,20 @@ export default function FeatureCard(props){
                                             }
                                         }):null
 
-                                mixpanel.track('Catalog Card View Details', {
-                                    'source': router.pathname,
-                                    'action': "clicked on view details on catalog card",
-                                    'catalog': props.data.ID,
-                                    'email': props.user.email
-                                })
-                                }
-                                }>
-                            <div style={{textTransform:'capitalize'}}>View</div>
-                            </Button>
-                        </div>
+                              mixpanel.track('Catalog Card View Details', {
+                                'source': router.pathname,
+                                'action': "clicked on view details on catalog card",
+                                'catalog': props.data.ID,
+                                  'email': props.user.email
+                               })
+                              }
+                            }>
+                          <div style={{textTransform:'capitalize'}}>View</div>
+                        </Button>
                     </div>
                     
                     {router.pathname.includes('/dashboard')?"":
-                        router.pathname.includes('/browsecatalogue')?"":
+                        router.pathname.includes('/browsecatalogs')?"":
                             router.pathname.includes('/catalog')?"":
                                 router.pathname.includes('/topic')?"":
                     router.pathname.includes('/dataset') && props.datasetMode === 0 ?"":

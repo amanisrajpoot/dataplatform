@@ -16,6 +16,7 @@ import HelpCenterCard from '../components/HelpCenterCard';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Modal from '@mui/material/Modal';
+import InputBase from '@mui/material/InputBase';
 import { Grid } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -76,7 +77,7 @@ const style2 = {
   p: 4,
 };
 
-export default function BrowseCatalogue({
+export default function BrowseCatalogs({
   token,
   setToken,
   name,
@@ -286,65 +287,93 @@ setuser,
             </Box>
             </Box>
         <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-            <Box component="main" sx={{  width:'82%', display:'flex',position:'fixed' }}>
-                <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                    {/* <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                        <SearchIcon />
-                    </Box>
-
-                <InputBase
-                    // onChange={setVal}
-                    sx={{ bgcolor:'white',width:'90%'}}
-                    placeholder="Search"
-                    inputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
+            <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
+                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
+                            <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
-                            </InputAdornment>
-                        ),
-                        placeholder:"Search..."
-                    }}
-                /> */}
-                </Box>
+                            </Box>
 
-                <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                    alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                    <Link href='/login'>
-                        {/* <NotificationsIcon
-                            fontSize="large"
-                            sx={{color:'#939EAA', cursor:'pointer'}}
-                        /> */}
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;
-                    <Link >
-                        <AccountCircleIcon onClick={()=>router.push("/settings")} 
-                            fontSize="large" sx={{color:'#939EAA'}}/>
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;
-                    <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
-                    &nbsp;&nbsp;&nbsp;
-                    <div
-                        // onClick={()=>signOut({path:router.pathname})}
-                        onClick={handleClickUser}
-                    >
-                        <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
-                    </div>
+                            <InputBase
+                                // onChange={setVal}
+                                sx={{ bgcolor:'white',width:'90%'}}
+                                placeholder="Search Google Maps"
+                                inputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                    placeholder:"Search..."
+                                }}
+                            />
+                        </Box>
 
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElUser}
-                        open={openUser}
-                        onClose={handleCloseUser}
-                        MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                        }}
-                    >
-                        <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                        <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                        <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                    </Menu>
-                </div>
-            </Box>
+                        <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
+                            alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
+                            <Link href='/login'>
+                                {/* <NotificationsIcon
+                                    fontSize="large"
+                                    sx={{color:'#939EAA', cursor:'pointer'}}
+                                /> */}
+                            </Link>
+                            &nbsp;&nbsp;&nbsp;
+                            <Link >
+                                <AccountCircleIcon onClick={()=>{
+                                    mixpanel.track('Clicked on Profile Icon', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Rediceted to Profile Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push("/settings")
+                                }} 
+                                    fontSize="large" sx={{color:'#939EAA'}}/>
+                            </Link>
+                            &nbsp;&nbsp;&nbsp;
+                            <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
+                            &nbsp;&nbsp;&nbsp;
+                            <div
+                                // onClick={()=>signOut({path:router.pathname})}
+                                onClick={handleClickUser}
+                            >
+                                <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                            </div>
+
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElUser}
+                                open={openUser}
+                                onClose={handleCloseUser}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Settings From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Settings Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/settings')
+                                }}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Support From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Support Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/support')
+                                }}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Sign Out', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Signed Out from User Menu",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    signOut({path:router.pathname})
+                                }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                            </Menu>
+                        </div>
+                    </Box>
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
                 paddingTop:11 }}>

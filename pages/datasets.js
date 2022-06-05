@@ -195,10 +195,10 @@ export default function Datasets({
         if(token!==null){
             console.log("SEARCH", keyword)
             mixpanel.track('Keyword Search for Catalogs', {
-                'source': "Data Platform Dashboard",
+                'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                 'action': "keyword search",
                 'keyword': keyword,
-                'email': user.email,
+                'email': user && user.email,
             });
             const data = await getPublicDatasets(
                 token,keyword
@@ -216,12 +216,13 @@ export default function Datasets({
             <Box sx={{display:'flex', fontStyle:'roboto'}}>
                 <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
-                        <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+                        <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}
+                            user={user}/>
                     </Box>
                 </Box>
                 <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-                    <Box component="main" sx={{  minWidth:'82%', display:'flex',position:'fixed' }}>
-                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+                <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
+                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
                             </Box>
@@ -241,18 +242,6 @@ export default function Datasets({
                             />
                         </Box>
 
-                        {/*<TextField fullWidth id="outlined-basic"*/}
-                        {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                        {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                        {/*           InputProps={{*/}
-                        {/*               startAdornment: (*/}
-                        {/*                   <InputAdornment position="start">*/}
-                        {/*                       <SearchIcon />*/}
-                        {/*                   </InputAdornment>*/}
-                        {/*               ),*/}
-                        {/*               placeholder:"Search..."*/}
-                        {/*           }}*/}
-                        {/*/>*/}
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
@@ -262,12 +251,19 @@ export default function Datasets({
                                 /> */}
                             </Link>
                             &nbsp;&nbsp;&nbsp;
-                            <Link>
-                                <AccountCircleIcon onClick={()=>router.push("/settings")} 
+                            <Link >
+                                <AccountCircleIcon onClick={()=>{
+                                    mixpanel.track('Clicked on Profile Icon', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Rediceted to Profile Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push("/settings")
+                                }} 
                                     fontSize="large" sx={{color:'#939EAA'}}/>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
-                            <p style={{fontSize:20}}>{user && name?name: Auth.user ?Auth.user.attributes.name: 'Account'} </p>
+                            <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
                             &nbsp;&nbsp;&nbsp;
                             <div
                                 // onClick={()=>signOut({path:router.pathname})}
@@ -285,9 +281,30 @@ export default function Datasets({
                                     'aria-labelledby': 'basic-button',
                                 }}
                             >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Settings From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Settings Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/settings')
+                                }}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Support From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Support Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/support')
+                                }}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Sign Out', {
+                                        'source': "Dashboard Page",
+                                        'action': "Signed Out from User Menu",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    signOut({path:router.pathname})
+                                }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
                     </Box>
@@ -327,9 +344,9 @@ export default function Datasets({
                                     router.push('/searchresult');
                                     // mixpanel.time_event('Create Dataset');
                                     mixpanel.track('Clicked on Create Dataset', {
-                                        'source': "Data Platform Dashboard",
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
                                         'scrolled first': true,
-                                        'email':user.email
+                                        'email': user && user.email
                                     });
                                 }}>
                             {/* onClick={handleOpen}> */}

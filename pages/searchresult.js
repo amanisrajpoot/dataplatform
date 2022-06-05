@@ -236,8 +236,8 @@ export default function Searchresult({
 
   const handleKeywordSearch = async (event) => {
     if(token!==null){
-        mixpanel.track('Keyword Search for Catalogs', {
-            'source': "Create Dataset Page",
+        mixpanel.track('Keyword Search for Catalogs in the Create Dataset', {
+            'source': router.pathname.split("/")[1].toUpperCase() + " Page",
             'action': "keyword search",
             'keyword': keyword,
             'email': user.email,
@@ -276,7 +276,7 @@ export default function Searchresult({
         setUserdatasets(data);
         setIsActive(false);
         mixpanel.track('Clicked on Create', {
-          'source': "Create Dataset Page",
+          'source': router.pathname.split("/")[1].toUpperCase() + " Page",
           'scrolled first': true,
             'email':user.email,
         })
@@ -315,45 +315,33 @@ export default function Searchresult({
     <Box sx={{display:'flex', flexDirection:'row'}}>
         
         <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
-            <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+            <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}
+                user={user}/>
         </Box>
 
         <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
-                     
-                <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
-                    <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                        <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                            <SearchIcon />
+            <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
+                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
+                            <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                                <SearchIcon />
+                            </Box>
+
+                            <InputBase
+                                // onChange={setVal}
+                                sx={{ bgcolor:'white',width:'90%'}}
+                                placeholder="Search Google Maps"
+                                inputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                    placeholder:"Search..."
+                                }}
+                            />
                         </Box>
 
-                        <InputBase
-                            // onChange={setVal}
-                            sx={{ bgcolor:'white',width:'90%'}}
-                            placeholder="Search Google Maps"
-                            inputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                                placeholder:"Search..."
-                            }}
-                        />
-                    </Box>
-
-                    {/*<TextField fullWidth id="outlined-basic"*/}
-                    {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                    {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                    {/*           InputProps={{*/}
-                    {/*               startAdornment: (*/}
-                    {/*                   <InputAdornment position="start">*/}
-                    {/*                       <SearchIcon />*/}
-                    {/*                   </InputAdornment>*/}
-                    {/*               ),*/}
-                    {/*               placeholder:"Search..."*/}
-                    {/*           }}*/}
-                    {/*/>*/}
-                    <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
+                        <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
                                 {/* <NotificationsIcon
@@ -362,8 +350,15 @@ export default function Searchresult({
                                 /> */}
                             </Link>
                             &nbsp;&nbsp;&nbsp;
-                            <Link>
-                                <AccountCircleIcon onClick={()=>router.push("/settings")} 
+                            <Link >
+                                <AccountCircleIcon onClick={()=>{
+                                    mixpanel.track('Clicked on Profile Icon', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Rediceted to Profile Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push("/settings")
+                                }} 
                                     fontSize="large" sx={{color:'#939EAA'}}/>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
@@ -385,12 +380,33 @@ export default function Searchresult({
                                     'aria-labelledby': 'basic-button',
                                 }}
                             >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Settings From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Settings Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/settings')
+                                }}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Support From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Support Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/support')
+                                }}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Sign Out', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Signed Out from User Menu",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    signOut({path:router.pathname})
+                                }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
-                </Box>
+                    </Box>
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
 
@@ -479,7 +495,15 @@ export default function Searchresult({
                                 {"Save as Draft"}</Button> */}
                         <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
-                                 onClick={()=>handleClickChange(1)}>
+                                 onClick={()=>{
+                                    mixpanel.track('Clicked on Next on 1st Page of Create Dataset', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Dataset Creation Page 1",
+                                        'title': localdataset.title,
+                                        'description': localdataset.description,
+                                        'email': user && user.email,
+                                    });
+                                    handleClickChange(1)}}>
                             {"Next"}</Button>
                         </Box>
 
@@ -571,7 +595,14 @@ export default function Searchresult({
                             {"Save as Draft"}</Button> */}
                         <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:78.25,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
-                                onClick={()=>handleClickChange(2)}>
+                                onClick={()=>{
+                                    mixpanel.track('Clicked on Next on 2nd Page of Create Dataset', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Dataset Creation Page 2",
+                                        'catalogCount': localdataset.catalog && localdataset.catalog.length,
+                                        'email': user && user.email,
+                                    });
+                                    handleClickChange(2)}}>
                             {"Next"}</Button>
                     </Box>
 
@@ -638,7 +669,16 @@ export default function Searchresult({
                             
                         <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:76.5,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
-                                onClick={()=>handleSendData()}>
+                                onClick={()=>{
+                                    mixpanel.track('Clicked on Create on 3rd Page of Create Dataset', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Dataset Creation Page 3",
+                                        'title': localdataset.title,
+                                        'description': localdataset.description,
+                                        'catalogCount': localdataset.catalog && localdataset.catalog.length,
+                                        'email': user && user.email,
+                                    });
+                                    handleSendData()}}>
                             {"Create"}</Button>
                     </Box>
                     </Box>

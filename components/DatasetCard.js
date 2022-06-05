@@ -56,14 +56,20 @@ export default function DatasetCard(props){
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{
                                  borderRadius:4, border:1, fontSize:"0.8em", marginTop:1,textTransform:'capitalize',
                                     marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small"
-                                 onClick={()=>router.push({
+                                 onClick={()=>{
+                                    mixpanel.track(`Clicked on Topic ${topic}`, {
+                                      'source': "Datasets Page",
+                                      'action': `Clicked on Topic ${topic} on the Dataset Card of ${props.data.title}`,
+                                      'email': props.user.email && props.user.email !== null && props.user.email !== undefined && props.user.email,
+                                    });
+                                   router.push({
                                     pathname: `/topic/${topic}`,
                                     query:{
                                         currentRouteTitle:router.pathname.includes('/datasets')?"Browsing My Datasets":
                                             router.pathname.includes('/catalog')?data.title:
                                                 router.query.tid
                                     }
-                                    })}>{topic.substring(0,19)}</Button>)
+                                    })}}>{topic.substring(0,19)}</Button>)
                             : "6"}</div>
                     </div>
                     {/*<div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word",*/}
@@ -125,7 +131,8 @@ export default function DatasetCard(props){
                           });
                           }
                         }>
-                        <Button sx={{borderRadius:2, borderColor:'#5A00E2', color:'#5A00E2', textTransform:'capitalize'}} variant="outlined">View</Button>
+                        <Button sx={{borderRadius:2, borderColor:'#5A00E2', color:'#5A00E2', textTransform:'capitalize'}} variant="outlined"
+                          >View</Button>
                     </div>}
               </div>
           </div>

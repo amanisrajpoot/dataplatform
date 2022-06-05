@@ -248,7 +248,8 @@ export default function ManageDataset({
 
             <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
-                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}
+                        user={user}/>
                 </Box>
             </Box>
             <Box sx={{width:"82%"}}>

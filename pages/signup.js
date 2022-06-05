@@ -30,7 +30,10 @@ import OTPForm from "../components/OtpScreen";
 import {EMAIL_VALIDATOR} from "../function/constants";
 import { Auth } from 'aws-amplify';
 import {useEffect} from "react";
-
+import MenuItem from '@mui/material/MenuItem';
+import WorkIcon from '@mui/icons-material/Work';
+import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
+import PublicIcon from '@mui/icons-material/Public';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -122,6 +125,22 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     const [confirmPasswordError, setConfirmPasswordError] = useState(false)
     const [companyError, setCompanyError] = useState(false)
     const [user, setUser] = useState(false)
+    const [currency, setCurrency] = React.useState('EUR');
+
+    const currencies = [
+        {
+          value: 'healthCare',
+          label: 'Health Care',
+        },
+        {
+          value: 'educationTEchnology',
+          label: 'Education Technology',
+        },
+      ];
+
+      const handleChange = (event) => {
+        setCurrency(event.target.value);
+      };
 
     async function signInFK(){
         setMode(1);
@@ -418,6 +437,26 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                             }}
                                         /> }
 
+                                        {/* <TextField
+                                            margin="normal"
+                                            required
+                                            sx={{width: "65%"}}
+                                            id="jobRole"
+                                            label="Job Role"
+                                            name="jobRole"
+                                            autoComplete="jobrole"
+                                            autoFocus
+                                            onChange={(e) => setCompany(e.target.value)}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <WorkIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Job Role"
+                                            }}
+                                        /> */}
+
                                         {companyError ? <TextField
                                             error
                                             margin="normal"
@@ -457,6 +496,50 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 placeholder: "Company Name"
                                             }}
                                         />}
+
+                                        {/* <TextField
+                                            margin="normal"
+                                            id="outlined-select-currency"
+                                            select
+                                            label="Select Industry"
+                                            sx={{width: "65%"}}
+                                            value={currency}
+                                            onChange={handleChange}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <EmojiTransportationIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Select Industry"
+                                            }}
+                                            >
+                                            {currencies.map((option) => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                                </MenuItem>
+                                            ))}
+                                            </TextField>
+
+                                            <TextField
+                                            margin="normal"
+                                            required
+                                            sx={{width: "65%"}}
+                                            id="country"
+                                            label="Country"
+                                            name="country"
+                                            autoComplete="country"
+                                            autoFocus
+                                            onChange={(e) => setCompany(e.target.value)}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <PublicIcon/>
+                                                    </InputAdornment>
+                                                ),
+                                                placeholder: "Country"
+                                            }}
+                                        /> */}
 
                                         {usernameError ? <TextField
                                             error
@@ -577,6 +660,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 placeholder: "Confirm Password"
                                             }}
                                         />}
+
                                        <div style={{color:'red'}}>{error? <>{error}</>:null}</div>
                                         <Button
                                             type="submit"

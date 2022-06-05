@@ -230,6 +230,14 @@ export default function Support({
         } else {
             setError(null);
             handleSubmit();
+            mixpanel.track('Clicked on Submit Query', {
+                'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                'scrolled first': true,
+                'query name': queryName,
+                'query description': queryDescription,
+                'email': userEmail,
+                'email': user.email && user.email,
+            })
             router.push(`mailto:support@devi.ai?subject=${queryName}&body=${queryDescription}`)
         }
     }
@@ -237,78 +245,98 @@ export default function Support({
   return (
     <Box sx={{display:'flex', flexDirection:'row'}}>
         <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
-            <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+            <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}
+                user={user}/>
         </Box>
 
         <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
-                <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
-                    <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                        <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                            <SearchIcon />
+                <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
+                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
+                            <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
+                                <SearchIcon />
+                            </Box>
+
+                            <InputBase
+                                // onChange={setVal}
+                                sx={{ bgcolor:'white',width:'90%'}}
+                                placeholder="Search Google Maps"
+                                inputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                    placeholder:"Search..."
+                                }}
+                            />
                         </Box>
 
-                        <InputBase
-                            // onChange={setVal}
-                            sx={{ bgcolor:'white',width:'90%'}}
-                            placeholder="Search Google Maps"
-                            inputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                                placeholder:"Search..."
-                            }}
-                        />
-                    </Box>
+                        <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
+                            alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
+                            <Link href='/login'>
+                                {/* <NotificationsIcon
+                                    fontSize="large"
+                                    sx={{color:'#939EAA', cursor:'pointer'}}
+                                /> */}
+                            </Link>
+                            &nbsp;&nbsp;&nbsp;
+                            <Link >
+                                <AccountCircleIcon onClick={()=>{
+                                    mixpanel.track('Clicked on Profile Icon', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Rediceted to Profile Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push("/settings")
+                                }} 
+                                    fontSize="large" sx={{color:'#939EAA'}}/>
+                            </Link>
+                            &nbsp;&nbsp;&nbsp;
+                            <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
+                            &nbsp;&nbsp;&nbsp;
+                            <div
+                                // onClick={()=>signOut({path:router.pathname})}
+                                onClick={handleClickUser}
+                            >
+                                <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                            </div>
 
-                    {/*<TextField fullWidth id="outlined-basic"*/}
-                    {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                    {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                    {/*           InputProps={{*/}
-                    {/*               startAdornment: (*/}
-                    {/*                   <InputAdornment position="start">*/}
-                    {/*                       <SearchIcon />*/}
-                    {/*                   </InputAdornment>*/}
-                    {/*               ),*/}
-                    {/*               placeholder:"Search..."*/}
-                    {/*           }}*/}
-                    {/*/>*/}
-                    <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                        alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                        <Link href='/login'>
-                            {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> */}
-                        </Link>
-                        &nbsp;&nbsp;&nbsp;
-                        <Link href='/login'>
-                            <AccountCircleIcon onClick={()=>router.push("/settings")} fontSize="large" 
-                                sx={{color:'#939EAA'}}/>
-                        </Link>
-                        &nbsp;&nbsp;&nbsp;
-                        <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
-                        &nbsp;&nbsp;&nbsp;
-                        <div
-                            // onClick={()=>signOut({path:router.pathname})}
-                            onClick={handleClickUser}
-                        >
-                            <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElUser}
+                                open={openUser}
+                                onClose={handleCloseUser}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Settings From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Settings Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/settings')
+                                }}><SettingsIcon/>&nbsp; Settings</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Clicked on Support From the Settings Options', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Clicked on Support Option on Dashboard Page",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    router.push('/support')
+                                }}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+                                <MenuItem onClick={()=>{
+                                    mixpanel.track('Sign Out', {
+                                        'source': router.pathname.split("/")[1].toUpperCase() + " Page",
+                                        'action': "Signed Out from User Menu",
+                                        'email': user && user.email !== null && user.email !== undefined && user.email,
+                                    });
+                                    signOut({path:router.pathname})
+                                }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
+                            </Menu>
                         </div>
-
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorElUser}
-                            open={openUser}
-                            onClose={handleCloseUser}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                            <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                            <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                        </Menu>
-                    </div>
-                </Box>
+                    </Box>
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
 
