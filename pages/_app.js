@@ -110,15 +110,7 @@ function MyApp({ Component, pageProps }) {
         }
     }, [token]);
 
-    const addDatasetcatalog = (data) => {
-            setDataset({...dataset,catalog:[...dataset.catalog,data]});
-            console.log("dataset",dataset)
-        };
-    const removeDatasetcatalog = (data) => {
-            const filtered = dataset.catalog.filter(item => item.ID !== data.ID);
-            setDataset({...dataset,catalog:filtered});
-            console.log("dataset",dataset)
-        };
+    
 
     useEffect( () => {
             setDataset({...dataset,title,description});
@@ -143,8 +135,7 @@ function MyApp({ Component, pageProps }) {
       <Component role={role} setLocation={setLocation} token={token} location={location} 
           setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
           user={user} setuser={setuser}
-          setUserdatasets={setUserdatasets} removeDatasetcatalog={removeDatasetcatalog} 
-          addDatasetcatalog={addDatasetcatalog} dataSources={dataSources} setDataSources={setDataSources}
+          setUserdatasets={setUserdatasets}  dataSources={dataSources} setDataSources={setDataSources}
           title={title} description={description} setTitle={setTitle} setDescription={setDescription}
           {...pageProps} name={name} setName={setName} email={email} setEmail={setEmail} company={company} setCompany={setCompany}
           />

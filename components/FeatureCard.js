@@ -72,7 +72,7 @@ export default function FeatureCard(props){
                             "..":"FDA has been very responsible in controlling drug flow"}</div>
                         <div style={{display:'flex', alignItems:'center', fontSize:"0.9em"}}><div style={{paddingRight:4,paddingBottom:4}}><b>{"Topics:  "}</b></div>
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{
-                                    borderRadius:4, border:1, fontSize:"0.7em", mr:1,
+                                    borderRadius:4, border:1, fontSize:"0.9em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
                                     color:'#24BBFF'}}
                                     size="small"
                                     onClick={()=>router.push({

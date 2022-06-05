@@ -54,7 +54,8 @@ export default function DatasetCard(props){
                         <div style={{color:'gray'}}>{props.data.description?props.data.description.substring(0,129)+"..": "Dataset Description"}</div>
                         <div style={{fontSize:'0.9em',display:'flex', alignItems:'center', }}><div style={{paddingRight:4, paddingTop:4}}><b>{"Topics:  "}</b></div>
                             {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{
-                                 borderRadius:4, border:1, fontSize:"0.8em", marginTop:1,textTransform:'capitalize',
+                              borderRadius:4, border:1, fontSize:"0.9em", mr:1,
+                              color:'#24BBFF', marginTop:1,textTransform:'capitalize',letterSpacing:'0.1em',
                                     marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small"
                                  onClick={()=>router.push({
                                     pathname: `/topic/${topic}`,

@@ -4,10 +4,6 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import SignalCardOut from '../../components/SignalCardOut';
 import FeatureCard from '../../components/FeatureCard';
 import EditFeatureCard from '../../components/EditFeatureCard';
 import Modal from '@mui/material/Modal';
@@ -21,10 +17,6 @@ import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import mixpanel from 'mixpanel-browser';
 import LeftNav from "../../components/LeftNav";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {signOut} from "../../function/checkAuth";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -32,12 +24,6 @@ import TableViewOutlinedIcon from "@mui/icons-material/TableViewOutlined";
 import Divider from "@mui/material/Divider";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CachedIcon from '@mui/icons-material/Cached';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import GetAppIcon from '@mui/icons-material/GetApp';
-import EditIcon from '@mui/icons-material/Edit';
-import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import DatasetDraftCard from "../../components/DatasetDraftCard";
-import InputBase from '@mui/material/InputBase';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import CatalogCardOut from "../../components/CatalogCardOut";
@@ -46,19 +32,6 @@ import { getDatasets} from '../../function/users';
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 700,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
-
 const style2 = {
     position: 'absolute',
     top: '50%',
@@ -104,6 +77,7 @@ export default function ManageDataset({
     const [localDataset, setLocalDataset] = useState({});
     const [currentTopic, setCurrentTopic] = useState("")
     const [filteredDataSources, setFilteredDataSources] = useState([])
+    const [relatedDataSources, setRelatedDataSources] = useState([])
     const [currentRouteTitle, setCurrentRouteTitle] = useState("")
 
     useEffect(()=>{
@@ -150,12 +124,33 @@ export default function ManageDataset({
     }, [token, datasource_id]);
 
     useEffect(async ()=>{
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            dataSources !== null && dataSources !== undefined && dataSources.length > 0 &&
+            (relatedTopic === null || relatedTopic === undefined || relatedTopic.length < 0 || relatedTopic === '')){
+            dataSources.map((data,index)=> datasource_id == data.ID && 
+            data.topic.split(',').map((topic, index)=>index < 1 && setRelatedTopic(topic)))
+            }
+    },[token, router])
+
+    useEffect(async ()=>{
         if(token !== 0 && token && token !== null && token !== undefined){
-            const catalog = await getPublicDatasetsTopics(token, currentTopic);
+            console.log("assaadsdaadsadsadsdasadsadsads29", relatedTopic)
+            const catalog = await getPublicDatasetsTopics(token, relatedTopic);
             setFilteredDataSources(catalog);
-            console.log("filtered catalog data",filteredDataSources);
+            console.log("filtered catalog data",filteredDataSources, );
+            console.log("assaadsdaadsadsadsdasadsadsads69", relatedTopic)
         }
     }, [token, currentTopic]);
+
+    const [relatedTopic, setRelatedTopic]= useState('')
+    useEffect(async ()=>{
+        if(token !== 0 && token && token !== null && token !== undefined && 
+            relatedTopic !== null && relatedTopic !== undefined){
+            const catalog = await getPublicDatasetsTopics(token, relatedTopic[0]);
+            setRelatedDataSources(catalog);
+            console.log("related catalog data",relatedDataSources, relatedTopic[0]);
+        }
+    }, [token,relatedTopic, router]);
 
     const handleDownloadButton = async() => {
         const downloadLink = await downloadDatasetsId(token, datasource_id);
@@ -366,7 +361,7 @@ export default function ManageDataset({
                                 {       filteredDataSources !== null && filteredDataSources !== undefined &&
                                         filteredDataSources.length <= 0? <div>We are working on adding more catalogs to our platform.</div>:
                                         filteredDataSources.find((data)=> data.ID === catalogID) ? <div>We are working on adding more catalogs to our platform.</div>:
-                                            filteredDataSources.map((data,index)=> index < 5 && String(data.ID) !== String(catalogID) && <FeatureCard
+                                        filteredDataSources.map((data,index)=> index < 5 && String(data.ID) !== String(catalogID) && <FeatureCard
                                             key={data.ID}
                                             data={data}
                                             index={index}

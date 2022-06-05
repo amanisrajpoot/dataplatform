@@ -31,6 +31,7 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
 
     useEffect(() => {
         setCurrentTopic(data.topic)
+        console.log("current Topic", currentTopic)
     }, [data.topic]);
 
     return (
@@ -45,9 +46,9 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                     <div><b>{data.title?data.title:""}</b></div>
                     <div>{data.description?data.description:""} </div>
                       <div style={{display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
-                          {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
-                                  borderRadius:4, border:1, fontSize:"0.65em", mr:1,
-                                  color:'#24BBFF'}} size="small"
+                          {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{borderRadius:4, 
+                            border:1, fontSize:"0.75em", mr:1,textTransform:'capitalize',letterSpacing:'0.1em',
+                                    color:'#24BBFF'}} size="small"
                                   onClick={()=>router.push({
                                   pathname: `/topic/${topic}`,
                                   query:{
@@ -73,9 +74,9 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                               <b>Data Points: </b> {data.data_points?data.data_points.toLocaleString():""}
                           </div>
                           <div style={{display:'flex', alignItems:'center', }}><div style={{paddingRight:4,}}><b>Key Features:</b></div>
-                              {data.features?data.features.split(',').map((feature, index)=>index < 6 && <Button sx={{backgroundColor:"#E4F7FF",
-                                      borderRadius:4, border:1, fontSize:"0.6em",mr:1,
-                                      color:'#24BBFF'}} size="small">{feature.substring(0.16)}</Button>)
+                              {data.features?data.features.split(',').map((feature, index)=>index < 6 && <Button sx={{borderRadius:4, 
+                                border:1, fontSize:"0.75em", mr:1,color:'#24BBFF', textTransform:'capitalize',letterSpacing:'0.1em',}} 
+                                size="small">{feature.substring(0.16)}</Button>)
                                   : "6"}</div>
                       </div>
 

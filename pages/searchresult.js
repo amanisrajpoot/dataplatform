@@ -109,8 +109,6 @@ export default function Searchresult({
   setUserdatasets, 
   title, setTitle, description, setDescription,
   userdatasets,
-  addDatasetcatalog,
-  removeDatasetcatalog,
   user,
   setuser,
 }) {
@@ -159,7 +157,7 @@ export default function Searchresult({
     }, [token]);
 
     useEffect(async () => {
-        setDataset({
+        await setDataset({
             user_email:'',
             title:'',
             description:'',
@@ -169,12 +167,22 @@ export default function Searchresult({
             data_sources:0,  
             status:'',
             template:false,
-            catalog:[]
+            catalog:[''],
         });
-        setLocalDataset({title: '', description: '', topic: '', keywords: ''});
-        setTitle('');
-        setDescription('');
-    }, [router]);
+        setLocalDataset({});
+        await setTitle('');
+        await setDescription('');
+    }, [token, router]);
+
+    const addDatasetcatalog = (data) => {
+        setDataset({...dataset,catalog:[...dataset.catalog,data]});
+        console.log("dataset",dataset)
+    };
+    const removeDatasetcatalog = (data) => {
+        const filtered = dataset.catalog.filter(item => item.ID !== data.ID);
+        setDataset({...dataset,catalog:filtered});
+        console.log("dataset",dataset)
+    };
 
     useEffect(async ()=> {
         if(token !== 0 && token !== null && token !== undefined &&
@@ -282,7 +290,7 @@ export default function Searchresult({
         })
         console.log("created dataset",data);
         router.push('/dataset/'+data.ID);
-        setDataset({
+        await setDataset({
             user_email:'',
             title:'',
             description:'',
@@ -294,9 +302,9 @@ export default function Searchresult({
             template:false,
             catalog:[],
         });
-        setLocalDataset({title: '', description: '', topic: '', keywords: ''});
-        setTitle('');
-        setDescription('');
+        setLocalDataset({});
+        await setTitle('');
+        await setDescription('');
       }
   };
 

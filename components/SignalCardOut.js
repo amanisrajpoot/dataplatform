@@ -27,7 +27,6 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
         setLocalDataset({...userdatasets, title:localTitle, description:localDescription,topic:localTopic});
     }, [localTitle, localDescription, localTopic]);
 
-    useEffect(() => {console.log("DATATATA",data)})
     return (
         <div style={{width:"100%",display:"flex", flexDirection:'column',backgroundColor:'#fff',borderRadius:16,
             minHeight:'36vh', maxHeight:'36vh',fontSize:'1em'}}>
@@ -39,11 +38,16 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                   alignItems:'space-around'}}>
    
                     <div><b>{data.title?data.title:""}</b></div>
-                    <div>{data.description?data.description:""} </div>
+                    <div style={{textOverflow: "ellipsis",
+                            wordWrap: "break-word",
+                            overflow: "hidden",
+                            maxHeight: "5.4em",
+                            lineHeight: "1.8em",
+                    }}>{data.description?data.description.substring(0,49):""} </div>
                       <div style={{display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
-                          {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{backgroundColor:"#E4F7FF",
-                                  borderRadius:4, border:1, fontSize:'0.65em', mr:1,
-                                  color:'#24BBFF'}} size="small"
+                          {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{borderRadius:4, 
+                            border:1, fontSize:"0.75em", mr:1,textTransform:'capitalize',letterSpacing:'0.1em',
+                                    color:'#24BBFF'}} size="small"
                               onClick={()=>router.push({
                                   pathname: `/topic/${topic}`,
                                   query:{
@@ -69,9 +73,9 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                               <b>Data Points: </b> {data.data_points?data.data_points.toLocaleString():""}
                           </div>
                           <div style={{display:'flex', alignItems:'center', }}><div style={{paddingRight:4,}}><b>Key Features:</b></div>
-                              {data.features?data.features.split(',').map((feature, index)=>index < 6 && <Button sx={{backgroundColor:"#E4F7FF",
-                                      borderRadius:4, border:1, fontSize:'0.6em', mr:1,
-                                      color:'#24BBFF'}} size="small">{feature.substring(0.16)}</Button>)
+                              {data.features?data.features.split(',').map((feature, index)=>index < 6 && <Button sx={{borderRadius:4, 
+                                border:1, fontSize:"0.7em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
+                                    color:'#24BBFF'}} size="small">{feature.substring(0.16)}</Button>)
                                   : "6"}</div>
                       </div>
 
