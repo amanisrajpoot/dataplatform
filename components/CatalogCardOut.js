@@ -46,7 +46,7 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                     <div><b>{data.title?data.title:""}</b></div>
                     <div>{data.description?data.description:""} </div>
                       <div style={{display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
-                          {data.topic?data.topic.split(',').map((topic, index)=>index < 5 && <Button sx={{borderRadius:4, 
+                          {data.topic?data.topic.split(',').map((topic, index)=>index < 6 && <Button sx={{borderRadius:4, 
                             border:1, fontSize:"0.75em", mr:1,textTransform:'capitalize',letterSpacing:'0.1em',
                                     color:'#24BBFF'}} size="small"
                                   onClick={()=>router.push({
@@ -68,8 +68,8 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                           </div>
                       </div>
 
-                      <div style={{display:'flex',width:'100%',  }}>
-                          <div style={{display:'flex',wordWrap: "break-word",
+                      <div style={{display:'flex',width:'100%', alignItems:'center' }}>
+                          <div style={{display:'flex',wordWrap: "break-word", width:'23.5%',
                               whiteSpace: "pre-wrap", wordBreak: "break-word",paddingRight:64 }}>
                               <b>Data Points: </b> {data.data_points?data.data_points.toLocaleString():""}
                           </div>

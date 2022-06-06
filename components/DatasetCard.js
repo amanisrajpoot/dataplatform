@@ -17,6 +17,14 @@ export default function DatasetCard(props){
     const [show, setShow] = React.useState(false);
     const router = useRouter();
     const[added, setAdded] = React.useState(false);
+    const [topicCount, setTopicCount] = React.useState(0);
+
+    useEffect(() => {
+        if(props.data.topic){
+            setTopicCount(props.data.topic.split(',').length);
+        }
+    }, [props.data]);
+
     const handleAdd = () => {
         if(added === false){
           props.addDatasetcatalog(props.data);
@@ -47,7 +55,7 @@ export default function DatasetCard(props){
                               variant="outlined">{parseInt(props.index+1)}</Button>
                   </div>
 
-                    <div style={{ width:"45%", overflow:'hidden',
+                    <div style={{ width:"49%", overflow:'hidden',
                         flexDirection:'column',display:'flex',justifyContent:'center', }}>
                       <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title.substring(0,51): "Sample Dataset"+props.data.ID}</b><br></br>
                             </div>
@@ -64,8 +72,11 @@ export default function DatasetCard(props){
                                             router.pathname.includes('/catalog')?data.title:
                                                 router.query.tid
                                     }
-                                    })}>{topic.substring(0,19)}</Button>)
-                            : "6"}</div>
+                                    })}>{topic.substring(0,18)}</Button>)
+                            : "6"} {topicCount-3 > 0 ?<Button sx={{borderRadius:4, border:1, fontSize:"0.9em", mr:1,
+                                    color:'#24BBFF', marginTop:1,textTransform:'capitalize',letterSpacing:'0.1em',
+                                    marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small">{topicCount-3 + " more"}</Button>: null}
+                          </div>
                     </div>
                     {/*<div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word",*/}
                     {/*    flexDirection:'column',display:'flex',justifyContent:'center', }}>*/}
