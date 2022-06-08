@@ -140,27 +140,23 @@ const Login =({token, setToken}) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-
-      <Grid container component="main" sx={{ height: '100vh', font:'roboto' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={6}
-          sx={{
+      <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
+        height: '100vh', font:'roboto' }}>
+        <div style={{minWidth:'167%', maxWidth:'125%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
+          flexDirection:'column', justifyContent:'center', alignItems:'center',
             backgroundImage: 'url(/big-data-logon-screen.jpg)',
             // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
             // backgroundPosition: 'left',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
+            
+          }}>
+        </div>
+        <div  style={{display:'flex',
+           minWidth:'100%', maxWidth:'100%',
             flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
-            <div style={{paddingTop:42,paddingRight:76,width:'100%',display:'flex',justifyContent:'end'}}>
+            <div style={{paddingTop:42,paddingRight:108, width:'100%',display:'flex',justifyContent:'end'}}>
                 <Link sx={{alignSelf:'end'}} href="/signup" variant="body2">
                     {"Don't have an account?"} <div style={{color:"#5A00E2", display:"inline"}}>Sign Up</div>
                 </Link>
@@ -187,7 +183,7 @@ const Login =({token, setToken}) => {
             </div>
             <Box component="form" noValidate onSubmit={handleSubmit}
                  sx={{ pt: 1, display:'flex', flexDirection:'column', alignItems:'center',
-                    width:'100%'}}>
+                    minWidth:'100%'}}>
 
                 {usernameError ? <TextField
                     error
@@ -269,7 +265,7 @@ const Login =({token, setToken}) => {
                       }}
                     />
                   }
-                <div style={{paddingLeft:125,display:'flex', width:'100%',}}>
+                <div style={{paddingLeft:100,display:'flex', width:'100%',}}>
                     <div style={{display:'flex', justifyContent:'space-around' }}>
                         <div>
                         <FormControlLabel
@@ -279,7 +275,7 @@ const Login =({token, setToken}) => {
                         />
                         </div>
 
-                        <div style={{paddingLeft:200}}>
+                        <div style={{paddingLeft:73, }}>
                             <Link href="/forgetpassword" variant="body2">
                                 <a>Forgot password?</a>
                             </Link>
@@ -314,9 +310,9 @@ const Login =({token, setToken}) => {
 
 
 
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+        </div>
+      </div>
+    
   );
 }
 

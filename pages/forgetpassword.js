@@ -134,26 +134,23 @@ const ForgetPassword =() => {
     }
 
   return (
-    <ThemeProvider theme={theme}>
 
-      <Grid container component="main" sx={{ height: '100vh', font:'roboto' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={6}
-          sx={{
-            backgroundImage: 'url(/big-data-logon-screen.jpg)',
-            // backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            // backgroundPosition: 'left',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
-            flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
+      <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
+      height: '100vh', font:'roboto' }}>
+      <div style={{minWidth:'167%', maxWidth:'125%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
+        flexDirection:'column', justifyContent:'center', alignItems:'center',
+          backgroundImage: 'url(/big-data-logon-screen.jpg)',
+          // backgroundRepeat: 'no-repeat',
+          backgroundColor: (t) =>
+            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+          backgroundSize: 'cover',
+          // backgroundPosition: 'left',
+          
+        }}>
+      </div>
+        <div  style={{display:'flex',
+                    minWidth:'100%', maxWidth:'100%',
+                        flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
 
             {mode===1?()=>setTop(4):null}
           <Box
@@ -287,11 +284,8 @@ const ForgetPassword =() => {
             </Box>
           </Box>
 
-
-
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+        </div>
+      </div>
   );
 }
 

@@ -9,7 +9,8 @@ import {useRouter} from "next/router";
 export default function Layout({ children, user, Auth, userdatasets }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const router = useRouter();
-  const showHeader = router.pathname === '/login' ? false : router.pathname === '/signup'? false: router.asPath === '/'?false:true;
+  const showHeader = router.pathname === '/login' ? false : router.pathname === '/signup'? false: 
+        router.asPath === '/'?false:router.asPath === '/forgetpassword'?false:router.asPath === '/'?false:true;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

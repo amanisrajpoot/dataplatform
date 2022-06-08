@@ -12,20 +12,13 @@ import {useRouter} from 'next/router';
 import {getPublicDatasets, getDatasets, getUser} from '../function/users';
 import LeftNav from "../components/LeftNav";
 import mixpanel from 'mixpanel-browser';
-import InputAdornment from "@mui/material/InputAdornment";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import SettingsIcon from '@mui/icons-material/Settings';
-import InputBase from '@mui/material/InputBase';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
 import { RWebShare } from "react-web-share";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar,
+    PieChart, Pie, Legend, ResponsiveContainer } from 'recharts';
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Auth } from 'aws-amplify';
@@ -261,72 +254,6 @@ export default function Dashboard({
                 </Box> */}
                 <div style={{ display: 'flex',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',
                     height:'100%', minWidth:'100%', maxwidth:'100%'}}>
-                    {/* <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
-                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
-                            <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                                <SearchIcon />
-                            </Box>
-
-                            <InputBase
-                                // onChange={setVal}
-                                sx={{ bgcolor:'white',width:'90%'}}
-                                placeholder="Search Google Maps"
-                                inputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                    placeholder:"Search..."
-                                }}
-                            />
-                        </Box>
-
-                        <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                            alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                            <Link href='/login'>
-                                {/* <NotificationsIcon
-                                    fontSize="large"
-                                    sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> 
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <Link >
-                                <AccountCircleIcon onClick={()=>router.push("/settings")} 
-                                    fontSize="large" sx={{color:'#939EAA'}}/>
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
-                            &nbsp;&nbsp;&nbsp;
-                            <div
-                                // onClick={()=>signOut({path:router.pathname})}
-                                onClick={handleClickUser}
-                            >
-                                <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
-                            </div>
-
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorElUser}
-                                open={openUser}
-                                onClose={handleCloseUser}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>{
-                                    mixpanel.track('Sign Out', {
-                                        'source': "Dashboard Page",
-                                        'action': "Signed Out from User Menu",
-                                        'email': user.email !== null && user.email !== undefined && user.email,
-                                    });
-                                    signOut({path:router.pathname})
-                                }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                            </Menu>
-                        </div>
-                    </Box> */}
 
                     <Box sx={{ minWidth:'100%', maxwidth:'100%',display: 'flex', flexDirection:'column', py: 2,px:2,
                         justifyContent:'space-between',paddingTop:11}}>
@@ -578,14 +505,36 @@ export default function Dashboard({
                                 <div>
                                     <div style={{color:'black', fontSize:20,marginLeft:18,}}>Top Downloads by Topic</div>
                                 </div>
-                                <LineChart width={700} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>*/}
+                                {/* <LineChart width={700} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                                    <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>
                                    <Line type="monotone" strokeWidth={3} dataKey="industry_points" stroke="#24BBFF" />
                                    <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />
                                    <XAxis dataKey="name" axisLine={false} stroke="#92929D"/>
                                    <YAxis axisLine={false} stroke="#92929D"/>
                                    <Tooltip content={<CustomTooltip />}/>
-                                </LineChart> 
+                                </LineChart>  */}
+
+                                <PieChart width={530} height={250}>
+                                    <Pie data={data} dataKey="datasets" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
+                                    <Pie data={data} dataKey="industry_points" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
+                                    </PieChart>
+
+                                {/* <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart width={400} height={400}>
+                                    <Pie
+                                        dataKey="datasets"
+                                        isAnimationActive={false}
+                                        data={data}
+                                        cx="50%"
+                                        cy="50%"
+                                        outerRadius={80}
+                                        fill="#8884d8"
+                                        label
+                                    />
+                                    <Pie dataKey="industry_points" data={data} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" />
+                                    <Tooltip />
+                                    </PieChart>
+                                </ResponsiveContainer> */}
 
                                 {/* <BarChart width={1100} height={450} data={data} margin={{  bottom: 5}} >
                                     <XAxis dataKey="name" axisLine={false} stroke="#92929D" />
