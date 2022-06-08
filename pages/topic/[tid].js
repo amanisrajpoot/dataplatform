@@ -206,7 +206,7 @@ export default function TopicBrowser({
 
     return (
 
-        <div style={{height:'100%', display:'flex',minWidth:'117ch', maxWidth:'117ch',}}>
+        <div style={{height:'100%', display:'flex',minWidth:'100%', maxWidth:'100%',}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
             <div style={{display:'flex', fontStyle:'roboto', maxWidth:'100%'}}>
                 {/* <Box sx={{width:"18%"}}>

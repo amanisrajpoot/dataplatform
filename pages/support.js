@@ -310,7 +310,9 @@ export default function Support({
                     </div>
                 </Box> */}
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', 
+            justifyContent:'space-between', paddingTop: 12, paddingLeft:2,paddingRight:16,
+            paddingBottom:1,}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>

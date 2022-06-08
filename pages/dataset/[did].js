@@ -227,7 +227,7 @@ export default function ManageDataset({
 
     return (
 
-        <div style={{display:'flex', flexDirection:'row', minWidth:'119ch', maxWidth:'119ch',}}>
+        <div style={{display:'flex', flexDirection:'row', minWidth:'100%', maxWidth:'100%',}}>
 
             {/* <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>

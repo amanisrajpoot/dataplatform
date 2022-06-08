@@ -16,6 +16,7 @@ import Auth from 'aws-amplify';
 import * as React from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { signOut } from '../function/checkAuth';
 
 export default function TopNav({
 	setmenu,
@@ -68,7 +69,8 @@ export default function TopNav({
     }, [token]);
 
 	return (
-		<div component="main" style={{  width:'100%', display:'flex', position:'fixed',backgroundColor:'white', height:'9vh'  }}>
+		<div component="main" style={{  display:'flex',minWidth:'100%', maxWidth:'100%',  
+				position:'fixed',backgroundColor:'white', height:'9vh'  }}>
                         <div style={{minWidth:'69%', display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center', 
 						 }} >
                             <div style={{color:'gray', paddingRight:'1em', paddingLeft:'1em'}}>
@@ -127,11 +129,11 @@ export default function TopNav({
 									<MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
 									<MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
 									<MenuItem onClick={()=>{
-										mixpanel.track('Sign Out', {
-											'source': "Dashboard Page",
-											'action': "Signed Out from User Menu",
-											'email': user.email !== null && user.email !== undefined && user.email,
-										});
+										// mixpanel.track('Sign Out', {
+										// 	'source': "Dashboard Page",
+										// 	'action': "Signed Out from User Menu",
+										// 	'email': user.email !== null && user.email !== undefined && user.email,
+										// });
 										signOut({path:router.pathname})
 									}}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
 								</Menu>

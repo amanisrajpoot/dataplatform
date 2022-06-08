@@ -56,7 +56,7 @@ export default function LeftNav({
 
 	return (
 		<div className={`${styles.header} ${leftAnimation}`} style={{ fontFamily:'Roboto', fontStyle:'normal', 
-			minHeight:'100vh', fontWeight:700,border: "1px solid #dedede", minWidth:'15em',maxWidth:'15em'
+			minHeight:'100vh', fontWeight:700,border: "1px solid #dedede", minWidth:'17em',maxWidth:'17em'
 			}}>
 			{/* ADD SAMPLES */}
 			<Modal

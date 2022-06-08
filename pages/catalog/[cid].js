@@ -231,14 +231,14 @@ export default function ManageDataset({
 
     return (
 
-        <div style={{display:'flex',minWidth:'119ch', maxWidth:'119ch', flexDirection:'row'}}>
+        <div style={{display:'flex',minWidth:'100%', maxWidth:'100%', flexDirection:'row'}}>
 
             {/* <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
                     <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                 </Box>
             </Box> */}
-            <div style={{width:"100%"}}>
+            <div style={{display:'flex',flexDirection:'column',minWidth:'100%', maxWidth:'100%',}}>
                 <div style={{ display: 'flex', flexDirection:'column', backgroundColor: '#FAFAFB'}}>
                     {/* <Box component="main" sx={{  minWidth:'100%', display:'flex', position:'fixed'}}>
                         <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >

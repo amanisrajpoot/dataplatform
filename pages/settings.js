@@ -384,7 +384,8 @@ export default function Settings({
                     </div>
                 </Box> */}
 
-            <div style={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', 
+            <Box sx={{ display: 'flex', flexDirection:'row', paddingTop: 12, paddingLeft:2,paddingRight:16,
+                paddingBottom:1, bgcolor: '#f7f7f7', 
                 justifyContent:'space-between', minWidth:'100%'}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
@@ -401,7 +402,7 @@ export default function Settings({
                     <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Settings</div>
 
                 </Box>
-            </div>
+            </Box>
 
             <Box
                 sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2}}

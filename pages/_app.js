@@ -25,6 +25,7 @@ function MyApp({ Component, pageProps }) {
     const [company, setCompany] = useState("")
     const [password, setPassword] = useState("");
     const [user, setuser] = useState({});
+    
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));

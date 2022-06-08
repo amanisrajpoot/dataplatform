@@ -261,15 +261,15 @@ setuser,
 
   return (
     
-    <div style={{minHeight:"100%", display:'flex',minWidth:'117ch', maxWidth:'117ch',}}>
+    <div style={{minHeight:"100%", display:'flex',minWidth:'100%', maxWidth:'100%',}}>
       {/*<Navbar token={token} setToken={setToken}/>*/}
-        <div style={{display:'flex', fontStyle:'roboto', minWidth:'117ch', maxWidth:'117ch',}}>
+        <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%', maxWidth:'100%',}}>
             {/* <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
                     <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                 </Box>
             </Box> */}
-        <div sx={{ display: 'flex', minWidth:'117ch', maxWidth:'117ch',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+        <div sx={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
             {/* <div component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
                 <div sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                     {/* <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
@@ -331,7 +331,7 @@ setuser,
             </div> */}
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
-                paddingTop:11,minWidth:'117ch', maxWidth:'117ch', }}>
+                paddingTop:11,minWidth:'100%', maxWidth:'100%', }}>
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>

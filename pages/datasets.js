@@ -211,15 +211,15 @@ export default function Datasets({
 
     return (
 
-        <div style={{display:'flex',minWidth:'119ch', maxWidth:'119ch',}}>
+        <div style={{display:'flex',minWidth:'100%', maxWidth:'100%',}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
-            <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%'}}>
+            <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%', maxWidth:'100%',}}>
                 {/* <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
                         <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
                 </Box> */}
-                <div style={{ display: 'flex', minWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
+                <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
                     {/* <div component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
@@ -293,7 +293,7 @@ export default function Datasets({
                     </div> */}
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', 
-                        paddingTop:10}}>
+                        paddingTop:10, }}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
