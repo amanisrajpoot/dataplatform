@@ -320,87 +320,15 @@ export default function Searchresult({
   }, [dataset]);
 
   return (
-    <div style={{display:'flex', flexDirection:'row',minWidth:'117ch', maxWidth:'117ch',}}>
+    <div style={{display:'flex', flexDirection:'row',minWidth:'100%', maxWidth:'100%',}}>
         
         {/* <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box> */}
 
-        <div style={{width:"100%", bgcolor: '#f7f7f7'}}>
-                     
-                {/* <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
-                    <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                        <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                            <SearchIcon />
-                        </Box>
+        <div style={{minWidth:'100%', maxWidth:'100%', bgcolor: '#f7f7f7'}}>
 
-                        <InputBase
-                            // onChange={setVal}
-                            sx={{ bgcolor:'white',width:'90%'}}
-                            placeholder="Search Google Maps"
-                            inputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                                placeholder:"Search..."
-                            }}
-                        />
-                    </Box>
-
-                    {/*<TextField fullWidth id="outlined-basic"*/}
-                    {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                    {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                    {/*           InputProps={{*/}
-                    {/*               startAdornment: (*/}
-                    {/*                   <InputAdornment position="start">*/}
-                    {/*                       <SearchIcon />*/}
-                    {/*                   </InputAdornment>*/}
-                    {/*               ),*/}
-                    {/*               placeholder:"Search..."*/}
-                    {/*           }}*/}
-                    {/*/>
-                    <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                            alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                            <Link href='/login'>
-                                {/* <NotificationsIcon
-                                    fontSize="large"
-                                    sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> 
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <Link>
-                                <AccountCircleIcon onClick={()=>router.push("/settings")} 
-                                    fontSize="large" sx={{color:'#939EAA'}}/>
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <p style={{fontSize:20}}>{user && name?name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
-                            &nbsp;&nbsp;&nbsp;
-                            <div
-                                // onClick={()=>signOut({path:router.pathname})}
-                                onClick={handleClickUser}
-                            >
-                                <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
-                            </div>
-
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorElUser}
-                                open={openUser}
-                                onClose={handleCloseUser}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                            </Menu>
-                        </div>
-                </Box> */}
-
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', 
+            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: '#f7f7f7', minWidth:'100%', maxWidth:'100%',
                 justifyContent:'space-between', pt:10}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
@@ -420,7 +348,7 @@ export default function Searchresult({
                 // text='Loading your content...'
                 > 
             <Box
-                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2, minWidth:'100%'}}
+                sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2, minWidth:'100%', maxWidth:'100%',}}
             >
                 <Tabs
                     orientation="vertical"
@@ -428,15 +356,15 @@ export default function Searchresult({
                     value={value}
                     onChange={handleChange}
                     aria-label="Vertical tabs example"
-                    sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', minWidth:'22ch',maxWidth:'22ch' }}
+                    sx={{ borderRight: 1, borderColor: 'divider', textAlign: 'left', minWidth:'20%',maxWidth:'20%' }}
                 >
                     <Tab sx={{ textAlign: 'left', }} label={"1. Dataset Information "} {...a11yProps(0)} />
                     <Tab sx={{ textAlign: 'left', }} label="2. Add Catalogues" {...a11yProps(1)} />
                     <Tab sx={{ textAlign: 'left', active: {color:'#5A00E2' }}} label="3. Review and Save" {...a11yProps(2)} />
 
                 </Tabs>
-                <TabPanel value={value} index={0} sx={{minWidth:'100%',}}>
-                    <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between',minWidth:'100%', }}>
+                <TabPanel value={value} index={0} sx={{minWidth:'80%',maxWidth:'80%'}}>
+                    <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between',minWidth:'96%',maxWidth:'96%' }}>
                     <Box sx={{minWidth:'100%',}}>
                         <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
                          fontSize:20,pb:2, minWidth:'100%', mr:45, }}>

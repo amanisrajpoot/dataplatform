@@ -71,7 +71,7 @@ export default function TopNav({
 	return (
 		<div component="main" style={{  display:'flex',minWidth:'100%', maxWidth:'100%',  
 				position:'fixed',backgroundColor:'white', height:'9vh'  }}>
-                        <div style={{minWidth:'69%', display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center', 
+                        <div style={{minWidth:'68%', display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center', 
 						 }} >
                             <div style={{color:'gray', paddingRight:'1em', paddingLeft:'1em'}}>
                                 <SearchIcon />

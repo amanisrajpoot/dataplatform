@@ -235,7 +235,7 @@ export default function ManageDataset({
                 </Box>
             </Box> */}
             <div style={{display:'flex',flexDirection:'column', minWidth:'100%', maxWidth:'100%'}}>
-                <div style={{ display: 'flex', flexDirection:'column', backgroundColor: '#FAFAFB',minWidth:'100%', maxWidth:'100%'}}>
+                <div style={{ display: 'flex', flexDirection:'column', backgroundColor: '#FAFAFB',}}>
                     {/* <Box component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                         </Box>
@@ -279,7 +279,7 @@ export default function ManageDataset({
                     <div style={{ display: 'flex', flexDirection:'row', justifyContent:'space-between', paddingTop:96,
                         paddingLeft:16, paddingRight:16}}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"50%",
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, 
                             color:'gray-700', alignItems:'center'}}>
                             {datasetMode ===1 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setDatasetMode(0)}>
@@ -454,7 +454,7 @@ export default function ManageDataset({
                             </Box>
                         </Box>:null}
 
-                        <div style={{display:'flex', flexDirection:'column', marginLeft:16,
+                        {/* <div style={{display:'flex', flexDirection:'column', marginLeft:16,
                             overflowX: 'auto',overflowY: 'hidden', whiteSpace: 'nowrap', paddingTop:16,
                             paddingBottom:16}}>
 
@@ -485,7 +485,7 @@ export default function ManageDataset({
                                         handleCloseDetails={handleCloseDetails}/>): null
                                 }
                             </div>
-                        </div>
+                        </div> */}
 
                     </div>
 

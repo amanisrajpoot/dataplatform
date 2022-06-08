@@ -314,78 +314,10 @@ export default function Settings({
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box> */}
 
-        <div style={{ bgcolor: '#f7f7f7', display:'flex', flexDirection:'column'}}>
-                {/* <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
-                    <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                        <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                            <SearchIcon />
-                        </Box>
+        <div style={{ bgcolor: '#f7f7f7', display:'flex', flexDirection:'column', minWidth:"100%",}}>
 
-                        <InputBase
-                            // onChange={setVal}
-                            sx={{ bgcolor:'white',width:'90%'}}
-                            placeholder="Search Google Maps"
-                            inputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                                placeholder:"Search..."
-                            }}
-                        />
-                    </Box>
-
-                    {/*<TextField fullWidth id="outlined-basic"*/}
-                    {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                    {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                    {/*           InputProps={{*/}
-                    {/*               startAdornment: (*/}
-                    {/*                   <InputAdornment position="start">*/}
-                    {/*                       <SearchIcon />*/}
-                    {/*                   </InputAdornment>*/}
-                    {/*               ),*/}
-                    {/*               placeholder:"Search..."*/}
-                    {/*           }}*/}
-                    {/*/>
-                    <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                        alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                        <Link href='/login'>
-                            {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> 
-                        </Link>
-                        &nbsp;&nbsp;&nbsp;
-                        <Link>
-                            <AccountCircleIcon onClick={()=>router.push("/settings")} fontSize="large" 
-                                sx={{color:'#939EAA'}}/>
-                        </Link>
-                        &nbsp;&nbsp;&nbsp;
-                        <p style={{fontSize:20}}>{name?name: Auth.user?Auth.user.attributes.name: 'Account'} </p>
-                        &nbsp;&nbsp;&nbsp;
-                        <div
-                            // onClick={()=>signOut({path:router.pathname})}
-                            onClick={handleClickUser}
-                        >
-                            <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
-                        </div>
-
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorElUser}
-                            open={openUser}
-                            onClose={handleCloseUser}
-                            MenuListProps={{
-                                'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                            <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                            <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                        </Menu>
-                    </div>
-                </Box> */}
-
-            <Box sx={{ display: 'flex', flexDirection:'row', paddingTop: 12, paddingLeft:2,paddingRight:16,
-                paddingBottom:1, bgcolor: '#f7f7f7', 
+            <Box sx={{ display: 'flex', flexDirection:'row', paddingTop: 10, paddingLeft:2,paddingRight:16,
+                paddingBottom:2, bgcolor: '#f7f7f7', 
                 justifyContent:'space-between', minWidth:'100%'}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",

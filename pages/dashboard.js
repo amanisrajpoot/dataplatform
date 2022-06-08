@@ -340,7 +340,7 @@ export default function Dashboard({
                         {showDraft && <Box sx={{ minWidth:"100%", minWidth:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start',paddingTop:1}}>
 
-                            <div style={{height:'22ch', minWidth:'63%', maxWidth:'28ch', backgroundColor:'#E4F7FF',
+                            <div style={{height:'22ch', minWidth:'69%', maxWidth:'69%', backgroundColor:'#E4F7FF',
                                 marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
                                 justifyContent:"space-between",borderRadius:9,  }}>
                                 <div style={{marginTop:18,marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
@@ -362,7 +362,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'22ch', minWidth:'35.8%', maxWidth:'35.8%', backgroundColor:'#FFF4E4',
+                            <div style={{height:'22ch', minWidth:'29.5%', maxWidth:'29.5%', backgroundColor:'#FFF4E4',
                                 marginRight:12, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9, }}>
                                 <div style={{marginLeft:18, display:'flex', flex:"start", flexDirection:'column',height:'100%',
@@ -409,7 +409,7 @@ export default function Dashboard({
                         {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
-                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -461,7 +461,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -510,7 +510,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'28ch', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',

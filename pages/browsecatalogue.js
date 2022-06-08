@@ -351,11 +351,11 @@ setuser,
 
             <Box>
 
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', width:'100%',
+          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', minWidth:'100%', maxWidth:'100%',
               justifyContent:'space-between'}}>
 
               <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
-                    color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
+                    color:'gray-700',justifyContent:'space-around', alignItems:'center', }}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                       <div>Search Data Catalogs &nbsp;</div>
                   {/* {searchMode === 0 && dataSources !== null && dataSources !== undefined ?
