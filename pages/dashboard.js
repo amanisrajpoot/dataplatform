@@ -514,10 +514,10 @@ export default function Dashboard({
                                    <Tooltip content={<CustomTooltip />}/>
                                 </LineChart>  */}
 
-                                <PieChart width={530} height={250}>
+                                {/* <PieChart width={530} height={250}>
                                     <Pie data={data} dataKey="datasets" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
                                     <Pie data={data} dataKey="industry_points" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
-                                    </PieChart>
+                                    </PieChart> */}
 
                                 {/* <ResponsiveContainer width="100%" height="100%">
                                     <PieChart width={400} height={400}>
