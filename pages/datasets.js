@@ -220,77 +220,6 @@ export default function Datasets({
                     </Box>
                 </Box> */}
                 <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
-                    {/* <div component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
-                        <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                            <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                                <SearchIcon />
-                            </Box>
-
-                            <InputBase
-                                // onChange={setVal}
-                                sx={{ bgcolor:'white',width:'90%'}}
-                                placeholder="Search Google Maps"
-                                inputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                    placeholder:"Search..."
-                                }}
-                            />
-                        </Box>
-
-                        {/*<TextField fullWidth id="outlined-basic"*/}
-                        {/*           value={keyword} onChange={(event)=>setKeyword(event.target.value)}*/}
-                        {/*            sx={{ bgcolor: '#ffffff', border:"none",outline: 'none'}}*/}
-                        {/*           InputProps={{*/}
-                        {/*               startAdornment: (*/}
-                        {/*                   <InputAdornment position="start">*/}
-                        {/*                       <SearchIcon />*/}
-                        {/*                   </InputAdornment>*/}
-                        {/*               ),*/}
-                        {/*               placeholder:"Search..."*/}
-                        {/*           }}*/}
-                        {/*/>
-                        <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                            alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                            <Link href='/login'>
-                                {/* <NotificationsIcon
-                                    fontSize="large"
-                                    sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> 
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <Link>
-                                <AccountCircleIcon onClick={()=>router.push("/settings")} 
-                                    fontSize="large" sx={{color:'#939EAA'}}/>
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <p style={{fontSize:20}}>{user && name?name: Auth.user ?Auth.user.attributes.name: 'Account'} </p>
-                            &nbsp;&nbsp;&nbsp;
-                            <div
-                                // onClick={()=>signOut({path:router.pathname})}
-                                onClick={handleClickUser}
-                            >
-                                <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
-                            </div>
-
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorElUser}
-                                open={openUser}
-                                onClose={handleCloseUser}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                            </Menu>
-                        </div>
-                    </div> */}
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', 
                         paddingTop:10, }}>
@@ -337,9 +266,10 @@ export default function Datasets({
 
                     </Box>
 
-                    <Box>
+                    <Box sx={{display:'flex',flexDirection:'column',minWidth:'100%', maxWidth:'100%'}}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', justifyContent:'space-between'}}>
+                        <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', minWidth:'100%', maxWidth:'100%',
+                            justifyContent:'space-between'}}>
 
                             <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                                 color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>

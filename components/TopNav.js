@@ -71,7 +71,7 @@ export default function TopNav({
 	return (
 		<div component="main" style={{  display:'flex',minWidth:'100%', maxWidth:'100%',  
 				position:'fixed',backgroundColor:'white', height:'9vh'  }}>
-                        <div style={{minWidth:'68%', display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center', 
+                        <div style={{minWidth:'67%', display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center', 
 						 }} >
                             <div style={{color:'gray', paddingRight:'1em', paddingLeft:'1em'}}>
                                 <SearchIcon />
@@ -95,7 +95,7 @@ export default function TopNav({
 						<div style={{ display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'flex-end',
 							bgcolor:'white', alignItems:'center',  }} >
 							<div style={{display:"flex",flexDirection:'row', backgroundColor:"#fff",paddingLeft:12,
-								alignItems: 'center',cursor: 'pointer',  height:"70px", minWidth:'33ch'}}>
+								alignItems: 'center',cursor: 'pointer',  height:"70px", }}>
 								{/* <Link href='/login'>
 									{/* <NotificationsIcon
 										fontSize="large"
