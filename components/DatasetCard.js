@@ -41,10 +41,10 @@ export default function DatasetCard(props){
 
     console.log("fetched dataset",props.data);
     return (
-        <div style={{display:"flex", flexDirection:'column', width:"99.5%", borderRadius:9,paddingRight:9,
+        <div style={{display:"flex", flexDirection:'column',maxWidth:"99.5%", minWidth:"99.5%", borderRadius:9,paddingRight:9,
              backgroundColor:"#FAFAFB",font:'roboto', fontSize:'0.9em',overflow: 'hidden',
               }}>
-          <div style={{display:"flex", flexDirection:'row', minHeight:'16vh',maxHeight:'16vh', width:"100%",
+          <div style={{display:"flex", flexDirection:'row', minHeight:'16vh',maxHeight:'16vh', minWidth:"100%", maxWidth:"100%",
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
               textOverflow:'clip', paddingTop:"2vh", paddingBottom:'2vh' }}>
 

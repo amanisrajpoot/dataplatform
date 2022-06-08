@@ -312,8 +312,8 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
               }}>
             </div>
                     <div style={{display:'flex',
-           minWidth:'100%', maxWidth:'100%',
-            flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
+                    minWidth:'100%', maxWidth:'100%',
+                        flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
                         {mode === 0 ? <div style={{
                             paddingTop: 24,
                             paddingRight: 76,

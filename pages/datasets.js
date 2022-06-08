@@ -333,7 +333,7 @@ export default function Datasets({
 
                         {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
                         {/* <SignalTable /> */}
-                        <Box sx={{ width:"97.3%", display:'flex', flexDirection:'column',mx:2, borderRadius:3,
+                        <Box sx={{ minWidth:"97.3%", maxWidth:"97.3%",display:'flex', flexDirection:'column',mx:2, borderRadius:3,
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
                                 userdatasets.sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=><DatasetCard
