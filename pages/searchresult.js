@@ -320,16 +320,16 @@ export default function Searchresult({
   }, [dataset]);
 
   return (
-    <Box sx={{display:'flex', flexDirection:'row'}}>
+    <div style={{display:'flex', flexDirection:'row',minWidth:'117ch', maxWidth:'117ch',}}>
         
-        <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
+        {/* <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
-        </Box>
+        </Box> */}
 
-        <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
+        <div style={{width:"100%", bgcolor: '#f7f7f7'}}>
                      
-                <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
-                    <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+                {/* <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+                    <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                         <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                             <SearchIcon />
                         </Box>
@@ -360,14 +360,14 @@ export default function Searchresult({
                     {/*               ),*/}
                     {/*               placeholder:"Search..."*/}
                     {/*           }}*/}
-                    {/*/>*/}
+                    {/*/>
                     <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
                                 {/* <NotificationsIcon
                                     fontSize="large"
                                     sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> */}
+                                /> 
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link>
@@ -398,7 +398,7 @@ export default function Searchresult({
                                 <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
-                </Box>
+                </Box> */}
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
 
@@ -731,8 +731,8 @@ export default function Searchresult({
     </Box>   */}
 
             
-        </Box>
-    </Box>
+        </div>
+    </div>
   );
 }
 

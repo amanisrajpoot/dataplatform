@@ -106,12 +106,12 @@ export default function Dashboard({
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleClose2 = () => {
-        setAnchorEl(null);
-    };
-
     const handleCloseUser = () => {
         setAnchorElUser(null);
+    };
+
+    const handleClose2 = () => {
+        setAnchorEl(null);
     };
 
     const [localdataset, setLocaldataset] = useState([]);
@@ -251,16 +251,16 @@ export default function Dashboard({
 
     return (
 
-        <Box>
+        <div style={{display:'flex',minWidth:'117ch', height:'100%'}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
-            <Box sx={{display:'flex', fontStyle:'roboto'}}>
-                <Box sx={{width:"18%",}}>
+            <div style={{display:'flex', fontStyle:'roboto'}}>
+                {/* <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
                     <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
-                </Box>
-                <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-                    <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
+                </Box> */}
+                <div style={{ display: 'flex',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+                    {/* <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
@@ -287,7 +287,7 @@ export default function Dashboard({
                                 {/* <NotificationsIcon
                                     fontSize="large"
                                     sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> */}
+                                /> 
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link >
@@ -325,7 +325,7 @@ export default function Dashboard({
                                 }}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
-                    </Box>
+                    </Box> */}
 
                     <Box sx={{ minWidth:'100%',width:'100%',display: 'flex', flexDirection:'column', py: 2,px:2,
                         justifyContent:'space-between',paddingTop:11}}>
@@ -606,12 +606,15 @@ export default function Dashboard({
                         </Box>
                     </Modal>
 
-                </Box>
+                </div>
 
-            </Box>
+
+            </div>
+
             {/*<Footer />*/}
 
-        </Box>
+        </div>
+
     );
 }
 

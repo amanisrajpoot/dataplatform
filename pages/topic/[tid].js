@@ -206,17 +206,17 @@ export default function TopicBrowser({
 
     return (
 
-        <Box>
+        <div style={{height:'100%', display:'flex',minWidth:'117ch', maxWidth:'117ch',}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
-            <Box sx={{display:'flex', fontStyle:'roboto', maxWidth:'100%'}}>
-                <Box sx={{width:"18%"}}>
-                <Box sx={{width:"18%", position:'fixed'}}>
-                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
-                </Box>
-                </Box>
-                <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-                    <Box component="main" sx={{  width:'82%', display:'flex',position:'fixed' }}>
-                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+            <div style={{display:'flex', fontStyle:'roboto', maxWidth:'100%'}}>
+                {/* <Box sx={{width:"18%"}}>
+                    <Box sx={{width:"18%", position:'fixed'}}>
+                        <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+                    </Box>
+                </Box> */}
+                <div style={{ display: 'flex', width:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+                    <Box component="main" sx={{  width:'100%', display:'flex',position:'fixed' }}>
+                        <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
                             </Box>
@@ -348,12 +348,12 @@ export default function TopicBrowser({
                         </Box>
                     </Modal>
 
-                </Box>
+                </div>
 
-            </Box>
+            </div>
             {/*<Footer />*/}
 
-        </Box>
+        </div>
     );
 }
 

@@ -211,17 +211,17 @@ export default function Datasets({
 
     return (
 
-        <Box>
+        <div style={{display:'flex',minWidth:'117ch', maxWidth:'117ch',}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
-            <Box sx={{display:'flex', fontStyle:'roboto'}}>
-                <Box sx={{width:"18%",}}>
+            <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%'}}>
+                {/* <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
                         <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
-                </Box>
-                <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-                    <Box component="main" sx={{  minWidth:'82%', display:'flex',position:'fixed' }}>
-                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+                </Box> */}
+                <div style={{ display: 'flex', minWidth:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+                    {/* <div component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
+                        <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
                             </Box>
@@ -252,14 +252,14 @@ export default function Datasets({
                         {/*               ),*/}
                         {/*               placeholder:"Search..."*/}
                         {/*           }}*/}
-                        {/*/>*/}
+                        {/*/>
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
                                 {/* <NotificationsIcon
                                     fontSize="large"
                                     sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> */}
+                                /> 
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link>
@@ -290,12 +290,12 @@ export default function Datasets({
                                 <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
-                    </Box>
+                    </div> */}
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', 
                         paddingTop:10}}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
                             <div style={{fontSize:28}}>My Datasets &nbsp;&nbsp;</div>
                             {/* <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
@@ -427,12 +427,12 @@ export default function Datasets({
                         </Box>
                     </Modal>
 
-                </Box>
+                </div>
 
-            </Box>
+            </div>
             {/*<Footer />*/}
 
-        </Box>
+        </div>
     );
 }
 

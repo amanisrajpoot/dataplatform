@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 import {checkAuth} from "../function/checkAuth";
 import { getDatasets, getPublicDatasets, getUser } from '../function/users';
 import NextNProgress from 'nextjs-progressbar';
+import Layout from "../components/Layout";
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -130,16 +131,17 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {/*<Navbar />*/}
-      <NextNProgress />
-      <Component role={role} setLocation={setLocation} token={token} location={location} 
-          setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
-          user={user} setuser={setuser}
-          setUserdatasets={setUserdatasets}  dataSources={dataSources} setDataSources={setDataSources}
-          title={title} description={description} setTitle={setTitle} setDescription={setDescription}
-          {...pageProps} name={name} setName={setName} email={email} setEmail={setEmail} company={company} setCompany={setCompany}
-          />
-      {/* <Footer /> */}
+      <Layout user={user} setuser={setuser} userdatasets={userdatasets} Auth={Auth} token={token} setToken={setToken} 
+            setUserdatasets={setUserdatasets} dataSources={dataSources} setDataSources={setDataSources}>
+        <NextNProgress />
+        <Component role={role} setLocation={setLocation} token={token} location={location} 
+            setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
+            user={user} setuser={setuser}
+            setUserdatasets={setUserdatasets}  dataSources={dataSources} setDataSources={setDataSources}
+            title={title} description={description} setTitle={setTitle} setDescription={setDescription}
+            {...pageProps} name={name} setName={setName} email={email} setEmail={setEmail} company={company} setCompany={setCompany}
+            />
+      </Layout>
     </>
   )
 }

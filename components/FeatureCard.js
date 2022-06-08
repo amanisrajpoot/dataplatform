@@ -119,28 +119,32 @@ export default function FeatureCard(props){
                                             pathname:`/catalog/${props.data.ID}`,
                                             query:{
                                                 currentRouteTitle:props.currentRouteTitle ?props.currentRouteTitle:"",
-                                                catalogID:props.data.ID
+                                                catalogID:props.data.ID,
+                                                mainTopic:props.data.topic.split(",")[0],
                                             }
                                         }):
                                     router.pathname.includes('/catalog')? router.push({
                                                 pathname:`/catalog/${props.data.ID}`,
                                                 query:{
                                                     currentRouteTitle:props.currentRouteTitle?props.currentRouteTitle:'',
-                                                    catalogID:props.data.ID
+                                                    catalogID:props.data.ID,
+                                                    mainTopic:props.data.topic.split(",")[0],
                                                 }
                                             }):
                                     router.pathname.includes('/browsecatalogue')? router.push({
                                             pathname:`/catalog/${props.data.ID}`,
                                             query:{
                                                 currentRouteTitle:"Catalogs",
-                                                catalogID:props.data.ID
+                                                catalogID:props.data.ID,
+                                                mainTopic:props.data.topic.split(",")[0],
                                             }
                                         }):
                                     router.pathname.includes('/topic')? router.push({
                                             pathname:`/catalog/${props.data.ID}`,
                                             query:{
                                                 currentRouteTitle:"Topic Browser",
-                                                catalogID:props.data.ID
+                                                catalogID:props.data.ID,
+                                                mainTopic:props.data.topic.split(",")[0],
                                             }
                                         }):null
 

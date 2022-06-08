@@ -227,23 +227,23 @@ export default function ManageDataset({
 
     return (
 
-        <Box sx={{display:'flex', flexDirection:'row'}}>
+        <div style={{display:'flex', flexDirection:'row', height:'100%',minWidth:'117ch', maxWidth:'117ch',}}>
 
-            <Box sx={{width:"18%"}}>
+            {/* <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
                     <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                 </Box>
-            </Box>
-            <Box sx={{width:"82%"}}>
-                <Box sx={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
-                    <Box component="main" sx={{  minWidth:'82%', display:'flex',position:'fixed' }}>
-                        <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+            </Box> */}
+            <div style={{width:"100%"}}>
+                <div style={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
+                    {/* <Box component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
+                        <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                         </Box>
 
                         <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                             alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                             <Link href='/login'>
-                                {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> */}
+                                {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> 
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link >
@@ -274,7 +274,7 @@ export default function ManageDataset({
                                 <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
-                    </Box>
+                    </Box> */}
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between', paddingTop:10}}>
 
@@ -346,7 +346,7 @@ export default function ManageDataset({
                         </Box>
 
                     </Box>
-                </Box>
+                </div>
 
                 <Modal open={openDetails} onClose={handleCloseDetails}>
                     <Box sx={style2}>
@@ -374,7 +374,7 @@ export default function ManageDataset({
 
                         </Box>
 
-                        <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 2,
+                        <Box sx={{  display:'flex', flexDirection:'column', pt:1,px: 2,
                             alignItems:'center' }}>
                             <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
                                 justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
@@ -429,7 +429,7 @@ export default function ManageDataset({
 
                                 </Box>
 
-                                <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,px: 2,
+                                <Box sx={{ maxWidth:'100ch', display:'flex', flexDirection:'column', pt:1,px: 2,
                                     alignItems:'center' }}>
                                     <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
                                         justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
@@ -453,7 +453,7 @@ export default function ManageDataset({
                             </Box>
                         </Box>:null}
 
-                        <div style={{display:'flex', flexDirection:'column'}}>
+                        <div style={{display:'flex', flexDirection:'column',}}>
 
                             <Box component="main" sx={{ display:'flex',flexDirection:'row',
                                 flex: 1, py: 2, px: 2, }}>
@@ -466,7 +466,7 @@ export default function ManageDataset({
 
                             </Box>
                             <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2.5, flex:'start',
-                                alignItems:'center',  overflow: "scroll"}}>
+                                alignItems:'center',  overflow: "scroll", maxWidth:'115ch'}}>
 
                                 {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
                                     userdatasets.map((data, index)=><DatasetDraftCard
@@ -503,8 +503,8 @@ export default function ManageDataset({
                 {/*    </Box>*/}
                 {/*</Modal>*/}
 
-            </Box>
-        </Box>
+            </div>
+        </div>
     );
 }
 

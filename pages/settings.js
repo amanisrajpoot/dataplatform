@@ -309,13 +309,13 @@ export default function Settings({
     };
 
   return (
-    <Box sx={{display:'flex', flexDirection:'row'}}>
-        <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
+    <div style={{display:'flex', flexDirection:'row', minWidth:'117ch', maxWidth:'117ch', height:'100%'}}>
+        {/* <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
-        </Box>
+        </Box> */}
 
-        <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
-                <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+        <div style={{ bgcolor: '#f7f7f7', display:'flex', flexDirection:'column'}}>
+                {/* <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
                     <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                         <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                             <SearchIcon />
@@ -347,11 +347,11 @@ export default function Settings({
                     {/*               ),*/}
                     {/*               placeholder:"Search..."*/}
                     {/*           }}*/}
-                    {/*/>*/}
+                    {/*/>
                     <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                         alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                         <Link href='/login'>
-                            {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> */}
+                            {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> 
                         </Link>
                         &nbsp;&nbsp;&nbsp;
                         <Link>
@@ -382,9 +382,10 @@ export default function Settings({
                             <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                         </Menu>
                     </div>
-                </Box>
+                </Box> */}
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
+            <div style={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', 
+                justifyContent:'space-between', minWidth:'100%'}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
@@ -400,7 +401,7 @@ export default function Settings({
                     <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Settings</div>
 
                 </Box>
-                </Box>
+            </div>
 
             <Box
                 sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2}}
@@ -423,7 +424,7 @@ export default function Settings({
                     <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between', width:'100%'}}>
                         {editMode=== 0? <Box >
                             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                             fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
+                             fontSize:20,pb:2, minWidth:'100%', mr:70, }}>
                                 <div>My Account &nbsp;</div>
                                 <Avatar alt="Remy Sharp" sx={{height:175, width:175, marginTop:2}} src="https://picsum.photos/200" />
                              </Box>
@@ -858,8 +859,8 @@ export default function Settings({
         </Box>
     </Box>   */}
 
-        </Box>
-    </Box>
+        </div>
+    </div>
   );
 }
 

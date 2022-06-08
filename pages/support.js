@@ -235,13 +235,13 @@ export default function Support({
     }
 
   return (
-    <Box sx={{display:'flex', flexDirection:'row'}}>
-        <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
+    <div style={{display:'flex', flexDirection:'row',minWidth:'117ch', maxWidth:'117ch', height:'100%'}}>
+        {/* <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
-        </Box>
+        </Box> */}
 
-        <Box sx={{width:"82%", bgcolor: '#f7f7f7'}}>
-                <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
+        <div style={{minWidth:"100%", bgcolor: '#f7f7f7', display:'flex', flexDirection:'column'}}>
+                {/* <Box component="main" sx={{  minWidth:'100%', display:'flex', }}>
                     <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                         <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                             <SearchIcon />
@@ -273,11 +273,11 @@ export default function Support({
                     {/*               ),*/}
                     {/*               placeholder:"Search..."*/}
                     {/*           }}*/}
-                    {/*/>*/}
+                    {/*/>
                     <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                         alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
                         <Link href='/login'>
-                            {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> */}
+                            {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> 
                         </Link>
                         &nbsp;&nbsp;&nbsp;
                         <Link href='/login'>
@@ -308,7 +308,7 @@ export default function Support({
                             <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                         </Menu>
                     </div>
-                </Box>
+                </Box> */}
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', justifyContent:'space-between'}}>
 
@@ -346,7 +346,7 @@ export default function Support({
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
                     <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between', width:'100%'}}>
                             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                             fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
+                             fontSize:20,pb:2, minWidth:'100%', mr:75, }}>
                                 <div>Contact Us Form &nbsp;</div>
                              </Box>
 
@@ -618,8 +618,8 @@ export default function Support({
         </Box>
     </Box>   */}
 
-        </Box>
-    </Box>
+        </div>
+    </div>
   );
 }
 

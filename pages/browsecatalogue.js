@@ -6,21 +6,12 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import TextField from '@mui/material/TextField';
-import InputUnstyled from '@mui/base/InputUnstyled';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { InputBase } from '@mui/material';
 import FeatureCard from '../components/FeatureCard';
-import HelpCenterCard from '../components/HelpCenterCard';
-import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import Modal from '@mui/material/Modal';
 import { Grid } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
-import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
 import {getPublicDatasets, getDatasets, getUser, getPublicDatasetsTopics, getPublicDatasetsTopicKeyword} from '../function/users';
@@ -29,22 +20,16 @@ import mixpanel from 'mixpanel-browser';
 import InputAdornment from "@mui/material/InputAdornment";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TableViewOutlinedIcon from '@mui/icons-material/TableViewOutlined'
 import FilterListIcon from '@mui/icons-material/FilterList';
-import SortIcon from '@mui/icons-material/Sort';
-import {FormControl} from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
-import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { minHeight } from '@mui/system';
 import LoadingOverlay from 'react-loading-overlay';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { Auth } from 'aws-amplify';
 import {createUser} from "../function/users";
+import TextField from '@mui/material/TextField';
+
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -276,17 +261,17 @@ setuser,
 
   return (
     
-    <Box sx={{minHeight:"100%", minWidth:'100%'}}>
+    <div style={{minHeight:"100%", display:'flex',minWidth:'117ch', maxWidth:'117ch',}}>
       {/*<Navbar token={token} setToken={setToken}/>*/}
-        <Box sx={{display:'flex', fontStyle:'roboto', minWidth:"100%",maxWidth:'100%'}}>
-            <Box sx={{width:"18%"}}>
-            <Box sx={{width:"18%", position:'fixed'}}>
-                <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
-            </Box>
-            </Box>
-        <Box sx={{ display: 'flex', width:'82%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-            <Box component="main" sx={{  width:'82%', display:'flex',position:'fixed' }}>
-                <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
+        <div style={{display:'flex', fontStyle:'roboto', minWidth:'117ch', maxWidth:'117ch',}}>
+            {/* <Box sx={{width:"18%"}}>
+                <Box sx={{width:"18%", position:'fixed'}}>
+                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
+                </Box>
+            </Box> */}
+        <div sx={{ display: 'flex', minWidth:'117ch', maxWidth:'117ch',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+            {/* <div component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
+                <div sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                     {/* <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                         <SearchIcon />
                     </Box>
@@ -303,8 +288,8 @@ setuser,
                         ),
                         placeholder:"Search..."
                     }}
-                /> */}
-                </Box>
+                /> 
+                </div>
 
                 <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
                     alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
@@ -312,7 +297,7 @@ setuser,
                         {/* <NotificationsIcon
                             fontSize="large"
                             sx={{color:'#939EAA', cursor:'pointer'}}
-                        /> */}
+                        /> 
                     </Link>
                     &nbsp;&nbsp;&nbsp;
                     <Link >
@@ -343,7 +328,7 @@ setuser,
                         <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                     </Menu>
                 </div>
-            </Box>
+            </div> */}
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
                 paddingTop:11 }}>
@@ -414,9 +399,36 @@ setuser,
                             {/*</input> */}
 
                             <TextField fullWidth id="outlined-basic" variant="outlined"
-                                        className="inputRounded" value={keyword} onChange={(e) => setKeyword(e.target.value)}
-                                           label="Keyword" sx={{ display:'flex',bgcolor: '#ffffff',borderRadius:16, }}
-                                           onKeyDown={()=>handleKeywordSearch()}/>
+                                        className="inputRounded" value={keyword} 
+                                        onChange={(e) => setKeyword(e.target.value)}
+                                        label="Keyword" 
+                                        sx={{ display:'flex',bgcolor: '#ffffff',borderRadius:16, }}
+                                        onKeyDown={()=>handleKeywordSearch()}
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <SearchIcon />
+                                                </InputAdornment>
+                                            ),
+                                            placeholder:"Search..."
+                                          }}/>
+
+                            {/* <InputBase
+                                // onChange={setVal}
+                                sx={{ width:'100%'}}
+                                id="outlined-basic" variant="outlined"
+                                placeholder="Search Google Maps"
+                                onChange={(e) => setKeyword(e.target.value)}
+                                onKeyDown={()=>handleKeywordSearch()}
+                                inputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                    placeholder:"Search..."
+                                }}
+                            /> */}
 
                         <Button sx={{minWidth:'75px', minHeight:'7vh',maxHeight:'7vh', display:'flex',ml:2,color:'#939EAA',
                             alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
@@ -592,12 +604,12 @@ setuser,
           </Box>                  
        </Modal>
 
-        </Box>
+        </div>
 
-        </Box>
+        </div>
        {/*<Footer />*/}
 
-    </Box>
+    </div>
   );
 }
 
