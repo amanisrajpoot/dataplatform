@@ -16,8 +16,7 @@ export default function Layout({ children, user, Auth, userdatasets }) {
     <div style={{display:"flex",width:'100%' }}>
       
         <LeftNav user ={user} userdatasets={userdatasets}/>
-          <div style={{display:"flex", flexDirection:'row', width:'100%', backgroundColor:"#fff",paddingLeft:12,
-          paddingRight:12, paddingTop:12, paddingBottom:12}}>
+          <div style={{display:"flex", flexDirection:'row', minWidth:'100%', backgroundColor:"#fff",}}>
             <TopNav user={user} Auth={Auth}/>
             <main>{children}</main>
           </div>

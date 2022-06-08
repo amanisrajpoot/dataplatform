@@ -331,7 +331,7 @@ setuser,
             </div> */}
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
-                paddingTop:11 }}>
+                paddingTop:11,minWidth:'117ch', maxWidth:'117ch', }}>
 
                     <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                         color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>

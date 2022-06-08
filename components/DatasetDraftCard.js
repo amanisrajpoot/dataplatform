@@ -79,7 +79,7 @@ export default function DatasetDraftCard(props){
 
     return (
         <div style={{display:"flex", flexDirection:'column', marginRight:8,
-                borderRadius:8, height:'100%', width:'100%',
+                borderRadius:8, height:'100%', minWidth:'44ch', maxWidth:'44ch',
         border:router.pathname.includes("/dataset/")?"1px solid #5A00E2":null}}>
           <div style={{display:"flex", flexDirection:'column',  minheight:'29vh', borderRadius:9,
               justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff', paddingLeft:12,minWidth:"42ch",

@@ -8,6 +8,7 @@ import {checkAuth} from "../function/checkAuth";
 import { getDatasets, getPublicDatasets, getUser } from '../function/users';
 import NextNProgress from 'nextjs-progressbar';
 import Layout from "../components/Layout";
+import "@fontsource/roboto";
 
 Amplify.configure({ ...awsExports, ssr: true });
 

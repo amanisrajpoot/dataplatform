@@ -251,15 +251,16 @@ export default function Dashboard({
 
     return (
 
-        <div style={{display:'flex',minWidth:'117ch', height:'100%'}}>
+        <div style={{display:'flex',minWidth:'119ch', maxwidth:'119ch'}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
-            <div style={{display:'flex', fontStyle:'roboto'}}>
+            <div style={{display:'flex', fontStyle:'roboto',minWidth:'100%',}}>
                 {/* <Box sx={{width:"18%",}}>
                     <Box sx={{width:"18%",position:'fixed'}}>
                     <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
                 </Box> */}
-                <div style={{ display: 'flex',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+                <div style={{ display: 'flex',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',
+                    height:'100%', minWidth:'100%'}}>
                     {/* <Box component="main" sx={{  minWidth:'82%', display:'flex', position:'fixed' }}>
                         <Box sx={{minWidth:'80%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px" }} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
@@ -336,7 +337,7 @@ export default function Dashboard({
 
                         </Box>
 
-                        {showDraft && <Box sx={{ minWidth:"100%", width:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                        {showDraft && <Box sx={{ minWidth:"100%", minWidth:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start',paddingTop:1}}>
 
                             <div style={{height:'22ch', minWidth:'63%', maxWidth:'28ch', backgroundColor:'#E4F7FF',
@@ -376,7 +377,7 @@ export default function Dashboard({
                                                 justifyContent:'space-between'}}>
                                         <Button
                                             variant="filled"
-                                            sx={{bgcolor:'#FF9800', borderRadius:2, color:"#fff",
+                                            sx={{backgroundColor:'#FF9800', borderRadius:2, color:"#fff",
                                                 textTransform:'capitalize', maxHeight:42}}
                                             endIcon={<ArrowForwardIcon />}
                                             onClick={()=>{
@@ -577,22 +578,22 @@ export default function Dashboard({
                                 <div>
                                     <div style={{color:'black', fontSize:20,marginLeft:18,}}>Top Downloads by Topic</div>
                                 </div>
-                                {/*<LineChart width={800} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>*/}
-                                {/*    <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>*/}
-                                {/*    <Line type="monotone" strokeWidth={3} dataKey="industry_points" stroke="#24BBFF" />*/}
-                                {/*    <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />*/}
-                                {/*    <XAxis dataKey="name" axisLine={false} stroke="#92929D"/>*/}
-                                {/*    <YAxis axisLine={false} stroke="#92929D"/>*/}
-                                {/*    <Tooltip content={<CustomTooltip />}/>*/}
-                                {/*</LineChart>*/}
+                                <LineChart width={700} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>*/}
+                                   <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>
+                                   <Line type="monotone" strokeWidth={3} dataKey="industry_points" stroke="#24BBFF" />
+                                   <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />
+                                   <XAxis dataKey="name" axisLine={false} stroke="#92929D"/>
+                                   <YAxis axisLine={false} stroke="#92929D"/>
+                                   <Tooltip content={<CustomTooltip />}/>
+                                </LineChart> 
 
-                                <BarChart width={1100} height={450} data={data} margin={{  bottom: 5}} >
+                                {/* <BarChart width={1100} height={450} data={data} margin={{  bottom: 5}} >
                                     <XAxis dataKey="name" axisLine={false} stroke="#92929D" />
                                     <YAxis axisLine={false} stroke="#92929D"/>
                                     <Tooltip />
                                     <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />
                                     <Bar dataKey="datasets" fill="#8884d8" barSize={50} />
-                                </BarChart>
+                                </BarChart> */}
                             </div>
 
                         </div>

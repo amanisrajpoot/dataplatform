@@ -227,15 +227,15 @@ export default function ManageDataset({
 
     return (
 
-        <div style={{display:'flex', flexDirection:'row', height:'100%',minWidth:'117ch', maxWidth:'117ch',}}>
+        <div style={{display:'flex', flexDirection:'row', minWidth:'119ch', maxWidth:'119ch',}}>
 
             {/* <Box sx={{width:"18%"}}>
                 <Box sx={{width:"18%", position:'fixed'}}>
                     <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                 </Box>
             </Box> */}
-            <div style={{width:"100%"}}>
-                <div style={{ display: 'flex', flexDirection:'column', bgcolor: '#FAFAFB'}}>
+            <div style={{display:'flex',flexDirection:'column', minWidth:'100%', maxWidth:'100%'}}>
+                <div style={{ display: 'flex', flexDirection:'column', backgroundColor: '#FAFAFB',minWidth:'100%', maxWidth:'100%'}}>
                     {/* <Box component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                         </Box>
@@ -276,7 +276,8 @@ export default function ManageDataset({
                         </div>
                     </Box> */}
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between', paddingTop:10}}>
+                    <div style={{ display: 'flex', flexDirection:'row', justifyContent:'space-between', paddingTop:96,
+                        paddingLeft:16, paddingRight:16}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"50%",
                             color:'gray-700', alignItems:'center'}}>
@@ -321,19 +322,20 @@ export default function ManageDataset({
                                     {"Update"}</Button>:null}
                         </Box>
 
-                    </Box>
+                    </div>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between', width:'100%'}}>
+                    <div style={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between',
+                         width:'100%', paddingLeft:16, paddingBottom:16, paddingTop:4}}>
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,width:'100%',
                             color:'gray-900', flex:'start'}}>
                             <div>Dataset Overview: &nbsp;</div> {userdataset !== null && userdataset !== undefined && <div>{userdataset.title}</div>}
                         </Box>
 
-                    </Box>
+                    </div>
 
                     {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
-                    <Box sx={{px:2, }}>
-                        <Box>{
+                    <div style={{paddingLeft:16, paddingRight:16, width: '100%', }}>
+                        {
                             userdataset !== null && userdataset !== undefined
                             && <SignalCardOut token={token} localDataset={localDataset} setLocalDataset={setLocalDataset}
                                               localTitle={localTitle} setLocalTitle={setLocalTitle} localDescription={localDescription}
@@ -343,9 +345,8 @@ export default function ManageDataset({
 
                             />
                         }
-                        </Box>
 
-                    </Box>
+                    </div>
                 </div>
 
                 <Modal open={openDetails} onClose={handleCloseDetails}>
@@ -356,9 +357,9 @@ export default function ManageDataset({
                     </Box>
                 </Modal>
 
-                <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#FAFAFB',pt:4, width:'100%'}}>
+                <div style={{ display: 'flex', minHeight: '23vh', backgroundColor:'#FAFAFB',pt:4, width:'100%'}}>
 
-                    <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%', }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%', }}>
 
                         <Box component="main" sx={{display:'flex', justifyContent:'space-between',
                             py: 2, width:'100%', }}>
@@ -453,10 +454,12 @@ export default function ManageDataset({
                             </Box>
                         </Box>:null}
 
-                        <div style={{display:'flex', flexDirection:'column',}}>
+                        <div style={{display:'flex', flexDirection:'column', marginLeft:16,
+                            overflowX: 'auto',overflowY: 'hidden', whiteSpace: 'nowrap', paddingTop:16,
+                            paddingBottom:16}}>
 
-                            <Box component="main" sx={{ display:'flex',flexDirection:'row',
-                                flex: 1, py: 2, px: 2, }}>
+                            <div component="main" style={{ display:'flex',flexDirection:'row',
+                                flex: 1,  }}>
                                 <Typography color="inherit" variant="h5" component="h1">
                                     <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',}}>
                                         <div>Matching Datasets &nbsp;</div>
@@ -464,9 +467,10 @@ export default function ManageDataset({
                                     </Box>
                                 </Typography>
 
-                            </Box>
-                            <Box sx={{ width:'100%', display:'flex', flexDirection:'row', px:2.5, flex:'start',
-                                alignItems:'center',  overflow: "scroll", maxWidth:'115ch'}}>
+                            </div>
+                            <div style={{  display:'flex', flexDirection:'row', marginLeft:4, flex:'start',
+                                alignItems:'center', paddingTop:16,
+                                overflowX: 'auto',overflowY: 'hidden', whiteSpace: 'nowrap'}}>
 
                                 {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
                                     userdatasets.map((data, index)=><DatasetDraftCard
@@ -480,13 +484,13 @@ export default function ManageDataset({
                                         handleOpenDetails={handleOpenDetails}
                                         handleCloseDetails={handleCloseDetails}/>): null
                                 }
-                            </Box>
+                            </div>
                         </div>
 
-                    </Box>
+                    </div>
 
 
-                </Box>
+                </div>
 
                 {/*<Modal*/}
                 {/*    open={open}*/}
