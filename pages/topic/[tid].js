@@ -215,7 +215,7 @@ export default function TopicBrowser({
                     </Box>
                 </Box> */}
                 <div style={{ display: 'flex', width:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-                    <Box component="main" sx={{  width:'100%', display:'flex',position:'fixed' }}>
+                    {/* <Box component="main" sx={{  width:'100%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
                                 <SearchIcon />
@@ -242,7 +242,7 @@ export default function TopicBrowser({
                                 {/* <NotificationsIcon
                                     fontSize="large"
                                     sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> */}
+                                /> 
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link >
@@ -273,7 +273,7 @@ export default function TopicBrowser({
                                 <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
                             </Menu>
                         </div>
-                    </Box>
+                    </Box> */}
 
                     <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
                         paddingTop:10, width:'100%', alignItems:'center' }}>
