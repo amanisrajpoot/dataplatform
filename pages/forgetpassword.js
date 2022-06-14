@@ -148,9 +148,11 @@ const ForgetPassword =() => {
             
           }}>
         </div>
-        <div  style={{display:'flex',
-                    minWidth:'50%', maxWidth:'50%',height: '100vh',
-                        flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
+        <div  style={{display:'flex', minWidth:'50%', maxWidth:'50%',
+                         flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                        <div style={{display:'flex',paddingTop:'3em',
+                            minWidth:'55%', maxWidth:'55%', height:'90%',
+                            flexDirection:'column', justifyContent:'center', alignItems:'center'}}> 
 
             {mode===1?()=>setTop(4):null}
           <Box
@@ -166,7 +168,7 @@ const ForgetPassword =() => {
           >
 
               {mode===0?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
-                <div style={{marginLeft:125}}>
+                <div style={{}}>
                     <div style={{fontSize:30}}>Forgot Password?</div>
                     <div style={{fontSize:14}}>Enter your email to send a link to reset your password</div>
                 </div>
@@ -178,7 +180,7 @@ const ForgetPassword =() => {
                   </div>
 
                   <div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
-                          <div style={{marginLeft:125}}>
+                          <div style={{}}>
                               <div style={{fontSize:30}}>Check Your Email</div>
                               <div style={{fontSize:14}}>We've sent a reset OTP to your email address: <b>{email}</b>
                               </div>
@@ -193,7 +195,7 @@ const ForgetPassword =() => {
                 {mode===0?<TextField
                     margin="normal"
                     required
-                    sx={{width:"65%"}}
+                    sx={{width:"100%"}}
                     id="email"
                     label="Email Address"
                     name="email"
@@ -217,7 +219,7 @@ const ForgetPassword =() => {
                         <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
+                sx={{  mb: 2, borderRadius:2,py:2,width:"100%",backgroundColor:"#5A00E2" }}
                 onClick={resetPassword}
                 // href="/dashboard"
               >
@@ -227,7 +229,7 @@ const ForgetPassword =() => {
                         <Button
                             type="submit"
                             variant="contained"
-                            sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
+                            sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"100%",backgroundColor:"#5A00E2" }}
                             onClick={()=>router.push({
                                 pathname:"/resetpassword",
                                 query:{useremail:email}
@@ -238,24 +240,24 @@ const ForgetPassword =() => {
                         </Button>
                         :null}
 
-                {mode===0?<div style={{paddingTop:12,paddingRight:76,width:'100%',display:'flex',justifyContent:'start'}}>
+                {mode===0?<div style={{paddingTop:12,width:'100%',display:'flex',justifyContent:'start'}}>
                     <Link  href="/login" variant="body2" >
                         <a style={{display:'flex', alignItems:'center',
-                            justifyContent:'center', paddingLeft:128}}>
+                            justifyContent:'center', }}>
                         <div style={{color:"#5A00E2", marginTop:4}}>{<ArrowBackIosNewIcon fontSize=''small/>}</div>
-                        <div style={{color:"#5A00E2", paddingLeft:4 }}>Back to Log In</div>
+                        <div style={{color:"#5A00E2", }}>Back to Log In</div>
                         </a>
                     </Link>
                 </div>
                     :mode===1?
 
-                <div style={{paddingTop:12,paddingRight:76,width:'100%',display:'flex',justifyContent:'center'}}>
+                <div style={{paddingTop:12,width:'100%',display:'flex',justifyContent:'center'}}>
 
                         <div style={{display:'flex', alignItems:'center',
-                            justifyContent:'center', paddingLeft:75,cursor:'pointer'}}>
+                            justifyContent:'center', cursor:'pointer'}}>
 
                             {"Didn't receive an email? "}
-                            <div style={{color:"#5A00E2", paddingLeft:4 }}
+                            <div style={{color:"#5A00E2",  }}
                             onClick={()=>setMode(0)}>Resend</div>
                         </div>
                 </div>:null}
@@ -264,7 +266,7 @@ const ForgetPassword =() => {
                 <Divider variant="middle" />
 
                 {mode===0?<><div style={{width:'100%',display:'flex', paddingTop:225, fontSize:14,
-                    justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
+                    justifyContent:'space-around', }}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
                     <div>Privacy Policy </div>
@@ -273,7 +275,7 @@ const ForgetPassword =() => {
                 <Copyright sx={{ pt: 1 }} /></>
                     :mode===1?<>
                     <div style={{width:'100%',display:'flex', paddingTop:240, fontSize:14,
-                    justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
+                    justifyContent:'space-around', }}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
                     <div>Privacy Policy </div>
@@ -284,6 +286,7 @@ const ForgetPassword =() => {
             </Box>
           </Box>
 
+        </div>
         </div>
       </div>
   );
