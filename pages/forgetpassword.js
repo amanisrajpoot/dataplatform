@@ -107,7 +107,7 @@ const ForgetPassword =() => {
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
     const [mode, setMode] = useState(0);
-    const [top, setTop] = useState(30);
+    const [top, setTop] = useState('15em');
 
     async function signInF(){
         const err = await signIn({email, password});
@@ -265,7 +265,7 @@ const ForgetPassword =() => {
 
                 <Divider variant="middle" />
 
-                {mode===0?<><div style={{width:'100%',display:'flex', paddingTop:225, fontSize:14,
+                {mode===0?<><div style={{width:'100%',display:'flex', paddingTop:'15em', fontSize:14,
                     justifyContent:'space-around', }}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
@@ -274,7 +274,7 @@ const ForgetPassword =() => {
                 </div>
                 <Copyright sx={{ pt: 1 }} /></>
                     :mode===1?<>
-                    <div style={{width:'100%',display:'flex', paddingTop:240, fontSize:14,
+                    <div style={{width:'100%',display:'flex', paddingTop:'15em', fontSize:14,
                     justifyContent:'space-around', }}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
