@@ -113,7 +113,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
     const [topPadding, setTopPadding] = useState(6)
-    const [bottomTopPadding, setBottomTopPadding] = useState(45)
+    const [bottomTopPadding, setBottomTopPadding] = useState('5em')
     const [mode, setMode] = useState(0)
     const [otp, setOtp] = useState(0)
     const [nameError, setNameError] = useState(false)
@@ -146,8 +146,8 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         if (erro === null) {
             setError(erro);
             setMode(1)
-            setTopPadding(28)
-            setBottomTopPadding(202)
+            setTopPadding('12em')
+            setBottomTopPadding('12em')
         } else {
             setError(erro);
             console.log('server error', erro)
@@ -163,8 +163,8 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         if (erro === null) {
             setError(erro);
             setMode(1)
-            setTopPadding(28)
-            setBottomTopPadding(202)
+            setTopPadding("12em")
+            setBottomTopPadding('12em')
         }else{
             setError(erro);
             console.log('server error', erro)
@@ -300,104 +300,89 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
         return (
             <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
             height: '100vh', font:'roboto' }}>
-            <div style={{minWidth:'167%', maxWidth:'125%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
-              flexDirection:'column', justifyContent:'center', alignItems:'center',
-                backgroundImage: 'url(/big-data-logon-screen.jpg)',
-                // backgroundRepeat: 'no-repeat',
-                backgroundColor: (t) =>
-                  t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                backgroundSize: 'cover',
-                // backgroundPosition: 'left',
-                
-              }}>
-            </div>
-                    <div style={{display:'flex',
-                    minWidth:'100%', maxWidth:'100%',
-                        flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
-                        {mode === 0 ? <div style={{
-                            paddingTop: 24,
-                            paddingRight: 76,
-                            width: '100%',
-                            display: 'flex',
-                            justifyContent: 'end'
-                        }}>
-                            <Link sx={{alignSelf: 'end'}} href="/login" variant="body2">
-                                {"Already have an account? "}
-                                <div style={{color: "#5A00E2", display: "inline"}}>Log In</div>
-                            </Link>
-                        </div> : mode === 1 ? null : null}
-                        <Box
-                            sx={{
-                                pt: topPadding,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                // justifyContent: 'center',
+                <div style={{minWidth:'50%', maxWidth:'50%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
+                flexDirection:'column', justifyContent:'center', alignItems:'center',
+                    backgroundImage: 'url(/big-data-logon-screen.jpg)',
+                    // backgroundRepeat: 'no-repeat',
+                    backgroundColor: (t) =>
+                    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                    backgroundSize: 'cover',
+                    // backgroundPosition: 'left',
+                    
+                }}>
+                </div>
+                    <div  style={{display:'flex', minWidth:'50%', maxWidth:'50%',
+                         flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                        <div style={{display:'flex',paddingTop:'3em',
+                            minWidth:'55%', maxWidth:'55%', height:'90%',
+                            flexDirection:'column', justifyContent:'center', alignItems:'center'}}> 
+                            {mode === 0 ? <div style={{
+                                paddingTop: '1em',
                                 width: '100%',
-                                height: '100%'
-
-                            }}
-                        >
-                            {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>*/}
-                            {/*  <ScreenLockPortraitOutlinedIcon />*/}
-                            {/*</Avatar>*/}
-                            {mode === 0 ? <div
-                                style={{display: 'flex', flexDirection: 'column', alignItems: 'start', width: '100%',}}>
-                                <div style={{marginLeft: 125}}>
-                                    <div style={{fontSize: 30}}>Sign Up</div>
-                                    <div style={{fontSize: 14}}>Welcome, we're really excited to onboard you!</div>
-                                </div>
-                            </div> : mode === 1 ? <>
-                                <div style={{color: "#5A00E2", alignSelf: 'center', marginBottom: 35}}>
-                                    <LockIcon sx={{transform: "scale(4)"}}/>
-                                </div>
-                                <div style={{
+                                display: 'flex',
+                                justifyContent: 'end'
+                            }}>
+                                <Link sx={{alignSelf: 'end'}} href="/login" variant="body2">
+                                    {"Already have an account? "}
+                                    <div style={{color: "#5A00E2", display: "inline"}}>Log In</div>
+                                </Link>
+                            </div> : mode === 1 ? null : null}
+                            
+                            <Box
+                                sx={{
+                                    pt: topPadding,
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    alignItems: 'start',
+                                    // justifyContent: 'center',
                                     width: '100%',
-                                }}>
-                                    <div style={{marginLeft: 125}}>
-                                        <div style={{fontSize: 30}}>Verification Code</div>
-                                        <div style={{fontSize: 14}}>We've sent a verification code to your email
-                                            address: <b>{email}</b>
+                                    height: '100%'
+
+                                }}
+                            >
+                                {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>*/}
+                                {/*  <ScreenLockPortraitOutlinedIcon />*/}
+                                {/*</Avatar>*/}
+                                {mode === 0 ? <div
+                                    style={{display: 'flex', flexDirection: 'column', alignItems: 'start', width: '100%',}}>
+                                    <div style={{}}>
+                                        <div style={{fontSize: 30}}>Sign Up</div>
+                                        <div style={{fontSize: 14}}>Welcome, we're really excited to onboard you!</div>
+                                    </div>
+                                </div> : mode === 1 ? <>
+                                    <div style={{color: "#5A00E2", alignSelf: 'center', marginBottom: 35}}>
+                                        <LockIcon sx={{transform: "scale(4)"}}/>
+                                    </div>
+                                    <div style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'start',
+                                        width: '100%',
+                                    }}>
+                                        <div style={{}}>
+                                            <div style={{fontSize: 30}}>Verification Code</div>
+                                            <div style={{fontSize: 14}}>We've sent a verification code to your email
+                                                address: <b>{email}</b>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </> : null}
-                            <Box component="form" onSubmit={handleSubmit}
-                                 sx={{
-                                     pt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
-                                     width: '100%'
-                                 }}>
+                                </> : null}
 
-                                {mode === 0 ? <>{nameError ? <TextField
-                                        error
-                                        margin="normal"
-                                        required
-                                        sx={{width: "65%"}}
-                                        id="name"
-                                        label="Full Name"
-                                        name="name"
-                                        autoComplete="name"
-                                        helperText="Incorrect Name"
-                                        autoFocus
-                                        onChange={(e) => setName(e.target.value)}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <AccountCircleIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            placeholder: "Your Name"
-                                        }}
-                                    /> : <TextField
+                                <Box component="form" onSubmit={handleSubmit}
+                                    sx={{
+                                        pt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
+                                        width: '100%'
+                                    }}>
+
+                                    {mode === 0 ? <>{nameError ? <TextField
+                                            error
                                             margin="normal"
                                             required
-                                            sx={{width: "65%"}}
+                                            sx={{width: "100%"}}
                                             id="name"
                                             label="Full Name"
                                             name="name"
                                             autoComplete="name"
+                                            helperText="Incorrect Name"
                                             autoFocus
                                             onChange={(e) => setName(e.target.value)}
                                             InputProps={{
@@ -408,270 +393,286 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 ),
                                                 placeholder: "Your Name"
                                             }}
-                                        /> }
-
-                                        {companyError ? <TextField
-                                            error
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            id="company"
-                                            label="Company Name"
-                                            name="company"
-                                            autoComplete="company"
-                                            helperText="Incorrect Company Name"
-                                            autoFocus
-                                            onChange={(e) => setCompany(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <BusinessIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Company Name"
-                                            }}
                                         /> : <TextField
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            id="company"
-                                            label="Company Name"
-                                            name="company"
-                                            autoComplete="company"
-                                            autoFocus
-                                            onChange={(e) => setCompany(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <BusinessIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Company Name"
-                                            }}
-                                        />}
-
-                                        {usernameError ? <TextField
-                                            error
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            id="email"
-                                            label="Email Address"
-                                            name="email"
-                                            autoComplete="email"
-                                            autoFocus
-                                            helperText="Invalid Email ID"
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <EmailIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Email Address"
-                                            }}
-                                        /> : <TextField
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            id="email"
-                                            label="Email Address"
-                                            name="email"
-                                            autoComplete="email"
-                                            autoFocus
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <EmailIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Email Address"
-                                            }}
-                                        />}
-
-                                        {passwordError ? <TextField
-                                            error
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            name="password"
-                                            label="Enter Password"
-                                            type="password"
-                                            id="password"
-                                            autoComplete="current-password"
-                                            helperText="Invalid Password"
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <LockIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Enter Password"
-                                            }}
-                                        /> : <TextField
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            name="password"
-                                            label="Enter Password"
-                                            type="password"
-                                            id="password"
-                                            autoComplete="current-password"
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <LockIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Enter Password"
-                                            }}
-                                        />}
-
-                                        {confirmPasswordError ? <TextField
-                                            error
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            name="confirmPassword"
-                                            label="Confirm Password"
-                                            type="password"
-                                            id="confirmpassword"
-                                            autoComplete="confirmPassword"
-                                            helperText="Please match the password"
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <LockIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Confirm Password"
-                                            }}
-                                        /> : <TextField
-                                            margin="normal"
-                                            required
-                                            sx={{width: "65%"}}
-                                            name="confirmPassword"
-                                            label="Confirm Password"
-                                            type="password"
-                                            id="confirmpassword"
-                                            autoComplete="confirmPassword"
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                            InputProps={{
-                                                startAdornment: (
-                                                    <InputAdornment position="start">
-                                                        <LockIcon/>
-                                                    </InputAdornment>
-                                                ),
-                                                placeholder: "Confirm Password"
-                                            }}
-                                        />}
-                                       <div style={{color:'red'}}>{error? <>{error}</>:null}</div>
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            sx={{
-                                                mt: 3,
-                                                mb: 2,
-                                                borderRadius: 2,
-                                                py: 2,
-                                                width: "65%",
-                                                backgroundColor: "#5A00E2"
-                                            }}
-                                            onClick={checkFields}
-                                            // href="/dashboard"
-                                        >
-                                            Sign Up
-                                        </Button>
-                                    </>
-                                    : mode === 1 ?
-                                    <>
-                                        <div style={{
-                                            width: '100%',
-                                            paddingLeft: 125,
-                                            paddingRight: 100,
-                                            paddingTop: 12
-                                        }}>
-                                            <OtpInput
-                                                inputStyle={{
-                                                    alignSelf: 'center', display: 'flex',
-                                                    width: '60%', height: '7vh'
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                id="name"
+                                                label="Full Name"
+                                                name="name"
+                                                autoComplete="name"
+                                                autoFocus
+                                                onChange={(e) => setName(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <AccountCircleIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Your Name"
                                                 }}
-                                                value={otp}
-                                                onChange={(otp) => setOtp(otp)}
-                                                numInputs={6}
-                                                separator={<span></span>}
-                                            />
-                                        </div>
-                                        {error? <>{error}</>:null}
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            sx={{
-                                                mt: 3,
-                                                mb: 2,
-                                                borderRadius: 2,
-                                                py: 2,
-                                                width: "65%",
-                                                backgroundColor: "#5A00E2"
-                                            }}
-                                            onClick={checkFields2}
-                                            // onClick={() => {
-                                            //     setMode(0)
-                                            //     setTopPadding(6)
-                                            //     setBottomTopPadding(45)
-                                            //
-                                            // }}
-                                            // href="/dashboard"
-                                        >
-                                            Continue
-                                        </Button>
-                                    </> : null}
+                                            /> }
 
-                                {mode === 0 ? <BrandName sx={{pt: 1}}/>
-                                    : mode === 1 ? <div style={{
-                                            paddingTop: 4, paddingRight: 76, minWidth: '100%', display: 'flex',
-                                            justifyContent: 'center', paddingLeft: 64, flexDirection:'column',alignItems:'center',
-                                        }}>
-                                                <div style={{ display:'flex'}}>{"Didn't receive code? "}
-                                                <div style={{color: "#5A00E2", display: "inline", cursor:"pointer", display: "block"}}
-                                                onClick={()=>{
-                                                    // setMode(0)
-                                                    // setTopPadding(6)
-                                                    // setBottomTopPadding(45)
-                                                    resendOTP()
-                                                }}>&nbsp;Resend</div>
-                                                </div>
-                                            
-                                                <div style={{display: "block",}}>
-                                                    {" Already have an account? "}
-                                                    <Link sx={{alignSelf: 'end'}} href="/login" variant="body2">
-                                                    <div style={{color: "#5A00E2", display: "inline"}}>Log In</div>
-                                                </Link>
-                                                </div>
+                                            {companyError ? <TextField
+                                                error
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                id="company"
+                                                label="Company Name"
+                                                name="company"
+                                                autoComplete="company"
+                                                helperText="Incorrect Company Name"
+                                                autoFocus
+                                                onChange={(e) => setCompany(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <BusinessIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Company Name"
+                                                }}
+                                            /> : <TextField
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                id="company"
+                                                label="Company Name"
+                                                name="company"
+                                                autoComplete="company"
+                                                autoFocus
+                                                onChange={(e) => setCompany(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <BusinessIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Company Name"
+                                                }}
+                                            />}
 
-                                        </div>
-                                        : null}
+                                            {usernameError ? <TextField
+                                                error
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                id="email"
+                                                label="Email Address"
+                                                name="email"
+                                                autoComplete="email"
+                                                autoFocus
+                                                helperText="Invalid Email ID"
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <EmailIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Email Address"
+                                                }}
+                                            /> : <TextField
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                id="email"
+                                                label="Email Address"
+                                                name="email"
+                                                autoComplete="email"
+                                                autoFocus
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <EmailIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Email Address"
+                                                }}
+                                            />}
 
-                                <Divider variant="middle"/>
+                                            {passwordError ? <TextField
+                                                error
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                name="password"
+                                                label="Enter Password"
+                                                type="password"
+                                                id="password"
+                                                autoComplete="current-password"
+                                                helperText="Invalid Password"
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <LockIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Enter Password"
+                                                }}
+                                            /> : <TextField
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                name="password"
+                                                label="Enter Password"
+                                                type="password"
+                                                id="password"
+                                                autoComplete="current-password"
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <LockIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Enter Password"
+                                                }}
+                                            />}
 
-                                <div style={{
-                                    width: '100%', display: 'flex', paddingTop: bottomTopPadding, fontSize: 14,
-                                    justifyContent: 'space-around', paddingLeft: 125, paddingRight: 125
-                                }}>
-                                    <div>Terms of Service</div>
-                                    <div>Terms of Use</div>
-                                    <div>Privacy Policy</div>
-                                </div>
-                                <Copyright sx={{pt: 1}}/>
+                                            {confirmPasswordError ? <TextField
+                                                error
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                name="confirmPassword"
+                                                label="Confirm Password"
+                                                type="password"
+                                                id="confirmpassword"
+                                                autoComplete="confirmPassword"
+                                                helperText="Please match the password"
+                                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <LockIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Confirm Password"
+                                                }}
+                                            /> : <TextField
+                                                margin="normal"
+                                                required
+                                                sx={{width: "100%"}}
+                                                name="confirmPassword"
+                                                label="Confirm Password"
+                                                type="password"
+                                                id="confirmpassword"
+                                                autoComplete="confirmPassword"
+                                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                                InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                            <LockIcon/>
+                                                        </InputAdornment>
+                                                    ),
+                                                    placeholder: "Confirm Password"
+                                                }}
+                                            />}
+                                        <div style={{color:'red'}}>{error? <>{error}</>:null}</div>
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                sx={{
+                                                    mt: 3,
+                                                    mb: 2,
+                                                    borderRadius: 2,
+                                                    py: 2,
+                                                    width: "100%",
+                                                    backgroundColor: "#5A00E2"
+                                                }}
+                                                onClick={checkFields}
+                                                // href="/dashboard"
+                                            >
+                                                Sign Up
+                                            </Button>
+                                        </>
+                                        : mode === 1 ?
+                                        <>
+                                            <div style={{
+                                                width: '100%',
+                                                paddingTop: 12
+                                            }}>
+                                                <OtpInput
+                                                    inputStyle={{
+                                                        alignItems:'center', display: 'flex',
+                                                        width: '70%', height: '7vh', justifyContent:'center'
+                                                    }}
+                                                    value={otp}
+                                                    onChange={(otp) => setOtp(otp)}
+                                                    numInputs={6}
+                                                    separator={<span></span>}
+                                                />
+                                            </div>
+                                            {error? <>{error}</>:null}
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                sx={{
+                                                    mt: 3,
+                                                    mb: 2,
+                                                    borderRadius: 2,
+                                                    py: 2,
+                                                    width: "100%",
+                                                    backgroundColor: "#5A00E2"
+                                                }}
+                                                onClick={checkFields2}
+                                                // onClick={() => {
+                                                //     setMode(0)
+                                                //     setTopPadding(6)
+                                                //     setBottomTopPadding(45)
+                                                //
+                                                // }}
+                                                // href="/dashboard"
+                                            >
+                                                Continue
+                                            </Button>
+                                        </> : null}
 
+                                    {mode === 0 ? <BrandName sx={{pt: 1}}/>
+                                        : mode === 1 ? <div style={{
+                                                paddingTop: 4,  minWidth: '100%', display: 'flex',
+                                                justifyContent: 'center', flexDirection:'column',alignItems:'center',
+                                            }}>
+                                                    <div style={{ display:'flex'}}>{"Didn't receive code? "}
+                                                    <div style={{color: "#5A00E2", display: "inline", cursor:"pointer", display: "block"}}
+                                                    onClick={()=>{
+                                                        // setMode(0)
+                                                        // setTopPadding(6)
+                                                        // setBottomTopPadding(45)
+                                                        resendOTP()
+                                                    }}>&nbsp;Resend</div>
+                                                    </div>
+                                                
+                                                    <div style={{display: "block",}}>
+                                                        {" Already have an account? "}
+                                                        <Link sx={{alignSelf: 'end'}} href="/login" variant="body2">
+                                                        <div style={{color: "#5A00E2", display: "inline"}}>Log In</div>
+                                                    </Link>
+                                                    </div>
+
+                                            </div>
+                                            : null}
+
+                                    <Divider variant="middle"/>
+
+                                    <div style={{
+                                        width: '100%', display: 'flex', paddingTop: bottomTopPadding, fontSize: 14,
+                                        justifyContent: 'space-around', 
+                                    }}>
+                                        <div>Terms of Service</div>
+                                        <div>Terms of Use</div>
+                                        <div>Privacy Policy</div>
+                                    </div>
+                                    <Copyright sx={{pt: 1}}/>
+
+                                </Box>
                             </Box>
-                        </Box>
 
-
+                        </div>
                     </div>
                 </div>
         );

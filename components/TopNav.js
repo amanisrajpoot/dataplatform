@@ -17,6 +17,8 @@ import * as React from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { signOut } from '../function/checkAuth';
+import Avatar from '@mui/material/Avatar';
+
 
 export default function TopNav({
 	setmenu,
@@ -33,12 +35,6 @@ export default function TopNav({
 	Auth
 }) {
 	const router = useRouter();
-	const [addSampleModalVisible, setAddSampleModalVisible] = useState(false);
-	const [addPatientsModalVisible, setAddPatientsModalVisible] = useState(false);
-	const [locationModalVisible, setLocationModalVisible] = useState(false);
-	const [width, setWidth] = useState(null);
-	const [favourite, setFavourite] = useState(true)
-	const [recently, setRecently] = useState(true)
 	const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const openUser = Boolean(anchorElUser);
@@ -68,16 +64,35 @@ export default function TopNav({
 		}
     }, [token]);
 
-	return (
-		<div component="main" style={{  display:'flex',minWidth:'100%', maxWidth:'100%',  
-				position:'fixed',backgroundColor:'white', height:'9vh'  }}>
-                        <div style={{minWidth:'67%', display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center', 
-						 }} >
-                            <div style={{color:'gray', paddingRight:'1em', paddingLeft:'1em'}}>
-                                <SearchIcon />
-                            </div>
+	useEffect(async () => {
+        if(token !== 0 && token && token !== null && token !== undefined && 
+            nonAuthRoutes.includes(router.pathname) &&
+            (user === {} || user === null || user === undefined)){
+            console.log('get users called from app', token);
+            const userP = await getUser(token);
+            if(userP === null || userP === undefined ){
+                setuser({})
+            } else{
+                setuser(userP)
+            }
+            console.log('userP', userP);
+        }
+    }, []);
 
-                            <InputBase
+	return (
+		<div style={{ display:'flex',minWidth:'100%', maxWidth:'100%', position:'fixed', height:'9vh',
+					justifyContent:'flex-end'  }}>
+				<div style={{ display:'flex',minWidth:'83%', maxWidth:'83%', position:'fixed',backgroundColor:'white', height:'9vh',
+					 }}>
+                        <div style={{ display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center',
+							 minWidth:'84%', maxWidth:'84%',
+						
+						 }} >
+                            {router.pathname.includes("/dashboard") && <div style={{color:'gray', paddingRight:'1em', paddingLeft:'1em'}}>
+                                <SearchIcon />
+                            </div>}
+
+                            {router.pathname.includes("/dashboard") && <InputBase
                                 // onChange={setVal}
                                 sx={{ bgcolor:'white',width:'90%'}}
                                 placeholder="Search Google Maps"
@@ -87,15 +102,16 @@ export default function TopNav({
                                             <SearchIcon />
                                         </InputAdornment>
                                     ),
-                                    placeholder:"Search..."
+                                    placeholder:"Search for Datasets, Catalogs, and more"
                                 }}
-                            />
+                            />}
                         </div>
 
-						<div style={{ display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'flex-end',
-							bgcolor:'white', alignItems:'center',  }} >
-							<div style={{display:"flex",flexDirection:'row', backgroundColor:"#fff",paddingLeft:12,
-								alignItems: 'center',cursor: 'pointer',  height:"70px", }}>
+						<div style={{ display:'flex', flexDirection:'row', alignItems:'center',
+							minWidth:'16%', maxWidth:'16%', justifyContent:'space-between', 
+							backgroundColor:'white', alignItems:'center', }} >
+							<div style={{display:"flex",flexDirection:'row', backgroundColor:"#fff",
+								alignItems: 'center', height:"4.7em",  }}>
 								{/* <Link href='/login'>
 									{/* <NotificationsIcon
 										fontSize="large"
@@ -104,14 +120,18 @@ export default function TopNav({
 								</Link> */}
 								&nbsp;&nbsp;&nbsp;
 								<Link href={"/settings"}>
-									<AccountCircleIcon onClick={()=>router.push("/settings")} 
-										fontSize="large" sx={{color:'#939EAA'}}/>
+									{/* <AccountCircleIcon onClick={()=>router.push("/settings")} 
+										fontSize="large" sx={{color:'#939EAA'}}/> */}
+									<Avatar alt="Remy Sharp" sx={{height:35, width:35,cursor:'pointer' }} onClick={()=>router.push("/settings")}
+										src="https://picsum.photos/200" />
 								</Link>
 								&nbsp;&nbsp;&nbsp;
-								<p style={{fontSize:20}}>{user && user.name?user.name:Auth.user?Auth.user.attributes.name: 'Account'} </p>
-								&nbsp;&nbsp;&nbsp;
+								<p style={{fontSize:16, cursor:'pointer', paddingLeft:4,overflow:'auto' }} onClick={()=>router.push("/settings")}>
+									{user && user.name?user.name.substring(0,9):Auth.user?Auth.user.attributes.name.substring(0,9): 'Account'} </p>
+								&nbsp;
 								<div
 									// onClick={()=>signOut({path:router.pathname})}
+									style={{cursor:'pointer'}}
 									onClick={handleClickUser}
 								>
 									<ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
@@ -138,9 +158,10 @@ export default function TopNav({
 									}}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
 								</Menu>
 							</div>
-							</div>
 						</div>
-
+						</div>
+				</div>		
+		
 
 	)
 }

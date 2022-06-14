@@ -210,45 +210,18 @@ export default function Datasets({
     };
 
     return (
+        <div style={{display: 'flex', flexDirection:'column', minHeight:'100%', maxHeight:'100%',width:'100%', 
+            backgroundColor: '#FAFAFB', fontStyle:'roboto',margin:0, padding:0,}}>
 
-        <div style={{display:'flex',minWidth:'100%', maxWidth:'100%',}}>
-            {/*<Navbar token={token} setToken={setToken}/>*/}
-            <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%', maxWidth:'100%',}}>
-                {/* <Box sx={{width:"18%",}}>
-                    <Box sx={{width:"18%",position:'fixed'}}>
-                        <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
-                    </Box>
-                </Box> */}
-                <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
+                    <div style={{ display: 'flex', flexDirection:'row', paddingBottom:16,paddingLeft:16, paddingRight:16,
+                        justifyContent:'space-between', 
+                        paddingTop:128, }}>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between', 
-                        paddingTop:10, }}>
-
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
+                        <div style={{ display: 'flex', flexDirection:'row', font:'roboto',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
                             <div style={{fontSize:28}}>My Datasets &nbsp;&nbsp;</div>
-                            {/* <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
-                                alignItems:'space-between'}}>
-                                <div style={{fontSize:18, color:'gray'}}>Show:&nbsp;&nbsp;</div>
-                                <div style={{fontSize:18, color:'gray-900'}}>All</div>
-                                <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
 
-                                <Menu
-                                    id="basic-menu"
-                                    anchorEl={anchorEl}
-                                    open={open}
-                                    onClose={handleClose2}
-                                    MenuListProps={{
-                                        'aria-labelledby': 'basic-button',
-                                    }}
-                                >
-                                    <MenuItem onClick={handleClose}>All</MenuItem>
-                                    <MenuItem onClick={handleClose}>Created</MenuItem>
-                                    <MenuItem onClick={handleClose}>Draft</MenuItem>
-                                </Menu>
-                            </div> */}
-
-                        </Box>
+                        </div>
                         <Button variant="contained" size="large"
                                 sx={{backgroundColor:'#5A00E2', px:2, borderRadius:'10px', textTransform: "capitalize"}}
                                 startIcon={<AddIcon />}
@@ -264,76 +237,31 @@ export default function Datasets({
                             {/* onClick={handleOpen}> */}
                             Create a Dataset</Button>
 
-                    </Box>
+                    </div>
 
-                    <Box sx={{display:'flex',flexDirection:'column',minWidth:'100%', maxWidth:'100%'}}>
+                    <div style={{display:'flex',flexDirection:'column',
+                        paddingLeft:16, paddingRight:16,paddingBottom:16}}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', minWidth:'100%', maxWidth:'100%',
-                            justifyContent:'space-between'}}>
+                        <div style={{ display: 'flex', flexDirection:'row', py: 2,
+                            px:2, bgcolor: 'gray-900', 
+                            justifyContent:'space-between', paddingBottom:16}}>
 
-                            <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
+                            <div style={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                                 color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                                 <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                                 <div>My Datasets &nbsp;</div>
                                 {userdatasets !== null && userdatasets !== undefined && <div>{"("+ userdatasets.length+")"}</div>}
                                 <Divider variant="middle"/>
-                            </Box>
+                            </div>
 
                             <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
                                 onClick={()=>router.push("/settings")}/>
-
-                            <Modal
-                                open={open2}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
-                                <Box sx={style}>
-                                    <Grid sx={{display:'flex', flexDirection:'column', width:'100%' }}>
-                                        <Box sx={{display:'flex', flexDirection:"row", fontSize:20, fontWeight:600,
-                                            justifyContent:'space-between'}}>
-                                            <Box>
-                                                CHOOSE A METHOD
-                                            </Box>
-                                            <Box onClick={()=>handleClose()}>
-                                                X
-                                            </Box>
-                                        </Box>
-
-                                        <div style={{display:"flex", flexDirection:'row', maxHeight:'375px', width:"100%",
-                                            justifyContent:'center',backgroundColor:'#fff', marginBottom:16 }}>
-
-                                            <Link href="/createsignalfirst">
-                                                <Box sx={{border:2, borderColor:"#000000",
-                                                    mx:4,my:4,py:2,px:4, textAlign:'center',}}>
-                                                    <AddBoxIcon style={{fontSize:96}}/>
-                                                    <p><b>From Scratch</b><br></br>
-                                                        Create a new Custom<br></br>
-                                                        Dataset combining the<br></br>
-                                                        data sources you want.</p>
-                                                </Box>
-                                            </Link>
-
-                                            <Divider variant="middle" orientation="vertical" />
-
-                                            <Box sx={{border:2, borderColor:"#000",
-                                                mx:4,my:4,py:2,px:4,textAlign:'center'}}
-                                                 onClick={handleOpen2}>
-                                                <ContentCopyOutlinedIcon style={{fontSize:96}}/>
-                                                <p><b>From Predefined Models</b><br></br>
-                                                    Create a new<br></br>
-                                                    Dateset based on<br></br>
-                                                    predefined domain models.</p>
-                                            </Box>
-                                        </div>
-                                    </Grid>
-                                </Box>
-                            </Modal>
-                        </Box>
+                        </div>
 
                         {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
                         {/* <SignalTable /> */}
-                        <Box sx={{ minWidth:"97.3%", maxWidth:"97.3%",display:'flex', flexDirection:'column',mx:2, borderRadius:3,
+                        <div style={{ display:'flex', flexDirection:'column', borderRadius:3,
+                            paddingBottom:16,
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
                                 userdatasets.sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=><DatasetCard
@@ -346,23 +274,14 @@ export default function Datasets({
                                     handleOpenDetails={handleOpenDetails}
                                     handleCloseDetails={handleCloseDetails}/>): null
                             }
-                        </Box>
+                        </div>
 
-                    </Box>
+                    </div>
 
-                    <Modal open={openDetails} onClose={handleCloseDetails}>
-                        <Box sx={style2}>
-                            <DataSourcesDetails user={user} handleCloseDetails={handleCloseDetails}
-                                                data={dsDetails}/>
-                        </Box>
-                    </Modal>
+                    
 
                 </div>
 
-            </div>
-            {/*<Footer />*/}
-
-        </div>
     );
 }
 

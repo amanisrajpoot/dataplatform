@@ -9,6 +9,7 @@ import { getDatasets, getPublicDatasets, getUser } from '../function/users';
 import NextNProgress from 'nextjs-progressbar';
 import Layout from "../components/Layout";
 import "@fontsource/roboto";
+import TopNav from '../components/TopNav';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -25,7 +26,8 @@ function MyApp({ Component, pageProps }) {
     const [company, setCompany] = useState("")
     const [password, setPassword] = useState("");
     const [user, setuser] = useState({});
-    
+    const showNav = router.pathname === '/login' ? false : router.pathname === '/signup'? false: 
+        router.asPath === '/'?false:router.asPath === '/forgetpassword'?false:router.asPath === '/'?false:true;
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -44,7 +46,7 @@ function MyApp({ Component, pageProps }) {
             }
             console.log('userP', userP);
         }
-    }, [token]);
+    }, [token, router]);
 
     useEffect(() => {
       Hub.listen('auth', (data) => {
@@ -113,8 +115,6 @@ function MyApp({ Component, pageProps }) {
         }
     }, [token]);
 
-    
-
     useEffect( () => {
             setDataset({...dataset,title,description});
             console.log("added details",dataset);
@@ -132,10 +132,10 @@ function MyApp({ Component, pageProps }) {
   }, [token]);
 
   return (
-    <>
       <Layout user={user} setuser={setuser} userdatasets={userdatasets} Auth={Auth} token={token} setToken={setToken} 
             setUserdatasets={setUserdatasets} dataSources={dataSources} setDataSources={setDataSources}>
         <NextNProgress />
+        
         <Component role={role} setLocation={setLocation} token={token} location={location} 
             setToken={setToken} dataset={dataset} setDataset={setDataset} userdatasets={userdatasets}
             user={user} setuser={setuser}
@@ -144,7 +144,6 @@ function MyApp({ Component, pageProps }) {
             {...pageProps} name={name} setName={setName} email={email} setEmail={setEmail} company={company} setCompany={setCompany}
             />
       </Layout>
-    </>
   )
 }
 

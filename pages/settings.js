@@ -20,15 +20,7 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import InputAdornment from "@mui/material/InputAdornment";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import {signOut} from "../function/checkAuth";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Divider from "@mui/material/Divider";
-import CachedIcon from "@mui/icons-material/Cached";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import InputBase from '@mui/material/InputBase';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
@@ -38,11 +30,6 @@ import ModeEditOutlineRoundedIcon from '@mui/icons-material/ModeEditOutlineRound
 import EmailIcon from "@mui/icons-material/Email";
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import {EMAIL_VALIDATOR} from "../function/constants";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import SettingsIcon from "@mui/icons-material/Settings";
-import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { getDatasets, } from '../function/users';
 import { Auth } from 'aws-amplify';
 import {createUser} from "../function/users";
@@ -173,7 +160,7 @@ export default function Settings({
             }
             console.log('userP', userP);
         }
-    }, [token]);
+    }, []);
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));

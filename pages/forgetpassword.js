@@ -135,21 +135,21 @@ const ForgetPassword =() => {
 
   return (
 
-      <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
+    <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
       height: '100vh', font:'roboto' }}>
-      <div style={{minWidth:'167%', maxWidth:'125%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
-        flexDirection:'column', justifyContent:'center', alignItems:'center',
-          backgroundImage: 'url(/big-data-logon-screen.jpg)',
-          // backgroundRepeat: 'no-repeat',
-          backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'cover',
-          // backgroundPosition: 'left',
-          
-        }}>
-      </div>
+        <div style={{minWidth:'50%', maxWidth:'50%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
+          flexDirection:'column', justifyContent:'center', alignItems:'center',
+            backgroundImage: 'url(/big-data-logon-screen.jpg)',
+            // backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            // backgroundPosition: 'left',
+            
+          }}>
+        </div>
         <div  style={{display:'flex',
-                    minWidth:'100%', maxWidth:'100%',
+                    minWidth:'50%', maxWidth:'50%',height: '100vh',
                         flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
 
             {mode===1?()=>setTop(4):null}

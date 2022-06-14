@@ -23,7 +23,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {signIn} from "../function/checkAuth";
 import mixpanel from 'mixpanel-browser';
 import {EMAIL_VALIDATOR} from "../function/constants";
-
+import { MailRounded } from '@mui/icons-material';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -140,9 +140,10 @@ const Login =({token, setToken}) => {
   }
 
   return (
-      <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
-        height: '100vh', font:'roboto' }}>
-        <div style={{minWidth:'167%', maxWidth:'125%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
+    <>
+      <div className= "login" style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
+        height: '100%', font:'roboto' }}>
+        <div style={{ height:'100%', minWidth:'50%', maxWidth:'50%',backgroundColor:'#0DB1A1', display:'flex', 
           flexDirection:'column', justifyContent:'center', alignItems:'center',
             backgroundImage: 'url(/big-data-logon-screen.jpg)',
             // backgroundRepeat: 'no-repeat',
@@ -153,17 +154,19 @@ const Login =({token, setToken}) => {
             
           }}>
         </div>
-        <div  style={{display:'flex',
-           minWidth:'100%', maxWidth:'100%',
-            flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
-            <div style={{paddingTop:42,paddingRight:108, width:'100%',display:'flex',justifyContent:'end'}}>
+        <div  style={{display:'flex', minWidth:'50%', maxWidth:'50%',
+            flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            <div style={{display:'flex',paddingTop:'3em',
+                        minWidth:'55%', maxWidth:'55%', height:'90%',
+                        flexDirection:'column', justifyContent:'center', alignItems:'center'}}> 
+            <div style={{ width:'100%',display:'flex',justifyContent:'end', paddingTop:'3em'}}>
                 <Link sx={{alignSelf:'end'}} href="/signup" variant="body2">
                     {"Don't have an account?"} <div style={{color:"#5A00E2", display:"inline"}}>Sign Up</div>
                 </Link>
             </div>
-          <Box
-            sx={{
-              pt: 18,
+          <div
+            style={{
+              paddingTop: '5em',
               display: 'flex',
               flexDirection: 'column',
               // justifyContent: 'center',
@@ -176,7 +179,7 @@ const Login =({token, setToken}) => {
             {/*  <ScreenLockPortraitOutlinedIcon />*/}
             {/*</Avatar>*/}
             <div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
-                <div style={{marginLeft:125}}>
+                <div style={{}}>
                     <div style={{fontSize:30}}>Log In</div>
                     <div style={{fontSize:14}}>Welcome back, you’ve been missed!</div>
                 </div>
@@ -208,7 +211,7 @@ const Login =({token, setToken}) => {
                   /> : <TextField
                   margin="normal"
                   required
-                  sx={{width:"65%"}}
+                  sx={{width:"100%"}}
                   id="email"
                   label="Email Address"
                   name="email"
@@ -228,7 +231,7 @@ const Login =({token, setToken}) => {
                     error
                     margin="normal"
                     required
-                    sx={{width:"65%"}}
+                    sx={{width:"100%"}}
                     name="password"
                     label="Enter Password"
                     type="password"
@@ -248,7 +251,7 @@ const Login =({token, setToken}) => {
                     <TextField
                       margin="normal"
                       required
-                      sx={{width:"65%"}}
+                      sx={{width:"100%"}}
                       name="password"
                       label="Enter Password"
                       type="password"
@@ -265,8 +268,7 @@ const Login =({token, setToken}) => {
                       }}
                     />
                   }
-                <div style={{paddingLeft:100,display:'flex', width:'100%',}}>
-                    <div style={{display:'flex', justifyContent:'space-around' }}>
+                <div style={{display:'flex', width:'100%',justifyContent:'space-between'}}>
                         <div>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -280,14 +282,12 @@ const Login =({token, setToken}) => {
                                 <a>Forgot password?</a>
                             </Link>
                         </div>
-                    </div>
-
                 </div>
                 {/* {error && <div style={{color:"red"}}>{error}</div>} */}
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"65%",backgroundColor:"#5A00E2" }}
+                sx={{ mt: 3, mb: 2, borderRadius:2,py:2,width:"100%",backgroundColor:"#5A00E2" }}
                 onClick={()=>checkFields()}
                 // href="/dashboard"
               >
@@ -296,22 +296,21 @@ const Login =({token, setToken}) => {
 
                 <BrandName sx={{ pt: 1 }} />
 
-                <Divider variant="middle" />
-
-                <div style={{width:'100%',display:'flex', paddingTop:150, fontSize:14,
-                    justifyContent:'space-around', paddingLeft:125, paddingRight:125}}>
+                <div style={{width:'100%',display:'flex', paddingTop:'9em', fontSize:14,
+                    justifyContent:'space-around', }}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
                     <div>Privacy Policy </div>
                 </div>
                 <Copyright sx={{ pt: 1 }} />
             </Box>
-          </Box>
+          </div>
 
-
+        </div>
 
         </div>
       </div>
+      </>
     
   );
 }

@@ -42,11 +42,11 @@ export default function DatasetCard(props){
     console.log("fetched dataset",props.data);
     return (
         <div style={{display:"flex", flexDirection:'column',maxWidth:"99.5%", minWidth:"99.5%", borderRadius:9,paddingRight:9,
-             backgroundColor:"#FAFAFB",font:'roboto', fontSize:'0.9em',overflow: 'hidden',
+             backgroundColor:"#FAFAFB",font:'roboto', fontSize:'0.9em',overflow: 'hidden',display:"flex", flexDirection:'row',
+              minHeight:'16vh',maxHeight:'16vh',
+             justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
+             textOverflow:'clip', paddingTop:"2vh", paddingBottom:'2vh'
               }}>
-          <div style={{display:"flex", flexDirection:'row', minHeight:'16vh',maxHeight:'16vh', minWidth:"100%", maxWidth:"100%",
-              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
-              textOverflow:'clip', paddingTop:"2vh", paddingBottom:'2vh' }}>
 
                   <div style={{
                       flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px'}}>
@@ -55,7 +55,7 @@ export default function DatasetCard(props){
                               variant="outlined">{parseInt(props.index+1)}</Button>
                   </div>
 
-                    <div style={{ width:"49%", overflow:'hidden',
+                  <div style={{ width:"49%", overflow:'hidden',
                         flexDirection:'column',display:'flex',justifyContent:'center', }}>
                       <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title.substring(0,51): "Sample Dataset"+props.data.ID}</b><br></br>
                             </div>
@@ -101,19 +101,19 @@ export default function DatasetCard(props){
 
                     <Divider orientation="vertical" flexItem variant="middle"/>
 
-              <div style={{width:"7%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
-                  <div style={{color:'#939EAA', paddingBottom:8}}>Datasources:</div>
-                  <div style={{ffontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.data_sources?props.data.data_sources: "0"}</div>
-              </div>
+                    <div style={{width:"7%",flexDirection:'column',display:'flex',justifyContent:'center', }}>
+                        <div style={{color:'#939EAA', paddingBottom:8}}>Datasources:</div>
+                        <div style={{ffontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.data_sources?props.data.data_sources: "0"}</div>
+                    </div>
 
-              <Divider orientation="vertical" flexItem variant="middle"/>
+                    <Divider orientation="vertical" flexItem variant="middle"/>
 
-              <div style={{width:"4%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18, }}>
-                  <div style={{color:'#939EAA', paddingBottom:8,}}>Topics:&nbsp;</div>
-                  <div style={{fontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.topic?props.data.topic.split(",").length: "0"}</div>
-              </div>
+                    <div style={{width:"4%",flexDirection:'column',display:'flex',justifyContent:'center', paddingRight:18, }}>
+                        <div style={{color:'#939EAA', paddingBottom:8,}}>Topics:&nbsp;</div>
+                        <div style={{fontWeight:700, fontSize:"1.1250em", color:'#030D55'}}>{props.data.topic?props.data.topic.split(",").length: "0"}</div>
+                    </div>
 
-              <Divider orientation="vertical" flexItem variant="middle"/>
+                    <Divider orientation="vertical" flexItem variant="middle"/>
                     {/* <div style={{fontSize:14, cursor:'pointer',width:"12%"}} 
                         onClick={()=>props.handleOpenDetails(props.data)}>
                       <p><b>{props.geo?"View Details": "View Details"}</b></p>
@@ -140,7 +140,6 @@ export default function DatasetCard(props){
                         <Button sx={{borderRadius:2, borderColor:'#5A00E2', color:'#5A00E2', textTransform:'capitalize'}} variant="outlined">View</Button>
                     </div>}
               </div>
-          </div>
     )
 
 }
