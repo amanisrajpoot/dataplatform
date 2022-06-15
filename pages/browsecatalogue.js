@@ -261,42 +261,21 @@ setuser,
 
   return (
     
-    <div style={{minHeight:"100%", display:'flex',minWidth:'100%', maxWidth:'100%',}}>
+    <div style={{minHeight:"100%", display:'flex',minWidth:'100%', maxWidth:'100%',backgroundColor: '#FAFAFB',
+        fontStyle:'roboto', minWidth:'100%', maxWidth:'100%',paddingBottom:"2em",
+            paddingLeft:'1em', paddingRight:'1em',paddingTop:'7.15em',flexDirection:'column'}}>
       {/*<Navbar token={token} setToken={setToken}/>*/}
-        <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%', maxWidth:'100%',}}>
-            {/* <Box sx={{width:"18%"}}>
-                <Box sx={{width:"18%", position:'fixed'}}>
-                    <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
-                </Box>
-            </Box> */}
-        <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
-            
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
-                paddingTop:11,minWidth:'100%', maxWidth:'100%', }}>
+                    <div style={{ display: 'flex', flexDirection:'row', font:'roboto',paddingBottom:"1.5em",
+                            color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
+                            <div style={{fontSize:28}}>Browse Catalogs &nbsp;&nbsp;</div>
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
-                        color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                        <div style={{fontSize:28}}>Data Catalogs &nbsp;&nbsp;</div>
-                        {/* <div style={{ paddingLeft:18,display:'flex', flexDirection:'row', justifyContent:'space-between',
-                            alignItems:'space-between'}}>
-                            <div style={{fontSize:18, color:'gray'}}>Search:&nbsp;&nbsp;</div>
-                            <div style={{fontSize:18, color:'gray-900'}}>{currentOption}</div>
-                            <div style={{color:'gray'}}><ArrowDropDownIcon onClick={handleClick}/></div>
+                        </div>
 
-                            
-                        </div> */}
+          <div style={{ display: 'flex', flexDirection:'row', bgcolor: 'gray-900', minWidth:'100%', maxWidth:'100%',
+              justifyContent:'space-between',paddingBottom:"1.5em", }}>
 
-                    </Box>
-
-                </Box>
-
-            <Box>
-
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', minWidth:'100%', maxWidth:'100%',
-              justifyContent:'space-between'}}>
-
-              <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
+              <div style={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                     color:'gray-700',justifyContent:'space-around', alignItems:'center', }}>
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                       <div>Search Data Catalogs &nbsp;</div>
@@ -308,12 +287,12 @@ setuser,
                       <div>{"("+ topicFilteredDataSources.length+")"}</div>:null}
                     <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 
-                </Box>
+                </div>
               <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
-                <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
-                    onClick={()=>router.push("/settings")}/>
+                {/* <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
+                    onClick={()=>router.push("/settings")}/> */}
 
-          </Box>
+          </div>
 
 
           {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
@@ -323,7 +302,7 @@ setuser,
                 spinner={<SyncLoader />}
                 // text='Loading your content...'
                 > 
-            <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
+            <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, 
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                     <Box component="main" sx={{ display:'flex', width:'100%', alignItems:'center',
                         minHeight:'14vh', px:1.3, borderRadius:4}}>
@@ -452,7 +431,7 @@ setuser,
                     </Box>
 
                 <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
-                    overflowY:'auto', maxHeight:'60vh', paddingLeft:1.5, paddingRight:-8}}>
+                    overflowY:'auto', maxHeight:'60vh', }}>
                     {searchMode === 0 ? dataSources !== null && dataSources !== undefined &&
                     // dataSources.map((data,index)=><FeatureCard
                     //     openDetails={openDetails}
@@ -500,7 +479,7 @@ setuser,
           </Box>
           </LoadingOverlay>
 
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', width:'100%',
+          <Box sx={{ display: 'flex', flexDirection:'row', py: 3, bgcolor: 'gray-900', width:'100%',
               justifyContent:'space-between'}}>
 
               <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
@@ -513,12 +492,12 @@ setuser,
 
                 </Box>
               <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
-                <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
-                    onClick={()=>router.push("/settings")}/>
+                {/* <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
+                    onClick={()=>router.push("/settings")}/> */}
 
           </Box>
 
-          <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2, pt:1,
+          <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3,  pt:1,
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
 
                 {(searchMode === 0 || searchMode === 1 || searchMode === 2 ) ? dataSources !== null && dataSources !== undefined &&
@@ -537,8 +516,6 @@ setuser,
                     />):null}
           </Box>
       
-      </Box>
-
       <Modal open={openDetails} onClose={handleCloseDetails}>
           <Box sx={style2}>            
               <DataSourcesDetails user={user} handleCloseDetails={handleCloseDetails}
@@ -546,9 +523,6 @@ setuser,
           </Box>                  
        </Modal>
 
-        </div>
-
-        </div>
        {/*<Footer />*/}
 
     </div>

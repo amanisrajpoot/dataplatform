@@ -346,7 +346,7 @@ export default function Settings({
                             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
                              fontSize:20,pb:2, minWidth:'100%', mr:70, }}>
                                 <div>My Account &nbsp;</div>
-                                <Avatar alt="Remy Sharp" sx={{height:175, width:175, marginTop:2}} src="https://picsum.photos/200" />
+                                <Avatar alt="Remy Sharp" sx={{height:175, width:175, marginTop:2}} src="https://www.gravatar.com/avatar/?d=mp" />
                              </Box>
 
                             <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', paddingBottom:28}}>
@@ -360,8 +360,8 @@ export default function Settings({
                                             <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
                                             {user!== null && user !== undefined && user.firstname? user.firstname+" "+user.lastname: "loading.."}</div>
                                         </div>
-                                        <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
-                                            onClick={()=>setEditMode(1)}/>
+                                        {/* <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
+                                            onClick={()=>setEditMode(1)}/> */}
                                     </div>
 
                                     <div style={{fontSize:12, paddingTop:24, color:'#939EAA',textTransform:'uppercase'}}>Company</div>
@@ -371,8 +371,8 @@ export default function Settings({
                                             <div style={{fontSize:20, paddingLeft:8, color:'#030D55',}}>
                                                 {user!== null && user !== undefined && user.company?user.company: "loading.."}</div>
                                         </div>
-                                        <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
-                                                                    onClick={()=>setEditMode(2)}/>
+                                        {/* <ModeEditOutlineRoundedIcon sx={{fontSize:20, color:'black',cursor:'pointer'}}
+                                                                    onClick={()=>setEditMode(2)}/> */}
                                     </div>
 
                                     <div style={{fontSize:12, paddingTop:24, color:'#939EAA',textTransform:'uppercase'}}>Email Address</div>

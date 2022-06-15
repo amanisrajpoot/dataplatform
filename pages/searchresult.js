@@ -369,7 +369,7 @@ export default function Searchresult({
                         <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
                          fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
                         <div>BASIC INFO &nbsp;</div>
-                        <div style={{fontSize:12, paddingTop:4, color:'gray',}}>*Enter a title and description for your signal.</div>
+                        <div style={{fontSize:12, paddingTop:4, color:'gray',}}>*Enter a title and description for your Dataset.</div>
                          </Box>
 
                     <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', 

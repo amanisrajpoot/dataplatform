@@ -213,9 +213,10 @@ export default function Datasets({
         <div style={{display: 'flex', flexDirection:'column', minHeight:'100%', maxHeight:'100%',width:'100%', 
             backgroundColor: '#FAFAFB', fontStyle:'roboto',margin:0, padding:0,}}>
 
-                    <div style={{ display: 'flex', flexDirection:'row', paddingBottom:16,paddingLeft:16, paddingRight:16,
+                    <div style={{ display: 'flex', flexDirection:'row', paddingBottom:"2em",
+                        paddingLeft:'1em', paddingRight:'1em',paddingTop:'6.5em',
                         justifyContent:'space-between', 
-                        paddingTop:128, }}>
+                         }}>
 
                         <div style={{ display: 'flex', flexDirection:'row', font:'roboto',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
@@ -254,8 +255,8 @@ export default function Datasets({
                                 <Divider variant="middle"/>
                             </div>
 
-                            <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
-                                onClick={()=>router.push("/settings")}/>
+                            {/* <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
+                                onClick={()=>router.push("/settings")}/> */}
                         </div>
 
                         {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}

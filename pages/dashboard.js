@@ -17,23 +17,22 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
 import { RWebShare } from "react-web-share";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar,
-    PieChart, Pie, Legend, ResponsiveContainer } from 'recharts';
+import styles from '../styles/dashboard.module.css';
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Auth } from 'aws-amplify';
 import {createUser} from "../function/users";
-
-
-const data = [
-    // {name: 'Jan', datasets: 400,industry_points: 400,amt: 2400},{name: 'Feb', datasets: 300,industry_points: 500, amt: 2000},
-    // {name: 'Mar', datasets: 200,industry_points: 600, amt: 2200},{name: 'Apr', datasets: 400,industry_points: 700, amt: 2400},
-    // {name: 'May', datasets: 500,industry_points: 400, amt: 2400},{name: 'Jun', datasets: 600,industry_points: 600, amt: 2400},
-    {name: 'COV-19 Mortality', datasets: 550,industry_points: 800, amt: 2400},{name: 'COV-19 Vaccination', datasets: 800,industry_points: 400, amt: 2400},
-    {name: 'COV-19 Surveillance', datasets: 500,industry_points: 500, amt: 2400},{name: 'Insurance Coverage', datasets: 600,industry_points: 600, amt: 2400},
-    {name: 'Disability', datasets: 700,industry_points: 900, amt: 2400},];
-
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
+import {
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    BarChart,
+    ResponsiveContainer,
+    Bar, 
+    Tooltip,
+    Legend,
+  } from "recharts";
 
 function Copyright() {
     return (
@@ -86,6 +85,7 @@ export default function Dashboard({
     const openUser = Boolean(anchorElUser);
     const open2 = Boolean();
     const [currentRouteTitle, setCurrentRouteTitle] = useState("")
+    const [items, setItems] = useState([]); 
 
     useEffect(()=>{
         console.log("dashboard token", token)
@@ -200,55 +200,50 @@ export default function Dashboard({
         }
     };
 
+    useEffect(async () => {
+		if(token!==null){
+            const data = await getPublicDatasets(
+			token
+		    );
+			setDataSources(data);
+      console.log("fetched data",data);
+      }
+  }, []);
+
+    useEffect(async ()=>{
+        if(dataSources && dataSources !== null && dataSources !== undefined && dataSources.length > 0){
+        setUniqueTopics([...new Set(dataSources.map(item => item.topic))])
+        console.log("unique topicsssssss",uniqueTopics);
+        }
+    }, [dataSources])
+
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today  = new Date();
     const post1 = new Date(2018, 0, 1, 10, 33);
     const post2 = new Date(2020, 1, 18, 9, 33);
     const post3 = new Date(2020, 12, 21, 11, 33);
+    const [uniqueTopics, setUniqueTopics] = useState();
+    const [topicNumbers, setTopicNumbers] = useState([]);
 
-    const CustomTooltip = ({ active, payload, label }) => {
-        if (active && payload && payload.length) {
-            return (
-                <div className="custom-tooltip" style={{backgroundColor:'#fff', borderRadius:20,
-                    boxShadow: "0px 5px 15px rgba(68, 68, 79, 0.1)", height:140, width:180,  }}>
-                    <div style={{display:'flex', flexDirection:'row', alignItems:'center',paddingLeft:20, paddingTop:18}}>
-                        <FiberManualRecordIcon sx={{color:'#46D989'}}/>
-                        <div style={{paddingLeft:8}}>
-                            <div style={{fontSize:18, color:'#171725'}} >
-                                {`${payload[0].value}`}
-                            </div>
-                            <div style={{fontSize:14, color:'#9A99AD'}}>
-                                {`Datasets`}
-                            </div>
-                        </div>
-
-                    </div>
-                    <div style={{display:'flex', flexDirection:'row', alignItems:'center',paddingLeft:20, paddingTop:24}}>
-                        <FiberManualRecordIcon sx={{color:'#24BBFF'}}/>
-                        <div style={{paddingLeft:8}}>
-                            <div style={{fontSize:18, color:'#171725'}} >
-                                {`${payload[1].value}`}
-                            </div>
-                            <div style={{fontSize:14, color:'#9A99AD'}}>
-                                {`Industry Points`}
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            );
+    useEffect(async ()=>{
+        topicNumbers.length === 0 && uniqueTopics && uniqueTopics.length > 0 && uniqueTopics.map(async (topic)=>{
+            const data = dataSources.filter(item=>item.topic === topic)
+            setTopicNumbers(prev=>[...prev, {name:topic, Catalogs:data.length}])
         }
+        )
+        setItems([...items, ...topicNumbers])
+        console.log("topic number count",topicNumbers);
+    }, [uniqueTopics])
 
-        return null;
-    };
 
     return (
 
                 <div style={{ display: 'flex',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',
-                    height:'83%', minWidth:'83%', maxwidth:'100%',minHeight:'100%', maxHeight:'100%',}}>
+                    height:'100%', minWidth:'100%', maxwidth:'100%',minHeight:'100%', maxHeight:'100%',}}>
 
-                    <Box sx={{ minWidth:'100%', maxwidth:'100%',display: 'flex', flexDirection:'column', py: 2,px:2,
-                        justifyContent:'space-between',paddingTop:11}}>
+                    <div style={{ minWidth:'100%', maxwidth:'100%',display: 'flex', flexDirection:'column', paddingBottom:"2em",
+                        paddingLeft:'1em', paddingRight:'1em',paddingTop:'6.5em',
+                        justifyContent:'space-between',}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
@@ -256,10 +251,10 @@ export default function Dashboard({
 
                         </Box>
 
-                        {showDraft && <Box sx={{ minWidth:"100%", minWidth:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                        {showDraft && <div style={{ minWidth:"100%", minWidth:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start',paddingTop:1}}>
 
-                            <div style={{height:'22ch', minWidth:'68.5%', maxWidth:'68.5%', backgroundColor:'#E4F7FF',
+                            <div style={{height:'22ch', minWidth:'69%', maxWidth:'69%', backgroundColor:'#E4F7FF',
                                 marginRight:14, display:'flex', flexDirection:'row',marginBotoom:8,
                                 justifyContent:"space-between",borderRadius:9,  }}>
                                 <div style={{marginTop:18,marginLeft:18, display:'flex', flex:"start", flexDirection:'column',
@@ -295,10 +290,11 @@ export default function Dashboard({
                                     <div style={{paddingTop:18,color:'gray', paddingBottom:24, display:'flex',width:'100%',
                                                 justifyContent:'space-between'}}>
                                         <Button
-                                            variant="filled"
+                                            variant="contained"
                                             sx={{backgroundColor:'#FF9800', borderRadius:2, color:"#fff",
                                                 textTransform:'capitalize', maxHeight:42}}
                                             endIcon={<ArrowForwardIcon />}
+                                            color="success"
                                             onClick={()=>{
                                                 mixpanel.track('Redirected to Survey Page', {
                                                     'source': "Dashboard Page",
@@ -313,11 +309,12 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                        </Box>}
+                        </div>}
 
-                    </Box>
+                    </div>
 
-                    <Box sx={{ display: 'flex', flexDirection:'column', py: 2,px:2,justifyContent:'space-between'}}>
+                    <div style={{ display: 'flex', flexDirection:'column', paddingLeft:'1em', paddingRight:'1em',
+                        justifyContent:'space-between'}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
@@ -325,10 +322,10 @@ export default function Dashboard({
 
                         </Box>
 
-                        {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                        {showDraft && <div style={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
-                            <div style={{height:'22ch', minWidth:'32%', maxWidth:'32%', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -380,7 +377,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'22ch', minWidth:'32%', maxWidth:'32%', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
                                 marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -429,7 +426,7 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                            <div style={{height:'22ch', minWidth:'32%', maxWidth:'32%', backgroundColor:'#FFF',
+                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
                                  display:'flex', flexDirection:'column',marginBotoom:8,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
@@ -479,24 +476,21 @@ export default function Dashboard({
                                 </div>
                             </div>
 
-                        </Box>}
+                        </div>}
 
-                    </Box>
+                    </div>
 
-                    {showDraft && <Box sx={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
-                        alignItems:'start',marginLeft:2, paddingTop:2}}>
+                    {showDraft && <div style={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                        alignItems:'start',marginLeft:2, }}></div>}
 
-                        {/* <div style={{height:'58ch', minWidth:'97.2%', backgroundColor:'#FFF',
-                            marginRight:14, display:'flex', flexDirection:'row',marginBottom:8,
+                        <div style={{ minWidth:'100%', maxWidth:'100%',paddingTop:'1.5em', 
+                             display:'flex', flexDirection:'row',
                             justifyContent:"space-between",borderRadius:9,  }}>
                             <div style={{marginTop:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                                lineHeight:"22px", justifyContent:'space-between', width:'100%'
+                                lineHeight:"22px", justifyContent:'space-between', width:'100%',
                             }}
                             >
 
-                                <div>
-                                    <div style={{color:'black', fontSize:20,marginLeft:18,}}>Top Downloads by Topic</div>
-                                </div>
                                 {/* <LineChart width={700} height={450} data={data}margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                                    <Line type="monotone" strokeWidth={3} dataKey="datasets" stroke="#46D989" label={"Hello"}/>
                                    <Line type="monotone" strokeWidth={3} dataKey="industry_points" stroke="#24BBFF" />
@@ -504,12 +498,40 @@ export default function Dashboard({
                                    <XAxis dataKey="name" axisLine={false} stroke="#92929D"/>
                                    <YAxis axisLine={false} stroke="#92929D"/>
                                    <Tooltip content={<CustomTooltip />}/>
-                                </LineChart>  */}
+                                 </LineChart> */}
 
-                                {/* <PieChart width={530} height={250}>
+                                 {/* <PieChart width={750} height={250}>
                                     <Pie data={data} dataKey="datasets" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
                                     <Pie data={data} dataKey="industry_points" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
                                     </PieChart> */}
+                                <div style={{display:'flex', width:'100%'}}>
+                                    <div style={{display:'flex', flexDirection:'column', width:'100%', paddingBottom:'1em'}}>
+                                        <div style={{color:'black', fontSize:20,marginLeft:18,paddingBottom:"1em"}}>Domain Entity Count</div>
+                                        <div className="pie-row" style={{ styles }}>
+                                            <ResponsiveContainer height={items.length + 420 + 69} width="100%">
+                                            <BarChart
+                                                width={500}
+                                                height={300}
+                                                data={items}
+                                                margin={{
+                                                    top: 5,
+                                                    right: 30,
+                                                    left: 20,
+                                                    bottom: 5
+                                                }}
+                                                >
+                                                <CartesianGrid strokeDasharray="3 3" />
+                                                <XAxis dataKey="name" />
+                                                <YAxis />
+                                                <Tooltip />
+                                                <Legend />
+                                                <Bar dataKey="Catalogs" fill="#8884d8" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
 
                                 {/* <ResponsiveContainer width="100%" height="100%">
                                     <PieChart width={400} height={400}>
@@ -534,12 +556,11 @@ export default function Dashboard({
                                     <Tooltip />
                                     <CartesianGrid stroke="#F1F1F5" strokeDasharray="1 1" horizontal={false} />
                                     <Bar dataKey="datasets" fill="#8884d8" barSize={50} />
-                                </BarChart> 
-                            </div>
+                                </BarChart> */}
+                                </div>
 
-                        </div> */}
-
-                    </Box>}
+                        </div>
+                    
 
                     <Modal open={openDetails} onClose={handleCloseDetails}>
                         <Box sx={style2}>
@@ -549,7 +570,5 @@ export default function Dashboard({
                     </Modal>
 
                 </div>
-
     );
 }
-

@@ -155,19 +155,19 @@ export default function LeftNav({
 						{/* <DashboardIcon fontSize="medium" sx={{fontSize:28,}}/> */}
 						<svg width="24" height="25" viewBox="0 0 24 25" 
 							fill={router.pathname.includes('/dashboard')
-								? '#5A00E2'
+								? '#171725'
 								: 'background: #474F5A'} 
 							xmlns="http://www.w3.org/2000/svg">
 							<path opacity="0.4" d="M20.0402 7.48962L14.2802 3.45962C12.7102 2.35962 10.3002 2.41962 8.79023 3.58962L3.78023 7.49962C2.78023 8.27962 1.99023 9.87962 1.99023 11.1396V18.0396C1.99023 20.5896 4.06023 22.6696 6.61023 22.6696H17.3902C19.9402 22.6696 22.0102 20.5996 22.0102 18.0496V11.2696C22.0102 9.91962 21.1402 8.25962 20.0402 7.48962Z" 
-								fill="{router.pathname.includes('/dashboard')
-									? '#5A00E2'
-									: 'background: #474F5A'} "/>
+								fill={router.pathname.includes('/dashboard')
+									? '#171725'
+									: 'background: #474F5A'}/>
 							<path d="M12 19.418C11.59 19.418 11.25 19.078 11.25 18.668V15.668C11.25 15.258 11.59 14.918 12 14.918C12.41 14.918 12.75 15.258 12.75 15.668V18.668C12.75 19.078 12.41 19.418 12 19.418Z" fill="#474F5A"/>
 							</svg>
 
 					<p
-						style={{fontSize:20, font:'Roboto', fontWeight:700,
-							color: router.pathname.includes('/dashboard') ? '#5A00E2' : '',
+						style={{fontSize:20, font:'Roboto', fontWeight:router.pathname.includes('/dashboard') ?900:500,
+							color: router.pathname.includes('/dashboard') ? '#171725' : '',
 						}}
 					>
 						Dashboard
@@ -185,17 +185,15 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						color: router.pathname.includes('/datasets')||
-						router.pathname.includes('/searchresult')||
-						router.pathname.includes('/dataset/')
-							? '#5A00E2'
-							: ' #474F5A',
+						color: router.pathname.includes('/datasets')
+						? '#5A00E2'
+						: '#474F5A',
 					}}
 				>
 						{/* <TableViewOutlinedIcon fontSize="medium" sx={{fontSize:28,}}/> */}
 						<svg width="24" height="25" viewBox="0 0 24 25" 
 							fill={router.pathname.includes('/dataset/')
-									? '#5A00E2'
+									? '#171725'
 									: ' #474F5A'}
 							xmlns="http://www.w3.org/2000/svg">
 							<path d="M20 14.918C21.2426 14.918 22.25 13.9106 22.25 12.668C22.25 11.4253 21.2426 10.418 20 10.418C18.7574 10.418 17.75 11.4253 17.75 12.668C17.75 13.9106 18.7574 14.918 20 14.918Z" 
@@ -214,10 +212,8 @@ export default function LeftNav({
 
 
 					<p
-						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/datasets') ||
-							router.pathname.includes('/searchresult') ||
-							router.pathname.includes('/dataset/')? '#5A00E2' : '',
+						style={{fontSize:20, font:'roboto', fontWeight:router.pathname.includes('/datasets/')?900:500,
+							color: router.pathname.includes('/datasets')? '#171725' : '',
 						}}
 					>
 						My Datasets
@@ -234,10 +230,9 @@ export default function LeftNav({
 					}}
 					className={styles.items}
 					style={{
-						color: router.pathname.includes('/browsecatalogue') ||
-						 	   router.pathname.includes('/topic')
-							? '#5A00E2'
-							: 'gray',
+						color: router.pathname.includes('/browsecatalogue')
+						? '#5A00E2'
+						: '#474F5A',
 					}}
 				>
 						{/* <SourceIcon fontSize="medium" sx={{fontSize:28,}}/> */}
@@ -250,9 +245,8 @@ export default function LeftNav({
 
 
 					<p
-						style={{fontSize:20, font:'roboto', fontWeight:500,
-							color: router.pathname.includes('/browsecatalogue')||
-							router.pathname.includes('/topic') ? '#5A00E2' : '',
+						style={{fontSize:20, font:'roboto', fontWeight:router.pathname.includes('/topic') ?900:500,
+							color: router.pathname.includes('/browsecatalogue') ? '#171725' : '',
 						}}
 					>
 						Catalogs
@@ -286,9 +280,9 @@ export default function LeftNav({
 
 				<div style={{display:'flex', justifyContent:'space-between',  paddingBottom:12}}>
 					<div style={{textTransform: "capitalize", color:'#939EAA', fontSize:14}}>RECENT DATASETS</div>
-					<div onClick={()=>setRecently(!recently)}>
+					{userdatasets !== null && userdatasets !== undefined && userdatasets.length > 1 && <div onClick={()=>setRecently(!recently)}>
 						{recently?<ExpandLessIcon />:<ExpandMoreIcon/>}
-					</div>
+					</div>}
 
 				</div>
 

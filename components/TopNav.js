@@ -80,12 +80,12 @@ export default function TopNav({
     }, []);
 
 	return (
-		<div style={{ display:'flex',minWidth:'100%', maxWidth:'100%', position:'fixed', height:'9vh',
+		<div style={{ display:'flex',minWidth:'100%', maxWidth:'100%', position:'fixed', height:'7vh',
 					justifyContent:'flex-end'  }}>
-				<div style={{ display:'flex',minWidth:'83%', maxWidth:'83%', position:'fixed',backgroundColor:'white', height:'9vh',
+				<div style={{ display:'flex',minWidth:'83%', maxWidth:'83%', position:'fixed',backgroundColor:'white',
 					 }}>
                         <div style={{ display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center',
-							 minWidth:'84%', maxWidth:'84%',
+							 minWidth:'85.5%', maxWidth:'85.5%',
 						
 						 }} >
                             {router.pathname.includes("/dashboard") && <div style={{color:'gray', paddingRight:'1em', paddingLeft:'1em'}}>
@@ -108,7 +108,7 @@ export default function TopNav({
                         </div>
 
 						<div style={{ display:'flex', flexDirection:'row', alignItems:'center',
-							minWidth:'16%', maxWidth:'16%', justifyContent:'space-between', 
+							minWidth:'19%', maxWidth:'19%', justifyContent:'space-between', 
 							backgroundColor:'white', alignItems:'center', }} >
 							<div style={{display:"flex",flexDirection:'row', backgroundColor:"#fff",
 								alignItems: 'center', height:"4.7em",  }}>
@@ -123,7 +123,7 @@ export default function TopNav({
 									{/* <AccountCircleIcon onClick={()=>router.push("/settings")} 
 										fontSize="large" sx={{color:'#939EAA'}}/> */}
 									<Avatar alt="Remy Sharp" sx={{height:35, width:35,cursor:'pointer' }} onClick={()=>router.push("/settings")}
-										src="https://picsum.photos/200" />
+										src="https://www.gravatar.com/avatar/?d=mp" />
 								</Link>
 								&nbsp;&nbsp;&nbsp;
 								<p style={{fontSize:16, cursor:'pointer', paddingLeft:4,overflow:'auto' }} onClick={()=>router.push("/settings")}>

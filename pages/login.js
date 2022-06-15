@@ -192,7 +192,7 @@ const Login =({token, setToken}) => {
                     error
                     margin="normal"
                     required
-                    sx={{width:"65%"}}
+                    sx={{width:"100%"}}
                     id="email"
                     label="Email Address"
                     name="email"
