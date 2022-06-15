@@ -294,7 +294,7 @@ export default function Dashboard({
                                             sx={{backgroundColor:'#FF9800', borderRadius:2, color:"#fff",
                                                 textTransform:'capitalize', maxHeight:42}}
                                             endIcon={<ArrowForwardIcon />}
-                                            color="success"
+                                            color="primary"
                                             onClick={()=>{
                                                 mixpanel.track('Redirected to Survey Page', {
                                                     'source': "Dashboard Page",
@@ -506,7 +506,7 @@ export default function Dashboard({
                                     </PieChart> */}
                                 <div style={{display:'flex', width:'100%'}}>
                                     <div style={{display:'flex', flexDirection:'column', width:'100%', paddingBottom:'1em'}}>
-                                        <div style={{color:'black', fontSize:20,marginLeft:18,paddingBottom:"1em"}}>Domain Entity Count</div>
+                                        <div style={{color:'black', fontSize:20,marginLeft:18,paddingBottom:"1em"}}>Catalog By Types</div>
                                         <div className="pie-row" style={{ styles }}>
                                             <ResponsiveContainer height={items.length + 420 + 69} width="100%">
                                             <BarChart

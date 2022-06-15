@@ -323,7 +323,7 @@ setuser,
                                         className="inputRounded" value={keyword} 
                                         onChange={(e) => setKeyword(e.target.value)}
                                         label="Keyword" 
-                                        sx={{ display:'flex',bgcolor: '#ffffff',borderRadius:16, }}
+                                        sx={{ display:'flex',bgcolor: '#ffffff',borderRadius:16, width:'65.5%' }}
                                         onKeyDown={()=>handleKeywordSearch()}
                                         InputProps={{
                                             startAdornment: (
@@ -351,7 +351,7 @@ setuser,
                                 }}
                             /> */}
 
-                        <Button sx={{minWidth:'75px', minHeight:'7vh',maxHeight:'7vh', display:'flex',ml:2,color:'#939EAA',
+                        <Button sx={{minWidth:'75px', minHeight:'6vh',maxHeight:'6vh', display:'flex',ml:2,color:'#939EAA',
                             alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
                             py:3
                             }}
@@ -394,7 +394,7 @@ setuser,
 
                                 </Menu>
 
-                        <Button sx={{minWidth:'75px', minHeight:'7vh',maxHeight:'7vh', display:'flex',ml:2,color:'#939EAA',
+                        <Button sx={{minWidth:'75px', minHeight:'6vh',maxHeight:'6vh', display:'flex',ml:2,color:'#939EAA',
                             alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'#939EAA',
                             py:3
                             }}
@@ -500,8 +500,41 @@ setuser,
           <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3,  pt:1,
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
 
-                {(searchMode === 0 || searchMode === 1 || searchMode === 2 ) ? dataSources !== null && dataSources !== undefined &&
+                {searchMode === 0 ?
+                    dataSources !== null && dataSources !== undefined &&
                     dataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 5 && <FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />):
+                
+                    searchMode === 1?
+                    keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined && 
+                    keywordFilteredDataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 5 && <FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />):
+                    
+                    searchMode === 2  ? 
+                    topicFilteredDataSources !== null && topicFilteredDataSources !== undefined &&
+                    topicFilteredDataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 5 && <FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
