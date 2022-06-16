@@ -167,7 +167,7 @@ export default function Dashboard({
             setUserdatasets(data);
             console.log("fetched datasets",data);
         }
-    }, [token]);
+    }, []);
         
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
