@@ -72,7 +72,7 @@ export default function DatasetCard(props){
                                             router.pathname.includes('/catalog')?data.title:
                                                 router.query.tid
                                     }
-                                    })}>{topic.substring(0,16) + ".."}</Button>)
+                                    })}>{topic.substring(0,14) + ".."}</Button>)
                             : "6"} {topicCount-3 > 0 ?<Button sx={{borderRadius:4, border:1, fontSize:"0.9em", mr:1,
                                     color:'#24BBFF', marginTop:1,textTransform:'capitalize',letterSpacing:'0.1em',
                                     marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small">{topicCount-3 + " more"}</Button>: null}

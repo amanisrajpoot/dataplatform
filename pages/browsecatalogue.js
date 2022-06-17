@@ -405,7 +405,7 @@ setuser,
                                 lineHeight: "125%"}}>Search by Keyword</div>
                         </Button>
                             </Box>
-                            <Box sx={{display:'flex', pt:2}}>
+                        <Box sx={{display:'flex', pt:2}}>
                                 <div style={{paddingTop:8}}>Applied Filters: {filterTopics && filterTopics.length >0 && 
                                     filterTopics.toString().split(/(?:,| )+/).map((word,index)=> index <7 && <Button
                                     variant="outlined"
@@ -430,23 +430,23 @@ setuser,
 
                     </Box>
 
-                <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
-                    overflowY:'auto', maxHeight:'60vh', }}>
+                <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", paddingLeft:'0.75em',
+                    overflowY:'auto', maxHeight:'60vh', paddingTop:'1em'}}>
                     {searchMode === 0 ? dataSources !== null && dataSources !== undefined &&
-                    // dataSources.map((data,index)=><FeatureCard
-                    //     openDetails={openDetails}
-                    //     data={data}
-                    //     index={index}
-                    //     token={token}
-                    //     user={user}
-                    //     handleOpenDetails={handleOpenDetails}
-                    //     handleCloseDetails={handleCloseDetails}
-                    //     dataset={dataset.catalog}
-                    //     dataSources={dataSources}
-                    //     removeDatasetcatalog={removeDatasetcatalog}
-                    //     addDatasetcatalog={addDatasetcatalog}
-                    // />)
-                    "":
+                    dataSources.map((data,index)=><FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />)
+                    :
                     searchMode === 1 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
                     keywordFilteredDataSources.map((data,index)=> <FeatureCard
                     openDetails={openDetails}
@@ -479,7 +479,7 @@ setuser,
           </Box>
           </LoadingOverlay>
 
-          <Box sx={{ display: 'flex', flexDirection:'row', py: 3, bgcolor: 'gray-900', width:'100%',
+          {/* <Box sx={{ display: 'flex', flexDirection:'row', py: 3, bgcolor: 'gray-900', width:'100%',
               justifyContent:'space-between'}}>
 
               <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
@@ -487,13 +487,13 @@ setuser,
                     <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                       <div>Newly Added Data Catalogs &nbsp;</div>
                       {/* { dataSources !== null && dataSources !== undefined &&
-                        <div>{"("+ 4 +")"}</div> } */}
+                        <div>{"("+ 4 +")"}</div> } 
                     <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 
                 </Box>
               <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
                 {/* <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}
-                    onClick={()=>router.push("/settings")}/> */}
+                    onClick={()=>router.push("/settings")}/> 
 
           </Box>
 
@@ -554,7 +554,7 @@ setuser,
               <DataSourcesDetails user={user} handleCloseDetails={handleCloseDetails}
               data={dsDetails}/>
           </Box>                  
-       </Modal>
+       </Modal> */}
 
        {/*<Footer />*/}
 
