@@ -214,7 +214,7 @@ export default function TopicBrowser({
                         <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
                 </Box> */}
-                <div style={{ display: 'flex', width:'100%',flexDirection:'column',bgcolor: '#FAFAFB', fontStyle:'roboto',}}>
+                <div style={{ display: 'flex', width:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
                     {/* <Box component="main" sx={{  width:'100%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
@@ -321,6 +321,7 @@ export default function TopicBrowser({
                         <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             <Box component="main" sx={{ display:'flex', flexDirection:'column',width:'100%', alignItems:'center',
+                                paddingLeft:'0.75em',paddingRight:'0.75em',
                                 minHeight:'14vh', borderRadius:4, py:2}}>
 
                                 {topicDatasources && topicDatasources.map((data,index)=><FeatureCard

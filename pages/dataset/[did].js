@@ -375,9 +375,9 @@ export default function ManageDataset({
 
                         </Box>
 
-                        <Box sx={{  display:'flex', flexDirection:'column', pt:1,px: 2,
+                        <Box sx={{  display:'flex', flexDirection:'column', pt:1,paddingLeft:'0.75em',paddingRight:'0.75em',
                             alignItems:'center' }}>
-                            <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
+                            <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',paddingLeft:'0.75em',paddingRight:'0.75em',
                                 justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
                                 {datasetMode === 0 ? userdataset !== null && userdataset !== undefined &&
                                     userdataset.catalog !== null && userdataset.catalog !== undefined &&
@@ -430,9 +430,9 @@ export default function ManageDataset({
 
                                 </Box>
 
-                                <Box sx={{ maxWidth:'100ch', display:'flex', flexDirection:'column', pt:1,px: 2,
+                                <Box sx={{ maxWidth:'100ch', display:'flex', flexDirection:'column', pt:1,paddingLeft:'0.75em',paddingRight:'0.75em',
                                     alignItems:'center' }}>
-                                    <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',
+                                    <Box sx={{ width:"100%",  display:'flex', flexDirection:'column', paddingLeft:'0.75em',paddingRight:'0.75em',
                                         justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
                                     {dataSources && dataSources.map((data,index)=><FeatureCard
                                         openDetails={openDetails}

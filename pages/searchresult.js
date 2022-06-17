@@ -326,7 +326,7 @@ export default function Searchresult({
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box> */}
 
-        <div style={{minWidth:'100%', maxWidth:'100%', bgcolor: '#f7f7f7'}}>
+        <div style={{minWidth:'100%', maxWidth:'100%', backgroundColor: '#f7f7f7'}}>
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: '#f7f7f7', minWidth:'100%', maxWidth:'100%',
                 justifyContent:'space-between', pt:10}}>
