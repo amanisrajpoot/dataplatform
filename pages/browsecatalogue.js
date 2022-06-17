@@ -302,7 +302,7 @@ setuser,
                 spinner={<SyncLoader />}
                 // text='Loading your content...'
                 > 
-            <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, 
+            <div style={{  display:'flex', flexDirection:'column', borderRadius:'0.75em', 
               justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                     <Box component="main" sx={{ display:'flex', width:'100%', alignItems:'center',
                         minHeight:'14vh', px:1.3, borderRadius:4}}>
@@ -430,10 +430,10 @@ setuser,
 
                     </Box>
 
-                <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", paddingLeft:'0.75em',
-                    overflowY:'auto', maxHeight:'60vh', paddingTop:'1em'}}>
+                <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", paddingLeft:'0.75em',paddingRight:'0.75em',
+                    overflowY:'auto', maxHeight:'60vh', paddingTop:'0.15em'}}>
                     {searchMode === 0 ? dataSources !== null && dataSources !== undefined &&
-                    dataSources.map((data,index)=><FeatureCard
+                    dataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 5 &&<FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
@@ -476,7 +476,7 @@ setuser,
                         addDatasetcatalog={addDatasetcatalog}
                     />):null}
                     </Box>
-          </Box>
+          </div>
           </LoadingOverlay>
 
           {/* <Box sx={{ display: 'flex', flexDirection:'row', py: 3, bgcolor: 'gray-900', width:'100%',

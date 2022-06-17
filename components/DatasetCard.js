@@ -41,21 +41,21 @@ export default function DatasetCard(props){
 
     console.log("fetched dataset",props.data);
     return (
-        <div style={{display:"flex", flexDirection:'column',maxWidth:"99.5%", minWidth:"99.5%", borderRadius:9,paddingRight:9,
+        <div style={{display:"flex", flexDirection:'column',maxWidth:"100%", minWidth:"100%", borderRadius:9,
              backgroundColor:"#FAFAFB",font:'roboto', fontSize:'0.9em',overflow: 'hidden',display:"flex", flexDirection:'row',
               minHeight:'16vh',maxHeight:'16vh',
              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
              textOverflow:'clip', paddingTop:"2vh", paddingBottom:'2vh'
               }}>
 
-                  <div style={{
+                  <div style={{width:"4%",
                       flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px'}}>
 
                       <Button sx={{borderRadius:2,minWidth:'36px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
                               variant="outlined">{parseInt(props.index+1)}</Button>
                   </div>
 
-                  <div style={{ width:"49%", overflow:'hidden',
+                  <div style={{ width:"45%", overflow:'hidden',
                         flexDirection:'column',display:'flex',justifyContent:'center', }}>
                       <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8}}><b>{props.data.title?props.data.title.substring(0,51): "Sample Dataset"+props.data.ID}</b><br></br>
                             </div>

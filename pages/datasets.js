@@ -224,7 +224,7 @@ export default function Datasets({
 
                         </div>
                         <Button variant="contained" size="large"
-                                sx={{backgroundColor:'#5A00E2', px:2, borderRadius:'10px', textTransform: "capitalize"}}
+                                sx={{backgroundColor:'#5A00E2', px:2, borderRadius:3, textTransform: "capitalize"}}
                                 startIcon={<AddIcon />}
                                 onClick={() => {
                                     router.push('/searchresult');
@@ -241,7 +241,7 @@ export default function Datasets({
                     </div>
 
                     <div style={{display:'flex',flexDirection:'column',
-                        paddingLeft:16, paddingRight:16,paddingBottom:16}}>
+                        paddingLeft:'1em', paddingRight:'1em',paddingBottom:'1em'}}>
 
                         <div style={{ display: 'flex', flexDirection:'row', py: 2,
                             px:2, bgcolor: 'gray-900', 
@@ -261,7 +261,7 @@ export default function Datasets({
 
                         {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
                         {/* <SignalTable /> */}
-                        <div style={{ display:'flex', flexDirection:'column', borderRadius:3,
+                        <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', paddingRight:'1em', paddingLeft:'0.25em',
                             
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
@@ -274,7 +274,7 @@ export default function Datasets({
                                     openDetails={openDetails}
                                     handleOpenDetails={handleOpenDetails}
                                     handleCloseDetails={handleCloseDetails}/>): <cite style={{fontSize:"1.5em", 
-                                        fontFamily:'roboto', paddingTop:'0.5em'}}>
+                                        fontFamily:'roboto', paddingTop:'0.25em'}}>
                                         {"You're almost there! Create a dataset to get started..."}
                                     </cite>
                             }

@@ -55,7 +55,7 @@ export default function FeatureCard(props){
 
         <div style={{display:"flex", flexDirection:'row', minHeight:'17vh',maxHeight:'17vh', width:"100%",
                alignItems:'center' ,backgroundColor:'#fff', marginBottom:14, flex:'start', borderRadius:16,
-              textOverflow:'clip', font:'roboto',paddingRight:0, fontSize:'0.9em',
+              textOverflow:'clip', font:'roboto',paddingRight:"1.75em", fontSize:'0.9em',
               overflow: 'hidden',
           border:router.pathname.includes("/searchresult")?'1px solid #E2E2EA':'',}}>
 
