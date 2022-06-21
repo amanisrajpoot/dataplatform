@@ -63,10 +63,10 @@ export default function FeatureCard(props){
                   paddingLeft:18, paddingRight:64,}}>
 
                   <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
-                          variant="outlined">{parseInt(props.index+1)}</Button>
+                          variant="outlined">{parseInt(props.pagesVisited+props.index + 1)}</Button>
               </div>
 
-              <div style={{fontSize:"1em", minWidth:"55%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
+              <div style={{fontSize:"1em", minWidth:"57%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
                         <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8, paddingRight:'2ch'}}><b>{props.data.title?props.data.title.substring(0,89): "FDA Approved Drugs"}</b></div>
                         <div style={{paddingBottom:8, color:'#939EAA',paddingRight:'4ch'}}>{props.data.description?(router.pathname.includes("/searchresult")?props.data.description.substring(0,119):props.data.description.substring(0,149))+
                             "..":"FDA has been very responsible in controlling drug flow"}</div>

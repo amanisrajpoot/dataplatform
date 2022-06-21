@@ -22,6 +22,18 @@ import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Auth } from 'aws-amplify';
 import {createUser} from "../function/users";
+import NewsUpdate from '../components/NewsUpdate';
+import FeatureCard from '../components/FeatureCard'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Divider from "@mui/material/Divider";
+import CachedIcon from '@mui/icons-material/Cached';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import GetAppIcon from '@mui/icons-material/GetApp';
+import EditIcon from '@mui/icons-material/Edit';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from '@mui/material/TextField';
+
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 import {
     CartesianGrid,
@@ -75,6 +87,8 @@ export default function Dashboard({
                                       email, 
                                       company,
                                       setuser,
+                                      addDatasetcatalog,
+                                      removeDatasetcatalog,
 
                                   }) {
 
@@ -86,6 +100,7 @@ export default function Dashboard({
     const open2 = Boolean();
     const [currentRouteTitle, setCurrentRouteTitle] = useState("")
     const [items, setItems] = useState([]); 
+    const [keywordRoute, setKeywordRoute] = useState(router.query.keyword)
 
     useEffect(()=>{
         console.log("dashboard token", token)
@@ -172,6 +187,9 @@ export default function Dashboard({
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
     const [showDraft, setShowDraft] = useState(true)
+    const [isActive, setIsActive] = React.useState(false);
+    const [topicFilteredDataSources, setTopicFilteredDataSources] = useState([])
+    const [keywordFilteredDataSources, setKeywordFilteredDataSources] = useState([])
 
     const handleOpenDetails = (data) => {
         setOpenDetails(true);
@@ -182,21 +200,75 @@ export default function Dashboard({
     };
 
     const [keyword, setKeyword] = useState('');
-    const handleKeywordSearch = async (event) => {
-        if(token !== 0 && !token && token !== null && token !== undefined){
+    useEffect( async (event) => {
+        if(token!==null  && router.query.keyword && searchMode === 0 ){
             console.log("SEARCH", keyword)
             mixpanel.track('Keyword Search for Catalogs', {
-                'source': "Data Platform Dashboard",
-                'action': "keyword search",
-                'keyword': keyword,
+              'source': "Browse Catalog page",
+              'action': "keyword search",
+              'keyword': keyword,
                 'email': user.email,
             });
+            if (router.query.keyword){
+                setIsActive(true);
+                const data = await getPublicDatasets(
+                token,router.query.keyword
+                );
+                setKeywordFilteredDataSources(data);
+                setIsActive(false);
+                setShowResults(true)
+                console.log("making results true keyword search")
+                setSearchMode(0)
+                console.log("fetched data",data);
+                console.log("fetched data",keywordFilteredDataSources);
+            }
+        }
+    },[router])
+
+    const handleKeywordSearch = async (event) => {
+        if(token!==null && keyword!==''){
+            console.log("SEARCH", keyword)
+            mixpanel.track('Keyword Search for Catalogs', {
+              'source': "Browse Catalog page",
+              'action': "keyword search",
+              'keyword': keyword,
+                'email': user.email,
+            });
+            setIsActive(true);
             const data = await getPublicDatasets(
-                token,keyword
-            );
-            setDataSources(data);
+            token,keyword
+          );
+            setKeywordFilteredDataSources(data);
+            setIsActive(false);
+            setShowResults(true)
+            console.log("making results visible keyword manual search")
+            setSearchMode(1)
             console.log("fetched data",data);
-            console.log("fetched data",userdatasets);
+            console.log("fetched data",keywordFilteredDataSources);
+        }
+    };
+
+    const handleTopicFilter = async (topic) => {
+        setLocalFilterTopics([...localFilterTopics,topic])
+        setFilterTopics(localFilterTopics)
+        if(token!==null){
+            mixpanel.track('Topic Filtered Keyword Search for Catalogs', {
+                'source': "Browse Catalog page",
+                'action': "keyword search",
+                'keyword': keyword,
+                'topic': topic,
+                'email': user.email,
+            });
+            setIsActive(true);
+            const catalog = await getPublicDatasetsTopicKeyword({token, keyword,topics:filterTopics});
+            setTopicFilteredDataSources(catalog);
+            setIsActive(false);
+            console.log("filtered catalog data",catalog);
+            setShowResults(true)
+            console.log("making results visible topic search")
+            setSearchMode(2)
+            console.log("fetched data",catalog);
+            console.log("fetched data",topicFilteredDataSources);
         }
     };
 
@@ -208,7 +280,18 @@ export default function Dashboard({
 			setDataSources(data);
       console.log("fetched data",data);
       }
-  }, []);
+    }, []);
+
+    useEffect(async () => {
+		if(router.query !== null && router.query.length >0 ){
+            if (router.query.keyword){
+                setKeywordRoute(router.query.keyword)
+                setShowResults(true)
+            }
+            
+            console.log("the router keyword making results true",router.query.keyword);
+      }
+    }, [keywordRoute, router.query]);
 
     useEffect(async ()=>{
         if(dataSources && dataSources !== null && dataSources !== undefined && dataSources.length > 0){
@@ -224,6 +307,9 @@ export default function Dashboard({
     const post3 = new Date(2020, 12, 21, 11, 33);
     const [uniqueTopics, setUniqueTopics] = useState();
     const [topicNumbers, setTopicNumbers] = useState([]);
+    const [showResults, setShowResults] = useState(false)
+    const [datasetMode, setDatasetMode] = useState(0)
+    const [searchMode, setSearchMode] = useState(0)
 
     useEffect(async ()=>{
         topicNumbers.length === 0 && uniqueTopics && uniqueTopics.length > 0 && uniqueTopics.map(async (topic)=>{
@@ -235,13 +321,18 @@ export default function Dashboard({
         console.log("topic number count",topicNumbers);
     }, [uniqueTopics])
 
+    const CustomizedLabel = ({ x, y, width, height, value, value2, value3, value4, fill }) => {
+            return <text x={x + (width / 2) + 6+9 +4+2} y={y + (height / 2)} fill={fill} textAnchor="middle" dominantBaseline="central">{value}</text>;
+        };
 
     return (
-
-                <div style={{ display: 'flex',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',
+        <div style={{ display: 'flex',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',
                     height:'100%', minWidth:'100%', maxwidth:'100%',minHeight:'100%', maxHeight:'100%',}}>
 
-                    <div style={{ minWidth:'100%', maxwidth:'100%',display: 'flex', flexDirection:'column', paddingBottom:"2em",
+            {showResults == false ? <div style={{ display: 'flex',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',
+                    height:'100%', minWidth:'100%', maxwidth:'100%',minHeight:'100%', maxHeight:'100%',}}>
+
+                     <div style={{ minWidth:'100%', maxwidth:'100%',display: 'flex', flexDirection:'column', paddingBottom:"2em",
                         paddingLeft:'1em', paddingRight:'1em',paddingTop:'6.5em',
                         justifyContent:'space-between',}}>
 
@@ -312,6 +403,7 @@ export default function Dashboard({
                         </div>}
 
                     </div>
+                    
 
                     <div style={{ display: 'flex', flexDirection:'column', paddingLeft:'1em', paddingRight:'1em',
                         justifyContent:'space-between'}}>
@@ -325,156 +417,20 @@ export default function Dashboard({
                         {showDraft && <div style={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
-                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
-                                marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
-                                justifyContent:"space-around", flex:'end',borderRadius:9,}}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
-                                }}
-                                >
+                            <NewsUpdate title={"Big Data is essential to every significant healthcare undertaking."} 
+                                description={"Read about the challenges, applications, and potential brilliant future for healthcare big data."} 
+                                url ={"https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290"} 
+                                date={"6th"} />
+                            
+                            <NewsUpdate title={"How these 4 tech trends are reshaping healthcare"} 
+                                description={"It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development."} 
+                                url ={"https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/"} 
+                                date={"6th"} />
 
-                                    <div onClick={()=>{
-                                        mixpanel.track('Redirected to 1st Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
-                                            'action': "1st Industry Wide Trends Clicked",
-                                            "url": "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
-                                        });
-                                        router.push('https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290')
-                                    }}>
-                                        <div style={{color:'black', fontSize:18, fontWeight:'500'}}
-                                        >Big Data is essential to every significant healthcare undertaking. </div>
-                                        <div style={{paddingTop:12,color:'#667280'}}
-                                        >Read about the challenges, applications, and potential brilliant future for healthcare big data.</div>
-                                    </div>
-                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
-                                        justifyContent:'space-between', alignItems:'center'}}>
-                                        <div style={{color:'gray',fontSize:14}}>{post1.toLocaleDateString("en-US", options)}</div>
-                                        <RWebShare
-                                            data={{
-                                                text: "Read about the challenges, applications, and potential brilliant future for healthcare big data.",
-                                                url: "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
-                                                title: "Big Data is essential to every significant healthcare undertaking.",
-                                            }}
-                                            onClick={() => {
-                                                mixpanel.track('Shared 1st Industry Wide Trends URL', {
-                                                    'source': "Dashboard Page",
-                                                    'action': "Clicked on Share button of 1st Industry Wide Trends",
-                                                    "url": "https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290",
-                                                    'email': user.email !== null && user.email !== undefined && user.email,
-                                                });
-                                                console.log("shared successfully!")
-                                            }}
-                                        >
-                                            <Button
-                                                variant="outlined"
-                                                sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
-                                                    textTransform:'capitalize'}}
-                                            >Share</Button>
-                                        </RWebShare>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
-                                marginRight:14, display:'flex', flexDirection:'column',marginBotoom:8,
-                                justifyContent:"space-around", flex:'end',borderRadius:9,}}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
-                                }}
-                                >
-                                    <div onClick={()=>{
-                                        mixpanel.track('Redirected to 2nd Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
-                                            'action': "2nd Industry Wide Trends Clicked",
-                                            "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
-                                        });
-                                        router.push('https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/')
-                                    }}>
-                                        <div style={{color:'black', fontSize:18, fontWeight:'500'}}
-                                        >How these 4 tech trends are reshaping healthcare</div>
-                                        <div style={{paddingTop:12,color:'#667280'}}>It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development.</div>
-                                    </div>
-                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
-                                        justifyContent:'space-between', alignItems:'center'}}>
-                                        <div style={{color:'gray',fontSize:14}}>{post2.toLocaleDateString("en-US", options)}</div>
-                                        <RWebShare
-                                            data={{
-                                                text: "It’s evident that, in the years ahead, this sector will continually and increasingly be defined by the development.",
-                                                url: "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
-                                                title: "How these 4 tech trends are reshaping healthcare",
-                                            }}
-                                            onClick={() => {
-                                                mixpanel.track('Shared 2nd Industry Wide Trends URL', {
-                                                    'source': "Dashboard Page",
-                                                    'action': "Clicked on Share button of 2nd Industry Wide Trends",
-                                                    "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
-                                                    'email': user.email !== null && user.email !== undefined && user.email,
-                                                });
-                                                console.log("shared successfully!")
-                                            }}
-                                        >
-                                            <Button
-                                                variant="outlined"
-                                                sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
-                                                    textTransform:'capitalize'}}
-                                            >Share</Button>
-                                        </RWebShare>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{height:'22ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
-                                 display:'flex', flexDirection:'column',marginBotoom:8,
-                                justifyContent:"space-around", flex:'end',borderRadius:9,}}>
-                                <div style={{marginLeft:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'space-between',  paddingTop:18, marginRight:18,
-                                }}
-                                >
-
-                                    <div onClick={()=>{
-                                        mixpanel.track('Redirected to 3rd Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
-                                            'action': "3rd Industry Wide Trends Clicked",
-                                            "url": "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
-                                        });
-                                        router.push('https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html')
-                                    }}>
-                                        <div style={{color:'black', fontSize:18, fontWeight:'500'}}
-                                        >Five distinct trends are converging to determine</div>
-                                        <div style={{paddingTop:12,color:'#667280'}}>Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health.</div>
-                                    </div>
-                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
-                                        justifyContent:'space-between', alignItems:'center'}}>
-                                        <div style={{color:'gray',fontSize:14}}>{post3.toLocaleDateString("en-US", options)}</div>
-                                        <RWebShare
-                                            data={{
-                                                text: "Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health.",
-                                                url: "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
-                                                title: "Five distinct trends are converging.",
-                                            }}
-                                            onClick={() => {
-                                                mixpanel.track('Shared 3rd Industry Wide Trends URL', {
-                                                    'source': "Dashboard Page",
-                                                    'action': "Clicked on share button of 3rd Industry Wide Trends",
-                                                    'url': "https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html",
-                                                    'email': user.email !== null && user.email !== undefined && user.email,
-                                                });
-                                                console.log("shared successfully!")
-                                            }}
-                                        >
-                                            <Button
-                                                variant="outlined"
-                                                sx={{ borderRadius:2, borderColor:'#667280', color:'#667280',
-                                                    textTransform:'capitalize'}}
-                                            >Share</Button>
-                                        </RWebShare>
-                                    </div>
-                                </div>
-                            </div>
+                            <NewsUpdate title={"Five distinct trends are converging to determine"} 
+                                description={"Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health."} 
+                                url ={"https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html"} 
+                                date={"6th"} />
 
                         </div>}
 
@@ -508,24 +464,19 @@ export default function Dashboard({
                                     <div style={{display:'flex', flexDirection:'column', width:'100%', paddingBottom:'1em'}}>
                                         <div style={{color:'black', fontSize:20,marginLeft:18,paddingBottom:"1em"}}>Catalog By Types</div>
                                         <div className="pie-row" style={{ styles }}>
-                                            <ResponsiveContainer height={items.length + 420 + 69} width="100%">
+                                            <ResponsiveContainer height={items.length * 42 + 69 +42 } width="100%">
                                             <BarChart
-                                                width={500}
-                                                height={300}
                                                 data={items}
-                                                margin={{
-                                                    top: 5,
-                                                    right: 30,
-                                                    left: 20,
-                                                    bottom: 5
-                                                }}
+                                                layout="vertical" barCategoryGap={1}
+                                                margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
                                                 >
                                                 <CartesianGrid strokeDasharray="3 3" />
-                                                <XAxis dataKey="name" />
-                                                <YAxis />
+                                                <XAxis type="number" />
+                                                <YAxis type="category" width={690-420} padding={{ left: 20 }} dataKey="name" />
                                                 <Tooltip />
                                                 <Legend />
-                                                <Bar dataKey="Catalogs" fill="#8884d8" />
+                                                <Bar dataKey="Catalogs" fill="#8884d8" label={<CustomizedLabel />}
+                                                />
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
@@ -570,5 +521,102 @@ export default function Dashboard({
                     </Modal>
 
                 </div>
+
+                : <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", paddingLeft:'0.75em',paddingRight:'0.75em',
+                overflowY:'auto', maxHeight:'60vh', paddingTop:'0.15em'}}>
+
+                <div style={{ display: 'flex', flexDirection:'row', justifyContent:'space-between', paddingTop:96, paddingBottom:24,
+                    paddingLeft:16, paddingRight:16}}>
+
+                    <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, 
+                        color:'gray-700', alignItems:'center'}}>
+                        {datasetMode ===1 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                                justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setShowResults(false)}>
+                                {"Back"}</Button>:
+                            datasetMode ===0 ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                                justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>setShowResults(false)}>
+                                {"Back"}</Button>:null}
+                        <Divider variant="middle" orientation="vertical" />
+                        <div style={{paddingLeft:8,paddingRight:2,}}>Go Back to {datasetMode ===0 ?" Dashboard": router.query.keyword}</div>
+                        <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2, paddingLeft:2,paddingRight:2, color:'#939EAA', borderColor:'#939EAA' }}
+                                startIcon={<CachedIcon />} onClick={()=>router.reload()}>
+                            {"Refresh"}</Button>
+                    </Box>
+                    {/* <Box sx={{display:"flex", alignItems:'center', justifyContent:'space-between', width:'24%', }}>
+                        {datasetMode==0?<div><DeleteOutlineIcon fontSize="large" sx={{cursor:'pointer',}}
+                                                                onClick={() => deleteF(userdataset)}/></div>:null}
+                        <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
+                                startIcon={<GetAppIcon />} onClick={handleClick}
+                                >
+                            {"Export"}</Button>
+
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <MenuItem onClick={()=>handleDownloadButton()}>Download CSV</MenuItem>
+                            <MenuItem disabled onClick={()=>handleClose}><div><div>XLS </div><div style={{fontSize:12}}>(Enterprise Version)</div></div> </MenuItem>
+                            <MenuItem disabled onClick={()=>handleClose}><div><div>API Configuration</div> <div style={{fontSize:12}}>(Enterprise Version)</div></div></MenuItem>
+                        </Menu>
+                        {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
+                                                    startIcon={<EditIcon />} onClick={() => setDatasetMode(1)}>
+                            {"Edit"}</Button>: datasetMode === 1 ?
+                            <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
+                                    startIcon={<CheckIcon />} onClick={() => {updateF(userdataset)}}>
+                                {"Update"}</Button>:null}
+                    </Box> */}
+
+                </div>
+
+                {searchMode === 0 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
+                    keywordFilteredDataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 9 &&<FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />)
+                    :
+                    searchMode === 1 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
+                    keywordFilteredDataSources.map((data,index)=> <FeatureCard
+                    openDetails={openDetails}
+                    data={data}
+                    index={index}
+                    token={token}
+                    user={user}
+                    handleOpenDetails={handleOpenDetails}
+                    handleCloseDetails={handleCloseDetails}
+                    dataset={dataset.catalog}
+                    dataSources={dataSources}
+                    removeDatasetcatalog={removeDatasetcatalog}
+                    addDatasetcatalog={addDatasetcatalog}
+                />):
+                    searchMode === 2 ? topicFilteredDataSources !== null && topicFilteredDataSources !== undefined &&
+                        topicFilteredDataSources.map((data,index)=> <FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />):null}
+                </Box>}
+        </div>
     );
 }

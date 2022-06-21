@@ -38,6 +38,8 @@ export default function TopNav({
 	const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const openUser = Boolean(anchorElUser);
+	const [keyword, setKeyword] = useState('');
+
 
 	const handleClickUser = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -79,6 +81,8 @@ export default function TopNav({
         }
     }, []);
 
+
+
 	return (
 		<div style={{ display:'flex',minWidth:'100%', maxWidth:'100%', position:'fixed', height:'7vh',
 					justifyContent:'flex-end'  }}>
@@ -96,6 +100,19 @@ export default function TopNav({
                                 // onChange={setVal}
                                 sx={{ bgcolor:'white',width:'90%'}}
                                 placeholder="Search Google Maps"
+								onChange={(e) => setKeyword(e.target.value)}
+								onKeyDown={(e)=>{
+									if (e.key === "Enter") {
+									console.log(e.target.value);
+									router.push({
+                                        pathname: `/dashboard/`,
+                                        query:{
+											keyword
+										}
+										})
+									}
+								}
+							}								
                                 inputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -146,8 +163,14 @@ export default function TopNav({
 										'aria-labelledby': 'basic-button',
 									}}
 								>
-									<MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-									<MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
+									<MenuItem onClick={()=>{
+										router.push('/settings')
+										handleCloseUser()
+										}}><SettingsIcon/>&nbsp; Settings</MenuItem>
+									<MenuItem onClick={()=>{
+										router.push('/support')
+										handleCloseUser()
+										}}><LiveHelpIcon/>&nbsp; Support</MenuItem>
 									<MenuItem onClick={()=>{
 										// mixpanel.track('Sign Out', {
 										// 	'source': "Dashboard Page",
@@ -155,6 +178,7 @@ export default function TopNav({
 										// 	'email': user.email !== null && user.email !== undefined && user.email,
 										// });
 										signOut({path:router.pathname})
+										handleCloseUser()
 									}}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
 								</Menu>
 							</div>
