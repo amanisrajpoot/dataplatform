@@ -33,6 +33,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from '@mui/material/TextField';
+import ReactPaginate from "react-paginate";
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 import {
@@ -311,6 +312,51 @@ export default function Dashboard({
     const [datasetMode, setDatasetMode] = useState(0)
     const [searchMode, setSearchMode] = useState(0)
 
+    const [users, setUsers] = useState(searchMode === 0 ? dataSources && dataSources.slice(0, 50):
+                                     searchMode === 1 ? keywordFilteredDataSources && keywordFilteredDataSources.slice(0, 50):
+                                     searchMode === 2 ? topicFilteredDataSources && topicFilteredDataSources.slice(0, 50):null);
+
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const usersPerPage = 7;
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const displayUsers = users
+    .slice(pagesVisited, pagesVisited + usersPerPage)
+    .sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> <FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        pagesVisited={pagesVisited}
+                        usersPerPage={usersPerPage}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        dataSources={dataSources}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                    />
+      );
+
+    useEffect(()=>{
+        if(searchMode === 0){
+            setUsers(dataSources && dataSources.slice(0, 50));
+        }else if(searchMode === 1){
+            setUsers(keywordFilteredDataSources && keywordFilteredDataSources.slice(0, 50));
+        }else if(searchMode === 2){
+            setUsers(topicFilteredDataSources && topicFilteredDataSources.slice(0, 50));
+        }
+    },[searchMode, dataSources, keywordFilteredDataSources, topicFilteredDataSources])
+
+    const pageCount = Math.ceil(users.length / usersPerPage);
+
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
+    };
+
+
     useEffect(async ()=>{
         topicNumbers.length === 0 && uniqueTopics && uniqueTopics.length > 0 && uniqueTopics.map(async (topic)=>{
             const data = dataSources.filter(item=>item.topic === topic)
@@ -573,7 +619,7 @@ export default function Dashboard({
 
                 </div>
 
-                {searchMode === 0 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
+                {/* {searchMode === 0 ? keywordFilteredDataSources !== null && keywordFilteredDataSources !== undefined &&
                     keywordFilteredDataSources.sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> index < 9 &&<FeatureCard
                         openDetails={openDetails}
                         data={data}
@@ -615,7 +661,20 @@ export default function Dashboard({
                         dataSources={dataSources}
                         removeDatasetcatalog={removeDatasetcatalog}
                         addDatasetcatalog={addDatasetcatalog}
-                    />):null}
+                    />):null} */}
+
+                    {displayUsers}
+                    <ReactPaginate
+                        previousLabel={"Previous"}
+                        nextLabel={"Next"}
+                        pageCount={pageCount}
+                        onPageChange={changePage}
+                        containerClassName={"paginationBttns"}
+                        previousLinkClassName={"previousBttn"}
+                        nextLinkClassName={"nextBttn"}
+                        disabledClassName={"paginationDisabled"}
+                        activeClassName={"paginationActive"}
+                    />
                 </Box>}
         </div>
     );
