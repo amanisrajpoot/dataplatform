@@ -46,6 +46,7 @@ import {
     Legend,
   } from "recharts";
 import MyActivity from '../components/MyActivity';
+import TopicCard from '../components/TopicCard';
 
 function Copyright() {
     return (
@@ -208,7 +209,7 @@ export default function Dashboard({
               'source': "Browse Catalog page",
               'action': "keyword search",
               'keyword': keyword,
-                'email': user.email,
+              'email': user.email,
             });
             if (router.query.keyword){
                 setIsActive(true);
@@ -509,7 +510,7 @@ export default function Dashboard({
                         <div style={{ minWidth:'100%', maxWidth:'100%',paddingTop:'1.5em', 
                              display:'flex', flexDirection:'row',
                             justifyContent:"space-between",borderRadius:9,  }}>
-                            <div style={{marginTop:18, cursor:'pointer', display:'flex', flex:"start", flexDirection:'column',
+                            <div style={{marginTop:18, cursor:'pointer', display:'flex', flexDirection:'row', backgroundColor:'#FAFAFB',
                                 lineHeight:"22px", justifyContent:'space-between', width:'100%',
                             }}
                             >
@@ -527,8 +528,9 @@ export default function Dashboard({
                                     <Pie data={data} dataKey="datasets" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
                                     <Pie data={data} dataKey="industry_points" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
                                     </PieChart> */}
-                                <div style={{display:'flex', width:'100%'}}>
-                                    <div style={{display:'flex', flexDirection:'column', width:'100%', paddingBottom:'1em'}}>
+                                
+                                <div style={{display:'flex', flexDirection:'column', width:'74%', paddingBottom:'1em',
+                                            backgroundColor:'#fff'}}>
                                         <div style={{color:'black', fontSize:20,marginLeft:18,paddingBottom:"1em"}}>Catalog By Types</div>
                                         <div className="pie-row" style={{ styles }}>
                                             <ResponsiveContainer height={items.length * 42 + 69 +42 } width="100%">
@@ -539,7 +541,7 @@ export default function Dashboard({
                                                 >
                                                 <CartesianGrid strokeDasharray="3 3" />
                                                 <XAxis type="number" />
-                                                <YAxis type="category" width={690-420} padding={{ left: 20 }} dataKey="name" />
+                                                <YAxis type="category" width={220} padding={{ left: 20 }} dataKey="name" />
                                                 <Tooltip />
                                                 <Legend />
                                                 <Bar dataKey="Catalogs" fill="#8884d8" label={<CustomizedLabel />}
@@ -547,8 +549,14 @@ export default function Dashboard({
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
-                                    </div>
-                                    
+                                </div>
+                                
+                                <div style={{display:'flex', flexDirection:'column', width:'25%',paddingRight:'1em'}}>
+                                    {items && items !== null && items.length > 0 && items.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
+                                        index < 7 && <TopicCard dataset={dataset} setUserdatasets={setUserdatasets} userdatasets={userdatasets} 
+                                            dataSources={dataSources} setDataSources={setDataSources}
+                                            topicName={topic.name} topicCount={topic.Catalogs}/>)}
+                                
                                 </div>
 
                                 {/* <ResponsiveContainer width="100%" height="100%">

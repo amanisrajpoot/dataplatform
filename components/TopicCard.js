@@ -64,7 +64,7 @@ const style2 = {
     p: 4,
 };
 
-export default function MyActivity({
+export default function TopicCard({
                                       token,
                                       setToken,
                                       dataset,
@@ -80,7 +80,8 @@ export default function MyActivity({
                                       title,
                                       description,
                                       url,
-                                      categoryName
+                                      topicName,
+                                      topicCount,
 
                                   }) 
 
@@ -91,25 +92,24 @@ export default function MyActivity({
     const router = useRouter()
 
     return (
-        <div style={{height:'18ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
-                                display:'flex', flexDirection:'column',marginBotoom:8,marginRight:14,
-                                justifyContent:"space-around", flex:'end',borderRadius:9,}}>
+        <div style={{height:'12ch', minWidth:'100%', maxWidth:'100%', backgroundColor:'#FFF',
+                                display:'flex', flexDirection:'column',marginBotoom:8,marginRight:14, marginRight:'1em',
+                                justifyContent:"space-around", flex:'end',borderRadius:9,paddingBotton:'1rem', marginBottom:'1rem'}}>
                                 
                                 <div style={{cursor:'pointer', display:'flex', flexDirection:'column',
                                     lineHeight:"22px", justifyContent:'center',   alignItems:'center', paddingTop:48,
 
                                 }}
-                                    onClick={()=>categoryName === "Catalogs" ? router.push('browsecatalogue'):
-                                                 categoryName === "Datasets" ? router.push('datasets') :
-                                                 categoryName === "Activity" ? "": null}
+                                    onClick={()=> router.push(`/topic/${topicName}`)}
+                                                 
                                 >
-                                    <div style={{width: '66px',
-                                                    
+                                    <div style={{
                                                     fontStyle: 'normal',
                                                     fontWeight: '700',
-                                                    fontSize: '36px',
+                                                    fontSize: '18px',
                                                     lineHeight: '33px',
-                                                    marginRight:96,
+                                                    
+                                                    textAlign:'center',
                                                     
 
                                                     /* identical to box height */
@@ -121,11 +121,12 @@ export default function MyActivity({
 
                                                     /* Inside auto layout */
                                                     }}>
-                                        {categoryName ? categoryName: "Category"}
+                                        {topicName && topicName.length <29 ? topicName.substring(0,29):
+                                                     topicName.substring(0,29)+ ".." }
                                         
                                     </div>
                                     <div style={{display:'flex', flexDirection:'row', justifyContent:'center',
-                                        alignItems:'center', paddingTop:'2rem'}}
+                                        alignItems:'center', paddingTop:'1rem'}}
                                         onClick={()=>{
                                         mixpanel.track('Redirected to 2nd Industry Wide Trends URL', {
                                             'source': "Dashboard Page",
@@ -135,13 +136,13 @@ export default function MyActivity({
                                         });
                                         
                                     }}>
-                                        {categoryName === "Catalogs" ?
+                                        {topicName === "Catalogs" ?
                                             <svg width="42" height="42" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M19.3702 5.55906L13.5102 2.94906C12.6502 2.56906 11.3502 2.56906 10.4902 2.94906L4.63018 5.55906C3.15018 6.21906 2.93018 7.11906 2.93018 7.59906C2.93018 8.07906 3.15018 8.97906 4.63018 9.63906L10.4902 12.2491C10.9202 12.4391 11.4602 12.5391 12.0002 12.5391C12.5402 12.5391 13.0802 12.4391 13.5102 12.2491L19.3702 9.63906C20.8502 8.97906 21.0702 8.07906 21.0702 7.59906C21.0702 7.11906 20.8602 6.21906 19.3702 5.55906Z" fill={router.pathname.includes('/browsecatalogue')? '#5A00E2':'#474F5A'}/>
                                             <path opacity="0.4" d="M11.9998 17.708C11.6198 17.708 11.2398 17.628 10.8898 17.478L4.14982 14.478C3.11982 14.018 2.31982 12.788 2.31982 11.658C2.31982 11.248 2.64982 10.918 3.05982 10.918C3.46982 10.918 3.79982 11.248 3.79982 11.658C3.79982 12.198 4.24982 12.898 4.74982 13.118L11.4898 16.118C11.8098 16.258 12.1798 16.258 12.4998 16.118L19.2398 13.118C19.7398 12.898 20.1898 12.208 20.1898 11.658C20.1898 11.248 20.5198 10.918 20.9298 10.918C21.3398 10.918 21.6698 11.248 21.6698 11.658C21.6698 12.778 20.8698 14.018 19.8398 14.478L13.0998 17.478C12.7598 17.628 12.3798 17.708 11.9998 17.708Z" fill={router.pathname.includes('/browsecatalogue')? '#5A00E2':'#474F5A'}/>
                                             <path opacity="0.4" d="M11.9998 22.6689C11.6198 22.6689 11.2398 22.5889 10.8898 22.4389L4.14982 19.4389C3.03982 18.9489 2.31982 17.8389 2.31982 16.6189C2.31982 16.2089 2.64982 15.8789 3.05982 15.8789C3.46982 15.8789 3.79982 16.2089 3.79982 16.6189C3.79982 17.2489 4.16982 17.8189 4.74982 18.0789L11.4898 21.0789C11.8098 21.2189 12.1798 21.2189 12.4998 21.0789L19.2398 18.0789C19.8098 17.8289 20.1898 17.2489 20.1898 16.6189C20.1898 16.2089 20.5198 15.8789 20.9298 15.8789C21.3398 15.8789 21.6698 16.2089 21.6698 16.6189C21.6698 17.8389 20.9498 18.9389 19.8398 19.4389L13.0998 22.4389C12.7598 22.5889 12.3798 22.6689 11.9998 22.6689Z" fill={router.pathname.includes('/browsecatalogue')? '#5A00E2':'#474F5A'}/>
                                             </svg>
-                                            : categoryName === 'Datasets'?
+                                            : topicName === 'Datasets'?
                                             <svg width="42" height="42" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M21.75 12.666C21.75 13.6325 20.9665 14.416 20 14.416C19.0335 14.416 18.25 13.6325 18.25 12.666C18.25 11.6995 19.0335 10.916 20 10.916C20.9665 10.916 21.75 11.6995 21.75 12.666Z" 
                                             fill={router.pathname.includes('/datasets')?"#5A00E2":'#474F5A'} stroke="#5A00E2"/>
@@ -154,7 +155,7 @@ export default function MyActivity({
                                             <path opacity="0.4" d="M19 13.416C19.41 13.416 19.75 13.076 19.75 12.666C19.75 12.256 19.41 11.916 19 11.916H11.75V7.66602C11.75 6.08602 12.42 5.41602 14 5.41602H19C19.41 5.41602 19.75 5.07602 19.75 4.66602C19.75 4.25602 19.41 3.91602 19 3.91602H14C11.58 3.91602 10.25 5.24602 10.25 7.66602V11.916H5C4.59 11.916 4.25 12.256 4.25 12.666C4.25 13.076 4.59 13.416 5 13.416H10.25V17.666C10.25 20.086 11.58 21.416 14 21.416H19C19.41 21.416 19.75 21.076 19.75 20.666C19.75 20.256 19.41 19.916 19 19.916H14C12.42 19.916 11.75 19.246 11.75 17.666V13.416H19Z" 
                                             fill={router.pathname.includes('/datasets')?"#5A00E2":'#474F5A'}/>
                                         </svg>
-                                            : categoryName === 'Activity'?
+                                            : topicName === 'Activity'?
                                             <svg width="53" height="54" viewBox="0 0 53 54" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M26.2346 53.2348C40.7235 53.2348 52.4691 41.4891 52.4691 27.0002C52.4691 12.5112 40.7235 0.765625 26.2346 0.765625C11.7456 0.765625 0 12.5112 0 27.0002C0 41.4891 11.7456 53.2348 26.2346 53.2348Z" fill="#24BBFF"/>
                                                 <path d="M18.0761 18.2105C17.8458 18.2105 17.625 18.119 17.4623 17.9563C17.2995 17.7935 17.208 17.5727 17.208 17.3424V15.6063C17.208 15.3761 17.2995 15.1553 17.4623 14.9925C17.625 14.8297 17.8458 14.7383 18.0761 14.7383C18.3063 14.7383 18.5271 14.8297 18.6899 14.9925C18.8527 15.1553 18.9441 15.3761 18.9441 15.6063V17.3424C18.9441 17.5727 18.8527 17.7935 18.6899 17.9563C18.5271 18.119 18.3063 18.2105 18.0761 18.2105Z" fill="white"/>
@@ -167,11 +168,11 @@ export default function MyActivity({
                                             : null}
 
 
-                                        <div style={{width: '66px',
+                                        <div style={{paddingRight:'1em',
                                                     height: '33px',
                                                     fontStyle: 'normal',
                                                     fontWeight: '700',
-                                                    fontSize: '42px',
+                                                    fontSize: '32px',
                                                     lineHeight: '33px',
                                                     
 
@@ -187,7 +188,7 @@ export default function MyActivity({
                                                     order: '1',
                                                     flexGrow: 0,
                                                     paddingLeft:'2rem'}}
-                                            >{userdatasets.length}</div>
+                                            >{topicCount}</div>
                                     </div>
                                     <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
                                         justifyContent:'space-between', alignItems:'center'}}>
