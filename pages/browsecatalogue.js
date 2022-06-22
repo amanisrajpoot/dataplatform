@@ -185,7 +185,9 @@ export default function BrowseCatalogue({
 
   const displayUsers = users !==null && users && users
     .slice(pagesVisited, pagesVisited + usersPerPage)
-    .sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> <FeatureCard
+    .sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> <div style={{width:'100%', paddingLeft:'0.7rem',
+                    paddingRight:'0.7rem'}}>
+                        <FeatureCard
                         openDetails={openDetails}
                         data={data}
                         index={index}
@@ -200,6 +202,7 @@ export default function BrowseCatalogue({
                         removeDatasetcatalog={removeDatasetcatalog}
                         addDatasetcatalog={addDatasetcatalog}
                     />
+                    </div>
       );
 
     useEffect(()=>{

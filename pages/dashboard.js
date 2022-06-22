@@ -539,7 +539,7 @@ export default function Dashboard({
                                                 layout="vertical" barCategoryGap={1}
                                                 margin={{ top: 0, right: 50, left: 0, bottom: 0 }}
                                                 >
-                                                <CartesianGrid strokeDasharray="3 3" />
+                                                <CartesianGrid strokeDasharray="9 9" />
                                                 <XAxis type="number" />
                                                 <YAxis type="category" width={220} padding={{ left: 20 }} dataKey="name" />
                                                 <Tooltip />

@@ -187,7 +187,9 @@ export default function MyActivity({
                                                     order: '1',
                                                     flexGrow: 0,
                                                     paddingLeft:'2rem'}}
-                                            >{userdatasets.length}</div>
+                                            >{categoryName === "Catalogs" ? dataSources && dataSources !== null && dataSources.length: 
+                                                categoryName === "Datasets" ?  userdatasets && userdatasets !== null && userdatasets.length:
+                                                categoryName === "Activity" ?  userdatasets && userdatasets !== null && userdatasets.length:null}</div>
                                     </div>
                                     <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
                                         justifyContent:'space-between', alignItems:'center'}}>

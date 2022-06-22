@@ -52,7 +52,7 @@ export default function DatasetCard(props){
                       flexDirection:'column',display:'flex',justifyContent:'center', maxHeight:'6px'}}>
 
                       <Button sx={{borderRadius:2,minWidth:'36px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
-                              variant="outlined">{parseInt(props.index+1)}</Button>
+                              variant="outlined">{parseInt(props.pagesVisited+props.index + 1)}</Button>
                   </div>
 
                   <div style={{ width:"45%", overflow:'hidden',

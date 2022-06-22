@@ -34,6 +34,8 @@ import {createUser} from "../function/users";
 
 import InputBase from '@mui/material/InputBase';
 import { route } from 'next/dist/server/router';
+import ReactPaginate from "react-paginate";
+
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 
@@ -190,24 +192,32 @@ export default function Datasets({
         setOpenDetails(false);
     };
 
-    const [keyword, setKeyword] = useState('');
-    const handleKeywordSearch = async (event) => {
-        if(token!==null){
-            console.log("SEARCH", keyword)
-            mixpanel.track('Keyword Search for Catalogs', {
-                'source': "Data Platform Dashboard",
-                'action': "keyword search",
-                'keyword': keyword,
-                'email': user.email,
-            });
-            const data = await getPublicDatasets(
-                token,keyword
-            );
-            setDataSources(data);
-            console.log("fetched data",data);
-            console.log("fetched data",userdatasets);
-        }
-    };
+    const [users, setUsers] = useState(userdatasets !== null && userdatasets
+                                        && userdatasets.slice(0, 50))
+
+    const [pageNumber, setPageNumber] = useState(0);
+
+    const usersPerPage = 5;
+    const pagesVisited = pageNumber * usersPerPage;
+
+    const displayUsers = users !==null && users && users
+        .slice(pagesVisited, pagesVisited + usersPerPage)
+        .sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data, index)=><DatasetCard
+            key={data.dataset_id}
+            index={index}
+            data={data}
+            token={token}
+            user={user}
+            openDetails={openDetails}
+            pagesVisited={pagesVisited}
+            handleOpenDetails={handleOpenDetails}
+            handleCloseDetails={handleCloseDetails}/>)
+
+    const pageCount = users !== null && users && Math.ceil(users.length / usersPerPage);
+
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
+        };
 
     return (
         <div style={{display: 'flex', flexDirection:'column', minHeight:'100%', maxHeight:'100%',width:'100%', 
@@ -264,20 +274,23 @@ export default function Datasets({
                         <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', paddingRight:'1em', paddingLeft:'0.25em',
                             
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
-                            {userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0 ?
-                                userdatasets.sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=><DatasetCard
-                                    key={data.dataset_id}
-                                    index={index}
-                                    data={data}
-                                    token={token}
-                                    user={user}
-                                    openDetails={openDetails}
-                                    handleOpenDetails={handleOpenDetails}
-                                    handleCloseDetails={handleCloseDetails}/>): <cite style={{fontSize:"1.5em", 
-                                        fontFamily:'roboto', paddingTop:'0.25em'}}>
-                                        {"You're almost there! Create a dataset to get started..."}
-                                    </cite>
-                            }
+                            
+                            {displayUsers}
+                            {/* .length > 0 ? displayUsers: <cite style={{fontSize:"1.5em", 
+                            //     fontFamily:'roboto', paddingTop:'0.25em'}}>
+                            //     {"You're almost there! Create a dataset to get started..."}
+                        // </cite> */}
+                                <ReactPaginate
+                                    previousLabel={"Previous"}
+                                    nextLabel={"Next"}
+                                    pageCount={pageCount}
+                                    onPageChange={changePage}
+                                    containerClassName={"paginationBttns"}
+                                    previousLinkClassName={"previousBttn"}
+                                    nextLinkClassName={"nextBttn"}
+                                    disabledClassName={"paginationDisabled"}
+                                    activeClassName={"paginationActive"}
+                                />
                         </div>
 
                     </div>

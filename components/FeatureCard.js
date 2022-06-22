@@ -63,7 +63,8 @@ export default function FeatureCard(props){
                   paddingLeft:18, paddingRight:64,}}>
 
                   <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
-                          variant="outlined">{parseInt(props.pagesVisited+props.index + 1)}</Button>
+                          variant="outlined">{router.pathname.includes("/searchresult")?parseInt(props.index + 1):
+                                                parseInt(props.pagesVisited+props.index + 1) }</Button>
               </div>
 
               <div style={{fontSize:"1em", minWidth:"57%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
