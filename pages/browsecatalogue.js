@@ -83,35 +83,40 @@ export default function BrowseCatalogue({
 
   const router = useRouter()
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl2, setAnchorEl2] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [anchorElUser2, setAnchorElUser2] = React.useState(null);
     const open = Boolean(anchorEl);
+    const open2 = Boolean(anchorEl2);
     const openUser = Boolean(anchorElUser);
-    const open2 = Boolean();
     const [isActive, setIsActive] = React.useState(false);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClickUser = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-    const handleClose2 = () => {
-        setAnchorEl(null);
-    };
-
-    const handleCloseUser = () => {
-        setAnchorElUser(null);
+    const handleClick2 = (event) => {
+        setAnchorEl2(event.currentTarget);
     };
 
   const [localdataset, setLocaldataset] = useState([]);
 
-  const handleOpen2 = () => {                               
-      setOpen(false);
-      setOpen2(true);
-  }
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClose2 = () => {
+    setAnchorEl2(null);
+  };
+
+  const handleFilter = ((topic)=>{
+    setCurrentOption("All")
+    setFilterTopics(localFilterTopics)
+    setLocalFilterTopics([])
+    handleTopicFilter(topic.split(",")[0])
+    setAnchorEl(null)
+  })
+
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined && 
@@ -424,26 +429,13 @@ export default function BrowseCatalogue({
                                     id="basic-menu"
                                     anchorEl={anchorEl}
                                     open={open}
-                                    onClose={()=> {
-                                        handleClose2()
-                                        setFilterTopics(localFilterTopics)
-                                        setLocalFilterTopics([])
-                                        
-                                        }
-                                    }
+                                    onClose={handleClose}
                                     MenuListProps={{
                                         'aria-labelledby': 'basic-button',
                                     }}
                                 >
                                     {uniqueTopics && uniqueTopics !== null && uniqueTopics !== undefined && uniqueTopics.length > 0 &&
-                                         uniqueTopics.map((topic, index)=><MenuItem onClick={() => {
-                                        setCurrentOption("All")
-                                            handleClose2()
-                                            setFilterTopics(localFilterTopics)
-                                            setLocalFilterTopics([])
-                                            handleTopicFilter(topic.split(",")[0])
-                                        // setAnchorEl(null)
-                                    }}>{topic.split(",")[0]}
+                                         uniqueTopics.map((topic, index)=><MenuItem onClick={()=>handleFilter(topic.split(",")[0])}>{topic.split(",")[0]}
                                         </MenuItem>)
                                     }
 
@@ -454,7 +446,7 @@ export default function BrowseCatalogue({
                                 py:3,textTransform: "capitalize",
                                 }}
                                     variant={"outlined"}
-                                    onClick={()=>handleKeywordSearch()}>
+                                    onClick={handleClick2}>
                                 
                                 <svg width="12" height="24" viewBox="0 0 8 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.98509 1.39286V2.59999V14.75C3.98509 14.7631 3.99029 14.7787 4.00458 14.793C4.01887 14.8073 4.03452 14.8125 4.04759 14.8125C4.06065 14.8125 4.0763 14.8073 4.09059 14.793C4.10488 14.7787 4.11009 14.7631 4.11009 14.75V2.6075V1.40039L4.96364 2.25394L6.79364 4.08395C6.80205 4.09235 6.809 4.09621 6.81436 4.09837C6.82019 4.10071 6.82781 4.10248 6.83761 4.10248C6.8474 4.10248 6.855 4.10071 6.86081 4.09838C6.86615 4.09623 6.8731 4.09238 6.88153 4.08395C6.9002 4.06528 6.9087 4.02595 6.87728 3.9918L4.09906 1.21354M3.98509 1.39286L4.25761 1.05499V0.732498M3.98509 1.39286L3.13153 2.24644L1.29407 4.08395C1.29407 4.08395 1.29407 4.08395 1.29406 4.08395C1.28463 4.09338 1.26993 4.10063 1.2501 4.10063C1.23026 4.10063 1.21556 4.09338 1.20613 4.08395C1.19669 4.0745 1.18945 4.05981 1.18945 4.04C1.18945 4.02019 1.19669 4.0055 1.20613 3.99606L3.99616 1.20603C4.00812 1.19407 4.02335 1.18783 4.03884 1.18751M3.98509 1.39286L4.03884 1.18751M4.09906 1.21354L4.10226 1.21033C4.09836 1.20916 4.09441 1.20793 4.09042 1.20664M4.09906 1.21354L4.10226 1.21033C4.18001 1.23363 4.24104 1.23273 4.25534 1.23252C4.25632 1.23251 4.25708 1.2325 4.25761 1.2325V1.05499L4.45261 0.859985M4.09906 1.21354C4.09793 1.21241 4.09506 1.20981 4.09042 1.20664M4.09042 1.20664C4.08996 1.20632 4.08949 1.20601 4.089 1.20568C4.08358 1.20212 4.07766 1.19904 4.07191 1.19674L4.25761 0.732498M4.09042 1.20664C4.07453 1.20147 4.05802 1.19528 4.04115 1.18787M4.25761 0.732498C4.25011 0.732498 4.24259 0.732491 4.23509 0.724991M4.25761 0.732498C4.33261 0.762498 4.40012 0.807485 4.45261 0.859985M4.45261 0.859985L7.23509 3.6425L4.45261 0.859985ZM4.04115 1.18787C4.04152 1.18794 4.04193 1.18802 4.04237 1.18811C4.04678 1.18899 4.05274 1.19061 4.05952 1.19316L4.23509 0.724991M4.04115 1.18787C4.04006 1.18768 4.0393 1.18757 4.03884 1.18751M4.04115 1.18787C4.04079 1.18772 4.04043 1.18756 4.04008 1.1874C3.98833 1.16454 3.93316 1.13017 3.88154 1.07855L4.04008 0.920003L4.23509 0.724991M4.23509 0.724991L4.03884 1.18751" 
@@ -470,6 +462,21 @@ export default function BrowseCatalogue({
                                 <div style={{ paddingLeft:12, paddingRight:4, fontSize: "1em",
                                     lineHeight: "125%"}}>Sort By</div>
                             </Button>
+
+                            <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl2}
+                                    open={open2}
+                                    onClose={handleClose2}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                    }}
+                                >
+                                    <MenuItem onClick={()=>setAnchorEl2(null)}>Recent First</MenuItem>
+                                    <MenuItem onClick={()=>setAnchorEl2(null)}>Data Points</MenuItem>
+                                    
+
+                            </Menu>
                         </Box>
                         <Box sx={{display:'flex', pt:2}}>
                                 <div style={{paddingTop:8}}>Applied Filters: {filterTopics && filterTopics.length >0 && 

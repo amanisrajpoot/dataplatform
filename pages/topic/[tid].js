@@ -45,6 +45,8 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import ReactPaginate from "react-paginate";
+
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
@@ -185,36 +187,57 @@ export default function TopicBrowser({
         setOpenDetails(false);
     };
 
-    const [keyword, setKeyword] = useState('');
-    const handleKeywordSearch = async (event) => {
-        if(token!==null){
-            console.log("SEARCH", keyword)
-            mixpanel.track('Keyword Search for Catalogs', {
-                'source': "Data Platform Dashboard",
-                'action': "keyword search",
-                'keyword': keyword,
-                'email': user.email,
-            });
-            const data = await getPublicDatasets(
-                token,keyword
-            );
-            setDataSources(data);
-            console.log("fetched data",data);
-            console.log("fetched data",userdatasets);
-        }
+    const [users, setUsers] = useState(topicDatasources && topicDatasources.slice(0, 50));
+
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const usersPerPage = 5;
+  const pagesVisited = pageNumber * usersPerPage;
+
+  const displayUsers = users !==null && users && users
+    .slice(pagesVisited, pagesVisited + usersPerPage)
+    .map((data,index)=> <div style={{minWidth:'100%',maxWidth:'100%', paddingLeft:'0.7rem',
+                    paddingRight:'0.7rem'}}>
+                        <FeatureCard
+                        openDetails={openDetails}
+                        data={data}
+                        index={index}
+                        token={token}
+                        user={user}
+                        pagesVisited={pagesVisited}
+                        usersPerPage={usersPerPage}
+                        handleOpenDetails={handleOpenDetails}
+                        handleCloseDetails={handleCloseDetails}
+                        dataset={dataset.catalog}
+                        removeDatasetcatalog={removeDatasetcatalog}
+                        addDatasetcatalog={addDatasetcatalog}
+                                    dataSources={topicDatasources}
+                        
+                    />
+                    </div>
+      );
+
+    const pageCount = users !== null && users && Math.ceil(users.length / usersPerPage);
+
+    const changePage = ({ selected }) => {
+        setPageNumber(selected);
     };
+
+    useEffect(()=>{
+            setUsers(topicDatasources && topicDatasources.slice(0, 50));
+    },[ dataSources, topicDatasources])
 
     return (
 
         <div style={{height:'100%', display:'flex',minWidth:'100%', maxWidth:'100%',}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
-            <div style={{display:'flex', fontStyle:'roboto', maxWidth:'100%'}}>
+            <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%', maxWidth:'100%'}}>
                 {/* <Box sx={{width:"18%"}}>
                     <Box sx={{width:"18%", position:'fixed'}}>
                         <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
                 </Box> */}
-                <div style={{ display: 'flex', width:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
+                <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
                     {/* <Box component="main" sx={{  width:'100%', display:'flex',position:'fixed' }}>
                         <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
                             <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
@@ -324,7 +347,7 @@ export default function TopicBrowser({
                                 paddingLeft:'0.75em',paddingRight:'0.75em',
                                 minHeight:'14vh', borderRadius:4, py:2}}>
 
-                                {topicDatasources && topicDatasources.map((data,index)=><FeatureCard
+                                {/* {topicDatasources && topicDatasources.map((data,index)=><FeatureCard
                                     openDetails={openDetails}
                                     data={data}
                                     index={index}
@@ -336,7 +359,20 @@ export default function TopicBrowser({
                                     dataSources={topicDatasources}
                                     removeDatasetcatalog={removeDatasetcatalog}
                                     addDatasetcatalog={addDatasetcatalog}
-                                />)}
+                                />)} */}
+
+                                {displayUsers}
+                                <ReactPaginate
+                                    previousLabel={"Previous"}
+                                    nextLabel={"Next"}
+                                    pageCount={pageCount}
+                                    onPageChange={changePage}
+                                    containerClassName={"paginationBttns"}
+                                    previousLinkClassName={"previousBttn"}
+                                    nextLinkClassName={"nextBttn"}
+                                    disabledClassName={"paginationDisabled"}
+                                    activeClassName={"paginationActive"}
+                                />
                             </Box>
                         </Box>
 

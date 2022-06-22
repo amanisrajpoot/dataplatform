@@ -53,7 +53,7 @@ export default function FeatureCard(props){
 
     return (
 
-        <div style={{display:"flex", flexDirection:'row', minHeight:'17vh',maxHeight:'17vh', width:"100%",
+        <div style={{display:"flex", flexDirection:'row', minHeight:'17vh',maxHeight:'17vh', minWidth:"100%",maxWidth:"100%",
                alignItems:'center' ,backgroundColor:'#fff', marginBottom:14, flex:'start', borderRadius:16,
               textOverflow:'clip', font:'roboto',paddingRight:"1.25em", fontSize:'0.9em',
               overflow: 'hidden',
@@ -63,8 +63,9 @@ export default function FeatureCard(props){
                   paddingLeft:18, paddingRight:64,}}>
 
                   <Button sx={{borderRadius:2,minWidth:'48px',maxWidth:'48px',minHeight:'36px',backgroundColor:"#5A00E2", color:"#fff"}}
-                          variant="outlined">{router.pathname.includes("/searchresult")?parseInt(props.index + 1):
-                                                parseInt(props.pagesVisited+props.index + 1) }</Button>
+                          variant="outlined">{router.pathname.includes("/browsecatalogue")?parseInt(props.pagesVisited+props.index + 1):
+                                              router.pathname.includes("/topic")?parseInt(props.pagesVisited+props.index + 1):
+                                                parseInt(props.index + 1)}</Button>
               </div>
 
               <div style={{fontSize:"1em", minWidth:"57%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
