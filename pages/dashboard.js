@@ -34,7 +34,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from '@mui/material/TextField';
 import ReactPaginate from "react-paginate";
-
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 import {
     CartesianGrid,
@@ -46,6 +45,7 @@ import {
     Tooltip,
     Legend,
   } from "recharts";
+import MyActivity from '../components/MyActivity';
 
 function Copyright() {
     return (
@@ -318,10 +318,10 @@ export default function Dashboard({
 
   const [pageNumber, setPageNumber] = useState(0);
 
-  const usersPerPage = 7;
+  const usersPerPage = 5;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const displayUsers = users
+  const displayUsers = users !== null && users && users
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> <FeatureCard
                         openDetails={openDetails}
@@ -350,7 +350,7 @@ export default function Dashboard({
         }
     },[searchMode, dataSources, keywordFilteredDataSources, topicFilteredDataSources])
 
-    const pageCount = Math.ceil(users.length / usersPerPage);
+    const pageCount = users !== null && users && Math.ceil(users.length / usersPerPage);
 
     const changePage = ({ selected }) => {
         setPageNumber(selected);
@@ -384,7 +384,7 @@ export default function Dashboard({
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                            <div style={{fontSize:28, paddingBottom:10}}>Dashboard &nbsp;&nbsp;</div>
+                            <div style={{fontSize:28, paddingBottom:10}}>Hi! {Auth.user && Auth.user.attributes.name.split(" ")[0].substring(0,9)} &nbsp;&nbsp;</div>
 
                         </Box>
 
@@ -456,14 +456,14 @@ export default function Dashboard({
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', maxWidth:'40%',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                            <div style={{fontSize:22, paddingBottom:12}}>Industry-wide trends &nbsp;&nbsp;</div>
+                            <div style={{fontSize:22, paddingBottom:12}}>My Work Space &nbsp;&nbsp;</div>
 
                         </Box>
 
                         {showDraft && <div style={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
-                            <NewsUpdate title={"Big Data is essential to every significant healthcare undertaking."} 
+                            {/*<NewsUpdate title={"Big Data is essential to every significant healthcare undertaking."} 
                                 description={"Read about the challenges, applications, and potential brilliant future for healthcare big data."} 
                                 url ={"https://catalyst.nejm.org/doi/full/10.1056/CAT.18.0290"} 
                                 date={"6th"} />
@@ -473,10 +473,31 @@ export default function Dashboard({
                                 url ={"https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/"} 
                                 date={"6th"} />
 
-                            <NewsUpdate title={"Five distinct trends are converging to determine"} 
+                             <NewsUpdate title={"Five distinct trends are converging to determine"} 
                                 description={"Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health."} 
                                 url ={"https://www.pwc.com/gx/en/industries/healthcare/publications/ai-robotics-new-health/five-trends.html"} 
-                                date={"6th"} />
+                                date={"6th"} /> */}
+
+                            <MyActivity title={"Five distinct trends are converging to determine"}
+                                description={"Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health."}
+                                dataset={dataset} setUserdatasets={setUserdatasets} userdatasets={userdatasets} 
+                                dataSources={dataSources} setDataSources={setDataSources}
+                                categoryName={"Datasets"}
+                                />
+
+                            <MyActivity title={"Five distinct trends are converging to determine"}
+                                description={"Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health."}
+                                dataset={dataset} setUserdatasets={setUserdatasets} userdatasets={userdatasets} 
+                                dataSources={dataSources} setDataSources={setDataSources}
+                                categoryName={"Catalogs"}
+                                />
+                                
+                            <MyActivity title={"Five distinct trends are converging to determine"}
+                                description={"Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health."}
+                                dataset={dataset} setUserdatasets={setUserdatasets} userdatasets={userdatasets} 
+                                dataSources={dataSources} setDataSources={setDataSources}
+                                categoryName={"Activity"}
+                                />
 
                         </div>}
 

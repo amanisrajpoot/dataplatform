@@ -144,7 +144,7 @@ export default function TopNav({
 								</Link>
 								&nbsp;&nbsp;&nbsp;
 								<p style={{fontSize:16, cursor:'pointer', paddingLeft:4,overflow:'auto' }} onClick={()=>router.push("/settings")}>
-									{user && user.name?user.name.substring(0,9):Auth.user?Auth.user.attributes.name.substring(0,9): 'Account'} </p>
+									{user && user.name?user.name.substring(0,9):Auth.user?Auth.user.attributes.name.split(" ")[0].substring(0,9): 'Account'} </p>
 								&nbsp;
 								<div
 									// onClick={()=>signOut({path:router.pathname})}

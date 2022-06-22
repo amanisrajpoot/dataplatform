@@ -180,10 +180,10 @@ export default function BrowseCatalogue({
 
   const [pageNumber, setPageNumber] = useState(0);
 
-  const usersPerPage = 7;
+  const usersPerPage = 5;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const displayUsers = users
+  const displayUsers = users !==null && users && users
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data,index)=> <FeatureCard
                         openDetails={openDetails}
@@ -212,7 +212,7 @@ export default function BrowseCatalogue({
         }
     },[searchMode, dataSources, keywordFilteredDataSources, topicFilteredDataSources])
 
-  const pageCount = Math.ceil(users.length / usersPerPage);
+  const pageCount = users !== null && users && Math.ceil(users.length / usersPerPage);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
