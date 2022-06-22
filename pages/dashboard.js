@@ -529,7 +529,7 @@ export default function Dashboard({
                                     <Pie data={data} dataKey="industry_points" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
                                     </PieChart> */}
                                 
-                                <div style={{display:'flex', flexDirection:'column', width:'74%', paddingBottom:'1em',
+                                <div style={{display:'flex', flexDirection:'column', width:'74%', paddingBottom:'1em', paddingLeft:'1em',
                                             backgroundColor:'#fff'}}>
                                         <div style={{color:'black', fontSize:20,marginLeft:18,paddingBottom:"1em"}}>Catalog By Types</div>
                                         <div className="pie-row" style={{ styles }}>
