@@ -82,8 +82,6 @@ export default function Dashboard({
                                       dataset,
                                       userdatasets,
                                       setUserdatasets,
-                                      dataSources,
-                                      setDataSources,
                                       user,
                                       name,
                                       email, 
@@ -173,18 +171,6 @@ export default function Dashboard({
         //      }
         }
     }),[])
-
-    useEffect(async () => {
-        if(token !== 0 && token && token !== null && token !== undefined && 
-            (userdatasets === [] || userdatasets === null)){
-            console.log('get datasets called from dashboard', token);
-            const data = await getDatasets(
-                token
-            );
-            setUserdatasets(data);
-            console.log("fetched datasets",data);
-        }
-    }, []);
         
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
@@ -192,6 +178,8 @@ export default function Dashboard({
     const [isActive, setIsActive] = React.useState(false);
     const [topicFilteredDataSources, setTopicFilteredDataSources] = useState([])
     const [keywordFilteredDataSources, setKeywordFilteredDataSources] = useState([])
+    const [catalogCount, setCatalogCount] = useState(0)
+    const [datasetTopics, setDatasetTopics] = useState(0)
 
     const handleOpenDetails = (data) => {
         setOpenDetails(true);
@@ -274,6 +262,8 @@ export default function Dashboard({
         }
     };
 
+    const [dataSources, setDataSources] = useState([]);
+
     useEffect(async () => {
 		if(token!==null){
             const data = await getPublicDatasets(
@@ -281,8 +271,21 @@ export default function Dashboard({
 		    );
 			setDataSources(data);
       console.log("fetched data",data);
-      }
-    }, []);
+      }    
+    }, [token, router, userdatasets, user]);
+
+    useEffect(async () => {
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            (userdatasets === [] || userdatasets === null || userdatasets !== undefined)){
+            console.log('get datasets called from datasets page', token);
+            const data = await getDatasets(
+                token
+            );
+            setUserdatasets(data);
+            setCatalogCount([...new Set(userdatasets.map(item => item.data_sources))])
+            console.log("unique catalogs datasets",data);
+        }
+    }, [token,router,]);
 
     useEffect(async () => {
 		if(router.query !== null && router.query.length >0 ){
@@ -298,12 +301,22 @@ export default function Dashboard({
     useEffect(async ()=>{
         if(dataSources && dataSources !== null && dataSources !== undefined && dataSources.length > 0){
         setUniqueTopics([...new Set(dataSources.map(item => item.topic))])
+
         console.log("unique topicsssssss",uniqueTopics);
         }
     }, [dataSources])
 
+    useEffect(async ()=>{
+        if(userdatasets && userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0){
+        setDatasetTopics([...new Set(userdatasets.map(item => item.topic))])
+        console.log("unique dataset topicsssssss",datasetTopics);
+        }
+    }, [dataSources, userdatasets])
+
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today  = new Date();
+    const recentDate = new Date();
+    recentDate.setDate(recentDate.getDate() - 61);
     const post1 = new Date(2018, 0, 1, 10, 33);
     const post2 = new Date(2020, 1, 18, 9, 33);
     const post3 = new Date(2020, 12, 21, 11, 33);
@@ -312,6 +325,8 @@ export default function Dashboard({
     const [showResults, setShowResults] = useState(false)
     const [datasetMode, setDatasetMode] = useState(0)
     const [searchMode, setSearchMode] = useState(0)
+    const [datasetUniqueTopics, setDatasetUniqueTopics] = useState([])
+    const [datasetUniqueTopicsTop, setDatasetUniqueTopicsTop] = useState([])
 
     const [users, setUsers] = useState(searchMode === 0 ? dataSources && dataSources.slice(0, 50):
                                      searchMode === 1 ? keywordFilteredDataSources && keywordFilteredDataSources.slice(0, 50):
@@ -362,11 +377,30 @@ export default function Dashboard({
         topicNumbers.length === 0 && uniqueTopics && uniqueTopics.length > 0 && uniqueTopics.map(async (topic)=>{
             const data = dataSources.filter(item=>item.topic === topic)
             setTopicNumbers(prev=>[...prev, {name:topic, Catalogs:data.length}])
-        }
+            }
         )
         setItems([...items, ...topicNumbers])
         console.log("topic number count",topicNumbers);
-    }, [uniqueTopics])
+    }, [dataSources,])
+
+    useEffect(async ()=>{
+        items.length === 0 && items && items.length > 0 && items.map(async (topic)=>{
+            const data = datasetUniqueTopics.filter(item=>item.topic === topic)
+            setDatasetUniqueTopicsTop(prev=>[...prev, {name:topic, Catalogs:data.length}])
+        }
+        )
+       
+        console.log("dataset unique topics",datasetUniqueTopicsTop);
+    }, [uniqueTopics, datasetUniqueTopics])
+
+    useEffect(async ()=>{
+         uniqueTopics && uniqueTopics.length > 0 && uniqueTopics.map(async (topic)=>{
+            const data = datasetTopics.filter(item=>item.topic === topic)
+            setDatasetUniqueTopics(prev=>[...prev, {name:topic, Catalogs:data.length}])
+        }
+        )
+        console.log("dataset unique topics count",datasetUniqueTopics);
+    }, [datasetTopics, uniqueTopics])
 
     const CustomizedLabel = ({ x, y, width, height, value, value2, value3, value4, fill }) => {
             return <text x={x + (width / 2) + 6+9 +4+2} y={y + (height / 2)} fill={fill} textAnchor="middle" dominantBaseline="central">{value}</text>;
@@ -486,19 +520,166 @@ export default function Dashboard({
                                 categoryName={"Datasets"}
                                 />
 
-                            <MyActivity title={"Five distinct trends are converging to determine"}
+                            {/* <MyActivity title={"Five distinct trends are converging to determine"}
                                 description={"Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health."}
                                 dataset={dataset} setUserdatasets={setUserdatasets} userdatasets={userdatasets} 
-                                dataSources={dataSources} setDataSources={setDataSources}
+                                dataSources={dataSources} setDataSources={setDataSources} catalogCount={catalogCount}
                                 categoryName={"Catalogs"}
-                                />
+                                /> */}
+                            <div style={{height:'18ch', minWidth:'30%', maxWidth:'30%', backgroundColor:'#FFF',
+                                display:'flex', flexDirection:'column',marginBottom:8,marginRight:14, 
+                                justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 
-                            <MyActivity title={"Five distinct trends are converging to determine"}
-                                description={"Five distinct trends are converging to determine how artificial intelligence (AI) and robotics will define New Health."}
-                                dataset={dataset} setUserdatasets={setUserdatasets} userdatasets={userdatasets} 
-                                dataSources={dataSources} setDataSources={setDataSources}
-                                categoryName={"Activity"}
-                                />
+                                <div style={{cursor:'pointer', display:'flex', flexDirection:'column',
+                                    lineHeight:"22px", justifyContent:'center',   alignItems:'center', 
+
+                                }}
+                                    
+                                >
+                                    <div style={{
+                                                    
+                                                    fontStyle: 'normal',
+                                                    fontWeight: '700',
+                                                    fontSize: '30px',
+                                                    lineHeight: '33px',
+                                                    paddingBottom:'1rem',
+                                                    
+                                                    
+
+                                                    /* identical to box height */
+                                                    letterSpacing: '0.01em',
+
+                                                    /* Primary/Primary_Purple */
+                                                    color: '#474F5A',
+
+
+                                                    /* Inside auto layout */
+                                                    }}>
+                                        { "Top 3 Topics"}
+                                        
+                                    </div>
+
+                                <div style={{display:'flex', width:'100%', justifyContent:'space-between', paddingLeft:'3rem'}}>
+
+                                        <div style={{display:'flex', flexDirection:'column', justifyContent:'center',
+                                        alignItems:'center',  width:'100%'}}
+                                    >
+                                            <div style={{width: '100%',fontStyle: 'normal',fontWeight: '700',fontSize: '18px',
+                                                    lineHeight: '33px',letterSpacing: '0.01em',color: '#474F5A',
+                                                    }}>
+                                            
+                                        
+                                            </div>
+                                            <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '12px',
+                                                    lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',display:'flex',flexDirection:'column',
+                                                    order: '1',flexGrow: 0,}}
+                                            >{datasetUniqueTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
+                                                index < 3 && <div style={{
+                                                    width: '100%',height: '23px',fontStyle: 'normal',fontWeight: '700',fontSize: '14px',
+                                                    lineHeight: '33px'
+                                                    }}
+                                                    onClick={()=>router.push({
+                                                    pathname: `/topic/${topic.name.split(",")[0]}`,
+                                                    query:{
+                                                        currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                                            router.pathname.includes('/topic')?"Topics":
+                                                            router.pathname.includes('/datasets')?"Browsing Your Datasets":
+                                                            router.pathname.includes('/catalog')?"Browsing Catalog":
+                                                            router.pathname.includes('/searchresult')?"Search Results":
+                                                            router.pathname.includes('/dashboard')?"Dashboard":
+                                                            router.pathname.includes('/dataset')?props.data.title:
+                                                            router.query.tid
+                                                    }
+                                                })}>{index + 1 + ". " + topic.name.split(",")[0]}</div>
+                                            )}
+                                            </div>
+                                        </div>
+                                </div>
+
+                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
+                                        justifyContent:'space-between', alignItems:'center'}}>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style={{height:'18ch', minWidth:'43%', maxWidth:'43%', backgroundColor:'#FFF',
+                                display:'flex', flexDirection:'column',marginBotoom:8,marginRight:14, paddingBottom:'12',
+                                justifyContent:"space-around", flex:'end',borderRadius:9,}}>
+                                
+                                <div style={{cursor:'pointer', display:'flex', flexDirection:'column',
+                                    lineHeight:"22px", justifyContent:'center',   alignItems:'center', 
+
+                                }}
+                                    
+                                >
+                                    <div style={{
+                                                    
+                                                    fontStyle: 'normal',
+                                                    fontWeight: '700',
+                                                    fontSize: '30px',
+                                                    lineHeight: '33px',
+                                                    paddingBottom:'1rem',
+                                                    
+                                                    
+
+                                                    /* identical to box height */
+                                                    letterSpacing: '0.01em',
+
+                                                    /* Primary/Primary_Purple */
+                                                    color: '#474F5A',
+
+
+                                                    /* Inside auto layout */
+                                                    }}>
+                                        { "Recent Activity (Last 60 Days)"}
+                                        
+                                    </div>
+
+                                <div style={{display:'flex', width:'90%', justifyContent:'space-between', paddingLeft:'3rem'}}>
+                                    <div style={{display:'flex', flexDirection:'column', justifyContent:'center',
+                                        alignItems:'center',  }}
+                                        onClick={()=>router.push('/datasets')}
+                                    >
+                                            <div style={{width: '100%',fontStyle: 'normal',fontWeight: '700',fontSize: '18px',
+                                                    lineHeight: '33px',letterSpacing: '0.01em',color: '#474F5A',
+                                                    }}>
+                                            {"Datasets Created"}
+                                        
+                                            </div>
+                                            <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '28px',
+                                                    lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',
+                                                    }}
+                                            >{userdatasets.filter((dataset,index)=>new Date(dataset.CreatedAt) > recentDate).length}
+                                            </div>
+                                        </div>
+
+                                        <div style={{display:'flex', flexDirection:'column', justifyContent:'center',
+                                        alignItems:'center',  }}
+                                        onClick={()=>router.push('/datasets')}
+                                    >
+                                            <div style={{width: '100%',fontStyle: 'normal',fontWeight: '700',fontSize: '18px',
+                                                    lineHeight: '33px',letterSpacing: '0.01em',color: '#474F5A',
+                                                    }}>
+                                            { "Datasets Modified"}
+                                        
+                                            </div>
+                                            <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '28px',
+                                                    lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',flex: 'none',
+                                                    order: '1',flexGrow: 0,}}
+                                            >{userdatasets.filter((dataset,index)=>new Date(dataset.UpdatedAt) > recentDate).length}
+                                            </div>
+                                        </div>
+
+                                        
+                                </div>
+
+                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
+                                        justifyContent:'space-between', alignItems:'center'}}>
+                                        
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>}
 

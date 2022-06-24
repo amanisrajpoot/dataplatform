@@ -80,7 +80,8 @@ export default function MyActivity({
                                       title,
                                       description,
                                       url,
-                                      categoryName
+                                      categoryName,
+                                      catalogCount
 
                                   }) 
 
@@ -91,27 +92,24 @@ export default function MyActivity({
     const router = useRouter()
 
     return (
-        <div style={{height:'18ch', minWidth:'32.5%', maxWidth:'32.5%', backgroundColor:'#FFF',
-                                display:'flex', flexDirection:'column',marginBotoom:8,marginRight:14,
+        <div style={{height:'18ch', minWidth:'25%', maxWidth:'25%', backgroundColor:'#FFF',
+                                display:'flex', flexDirection:'column',marginBottom:8,marginRight:14,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 
                                 <div style={{cursor:'pointer', display:'flex', flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'center',   alignItems:'center', paddingTop:48,
+                                    lineHeight:"22px", justifyContent:'center',   alignItems:'center', 
 
                                 }}
                                     onClick={()=>categoryName === "Catalogs" ? router.push('browsecatalogue'):
                                                  categoryName === "Datasets" ? router.push('datasets') :
                                                  categoryName === "Activity" ? "": null}
                                 >
-                                    <div style={{width: '66px',
-                                                    
+                                    <div style={{
                                                     fontStyle: 'normal',
                                                     fontWeight: '700',
-                                                    fontSize: '36px',
+                                                    fontSize: '30px',
                                                     lineHeight: '33px',
-                                                    marginRight:96,
-                                                    
-
+                                                    paddingBottom:'1rem',
                                                     /* identical to box height */
                                                     letterSpacing: '0.01em',
 
@@ -125,16 +123,10 @@ export default function MyActivity({
                                         
                                     </div>
                                     <div style={{display:'flex', flexDirection:'row', justifyContent:'center',
-                                        alignItems:'center', paddingTop:'2rem'}}
-                                        onClick={()=>{
-                                        mixpanel.track('Redirected to 2nd Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
-                                            'action': "2nd Industry Wide Trends Clicked",
-                                            "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
-                                        });
+                                        alignItems:'center', }}
                                         
-                                    }}>
+                                        
+                                    >
                                         {categoryName === "Catalogs" ?
                                             <svg width="42" height="42" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M19.3702 5.55906L13.5102 2.94906C12.6502 2.56906 11.3502 2.56906 10.4902 2.94906L4.63018 5.55906C3.15018 6.21906 2.93018 7.11906 2.93018 7.59906C2.93018 8.07906 3.15018 8.97906 4.63018 9.63906L10.4902 12.2491C10.9202 12.4391 11.4602 12.5391 12.0002 12.5391C12.5402 12.5391 13.0802 12.4391 13.5102 12.2491L19.3702 9.63906C20.8502 8.97906 21.0702 8.07906 21.0702 7.59906C21.0702 7.11906 20.8602 6.21906 19.3702 5.55906Z" fill={router.pathname.includes('/browsecatalogue')? '#5A00E2':'#474F5A'}/>
@@ -186,8 +178,8 @@ export default function MyActivity({
                                                     flex: 'none',
                                                     order: '1',
                                                     flexGrow: 0,
-                                                    paddingLeft:'2rem'}}
-                                            >{categoryName === "Catalogs" ? dataSources && dataSources !== null && dataSources.length: 
+                                                    paddingLeft:'1.5rem'}}
+                                            >{categoryName === "Catalogs" ? catalogCount && catalogCount !== null && catalogCount.length: 
                                                 categoryName === "Datasets" ?  userdatasets && userdatasets !== null && userdatasets.length:
                                                 categoryName === "Activity" ?  userdatasets && userdatasets !== null && userdatasets.length:null}</div>
                                     </div>

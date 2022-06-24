@@ -202,7 +202,7 @@ export default function Datasets({
 
     const displayUsers = users !==null && users && users
         .slice(pagesVisited, pagesVisited + usersPerPage)
-        .sort((a,b)=>new Date(b.CreatedAt) - new Date(a.CreatedAt)).map((data, index)=><DatasetCard
+        .sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=><DatasetCard
             key={data.dataset_id}
             index={index}
             data={data}

@@ -113,7 +113,7 @@ function MyApp({ Component, pageProps }) {
             setUserdatasets(data);
         console.log("fetched datasets",data);
         }
-    }, []);
+    }, [token, router]);
 
     useEffect( () => {
             setDataset({...dataset,title,description});
@@ -129,7 +129,7 @@ function MyApp({ Component, pageProps }) {
 			setDataSources(data);
       console.log("fetched data",data);
       }
-  }, []);
+  }, [token, router]);
 
   return (
       <Layout user={user} setuser={setuser} userdatasets={userdatasets} Auth={Auth} token={token} setToken={setToken} 
