@@ -92,7 +92,7 @@ export default function MyActivity({
     const router = useRouter()
 
     return (
-        <div style={{height:'18ch', minWidth:'25%', maxWidth:'25%', backgroundColor:'#FFF',
+        <div style={{height:'20ch', minWidth:'25%', maxWidth:'25%', backgroundColor:'#FFF',
                                 display:'flex', flexDirection:'column',marginBottom:8,marginRight:14,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 

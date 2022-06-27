@@ -526,12 +526,12 @@ export default function Dashboard({
                                 dataSources={dataSources} setDataSources={setDataSources} catalogCount={catalogCount}
                                 categoryName={"Catalogs"}
                                 /> */}
-                            <div style={{height:'18ch', minWidth:'30%', maxWidth:'30%', backgroundColor:'#FFF',
-                                display:'flex', flexDirection:'column',marginBottom:8,marginRight:14, 
+                            <div style={{height:'20ch', minWidth:'30%', maxWidth:'30%', backgroundColor:'#FFF',
+                                display:'flex', flexDirection:'column',marginRight:16, 
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 
-                                <div style={{cursor:'pointer', display:'flex', flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'center',   alignItems:'center', 
+                                <div style={{cursor:'pointer', display:'flex', flexDirection:'column',height:'100%',
+                                    lineHeight:"22px", justifyContent:'center',  alignItems:'center', paddingBottom:'3.5rem',
 
                                 }}
                                     
@@ -570,14 +570,17 @@ export default function Dashboard({
                                             
                                         
                                             </div>
-                                            <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '12px',
+                                            <div style={{width:'80%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '12px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',display:'flex',flexDirection:'column',
                                                     order: '1',flexGrow: 0,}}
                                             >{datasetUniqueTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
-                                                index < 3 && <div style={{
-                                                    width: '100%',height: '23px',fontStyle: 'normal',fontWeight: '700',fontSize: '14px',
+                                                index < 3 && <Button sx={{
+                                                    borderRadius:4, border:1, fontSize:"0.9em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
+                                                    color:'#5A00E2',marginBottom:'0.5rem',
+                                                    height: '28px',fontStyle: 'normal',fontWeight: '700',fontSize: '14px',
                                                     lineHeight: '33px'
                                                     }}
+                                                    size="small"
                                                     onClick={()=>router.push({
                                                     pathname: `/topic/${topic.name.split(",")[0]}`,
                                                     query:{
@@ -590,25 +593,22 @@ export default function Dashboard({
                                                             router.pathname.includes('/dataset')?props.data.title:
                                                             router.query.tid
                                                     }
-                                                })}>{index + 1 + ". " + topic.name.split(",")[0]}</div>
+                                                })}>{ topic.name.split(",")[0].substring(0,29) + ".."}</Button>
                                             )}
                                             </div>
                                         </div>
-                                </div>
-
-                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
-                                        justifyContent:'space-between', alignItems:'center'}}>
-                                        
                                     </div>
+
+                                   
                                 </div>
                             </div>
 
-                            <div style={{height:'18ch', minWidth:'43%', maxWidth:'43%', backgroundColor:'#FFF',
-                                display:'flex', flexDirection:'column',marginBotoom:8,marginRight:14, paddingBottom:'12',
+                            <div style={{height:'20ch', minWidth:'43%', maxWidth:'43%', backgroundColor:'#FFF',
+                                display:'flex', flexDirection:'column',marginBotoom:8,marginRight:14, 
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 
                                 <div style={{cursor:'pointer', display:'flex', flexDirection:'column',
-                                    lineHeight:"22px", justifyContent:'center',   alignItems:'center', 
+                                    lineHeight:"22px", justifyContent:'center',   alignItems:'center', paddingBottom:'1.7rem',
 
                                 }}
                                     
@@ -639,7 +639,19 @@ export default function Dashboard({
                                 <div style={{display:'flex', width:'90%', justifyContent:'space-between', paddingLeft:'3rem'}}>
                                     <div style={{display:'flex', flexDirection:'column', justifyContent:'center',
                                         alignItems:'center',  }}
-                                        onClick={()=>router.push('/datasets')}
+                                        onClick={()=>router.push({
+                                            pathname: `/datasets/`,
+                                            query:{
+                                                currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                                    router.pathname.includes('/topic')?"Topics":
+                                                    router.pathname.includes('/datasets')?"Browsing Your Datasets":
+                                                    router.pathname.includes('/catalog')?"Browsing Catalog":
+                                                    router.pathname.includes('/searchresult')?"Search Results":
+                                                    router.pathname.includes('/dashboard')?"Dashboard":
+                                                    router.pathname.includes('/dataset')?props.data.title:
+                                                    router.query.tid,
+                                                    datasetRecentType:"created"
+                                            }})}
                                     >
                                             <div style={{width: '100%',fontStyle: 'normal',fontWeight: '700',fontSize: '18px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#474F5A',
@@ -656,7 +668,19 @@ export default function Dashboard({
 
                                         <div style={{display:'flex', flexDirection:'column', justifyContent:'center',
                                         alignItems:'center',  }}
-                                        onClick={()=>router.push('/datasets')}
+                                        onClick={()=>router.push({
+                                            pathname: `/datasets/`,
+                                            query:{
+                                                currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                                    router.pathname.includes('/topic')?"Topics":
+                                                    router.pathname.includes('/datasets')?"Browsing Your Datasets":
+                                                    router.pathname.includes('/catalog')?"Browsing Catalog":
+                                                    router.pathname.includes('/searchresult')?"Search Results":
+                                                    router.pathname.includes('/dashboard')?"Dashboard":
+                                                    router.pathname.includes('/dataset')?props.data.title:
+                                                    router.query.tid,
+                                                    datasetRecentType:"modified"
+                                            }})}
                                     >
                                             <div style={{width: '100%',fontStyle: 'normal',fontWeight: '700',fontSize: '18px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#474F5A',
@@ -667,17 +691,15 @@ export default function Dashboard({
                                             <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '28px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',flex: 'none',
                                                     order: '1',flexGrow: 0,}}
-                                            >{userdatasets.filter((dataset,index)=>new Date(dataset.UpdatedAt) > recentDate).length}
+                                            >{userdatasets && userdatasets !==null && userdatasets !==undefined && userdatasets.length>0 &&
+                                                userdatasets.filter((dataset,index)=>new Date(dataset.UpdatedAt) > recentDate).length}
                                             </div>
                                         </div>
 
                                         
                                 </div>
 
-                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
-                                        justifyContent:'space-between', alignItems:'center'}}>
-                                        
-                                    </div>
+                                    
                                 </div>
                             </div>
 

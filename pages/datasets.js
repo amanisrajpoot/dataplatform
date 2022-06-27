@@ -35,6 +35,9 @@ import {createUser} from "../function/users";
 import InputBase from '@mui/material/InputBase';
 import { route } from 'next/dist/server/router';
 import ReactPaginate from "react-paginate";
+import CachedIcon from '@mui/icons-material/Cached';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
@@ -192,17 +195,43 @@ export default function Datasets({
         setOpenDetails(false);
     };
 
-    const [users, setUsers] = useState(userdatasets !== null && userdatasets
-                                        && userdatasets.slice(0, 50))
+    
+    const recentDate = new Date();
+    const [datasetRecentType, setDatasetRecentType] = useState('default');
+    const [currentRouteTitle, setCurrentRouteTitle] = useState('');
+    recentDate.setDate(recentDate.getDate() - 61);
+
+    useEffect(()=>{
+        if(router.query.datasetRecentType){
+            setDatasetRecentType(router.query.datasetRecentType);
+        }
+        if(router.query.currentRouteTitle){
+            setCurrentRouteTitle(router.query.currentRouteTitle);
+        }
+    },[]) 
+
+    const [users, setUsers] = useState();
+
+    useEffect(()=>{
+        if(datasetRecentType === "created"){
+            setUsers(userdatasets !== null && userdatasets
+                .filter(user => new Date(user.CreatedAt) > recentDate));
+        }else if(datasetRecentType === "modified"){
+            setUsers(userdatasets !== null && userdatasets
+                .filter(user => new Date(user.UpdatedAt) > recentDate));
+        } else if(datasetRecentType === "default"){
+            setUsers(userdatasets !== null && userdatasets);
+        }
+    },[router, datasetRecentType, token])
 
     const [pageNumber, setPageNumber] = useState(0);
 
     const usersPerPage = 5;
     const pagesVisited = pageNumber * usersPerPage;
 
-    const displayUsers = users !==null && users && users
+    const displayUsers = users !==null && users && users.length > 0 && users
         .slice(pagesVisited, pagesVisited + usersPerPage)
-        .sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=><DatasetCard
+        .sort((a,b)=>new Date(a.CreatedAt) - new Date(b.CreatedAt)).map((data, index)=>  <DatasetCard
             key={data.dataset_id}
             index={index}
             data={data}
@@ -230,9 +259,13 @@ export default function Datasets({
 
                         <div style={{ display: 'flex', flexDirection:'row', font:'roboto',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
-                            <div style={{fontSize:28}}>My Datasets &nbsp;&nbsp;</div>
+                            <div style={{fontSize:28}}>My Datasets
+                                {datasetRecentType === 'created' ? " (Recently Created)" :
+                                    datasetRecentType === 'modified' ? " (Recently Modified)":null}&nbsp;&nbsp;</div>
 
                         </div>
+
+                        
                         <Button variant="contained" size="large"
                                 sx={{backgroundColor:'#5A00E2', px:2, borderRadius:3, textTransform: "capitalize"}}
                                 startIcon={<AddIcon />}
@@ -261,7 +294,7 @@ export default function Datasets({
                                 color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                                 <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                                 <div>My Datasets &nbsp;</div>
-                                {userdatasets !== null && userdatasets !== undefined && <div>{"("+ userdatasets.length+")"}</div>}
+                                {users !== null && users !== undefined && <div>{"("+ users.length+")"}</div>}
                                 <Divider variant="middle"/>
                             </div>
 
@@ -280,17 +313,24 @@ export default function Datasets({
                             //     fontFamily:'roboto', paddingTop:'0.25em'}}>
                             //     {"You're almost there! Create a dataset to get started..."}
                         // </cite> */}
-                                <ReactPaginate
-                                    previousLabel={"Previous"}
-                                    nextLabel={"Next"}
-                                    pageCount={pageCount}
-                                    onPageChange={changePage}
-                                    containerClassName={"paginationBttns"}
-                                    previousLinkClassName={"previousBttn"}
-                                    nextLinkClassName={"nextBttn"}
-                                    disabledClassName={"paginationDisabled"}
-                                    activeClassName={"paginationActive"}
-                                />
+                                
+                        </div>
+
+                        <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', paddingRight:'3em',
+                            
+                            justifyContent:"center",alignItems:'center', flexWrap:'wrap',}}>
+                            <ReactPaginate
+                                        previousLabel={"Previous"}
+                                        nextLabel={"Next"}
+                                        pageCount={pageCount}
+                                        onPageChange={changePage}
+                                        containerClassName={"paginationBttns"}
+                                        previousLinkClassName={"previousBttn"}
+                                        nextLinkClassName={"nextBttn"}
+                                        disabledClassName={"paginationDisabled"}
+                                        activeClassName={"paginationActive"}
+                                    />
+                        {/* </Paper> */}
                         </div>
 
                     </div>
