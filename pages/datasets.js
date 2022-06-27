@@ -6,38 +6,20 @@ import Link from '@mui/material/Link';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import SearchIcon from '@mui/icons-material/Search';
-import Modal from '@mui/material/Modal';
-import { Grid } from '@material-ui/core';
 import Divider from '@mui/material/Divider';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
-import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
-import DataSourcesDetails from '../components/datasourcesdetails';
 import { useRouter } from 'next/router';
 import {getPublicDatasets, getDatasets, getUser} from '../function/users';
 import DatasetCard from '../components/DatasetCard';
 import LeftNav from "../components/LeftNav";
 import mixpanel from 'mixpanel-browser';
-import InputAdornment from "@mui/material/InputAdornment";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import SettingsIcon from '@mui/icons-material/Settings';
 import TableViewOutlinedIcon from '@mui/icons-material/TableViewOutlined'
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Auth } from 'aws-amplify';
 import {createUser} from "../function/users";
-
-import InputBase from '@mui/material/InputBase';
-import { route } from 'next/dist/server/router';
 import ReactPaginate from "react-paginate";
 import CachedIcon from '@mui/icons-material/Cached';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
@@ -257,13 +239,31 @@ export default function Datasets({
                         justifyContent:'space-between', 
                          }}>
 
-                        <div style={{ display: 'flex', flexDirection:'row', font:'roboto',
+                        
+
+                        { (datasetRecentType === 'created' || datasetRecentType ==='modified') ?
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, 
+                            color:'gray-700', alignItems:'center'}}>
+                            {datasetRecentType === 'created' ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                                    justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
+                                    {"Back"}</Button>:
+                                datasetRecentType === 'modified' ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                                    justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
+                                    {"Back"}</Button>:null}
+                            <Divider variant="middle" orientation="vertical" />
+                            <div style={{paddingLeft:8,paddingRight:2,}}>Go Back to {currentRouteTitle}</div>
+                            {/* <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2, paddingLeft:2,paddingRight:2, color:'#939EAA', borderColor:'#939EAA' }}
+                                    startIcon={<CachedIcon />} onClick={()=>router.reload()}>
+                                {"Refresh"}</Button> */}
+                        </Box>:
+
+                         <div style={{ display: 'flex', flexDirection:'row', font:'roboto',
                             color:'gray-700',justifyContent:'space-between', alignItems:'end'}}>
                             <div style={{fontSize:28}}>My Datasets
                                 {datasetRecentType === 'created' ? " (Recently Created)" :
                                     datasetRecentType === 'modified' ? " (Recently Modified)":null}&nbsp;&nbsp;</div>
 
-                        </div>
+                        </div> }
 
                         
                         <Button variant="contained" size="large"
@@ -293,7 +293,8 @@ export default function Datasets({
                             <div style={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                                 color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                                 <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
-                                <div>My Datasets &nbsp;</div>
+                                <div>{datasetRecentType === 'created' ? "My Datasets (Recently Created)" :
+                                    datasetRecentType === 'modified' ? "My Datasets (Recently Modified)": 'My Datasets'} &nbsp;</div>
                                 {users !== null && users !== undefined && <div>{"("+ users.length+")"}</div>}
                                 <Divider variant="middle"/>
                             </div>
@@ -316,8 +317,8 @@ export default function Datasets({
                                 
                         </div>
 
-                        <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', paddingRight:'3em',
-                            
+                        {users && users.length > 5 && <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', 
+                            paddingRight:'3em', paddingTop:'1em',
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',}}>
                             <ReactPaginate
                                         previousLabel={"Previous"}
@@ -331,7 +332,7 @@ export default function Datasets({
                                         activeClassName={"paginationActive"}
                                     />
                         {/* </Paper> */}
-                        </div>
+                        </div>}
 
                     </div>
 
