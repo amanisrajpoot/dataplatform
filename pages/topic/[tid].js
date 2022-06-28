@@ -343,10 +343,7 @@ export default function TopicBrowser({
                         {/* <SignalTable /> */}
                         <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
-                            <Box component="main" sx={{ display:'flex', flexDirection:'column',width:'100%', alignItems:'center',
-                                paddingLeft:'0.75em',paddingRight:'0.75em',
-                                minHeight:'14vh', borderRadius:4, py:2}}>
-
+                            
                                 {/* {topicDatasources && topicDatasources.map((data,index)=><FeatureCard
                                     openDetails={openDetails}
                                     data={data}
@@ -362,19 +359,25 @@ export default function TopicBrowser({
                                 />)} */}
 
                                 {displayUsers}
-                                <ReactPaginate
-                                    previousLabel={"Previous"}
-                                    nextLabel={"Next"}
-                                    pageCount={pageCount}
-                                    onPageChange={changePage}
-                                    containerClassName={"paginationBttns"}
-                                    previousLinkClassName={"previousBttn"}
-                                    nextLinkClassName={"nextBttn"}
-                                    disabledClassName={"paginationDisabled"}
-                                    activeClassName={"paginationActive"}
-                                />
-                            </Box>
+                                
                         </Box>
+
+                        {users && users.length > 5 && <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', 
+                            paddingRight:'3em', paddingTop:'1em',
+                            justifyContent:"center",alignItems:'center', flexWrap:'wrap',}}>
+                            <ReactPaginate
+                                        previousLabel={"Previous"}
+                                        nextLabel={"Next"}
+                                        pageCount={pageCount}
+                                        onPageChange={changePage}
+                                        containerClassName={"paginationBttns"}
+                                        previousLinkClassName={"previousBttn"}
+                                        nextLinkClassName={"nextBttn"}
+                                        disabledClassName={"paginationDisabled"}
+                                        activeClassName={"paginationActive"}
+                                    />
+                        {/* </Paper> */}
+                        </div>}
 
                     </Box>
 

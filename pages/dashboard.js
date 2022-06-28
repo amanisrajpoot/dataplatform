@@ -662,7 +662,8 @@ export default function Dashboard({
                                             <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '28px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',
                                                     }}
-                                            >{userdatasets.filter((dataset,index)=>new Date(dataset.CreatedAt) > recentDate).length}
+                                            >{userdatasets && userdatasets !== null && userdatasets.length >0 &&
+                                                userdatasets.filter((dataset,index)=>new Date(dataset.CreatedAt) > recentDate).length}
                                             </div>
                                         </div>
 

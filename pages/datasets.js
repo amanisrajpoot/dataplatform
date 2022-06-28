@@ -241,13 +241,16 @@ export default function Datasets({
 
                         
 
-                        { (datasetRecentType === 'created' || datasetRecentType ==='modified') ?
+                        { (datasetRecentType === 'created' || datasetRecentType ==='modified' || datasetRecentType ==='dashboard') ?
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, 
                             color:'gray-700', alignItems:'center'}}>
                             {datasetRecentType === 'created' ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                                     {"Back"}</Button>:
                                 datasetRecentType === 'modified' ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                                    justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
+                                    {"Back"}</Button>:
+                                datasetRecentType === 'dashboard' ?<Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                                     justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
                                     {"Back"}</Button>:null}
                             <Divider variant="middle" orientation="vertical" />

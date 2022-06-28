@@ -100,9 +100,19 @@ export default function MyActivity({
                                     lineHeight:"22px", justifyContent:'center',   alignItems:'center', 
 
                                 }}
-                                    onClick={()=>categoryName === "Catalogs" ? router.push('browsecatalogue'):
-                                                 categoryName === "Datasets" ? router.push('datasets') :
-                                                 categoryName === "Activity" ? "": null}
+                                onClick={()=>router.push({
+                                    pathname: `/datasets/`,
+                                    query:{
+                                        currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                            router.pathname.includes('/topic')?"Topics":
+                                            router.pathname.includes('/datasets')?"Browsing Your Datasets":
+                                            router.pathname.includes('/catalog')?"Browsing Catalog":
+                                            router.pathname.includes('/searchresult')?"Search Results":
+                                            router.pathname.includes('/dashboard')?"Dashboard":
+                                            router.pathname.includes('/dataset')?props.data.title:
+                                            router.query.tid,
+                                            datasetRecentType:"dashboard"
+                                    }})}
                                 >
                                     <div style={{
                                                     fontStyle: 'normal',
