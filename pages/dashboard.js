@@ -34,6 +34,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from '@mui/material/TextField';
 import ReactPaginate from "react-paginate";
+import { ModalHover } from 'react-modal-hover'
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 import {
     CartesianGrid,
@@ -571,10 +572,14 @@ export default function Dashboard({
                                             
                                         
                                             </div>
-                                            <div style={{width:'80%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '12px',
+
+                                            
+                                                <div style={{width:'80%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '12px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',display:'flex',flexDirection:'column',
                                                     order: '1',flexGrow: 0,}}
-                                            >{datasetUniqueTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
+                                            >
+                                                
+                                                {datasetUniqueTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
                                                 index < 3 && <Button sx={{
                                                     borderRadius:4, border:1, fontSize:"0.9em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
                                                     color:'#5A00E2',marginBottom:'0.5rem',

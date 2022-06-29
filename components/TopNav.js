@@ -139,8 +139,8 @@ export default function TopNav({
 								<Link href={"/settings"}>
 									{/* <AccountCircleIcon onClick={()=>router.push("/settings")} 
 										fontSize="large" sx={{color:'#939EAA'}}/> */}
-									<Avatar alt="Remy Sharp" sx={{height:35, width:35,cursor:'pointer' }} onClick={()=>router.push("/settings")}
-										src="https://www.gravatar.com/avatar/?d=mp" />
+									<Avatar alt="Devi Ai" sx={{height:35, width:35,cursor:'pointer' }} onClick={()=>router.push("/settings")}
+										src='url(/user_logo.jpg)' />
 								</Link>
 								&nbsp;&nbsp;&nbsp;
 								<p style={{fontSize:16, cursor:'pointer', paddingLeft:4,overflow:'auto' }} onClick={()=>router.push("/settings")}>

@@ -137,9 +137,9 @@ const ForgetPassword =() => {
 
     <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
       height: '100vh', font:'roboto' }}>
-        <div style={{minWidth:'50%', maxWidth:'50%', height:'100%', backgroundColor:'#0DB1A1', display:'flex', 
+        <div style={{minWidth:'50%', maxWidth:'50%', height:'110%', backgroundColor:'#0DB1A1', display:'flex', 
           flexDirection:'column', justifyContent:'center', alignItems:'center',
-            backgroundImage: 'url(/big-data-logon-screen.jpg)',
+            backgroundImage: 'url(/logon-photo03.jpg)',
             // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

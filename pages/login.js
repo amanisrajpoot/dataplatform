@@ -145,7 +145,7 @@ const Login =({token, setToken}) => {
         height: '100%', font:'roboto' }}>
         <div style={{ height:'100%', minWidth:'50%', maxWidth:'50%',backgroundColor:'#0DB1A1', display:'flex', 
           flexDirection:'column', justifyContent:'center', alignItems:'center',
-            backgroundImage: 'url(/big-data-logon-screen.jpg)',
+            backgroundImage: 'url(/logon-photo03.jpg)',
             // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
