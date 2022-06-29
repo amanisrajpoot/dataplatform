@@ -237,8 +237,9 @@ export default function BrowseCatalogue({
         console.log("filtered catalog data",dataSources);
     }, [filterTopics]);
 
-    const handleTopicFilter = async (topic) => {
-        setLocalFilterTopics([...localFilterTopics,topic])
+    useEffect( async (topic) => {
+        if(searchMode === 2){
+        handleClose()
         setFilterTopics(localFilterTopics)
         if(token!==null){
             mixpanel.track('Topic Filtered Keyword Search for Catalogs', {
@@ -257,7 +258,7 @@ export default function BrowseCatalogue({
             console.log("fetched data",catalog);
             console.log("fetched data",topicFilteredDataSources);
         }
-    };
+    }},[localFilterTopics, filterTopics, keyword, token]);
 
     useEffect(async ()=>{
         if(!router.pathname.includes("/browsecatalogue")){
@@ -298,7 +299,9 @@ export default function BrowseCatalogue({
     }, [dataSources])
 
   const handleKeywordSearch = async (event) => {
-      if(token!==null && keyword!==''){
+      
+      if(token!==null && keyword!=='' && filterTopics.length === 0){
+          setSearchMode(1)
           console.log("SEARCH", keyword)
           mixpanel.track('Keyword Search for Catalogs', {
             'source': "Browse Catalog page",
@@ -366,13 +369,13 @@ export default function BrowseCatalogue({
             <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', minWidth:'100%',maxWidth:'100%',
                             justifyContent:"center",alignItems:'center', border:'0.5px solid #bfbfbf',}}>
                     
-                        <div style={{ display:'flex', minWidth:'133ch',maxWidth:'133ch',borderRadius:'1rem',backgroundColor:'#fff',flexDirection:'column',
-                            paddingLeft:'1rem',paddingRight:'1rem',marginLeft:'1rem',marginRight:'1rem',paddingTop:'3rem',paddingBottom:'2rem',
+                        <div style={{ display:'flex', minWidth:'98.5%',maxWidth:'98.5%',borderRadius:'1rem',backgroundColor:'#fff',flexDirection:'column',
+                            paddingLeft:'1rem',marginRight:'1rem',marginLeft:'1rem',paddingTop:'3rem',paddingBottom:'2rem',
                             marginTop:'0.5em',
                             
                             }}>
-                            <div style={{display:'flex',minWidth:'100%',maxWidth:'100%', alignItems:'center',textTransform: "capitalize",
-                                }}>
+                            <div style={{display:'flex',minWidth:'98%',maxWidth:'98%', alignItems:'center',textTransform: "capitalize",
+                                marginLeft:'1rem'}}>
                                 
                                     {/* <input variant="outlined" placeholder="Search..."
                                         value={keyword} onChange={(event)=>setKeyword(event.target.value)}
@@ -415,7 +418,7 @@ export default function BrowseCatalogue({
                                         }}
                                     /> */}
 
-                                    <Button sx={{minWidth:'18em',maxWidth:'18em', minHeight:'6vh',maxHeight:'6vh', display:'flex',ml:3,color:'#939EAA',
+                                    <Button sx={{minWidth:'18%',maxWidth:'18%', minHeight:'6vh',maxHeight:'6vh', display:'flex',ml:3,color:'#939EAA',
                                         alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
                                         textTransform: "capitalize",
                                         py:3
@@ -438,8 +441,7 @@ export default function BrowseCatalogue({
                                     open={open}
                                     onClose={()=> {
                                         handleClose()
-                                        setFilterTopics(localFilterTopics)
-                                        setLocalFilterTopics([])
+                                        
                                         }
                                     }
                                     MenuListProps={{
@@ -448,23 +450,17 @@ export default function BrowseCatalogue({
                                 >
                                     {uniqueTopics && uniqueTopics !== null && uniqueTopics !== undefined && uniqueTopics.length > 0 &&
                                          uniqueTopics.map((topic, index)=><MenuItem onClick={() => {
-                                        //setCurrentOption("All")
-                                        // setAnchorEl(null)
-                                    }}><div style={{display:'flex', alignItems:'center'}}
-                                        onClick={()=>{
-                                            setFilterTopics(localFilterTopics)
-                                            setLocalFilterTopics([])
-                                            handleTopicFilter(topic.split(",")[0])
-                                        }}>
-                                            <input type={"checkbox"} name="topic" value={topic}/>
-                                            <div style={{paddingLeft:10}}>{topic.split(",")[0]}</div>
-                                        </div>
+                                            setLocalFilterTopics(topic.split(",")[0])
+                                            
+                                    }}>
+                                        <div onClick={() => setSearchMode(2)}
+                                            style={{paddingLeft:10}}>{topic.split(",")[0]}</div>
                                         </MenuItem>)
                                     }
 
                                 </Menu>
                             </div>
-                            <div style={{display:'flex', paddingTop:'1.5em'}}>
+                            {filterTopics.length >0 && <div style={{display:'flex', paddingTop:'1.5em'}}>
                                 <div style={{paddingTop:8}}>Applied Filters: {filterTopics && filterTopics.length >0 && 
                                     filterTopics.toString().split(/(?:,| )+/).map((word,index)=> index <7 && <Button
                                     variant="outlined"
@@ -482,10 +478,22 @@ export default function BrowseCatalogue({
                                         setLocalFilterTopics(filterTopics.toString().split(/(?:,| )+/).filter(key=>key!==word).toString())
                                     }}
                                     endIcon={<CancelIcon />}>
-                                    {word +" "}</Button>)}
-                                </div>
-
-                            </div>
+                                    {word +" "}</Button>)
+                                
+                                    }
+                                    <Button variant="outlined"
+                                    sx={{borderRadius:4, bgcolor:'#FF49A1',color:'#fff',
+                                        textTransform:'lowercase', borderColor:'#FF49A1',
+                                    }}
+                                    onClick={()=>{
+                                        setFilterTopics([])
+                                        setLocalFilterTopics([])
+                                    }}
+                                    endIcon={<CancelIcon />}>
+                                    Clear All</Button>
+                                    
+                                    </div>
+                                    </div>}
 
                     </div>
 

@@ -282,7 +282,7 @@ export default function Searchresult({
           dataset
         });
         setUserdatasets(data);
-        setIsActive(false);
+        //setIsActive(false);
         mixpanel.track('Clicked on Create', {
           'source': "Create Dataset Page",
           'scrolled first': true,
@@ -290,6 +290,7 @@ export default function Searchresult({
         })
         console.log("created dataset",data);
         router.push('/dataset/'+data.ID);
+        setIsActive(false);
         await setDataset({
             user_email:'',
             title:'',
@@ -329,7 +330,7 @@ export default function Searchresult({
         <div style={{minWidth:'100%', maxWidth:'100%', backgroundColor: '#f7f7f7'}}>
 
             <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: '#f7f7f7', minWidth:'100%', maxWidth:'100%',
-                justifyContent:'space-between', pt:10}}>
+                justifyContent:'space-between', pt:12}}>
 
                 <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
@@ -364,15 +365,15 @@ export default function Searchresult({
 
                 </Tabs>
                 <TabPanel value={value} index={0} sx={{minWidth:'80%',maxWidth:'80%'}}>
-                    <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between',minWidth:'96%',maxWidth:'96%' }}>
-                    <Box sx={{minWidth:'100%',}}>
-                        <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                         fontSize:20,pb:2, minWidth:'100%', mr:45, }}>
-                        <div>BASIC INFO &nbsp;</div>
-                        <div style={{fontSize:12, paddingTop:4, color:'gray',}}>*Enter a title and description for your Dataset.</div>
-                         </Box>
+                    <div style={{display:'flex',flexDirection:'column', alignItems:'space-between',minWidth:'96%',maxWidth:'96%' }}>
+                    <div style={{minWidth:'100%',}}>
+                        <div style={{ display: 'flex', flexDirection:'column', font:'roboto',
+                         fontSize:20,pb:2, minWidth:'100%', marginRight:'25rem' }}>
+                            <div>BASIC INFO &nbsp;</div>
+                            <div style={{fontSize:12, paddingTop:4, color:'gray',}}>*Enter a title and description for your Dataset.</div>
+                         </div>
 
-                    <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', 
+                    <div style={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', 
                         paddingBottom:32, minWidth:'100%'}}>
                         <FormControl fullWidth sx={{width:'100%' }}>
                             {/* <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>*/}
@@ -403,75 +404,66 @@ export default function Searchresult({
                             />
 
                         </FormControl>
-                    </Box>
-                    </Box>
+                    </div>
+                    </div>
                         <Divider sx={{width:'100%', marginBottom:2}} />
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
-                            fontSize:20,pb:2,  ml:95, flex:'end'}}>
+                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',width:'100%',
+                            fontSize:20,pb:2,  justifyContent:'end'}}>
 
                             {/* <Button variant="outlined" size="small" sx={{ml:2,color:'#5A00E2',borderRadius:4,
                                 borderColor:'#5A00E2'}}
                                      onClick={()=>router.push('/dashboard')}>
                                 {"Save as Draft"}</Button> */}
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,
-                            backgroundColor:"#5A00E2"}}
-                                 onClick={()=>handleClickChange(1)}>
-                            {"Next"}</Button>
+                            <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:2,borderRadius:4,width:'16ch',
+                                backgroundColor:"#5A00E2"}}
+                                    onClick={()=>handleClickChange(1)}>
+                                {"Next"}</Button>
                         </Box>
 
 
-                    </Box>
+                    </div>
                 </TabPanel>
-                <TabPanel value={value} index={1}>
-                        <Box sx={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto', fontSize:20}}>
-                                <div style={{display:'flex'}}>
+                <TabPanel value={value} index={1} sx={{minWidth:'100%',maxWidth:'100%',paddingRight:'1rem'}}>
+                        <div style={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto', fontSize:20, 
+                        minWidth:'100%',maxWidth:'100%',marginRight:'22rem'}}>
+                                <div style={{display:'flex',minWidth:'100%',maxWidth:'100%',}}>
                                     <div>ADD CATALOG &nbsp;</div>
                                     {dataSources !== null && dataSources !== undefined &&
                                     <div>{"("+ dataSources.length+")"}</div>}
                                 </div>
 
-                            <div style={{fontSize:12, paddingTop:4,color:'gray'}}>*Search from a wide range of healthcare catalogs..</div>
-                        </Box>
+                            <div style={{fontSize:12, paddingTop:4,color:'gray', paddingBottom:'1rem',minWidth:'100%',maxWidth:'100%'}}>
+                                *Search from a wide range of healthcare catalogs..</div>
+                        </div>
 
-                    <Box
-                        component="form"
-                        sx={{
-                            '& > :not(style)': {},
-                            display: 'flex', flexDirection: 'row', flex:'1', py: 2,
-                            justifyContent: 'space-between',height:'100%', minWidth:'100%',}}
-                        noValidate
-                        autoComplete="off"
-                    >
-                        <Box sx={{ display: 'flex', flexDirection: 'row', flex:'1', }}>
-                            <Box component="main" sx={{  minWidth: '46vw', pr:2 }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', flex:'1', minWidth:'100%',maxWidth:'100%',
+                            paddingBottom:'1rem'}}>
+                            <div component="main" style={{  minWidth:'80%',maxWidth:'79%', paddingRight:'0.75em' }}>
                                 <TextField fullWidth id="outlined-basic" variant="outlined"
                                            value={keyword} onChange={(e) => setKeyword(e.target.value)}
                                            label="Keyword" sx={{ bgcolor: '#ffffff'}}
                                            onKeyDown={()=>handleKeywordSearch()}/>
-                            </Box>
+                            </div>
 
-                            <Box>
-                                <Button sx={{minWidth:'225px', height:'55px',  display:'flex', bgcolor: '#009BE5',
+                            
+                            <Button sx={{ height:'55px',  display:'flex', bgcolor: '#009BE5',minWidth:'19%',
                                     alignItems:'center', justifyContent:'center', borderRadius:1, border:0.5, borderColor:'gray',
                                     backgroundColor:"#5A00E2"}}
                                         onClick={()=>handleKeywordSearch()}>
                                     {/*onClick={()=>setSearch(!search)}*/}
                                     {/* <SearchIcon sx={{ fontSize: 25, color:'white' }}/> */}
                                     <div style={{color:'#fff',fontSize:18}}>Search</div>
-                                </Button>
+                            </Button>
 
-                            </Box>
-                        </Box>
+                        </div>
 
-                    </Box>
-
-                    <Box sx={{  display:'flex', flexDirection:'column', maxHeight:'51.5vh',
-                        justifyContent:"center",alignItems:'center',overflowY:"auto", width:'100%',
+                    <div style={{  display:'flex', flexDirection:'column', maxHeight:'51.5vh',
+                        justifyContent:"center",alignItems:'center',overflowY:"auto", minWidth:'100%',maxWidth:'100%',
                         overflowX:"hidden", overflowY:"auto"}}>
                     
                     
-                        <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
+                        <div style={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
                     overflowY:'auto', maxHeight:'51.5vh', paddingRight:-8}}>   
                         
                         {dataSources && dataSources.length > 0 ? dataSources.map((data,index)=>index <21 && <FeatureCard
@@ -488,15 +480,15 @@ export default function Searchresult({
                             addDatasetcatalog={addDatasetcatalog}
                         />):<div>We are trying to add more catalogs to the platform.</div>}
                             
-                        </Box>
+                        </div>
 
-                    </Box>
+                    </div>
 
                     <Divider sx={{width:'100%', marginBottom:2}} />
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
-                        fontSize:20,pb:2,  flex:'end'}}>
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,borderRadius:4,
+                    <div style={{ display: 'flex', flexDirection:'row', font:'roboto',minWidth:'100%',maxWidth:'100%',
+                        fontSize:20,pb:2,  justifyContent:'space-between'}}>
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,borderRadius:4,width:'16ch',
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleClickChange(0)}>
                             {"Previous"}</Button>
@@ -506,47 +498,44 @@ export default function Searchresult({
                             }}
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button> */}
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:78.25,borderRadius:4,
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,borderRadius:4,width:'16ch',
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleClickChange(2)}>
                             {"Next"}</Button>
-                    </Box>
+                    </div>
 
                 </TabPanel>
-                <TabPanel value={value} index={2} sx={{width:'100%'}}>
-                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto',fontSize:20,mr:75,
-                        width:'100%'}}>
-                        <div style={{display:'flex', width:'100%', }}>
+                <TabPanel value={value} index={2} sx={{minWidth:'80%',maxWidth:'80%',}}>
+                    <div style={{ display: 'flex', flex:'1',flexDirection:'column', font:'roboto',fontSize:20,
+                        minWidth:'100%', maxWidth:'100%'}}>
+                        <div style={{display:'flex', width:'100%',marginRight:'25rem' }}>
                             <div>REVIEW AND SAVE &nbsp;</div>
                             {error? <><div style={{color:'#fc4103'}}>({error})</div></>:null}
                             </div>
                         
                         <div style={{fontSize:12, paddingTop:4,color:'gray'}}>*Go through the entries and selection you've made.</div>
 
-                    </Box>
-                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:4}}>
+                    </div>
+                    <div style={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:4}}>
                         <div style={{display: 'flex'}}>
                             <div style={{color:'gray'}}>Title: </div>
                             <div style={{marginLeft:128}}>{localdataset.title ? localdataset.title : "Enter a Title"} &nbsp;</div>
                         </div>
-                    </Box>
-                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:1}}>
+                    </div>
+                    <div style={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',pt:1}}>
                         <div style={{color:'gray'}}>Description: </div>
                         <div style={{marginLeft:76}}>{localdataset.description ? localdataset.description : "Describe the purpose of the Dataset"} &nbsp;</div>
-                    </Box>
+                    </div>
 
-
-                            <Box component="main" sx={{ flex: 1, py: 2, }}>
-                                    <Box sx={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',fontSize:20}}>
+                    <div style={{ display: 'flex', flex:'1',flexDirection:'row', font:'roboto',fontSize:20}}>
                                         <div>Added Data Sources &nbsp;</div>
                                         {searching4 !== null && searching4 !== undefined &&
                                         <div>{"("+ searching4.length+")"}</div>}
 
-                                    </Box>
-                            </Box>
-
-                            <Box sx={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
-                                overflowY:'auto', maxHeight:'44vh', paddingRight:-8}}> 
+                            </div>
+                            
+                    <div style={{minHeight:'100%', minWidth:'100%', overflowX:"hidden", 
+                                overflowY:'auto', maxHeight:'44vh', }}> 
                                 {searching4.map((data, index)=><AddedFeatureCard
                                     openDetails={openDetails}
                                     data={data}
@@ -558,12 +547,11 @@ export default function Searchresult({
                                     dataset={dataset}
                                     removeDatasetcatalog={removeDatasetcatalog}
                                     addDatasetcatalog={addDatasetcatalog} />)}
-                            </Box>
+                            </div>
 
-                    <Box sx={{paddingBottom:36}}>
                     <Divider sx={{width:'100%', marginBottom:2}} />
-                    <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto',
-                        fontSize:20,pb:2,  flex:'end'}}>
+                    <div style={{ display: 'flex', flexDirection:'row', font:'roboto',
+                        fontSize:20,pb:2,  justifyContent:'space-between'}}>
                         <Button variant="contained" size="small" sx={{px:5, py:1.5,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleClickChange(1)}>
@@ -573,12 +561,11 @@ export default function Searchresult({
                                 onClick={()=>router.push('/dashboard')}>
                             {"Save as Draft"}</Button> */}
                             
-                        <Button variant="contained" size="small" sx={{px:5, py:1.5,ml:76.5,borderRadius:4,
+                        <Button variant="contained" size="small" sx={{px:5, py:1.5,borderRadius:4,
                             backgroundColor:"#5A00E2"}}
                                 onClick={()=>handleSendData()}>
                             {"Create"}</Button>
-                    </Box>
-                    </Box>
+                    </div>
 
                 </TabPanel>
                 

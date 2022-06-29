@@ -59,7 +59,7 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                               : "6"}</div>
                       <div style={{display:'flex',width:'100%', }}>
                           <div style={{display:'flex',wordWrap: "break-word",
-                              whiteSpace: "pre-wrap", wordBreak: "break-word", paddingRight:128 }}>
+                              whiteSpace: "pre-wrap", wordBreak: "break-word", width:'25%' }}>
                               <b>Datasources: </b> {data.catalog?data.catalog.length:"0"}
                           </div>
                           <div style={{display:'flex' }}>
@@ -68,8 +68,8 @@ export default function SignalCardOut({token, data, datasetMode, setDatasetMode,
                       </div>
 
                       <div style={{display:'flex',width:'100%', alignItems:'center' }}>
-                          <div style={{display:'flex',wordWrap: "break-word",width:'24%',
-                              whiteSpace: "pre-wrap", wordBreak: "break-word",paddingRight:64 }}>
+                          <div style={{display:'flex',wordWrap: "break-word",width:'25%',
+                              whiteSpace: "pre-wrap", wordBreak: "break-word", }}>
                               <b>Data Points: </b> {data.data_points?data.data_points.toLocaleString():""}
                           </div>
                           <div style={{display:'flex', alignItems:'center', }}><div style={{paddingRight:4,}}><b>Key Features:</b></div>

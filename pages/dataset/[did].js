@@ -277,14 +277,14 @@ export default function ManageDataset({
                                     {"Back"}</Button>:null}
                             <Divider variant="middle" orientation="vertical" />
                             <div style={{paddingLeft:8,paddingRight:2,}}>Go Back to {datasetMode ===0 ?" My Datasets": currentRouteTitle}</div>
-                            <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2, paddingLeft:2,paddingRight:2, color:'#939EAA', borderColor:'#939EAA' }}
+                            <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2, paddingLeft:2,paddingRight:2, color:'#000', borderColor:'#939EAA' }}
                                     startIcon={<CachedIcon />} onClick={()=>router.reload()}>
                                 {"Refresh"}</Button>
                         </Box>
-                        <Box sx={{display:"flex", alignItems:'center', justifyContent:'space-between', width:'24%', }}>
+                        <Box sx={{display:"flex", alignItems:'center', justifyContent:'space-between', width:'22%', }}>
                             {datasetMode==0?<div><DeleteOutlineIcon fontSize="large" sx={{cursor:'pointer',}}
                                                                     onClick={() => deleteF(userdataset)}/></div>:null}
-                            <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
+                            <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#000', borderColor:'#939EAA'}}
                                     startIcon={<GetAppIcon />} onClick={handleClick}
                                     >
                                 {"Export"}</Button>
@@ -302,10 +302,10 @@ export default function ManageDataset({
                                 <MenuItem disabled onClick={()=>handleClose}><div><div>XLS </div><div style={{fontSize:12}}>(Enterprise Version)</div></div> </MenuItem>
                                 <MenuItem disabled onClick={()=>handleClose}><div><div>API Configuration</div> <div style={{fontSize:12}}>(Enterprise Version)</div></div></MenuItem>
                             </Menu>
-                            {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
+                            {datasetMode === 0 ?<Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#000', borderColor:'#939EAA'}}
                                                         startIcon={<EditIcon />} onClick={() => setDatasetMode(1)}>
                                 {"Edit"}</Button>: datasetMode === 1 ?
-                                <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#939EAA', borderColor:'#939EAA'}}
+                                <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#000', borderColor:'#939EAA'}}
                                         startIcon={<CheckIcon />} onClick={() => {updateF(userdataset)}}>
                                     {"Update"}</Button>:null}
                         </Box>

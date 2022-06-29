@@ -100,7 +100,18 @@ export default function TopicCard({
                                     lineHeight:"22px", justifyContent:'center',   alignItems:'center', paddingTop:48,
 
                                 }}
-                                    onClick={()=> router.push(`/topic/${topicName}`)}
+                                    onClick={()=>router.push({
+                                        pathname: `/topic/${topicName}`,
+                                        query:{
+                                            currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
+                                                router.pathname.includes('/topic')?"Topics":
+                                                router.pathname.includes('/datasets')?"Browsing Your Datasets":
+                                                router.pathname.includes('/catalog')?"Browsing Catalog":
+                                                router.pathname.includes('/searchresult')?"Search Results":
+                                                router.pathname.includes('/dashboard')?"Dashboard":
+                                                router.pathname.includes('/dataset')?props.data.title:
+                                                router.query.tid,
+                                        }})}
                                                  
                                 >
                                     <div style={{
@@ -127,15 +138,16 @@ export default function TopicCard({
                                     </div>
                                     <div style={{display:'flex', flexDirection:'row', justifyContent:'center',
                                         alignItems:'center', paddingTop:'1rem'}}
-                                        onClick={()=>{
-                                        mixpanel.track('Redirected to 2nd Industry Wide Trends URL', {
-                                            'source': "Dashboard Page",
-                                            'action': "2nd Industry Wide Trends Clicked",
-                                            "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
-                                            'email': user.email !== null && user.email !== undefined && user.email,
-                                        });
+                                        // onClick={()=>{
+                                        // mixpanel.track('Redirected to 2nd Industry Wide Trends URL', {
+                                        //     'source': "Dashboard Page",
+                                        //     'action': "2nd Industry Wide Trends Clicked",
+                                        //     "url": "https://medcitynews.com/2020/02/from-data-to-ai-how-these-4-tech-trends-are-reshaping-healthcare/",
+                                        //     'email': user.email !== null && user.email !== undefined && user.email,
+                                        // });
+                                        //}}
                                         
-                                    }}>
+                                    >
                                         {topicName === "Catalogs" ?
                                             <svg width="42" height="42" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M19.3702 5.55906L13.5102 2.94906C12.6502 2.56906 11.3502 2.56906 10.4902 2.94906L4.63018 5.55906C3.15018 6.21906 2.93018 7.11906 2.93018 7.59906C2.93018 8.07906 3.15018 8.97906 4.63018 9.63906L10.4902 12.2491C10.9202 12.4391 11.4602 12.5391 12.0002 12.5391C12.5402 12.5391 13.0802 12.4391 13.5102 12.2491L19.3702 9.63906C20.8502 8.97906 21.0702 8.07906 21.0702 7.59906C21.0702 7.11906 20.8602 6.21906 19.3702 5.55906Z" fill={router.pathname.includes('/browsecatalogue')? '#5A00E2':'#474F5A'}/>

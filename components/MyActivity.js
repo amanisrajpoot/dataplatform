@@ -92,7 +92,7 @@ export default function MyActivity({
     const router = useRouter()
 
     return (
-        <div style={{height:'20ch', minWidth:'25%', maxWidth:'25%', backgroundColor:'#FFF',
+        <div style={{height:'20ch', minWidth:'25%', maxWidth:'25%', backgroundColor:'#FFF',paddingBottom:'2rem',
                                 display:'flex', flexDirection:'column',marginBottom:8,marginRight:14,
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 
@@ -117,16 +117,15 @@ export default function MyActivity({
                                     <div style={{
                                                     fontStyle: 'normal',
                                                     fontWeight: '700',
-                                                    fontSize: '30px',
+                                                    fontSize: '36px',
                                                     lineHeight: '33px',
-                                                    paddingBottom:'1rem',
+                                                    paddingBottom:'2rem',
                                                     /* identical to box height */
                                                     letterSpacing: '0.01em',
+                                                    paddingTop:'1rem',
 
                                                     /* Primary/Primary_Purple */
                                                     color: '#474F5A',
-
-
                                                     /* Inside auto layout */
                                                     }}>
                                         {categoryName ? categoryName: "Category"}
@@ -134,8 +133,6 @@ export default function MyActivity({
                                     </div>
                                     <div style={{display:'flex', flexDirection:'row', justifyContent:'center',
                                         alignItems:'center', }}
-                                        
-                                        
                                     >
                                         {categoryName === "Catalogs" ?
                                             <svg width="42" height="42" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,7 +141,7 @@ export default function MyActivity({
                                             <path opacity="0.4" d="M11.9998 22.6689C11.6198 22.6689 11.2398 22.5889 10.8898 22.4389L4.14982 19.4389C3.03982 18.9489 2.31982 17.8389 2.31982 16.6189C2.31982 16.2089 2.64982 15.8789 3.05982 15.8789C3.46982 15.8789 3.79982 16.2089 3.79982 16.6189C3.79982 17.2489 4.16982 17.8189 4.74982 18.0789L11.4898 21.0789C11.8098 21.2189 12.1798 21.2189 12.4998 21.0789L19.2398 18.0789C19.8098 17.8289 20.1898 17.2489 20.1898 16.6189C20.1898 16.2089 20.5198 15.8789 20.9298 15.8789C21.3398 15.8789 21.6698 16.2089 21.6698 16.6189C21.6698 17.8389 20.9498 18.9389 19.8398 19.4389L13.0998 22.4389C12.7598 22.5889 12.3798 22.6689 11.9998 22.6689Z" fill={router.pathname.includes('/browsecatalogue')? '#5A00E2':'#474F5A'}/>
                                             </svg>
                                             : categoryName === 'Datasets'?
-                                            <svg width="42" height="42" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <svg width="64" height="46" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M21.75 12.666C21.75 13.6325 20.9665 14.416 20 14.416C19.0335 14.416 18.25 13.6325 18.25 12.666C18.25 11.6995 19.0335 10.916 20 10.916C20.9665 10.916 21.75 11.6995 21.75 12.666Z" 
                                             fill={router.pathname.includes('/datasets')?"#5A00E2":'#474F5A'} stroke="#5A00E2"/>
                                             <path d="M21.75 4.66602C21.75 5.63251 20.9665 6.41602 20 6.41602C19.0335 6.41602 18.25 5.63251 18.25 4.66602C18.25 3.69952 19.0335 2.91602 20 2.91602C20.9665 2.91602 21.75 3.69952 21.75 4.66602Z" 
@@ -173,31 +170,23 @@ export default function MyActivity({
                                                     height: '33px',
                                                     fontStyle: 'normal',
                                                     fontWeight: '700',
-                                                    fontSize: '42px',
+                                                    fontSize: '60px',
                                                     lineHeight: '33px',
-                                                    
-
                                                     /* identical to box height */
                                                     letterSpacing: '0.01em',
 
                                                     /* Primary/Primary_Purple */
                                                     color: '#5A00E2',
-
-
                                                     /* Inside auto layout */
                                                     flex: 'none',
                                                     order: '1',
                                                     flexGrow: 0,
-                                                    paddingLeft:'1.5rem'}}
+                                                    paddingLeft:'1rem'}}
                                             >{categoryName === "Catalogs" ? catalogCount && catalogCount !== null && catalogCount.length: 
                                                 categoryName === "Datasets" ?  userdatasets && userdatasets !== null && userdatasets.length:
                                                 categoryName === "Activity" ?  userdatasets && userdatasets !== null && userdatasets.length:null}</div>
                                     </div>
-                                    <div style={{paddingTop:18,color:'gray', display:'flex',paddingBottom:24,
-                                        justifyContent:'space-between', alignItems:'center'}}>
-                                        
-                                        
-                                    </div>
+                                    
                                 </div>
                             </div>
 

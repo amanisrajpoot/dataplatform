@@ -280,7 +280,7 @@ export default function ManageDataset({
                         </div>
                     </Box> */}
 
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between', paddingTop:10}}>
+                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between', paddingTop:12}}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"50%",
                             color:'gray-700', alignItems:'center'}}>
@@ -292,9 +292,9 @@ export default function ManageDataset({
                                     {"Back"}</Button>:null}
                             <Divider variant="middle" orientation="vertical" />
                             <div style={{paddingLeft:8,paddingRight:2,textTransform:'capitalize'}}><div>Go Back to {router.query.currentRouteTitle}</div></div>
-                            <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2,  color:'#939EAA', borderColor:'#939EAA' }}
+                            {/* <Button variant="outlined" size="medium" sx={{borderRadius:3, marginLeft:2, width:'22ch', color:'#000', borderColor:'#939EAA' }}
                                     startIcon={<CachedIcon />} onClick={()=>router.reload()}>
-                                {"Refresh"}</Button>
+                                {"Refresh"}</Button> */}
                         </Box>
 
                     </Box>

@@ -374,14 +374,15 @@ export default function Dashboard({
 
 
     useEffect(async ()=>{
-        topicNumbers.length === 0 && uniqueTopics && uniqueTopics.length > 0 && uniqueTopics.map(async (topic)=>{
+        topicNumbers.length === 0 && uniqueTopics && uniqueTopics.length > 0 && 
+            uniqueTopics.map(async (topic)=>{
             const data = dataSources.filter(item=>item.topic === topic)
             setTopicNumbers(prev=>[...prev, {name:topic, Catalogs:data.length}])
             }
         )
-        setItems([...items, ...topicNumbers])
+        setItems([ ...topicNumbers])
         console.log("topic number count",topicNumbers);
-    }, [dataSources,])
+    }, [dataSources,uniqueTopics,])
 
     useEffect(async ()=>{
         items.length === 0 && items && items.length > 0 && items.map(async (topic)=>{
@@ -559,7 +560,7 @@ export default function Dashboard({
                                         
                                     </div>
 
-                                <div style={{display:'flex', width:'100%', justifyContent:'space-between', paddingLeft:'3rem'}}>
+                                <div style={{display:'flex', width:'100%', justifyContent:'space-between', paddingLeft:'1rem'}}>
 
                                         <div style={{display:'flex', flexDirection:'column', justifyContent:'center',
                                         alignItems:'center',  width:'100%'}}
@@ -733,9 +734,11 @@ export default function Dashboard({
                                     <Pie data={data} dataKey="industry_points" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />
                                     </PieChart> */}
                                 
-                                <div style={{display:'flex', flexDirection:'column', width:'74%', paddingBottom:'1em', paddingLeft:'1em',
-                                            backgroundColor:'#fff'}}>
-                                        <div style={{color:'black', fontSize:20,marginLeft:18,paddingBottom:"1em"}}>Catalog By Types</div>
+                                <div style={{display:'flex', flexDirection:'column', width:'74%', paddingBottom:'1em', paddingLeft:'2em',
+                                            backgroundColor:'#fff', marginLeft:'1em', marginRight:'1em'}}>
+                                        <div style={{color:'black', fontSize:28,paddingBottom:"1em",paddingTop:"0.75em",
+                                            textAlign:'center'}}>
+                                            Catalog Count By Topic</div>
                                         <div className="pie-row" style={{ styles }}>
                                             <ResponsiveContainer height={items.length * 42 + 69 +42 } width="100%">
                                             <BarChart
@@ -756,6 +759,9 @@ export default function Dashboard({
                                 </div>
                                 
                                 <div style={{display:'flex', flexDirection:'column', width:'25%',paddingRight:'1em'}}>
+                                    <div style={{color:'black', fontSize:28,paddingBottom:"1em",paddingTop:'0.75rem',
+                                        textAlign:'center'}}>
+                                        Top Topics</div>
                                     {items && items !== null && items.length > 0 && items.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
                                         index < 7 && <TopicCard dataset={dataset} setUserdatasets={setUserdatasets} userdatasets={userdatasets} 
                                             dataSources={dataSources} setDataSources={setDataSources}
