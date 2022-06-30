@@ -579,7 +579,7 @@ export default function Dashboard({
                                                     }}
                                                     size="small"
                                                     onClick={()=>router.push({
-                                                    pathname: `/topic/${topic.split(",")[0]}`,
+                                                    pathname: `/topic/${topic.name.split(",")[0]}`,
                                                     query:{
                                                         currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
                                                             router.pathname.includes('/topic')?"Topics":
