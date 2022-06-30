@@ -136,8 +136,8 @@ const ForgetPassword =() => {
   return (
 
     <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
-      height: '100vh', font:'roboto' }}>
-        <div style={{minWidth:'50%', maxWidth:'50%', height:'110%', backgroundColor:'#0DB1A1', display:'flex', 
+      height: '100vh', font:'roboto', justifyContent:'center'  }}>
+        {/* <div style={{minWidth:'50%', maxWidth:'50%', height:'110%', backgroundColor:'#0DB1A1', display:'flex', 
           flexDirection:'column', justifyContent:'center', alignItems:'center',
             backgroundImage: 'url(/logon-photo03.jpg)',
             // backgroundRepeat: 'no-repeat',
@@ -147,7 +147,7 @@ const ForgetPassword =() => {
             // backgroundPosition: 'left',
             
           }}>
-        </div>
+        </div> */}
         <div  style={{display:'flex', minWidth:'50%', maxWidth:'50%',
                          flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                         <div style={{display:'flex',paddingTop:'3em',
@@ -265,7 +265,7 @@ const ForgetPassword =() => {
 
                 <Divider variant="middle" />
 
-                {mode===0?<><div style={{width:'100%',display:'flex', paddingTop:'15em', fontSize:14,
+                {mode===0?<><div style={{width:'100%',display:'flex', paddingTop:'13.5em', fontSize:14,
                     justifyContent:'space-around', }}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>
@@ -274,7 +274,7 @@ const ForgetPassword =() => {
                 </div>
                 <Copyright sx={{ pt: 1 }} /></>
                     :mode===1?<>
-                    <div style={{width:'100%',display:'flex', paddingTop:'15em', fontSize:14,
+                    <div style={{width:'100%',display:'flex', paddingTop:'13.5em', fontSize:14,
                     justifyContent:'space-around', }}>
                     <div>Terms of Service </div>
                     <div>Terms of Use </div>

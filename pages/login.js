@@ -143,7 +143,7 @@ const Login =({token, setToken}) => {
     <>
       <div className= "login" style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
         height: '100%', font:'roboto' }}>
-        <div style={{ height:'100%', minWidth:'50%', maxWidth:'50%',backgroundColor:'#0DB1A1', display:'flex', 
+        {/* <div style={{ height:'100%', minWidth:'50%', maxWidth:'50%',backgroundColor:'#0DB1A1', display:'flex', 
           flexDirection:'column', justifyContent:'center', alignItems:'center',
             backgroundImage: 'url(/logon-photo03.jpg)',
             // backgroundRepeat: 'no-repeat',
@@ -153,7 +153,7 @@ const Login =({token, setToken}) => {
             // backgroundPosition: 'left',
             
           }}>
-        </div>
+        </div> */}
         <div  style={{display:'flex', minWidth:'50%', maxWidth:'50%',
             flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <div style={{display:'flex',paddingTop:'3em',
@@ -294,7 +294,7 @@ const Login =({token, setToken}) => {
                 Log In
               </Button>
 
-                <BrandName sx={{ pt: 1 }} />
+                {/* <BrandName sx={{ pt: 1 }} /> */}
 
                 <div style={{width:'100%',display:'flex', paddingTop:'9em', fontSize:14,
                     justifyContent:'space-around', }}>

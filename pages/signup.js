@@ -298,9 +298,10 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     };
 
         return (
-            <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
-            height: '100vh', font:'roboto' }}>
-                <div style={{minWidth:'50%', maxWidth:'50%', height:'110%', backgroundColor:'#0DB1A1', display:'flex', 
+            <>
+            <div className= "signup" style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
+            height: '100vh', font:'roboto', justifyContent:'center' }}>
+                {/* <div style={{minWidth:'50%', maxWidth:'50%', height:'110%', backgroundColor:'#0DB1A1', display:'flex', 
                 flexDirection:'column', justifyContent:'center', alignItems:'center',
                     backgroundImage: 'url(/logon-photo03.jpg)',
                     // backgroundRepeat: 'no-repeat',
@@ -310,7 +311,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                     // backgroundPosition: 'left',
                     
                 }}>
-                </div>
+                </div> */}
                     <div  style={{display:'flex', minWidth:'50%', maxWidth:'50%',
                          flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                         <div style={{display:'flex',paddingTop:'3em',
@@ -632,7 +633,8 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                             </Button>
                                         </> : null}
 
-                                    {mode === 0 ? <BrandName sx={{pt: 1}}/>
+                                    {mode === 0 ? ''
+                                    //<BrandName sx={{pt: 1}}/>
                                         : mode === 1 ? <div style={{
                                                 paddingTop: 4,  minWidth: '100%', display: 'flex',
                                                 justifyContent: 'center', flexDirection:'column',alignItems:'center',
@@ -675,6 +677,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                         </div>
                     </div>
                 </div>
+            </>    
         );
 
 }

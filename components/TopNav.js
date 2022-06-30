@@ -139,7 +139,7 @@ export default function TopNav({
 								<Link href={"/settings"}>
 									{/* <AccountCircleIcon onClick={()=>router.push("/settings")} 
 										fontSize="large" sx={{color:'#939EAA'}}/> */}
-									<Avatar alt="Devi Ai" sx={{height:35, width:35,cursor:'pointer' }} onClick={()=>router.push("/settings")}
+									<Avatar alt={Auth.user?Auth.user.attributes.name.split(" ")[0].toUpperCase():'U'} sx={{height:35, width:35,cursor:'pointer' }} onClick={()=>router.push("/settings")}
 										src='url(/user_logo.jpg)' />
 								</Link>
 								&nbsp;&nbsp;&nbsp;

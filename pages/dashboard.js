@@ -180,7 +180,7 @@ export default function Dashboard({
     const [topicFilteredDataSources, setTopicFilteredDataSources] = useState([])
     const [keywordFilteredDataSources, setKeywordFilteredDataSources] = useState([])
     const [catalogCount, setCatalogCount] = useState(0)
-    const [datasetTopics, setDatasetTopics] = useState(0)
+    const [datasetTopics, setDatasetTopics] = useState([])
 
     const handleOpenDetails = (data) => {
         setOpenDetails(true);
@@ -386,18 +386,8 @@ export default function Dashboard({
     }, [dataSources,uniqueTopics,])
 
     useEffect(async ()=>{
-        items.length === 0 && items && items.length > 0 && items.map(async (topic)=>{
-            const data = datasetUniqueTopics.filter(item=>item.topic === topic)
-            setDatasetUniqueTopicsTop(prev=>[...prev, {name:topic, Catalogs:data.length}])
-        }
-        )
-       
-        console.log("dataset unique topics",datasetUniqueTopicsTop);
-    }, [uniqueTopics, datasetUniqueTopics])
-
-    useEffect(async ()=>{
-         uniqueTopics && uniqueTopics.length > 0 && uniqueTopics.map(async (topic)=>{
-            const data = datasetTopics.filter(item=>item.topic === topic)
+         datasetTopics && datasetTopics.length > 0 && userdatasets && datasetTopics.map(async (topic)=>{
+            const data = userdatasets.filter(item=>item.topic === topic)
             setDatasetUniqueTopics(prev=>[...prev, {name:topic, Catalogs:data.length}])
         }
         )
@@ -532,13 +522,13 @@ export default function Dashboard({
                                 display:'flex', flexDirection:'column',marginRight:16, 
                                 justifyContent:"space-around", flex:'end',borderRadius:9,}}>
                                 
-                                <div style={{cursor:'pointer', display:'flex', flexDirection:'column',height:'100%',
+                                 <div style={{cursor:'pointer', display:'flex', flexDirection:'column',height:'100%',
                                     lineHeight:"22px", justifyContent:'center',  alignItems:'center', paddingBottom:'3.5rem',
 
                                 }}
                                     
                                 >
-                                    <div style={{
+                                    {datasetUniqueTopics && datasetUniqueTopics.length > 0 &&<div style={{
                                                     
                                                     fontStyle: 'normal',
                                                     fontWeight: '700',
@@ -557,9 +547,9 @@ export default function Dashboard({
 
                                                     /* Inside auto layout */
                                                     }}>
-                                        { "Top 3 Topics"}
+                                        {  "Top 3 Topics"}
                                         
-                                    </div>
+                                    </div>}
 
                                 <div style={{display:'flex', width:'100%', justifyContent:'space-between', paddingLeft:'1rem'}}>
 
@@ -575,14 +565,15 @@ export default function Dashboard({
 
                                             
                                                 <div style={{width:'80%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '12px',
-                                                    lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',display:'flex',flexDirection:'column',
+                                                    lineHeight: '33px',letterSpacing: '0.01em',display:'flex',flexDirection:'column',
                                                     order: '1',flexGrow: 0,}}
                                             >
                                                 
-                                                {datasetUniqueTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
-                                                index < 3 && <Button sx={{
+                                                {datasetUniqueTopics && datasetUniqueTopics.length > 0 ?
+                                                    datasetUniqueTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
+                                                    index < 3 && <Button sx={{
                                                     borderRadius:4, border:1, fontSize:"0.9em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
-                                                    color:'#5A00E2',marginBottom:'0.5rem',
+                                                    color:'#5A00E2',marginBottom:'0.5rem',color: '#5A00E2',
                                                     height: '28px',fontStyle: 'normal',fontWeight: '700',fontSize: '14px',
                                                     lineHeight: '33px'
                                                     }}
@@ -600,7 +591,13 @@ export default function Dashboard({
                                                             router.query.tid
                                                     }
                                                 })}>{ topic.name.split(",")[0].substring(0,29) + ".."}</Button>
-                                            )}
+                                            ) : <div style={{display:'flex', flexDirection:'column',
+                                                    justifyContent:'center', alignItems:'center', paddingTop:'0.25em', paddingBottom:'2em'}}
+                                                    onClick={()=>router.push('/searchresult')}>
+                                                    <div style={{fontSize:22, fontWeight:'bold', color:'gray-700',}}>No Topics Found</div>
+                                                    <div style={{fontSize:18, color:'gray-700', textAlign:'center'}}>Try creating a new Dataset to get Top Topics</div>
+                                                </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -668,8 +665,8 @@ export default function Dashboard({
                                             <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '28px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',
                                                     }}
-                                            >{userdatasets && userdatasets !== null && userdatasets.length >0 &&
-                                                userdatasets.filter((dataset,index)=>new Date(dataset.CreatedAt) > recentDate).length}
+                                            >{userdatasets && userdatasets !== null && userdatasets.length >0 ?
+                                                userdatasets.filter((dataset,index)=>new Date(dataset.CreatedAt) > recentDate).length : 0}
                                             </div>
                                         </div>
 
@@ -698,8 +695,8 @@ export default function Dashboard({
                                             <div style={{width: '100%',height: '33px',fontStyle: 'normal',fontWeight: '700',fontSize: '28px',
                                                     lineHeight: '33px',letterSpacing: '0.01em',color: '#5A00E2',flex: 'none',
                                                     order: '1',flexGrow: 0,}}
-                                            >{userdatasets && userdatasets !==null && userdatasets !==undefined && userdatasets.length>0 &&
-                                                userdatasets.filter((dataset,index)=>new Date(dataset.UpdatedAt) > recentDate).length}
+                                            >{userdatasets && userdatasets !==null && userdatasets !==undefined && userdatasets.length>0 ?
+                                                userdatasets.filter((dataset,index)=>new Date(dataset.UpdatedAt) > recentDate).length : 0}
                                             </div>
                                         </div>
 

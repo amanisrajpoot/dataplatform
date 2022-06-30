@@ -165,6 +165,18 @@ export default function Datasets({
         }
     }, [token,router]);
 
+    useEffect(async () => {
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            (userdatasets === [] || userdatasets === null || userdatasets !== undefined)){
+            console.log('get datasets called from datasets page', token);
+            const data = await getDatasets(
+                token
+            );
+            setUserdatasets(data);
+            console.log("fetched datasets",data);
+        }
+    }, []);
+
     const [openDetails, setOpenDetails] = useState(false);
     const [dsDetails, setDSDetails] = useState([]);
     const [showDraft, setShowDraft] = useState(true)
@@ -312,7 +324,12 @@ export default function Datasets({
                             
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             
-                            {displayUsers}
+                            {displayUsers && displayUsers.length > 0 ? displayUsers : <div style={{display:'flex', flexDirection:'column',
+                                justifyContent:'center', alignItems:'center', paddingTop:'2em', paddingBottom:'2em'}}>
+                                <div style={{fontSize:18, fontWeight:'bold', color:'gray-700'}}>No Datasets Found</div>
+                                <div style={{fontSize:18, color:'gray-700'}}>Try creating a new Dataset or change your search criteria.</div>
+                            </div>
+                            }
                             {/* .length > 0 ? displayUsers: <cite style={{fontSize:"1.5em", 
                             //     fontFamily:'roboto', paddingTop:'0.25em'}}>
                             //     {"You're almost there! Create a dataset to get started..."}

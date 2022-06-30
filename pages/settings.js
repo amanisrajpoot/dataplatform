@@ -346,7 +346,8 @@ export default function Settings({
                             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
                              fontSize:20,pb:2, minWidth:'100%', mr:70, }}>
                                 <div>My Account &nbsp;</div>
-                                <Avatar alt="Remy Sharp" sx={{height:175, width:175, marginTop:2}} src="https://www.gravatar.com/avatar/?d=mp" />
+                                <Avatar alt={Auth.user?Auth.user.attributes.name.split(" ")[0].toUpperCase():'U'} sx={{height:175, width:175, marginTop:2}} 
+                                    src="url(/user_logo.jpg)" />
                              </Box>
 
                             <Box sx={{display:'flex', flexDirection:'column',width:"100%", bgColor:'#fff',color:'#fff', paddingBottom:28}}>
