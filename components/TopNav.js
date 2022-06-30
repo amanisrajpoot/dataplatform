@@ -86,7 +86,7 @@ export default function TopNav({
 	return (
 		<div style={{ display:'flex',minWidth:'100%', maxWidth:'100%', position:'fixed', height:'7vh',
 					justifyContent:'flex-end'  }}>
-				<div style={{ display:'flex',minWidth:'83%', maxWidth:'83%', position:'fixed',backgroundColor:'white',
+				<div style={{ display:'flex',minWidth:'83%', maxWidth:'83%', position:'fixed',backgroundColor:'black',
 					 }}>
                         <div style={{ display:'flex', flexDirection:'row', backgroundColor:'white', alignItems:'center',
 							 minWidth:'85.5%', maxWidth:'85.5%',

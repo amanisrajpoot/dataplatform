@@ -235,18 +235,18 @@ export default function Support({
     }
 
   return (
-    <div style={{display:'flex', flexDirection:'row',minWidth:'117ch', maxWidth:'117ch', height:'100%'}}>
+    <div style={{display:'flex', flexDirection:'row', maxWidth:'100%',minWidth:"100%", }}>
         {/* <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box> */}
 
-        <div style={{minWidth:"100%", bgcolor: '#f7f7f7', display:'flex', flexDirection:'column'}}>
+        <div style={{backgroundColor: '#f7f7f7', display:'flex', flexDirection:'column', maxWidth:'100%',minWidth:"100%",}}>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:4, bgcolor: '#f7f7f7', 
-            justifyContent:'space-between', paddingTop: 10, paddingLeft:2,paddingRight:16,
-            paddingBottom:2,}}>
+            <div style={{ display: 'flex', flexDirection:'row', paddingTop:'6rem', paddingLeft:'1rem',paddingRight:16,
+                paddingBottom:'1rem', backgroundColor: '#f7f7f7', 
+                justifyContent:'space-between', maxWidth:'100%',minWidth:"100%",}}>
 
-                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
+                <div style={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
                     <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                             justifyContent:'center'}} startIcon={<ArrowBackIcon />}
@@ -258,8 +258,8 @@ export default function Support({
                     <Divider variant="middle" orientation="vertical" />
                     <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Support</div>
 
-                </Box>
-                </Box>
+                </div>
+                </div>
 
             <Box
                 sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2}}
@@ -280,7 +280,7 @@ export default function Support({
                 <TabPanel value={value} index={0} sx={{width:'100%',}}>
                     <Box sx={{display:'flex',flexDirection:'column', alignItems:'space-between', width:'100%'}}>
                             <Box sx={{ display: 'flex', flexDirection:'column', font:'roboto',
-                             fontSize:20,pb:2, minWidth:'100%', mr:75, }}>
+                             fontSize:20,pb:2, minWidth:'100%', mr:55, }}>
                                 <div>Contact Us Form &nbsp;</div>
                              </Box>
 

@@ -309,10 +309,11 @@ export default function Dashboard({
 
     useEffect(async ()=>{
         if(userdatasets && userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0){
-        setDatasetTopics([...new Set(userdatasets.map(item => item.topic))])
+            userdatasets.map(item => setDatasetTopics(prev=>[...new Set([...prev,...item.topic.split(",")])]))
+        
         console.log("unique dataset topicsssssss",datasetTopics);
         }
-    }, [dataSources, userdatasets])
+    }, [dataSources, userdatasets,token, router])
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const today  = new Date();
@@ -357,10 +358,10 @@ export default function Dashboard({
                     />
       );
 
-    useEffect(()=>{
-        if(searchMode === 0){
+      useEffect(()=>{
+        if(searchMode === 1){
             setUsers(dataSources && dataSources.slice(0, 50));
-        }else if(searchMode === 1){
+        }else if(searchMode === 0){
             setUsers(keywordFilteredDataSources && keywordFilteredDataSources.slice(0, 50));
         }else if(searchMode === 2){
             setUsers(topicFilteredDataSources && topicFilteredDataSources.slice(0, 50));
@@ -373,7 +374,6 @@ export default function Dashboard({
         setPageNumber(selected);
     };
 
-
     useEffect(async ()=>{
         topicNumbers.length === 0 && uniqueTopics && uniqueTopics.length > 0 && 
             uniqueTopics.map(async (topic)=>{
@@ -381,7 +381,7 @@ export default function Dashboard({
             setTopicNumbers(prev=>[...prev, {name:topic, Catalogs:data.length}])
             }
         )
-        setItems([ ...topicNumbers])
+        setItems([...topicNumbers])
         console.log("topic number count",topicNumbers);
     }, [dataSources,uniqueTopics,])
 
@@ -579,7 +579,7 @@ export default function Dashboard({
                                                     }}
                                                     size="small"
                                                     onClick={()=>router.push({
-                                                    pathname: `/topic/${topic.name.split(",")[0]}`,
+                                                    pathname: `/topic/${topic.split(",")[0]}`,
                                                     query:{
                                                         currentRouteTitle:router.pathname.includes('/browsecatalogue')?"Browsing Catalogs":
                                                             router.pathname.includes('/topic')?"Topics":
@@ -590,7 +590,9 @@ export default function Dashboard({
                                                             router.pathname.includes('/dataset')?props.data.title:
                                                             router.query.tid
                                                     }
-                                                })}>{ topic.name.split(",")[0].substring(0,29) + ".."}</Button>
+                                                })}>
+                                                     { topic.name.split(",")[0].substring(0,29) + ".."}
+                                                    </Button>
                                             ) : <div style={{display:'flex', flexDirection:'column',
                                                     justifyContent:'center', alignItems:'center', paddingTop:'0.25em', paddingBottom:'2em'}}
                                                     onClick={()=>router.push('/searchresult')}>

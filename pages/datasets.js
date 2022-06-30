@@ -161,9 +161,9 @@ export default function Datasets({
                 token
             );
             setUserdatasets(data);
-            console.log("fetched datasets",data);
+            console.log("unique catalogs datasets",data);
         }
-    }, [token,router]);
+    }, [token,router,]);
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&

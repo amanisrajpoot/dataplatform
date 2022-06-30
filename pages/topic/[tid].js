@@ -238,67 +238,7 @@ export default function TopicBrowser({
                     </Box>
                 </Box> */}
                 <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
-                    {/* <Box component="main" sx={{  width:'100%', display:'flex',position:'fixed' }}>
-                        <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                            <Box sx={{color:'gray', paddingRight:1, paddingLeft:2}}>
-                                <SearchIcon />
-                            </Box>
-
-                            <InputBase
-                                // onChange={setVal}
-                                sx={{ bgcolor:'white',width:'90%'}}
-                                placeholder="Search"
-                                inputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                    placeholder:"Search..."
-                                }}
-                            />
-                        </Box>
-
-                        <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                            alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                            <Link href='/login'>
-                                {/* <NotificationsIcon
-                                    fontSize="large"
-                                    sx={{color:'#939EAA', cursor:'pointer'}}
-                                /> 
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <Link >
-                                <AccountCircleIcon onClick={()=>router.push("/settings")}
-                                    fontSize="large" sx={{color:'#939EAA'}}/>
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
-                            &nbsp;&nbsp;&nbsp;
-                            <div
-                                // onClick={()=>signOut({path:router.pathname})}
-                                onClick={handleClickUser}
-                            >
-                                <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
-                            </div>
-
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorElUser}
-                                open={openUser}
-                                onClose={handleCloseUser}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                            </Menu>
-                        </div>
-                    </Box> */}
-
-                    <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
+                                        <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
                         paddingTop:10, width:'100%', alignItems:'center' }}>
 
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', width:'100%',marginRight:2,
@@ -335,7 +275,7 @@ export default function TopicBrowser({
 
                             </Box>
                             <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
-                            <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/>
+                            {/* <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/> */}
 
                         </Box>
 

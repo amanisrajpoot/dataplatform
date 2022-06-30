@@ -94,8 +94,6 @@ export default function FeatureCard(props){
                                 : "6"}</div>
                     </div>
 
-                
-
                     <div style={{minWidth:'35%', minHeight:'16vh',maxHeight:'16vh',display:'flex', 
                         flex:'end',justifyContent:'space-between', alignItems:'center', paddingTop:"2vh", paddingBottom:'2vh' }}>
                         <Divider orientation="vertical" flexItem variant="middle"/>

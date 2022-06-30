@@ -390,7 +390,7 @@ export default function BrowseCatalogue({
                                                 className="inputRounded" value={keyword} 
                                                 onChange={(e) => setKeyword(e.target.value)}
                                                 label="Keyword" 
-                                                sx={{ display:'flex',bgcolor: '#ffffff',borderRadius:16, width:'79%' }}
+                                                sx={{ display:'flex',bgcolor: '#ffffff',borderRadius:'4rem', width:'79%' }}
                                                 onKeyDown={()=>handleKeywordSearch()}
                                                 InputProps={{
                                                     startAdornment: (
@@ -420,7 +420,7 @@ export default function BrowseCatalogue({
 
                                     <Button sx={{minWidth:'18%',maxWidth:'18%', minHeight:'6vh',maxHeight:'6vh', display:'flex',ml:3,color:'#939EAA',
                                         alignItems:'center', justifyContent:'center', borderRadius:2, border:0.5, borderColor:'gray',
-                                        textTransform: "capitalize",
+                                        textTransform: "capitalize",color:'#000',
                                         py:3
                                         }}
                                             variant="outlined"

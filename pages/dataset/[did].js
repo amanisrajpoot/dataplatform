@@ -12,6 +12,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import {useRouter} from 'next/router';
 import {getDatasetsId, downloadDatasetsId, getUser, deleteUserDataset, updateUserDataset} from '../../function/users';
+import {getPublicDatasets, getDatasets, getPublicDatasetsTopics} from '../../function/users';
 import DataSourcesDetails from '../../components/datasourcesdetails';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -25,7 +26,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import {getPublicDatasets, getDatasets,} from '../../function/users';
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
@@ -98,7 +98,8 @@ export default function ManageDataset({
         console.log(dataF)
         const data = await deleteUserDataset({token, data:dataF});
         if(data){
-            window.open("/datasets", "_self")
+            window.open("/dashboard", "_self")
+
         }
     }
 
@@ -120,9 +121,16 @@ export default function ManageDataset({
             userdataset !== [] && userdataset !== null && userdataset !== undefined){
             const dataset = await getDatasetsId(token, dataset_id);
             setUserDataset(dataset);
-            console.log("fetched dataset data",userdataset);
+            
+            console.log("fetched dataset data",userdataset,);
         }
     }, [token, dataset_id]);
+
+    useEffect(() => {
+        if(userdataset.topic && userdataset !== null && userdataset !== undefined) {
+            setDatasetTopics(userdataset.topic.toString());
+        }
+    }, [userdataset]);
 
     useEffect(async () => {
         if(token !== 0 && token && token !== null && token !== undefined &&
@@ -195,23 +203,22 @@ export default function ManageDataset({
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const openUser = Boolean(anchorElUser);
     const open2 = Boolean();
+    const [topicDatasources, setTopicDatasources] = useState([]);
+    const [datasetTopics, setDatasetTopics] = useState('');
 
     const handleClick = (event) => {
         handleDownloadButton();
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClickUser = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-    const handleClose2 = () => {
-        setAnchorEl(null);
-    };
-
-    const handleCloseUser = () => {
-        setAnchorElUser(null);
-    };
+    useEffect(async()=>{
+        if(token !== 0 && token && token !== null && token !== undefined &&
+            topicDatasources !== [] && topicDatasources !== null && topicDatasources !== undefined){
+            const datasources = await getPublicDatasetsTopics(token, datasetTopics && datasetTopics.split(",")[0]);
+            setTopicDatasources(datasources);
+            console.log("fetched topic datasources",datasources, );
+        }
+    }, [token, datasetTopics]);
 
     return (
 
@@ -224,45 +231,6 @@ export default function ManageDataset({
             </Box> */}
             <div style={{display:'flex',flexDirection:'column', minWidth:'100%', maxWidth:'100%'}}>
                 <div style={{ display: 'flex', flexDirection:'column', backgroundColor: '#FAFAFB',}}>
-                    {/* <Box component="main" sx={{  minWidth:'100%', display:'flex',position:'fixed' }}>
-                        <Box sx={{minWidth:'100%', display:'flex', flexDirection:'row', bgcolor:'white', alignItems:'center', height:"70px"}} >
-                        </Box>
-
-                        <div style={{display:"flex",flexDirection:'row', width:'30%', backgroundColor:"#fff",paddingLeft:12,
-                            alignItems: 'center',cursor: 'pointer', justifyContent:'space-around', height:"70px"}}>
-                            <Link href='/login'>
-                                {/* <NotificationsIcon fontSize="large" sx={{color:'#939EAA'}}/> 
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <Link >
-                                <AccountCircleIcon onClick={()=>router.push("/settings")}
-                                    fontSize="large" sx={{color:'#939EAA'}}/>
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;
-                            <p style={{fontSize:20}}>{user && user.firstname ? user.firstname : 'Account'} </p>
-                            &nbsp;&nbsp;&nbsp;
-                            <div
-                                // onClick={()=>signOut({path:router.pathname})}
-                                onClick={handleClickUser}
-                            >
-                                <ArrowDropDownIcon fontSize="large" sx={{color:'#939EAA'}}/>
-                            </div>
-
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorElUser}
-                                open={openUser}
-                                onClose={handleCloseUser}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={()=>router.push('/settings')}><SettingsIcon/>&nbsp; Settings</MenuItem>
-                                <MenuItem onClick={()=>router.push('/support')}><LiveHelpIcon/>&nbsp; Support</MenuItem>
-                                <MenuItem onClick={()=>signOut({path:router.pathname})}><ExitToAppIcon/>&nbsp; Sign Out</MenuItem>
-                            </Menu>
-                        </div>
-                    </Box> */}
 
                     <div style={{ display: 'flex', flexDirection:'row', justifyContent:'space-between', paddingTop:96,
                         paddingLeft:16, paddingRight:16}}>
@@ -281,7 +249,7 @@ export default function ManageDataset({
                                     startIcon={<CachedIcon />} onClick={()=>router.reload()}>
                                 {"Refresh"}</Button>
                         </Box>
-                        <Box sx={{display:"flex", alignItems:'center', justifyContent:'space-between', width:'22%', }}>
+                        <Box sx={{display:"flex", alignItems:'center', justifyContent:'space-between', width:'21%', }}>
                             {datasetMode==0?<div><DeleteOutlineIcon fontSize="large" sx={{cursor:'pointer',}}
                                                                     onClick={() => deleteF(userdataset)}/></div>:null}
                             <Button variant="outlined" size="medium" sx={{borderRadius:3, color:'#000', borderColor:'#939EAA'}}
@@ -313,7 +281,7 @@ export default function ManageDataset({
                     </div>
 
                     <div style={{ display: 'flex', flexDirection:'row', py: 2,px:2, justifyContent:'space-between',
-                         width:'100%', paddingLeft:16, paddingBottom:16, paddingTop:4}}>
+                         width:'100%', paddingLeft:16, paddingBottom:"1rem", paddingTop:'1rem'}}>
                         <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:24,width:'100%',
                             color:'gray-900', flex:'start'}}>
                             <div>Dataset Overview: &nbsp;</div> {userdataset !== null && userdataset !== undefined && <div>{userdataset.title}</div>}
@@ -364,7 +332,7 @@ export default function ManageDataset({
                         </Box>
 
                         <Box sx={{  display:'flex', flexDirection:'column', pt:1,paddingLeft:'0.75em',paddingRight:'0.75em',
-                            alignItems:'center' }}>
+                            alignItems:'center' , backgroundColor:'#FAFAFB',}}>
                             <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',paddingLeft:'0.75em',paddingRight:'0.75em',
                                 justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
                                 {datasetMode === 0 ? userdataset !== null && userdataset !== undefined &&
@@ -403,7 +371,7 @@ export default function ManageDataset({
 
                         </Box>
 
-                        {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh',}}>
+                        {datasetMode === 1 && addCatalogMode === true ?<Box sx={{ display: 'flex', minHeight: '23vh',backgroundColor:'#FAFAFB',}}>
 
                             <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4}}>
 
@@ -418,11 +386,11 @@ export default function ManageDataset({
 
                                 </Box>
 
-                                <Box sx={{ maxWidth:'100ch', display:'flex', flexDirection:'column', pt:1,paddingLeft:'0.75em',paddingRight:'0.75em',
-                                    alignItems:'center' }}>
+                                <Box sx={{ minWidth:'100%',maxWidth:'100%', display:'flex', flexDirection:'column', pt:1,paddingLeft:'0.75em',paddingRight:'0.75em',
+                                    alignItems:'center',backgroundColor:'#FAFAFB', }}>
                                     <Box sx={{ width:"100%",  display:'flex', flexDirection:'column', paddingLeft:'0.75em',paddingRight:'0.75em',
                                         justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
-                                    {dataSources && dataSources.map((data,index)=><FeatureCard
+                                    {topicDatasources && topicDatasources.map((data,index)=>index < 10 &&<FeatureCard
                                         openDetails={openDetails}
                                         data={data}
                                         index={index}

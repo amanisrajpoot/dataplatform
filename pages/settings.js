@@ -296,18 +296,18 @@ export default function Settings({
     };
 
   return (
-    <div style={{display:'flex', flexDirection:'row', minWidth:'117ch', maxWidth:'117ch', height:'100%'}}>
+    <div style={{display:'flex', flexDirection:'row', maxWidth:'100%',minWidth:"100%", height:'100%'}}>
         {/* <Box sx={{width:"18%", display:'flex', flexDirection:'column'}}>
             <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
         </Box> */}
 
-        <div style={{ bgcolor: '#f7f7f7', display:'flex', flexDirection:'column', minWidth:"100%",}}>
+        <div style={{ backgroundColor: '#f7f7f7', display:'flex', flexDirection:'column', maxWidth:'100%',minWidth:"100%",}}>
 
-            <Box sx={{ display: 'flex', flexDirection:'row', paddingTop: 10, paddingLeft:2,paddingRight:16,
-                paddingBottom:2, bgcolor: '#f7f7f7', 
-                justifyContent:'space-between', minWidth:'100%'}}>
+            <div style={{ display: 'flex', flexDirection:'row', paddingTop:'6rem', paddingLeft:'1rem',paddingRight:16,
+                paddingBottom:'1rem', backgroundColor: '#f7f7f7', 
+                justifyContent:'space-between', maxWidth:'100%',minWidth:"100%",}}>
 
-                <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
+                <div style={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18, width:"40%",
                     color:'gray-700', alignItems:'center'}}>
                     <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
                             justifyContent:'center'}} startIcon={<ArrowBackIcon />}
@@ -320,8 +320,8 @@ export default function Settings({
                     <Divider variant="middle" orientation="vertical" />
                     <div style={{paddingLeft:8,paddingRight:2,fontSize:24}}>Settings</div>
 
-                </Box>
-            </Box>
+                </div>
+            </div>
 
             <Box
                 sx={{ flexGrow: 1, bgcolor: "background.paper", display: 'flex' , minHeight:'88vh',mx:2, pt:2}}
