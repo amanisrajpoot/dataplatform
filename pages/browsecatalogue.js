@@ -498,13 +498,14 @@ export default function BrowseCatalogue({
                     </div>
 
                     <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
-                        minWidth:'100%',maxWidth:'100%', height:'100%', paddingTop:8, paddingBottom:8}}>
+                        minWidth:'100%',maxWidth:'100%', height:'100%', 
+                        paddingTop:8,  backgroundColor: '#FAFAFB'}}>
                             {displayUsers}
                             </div>    
                 </div>
-                    {users && users.length > 5 && <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', 
-                                         paddingTop:'1em',
-                                        justifyContent:"center",alignItems:'center', flexWrap:'wrap',}}>
+                    {users && users.length > 5 && <div style={{ display:'flex', flexDirection:'column', 
+                        borderRadius:'0.75em', paddingTop:'1em', justifyContent:"center",
+                        alignItems:'center', flexWrap:'wrap',}}>
                             <ReactPaginate
                                         previousLabel={"Previous"}
                                         nextLabel={"Next"}

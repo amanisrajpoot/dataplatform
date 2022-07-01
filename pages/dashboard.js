@@ -309,7 +309,7 @@ export default function Dashboard({
 
     useEffect(async ()=>{
         if(userdatasets && userdatasets !== null && userdatasets !== undefined && userdatasets.length > 0){
-            userdatasets.map(item => setDatasetTopics(prev=>[...new Set([...prev,...item.topic.split(",")])]))
+            userdatasets.map(item => setDatasetTopics(prev=>[...new Set([...prev,item.topic.toString().split(",")[0]])]))
         
         console.log("unique dataset topicsssssss",datasetTopics);
         }

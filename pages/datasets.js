@@ -321,7 +321,7 @@ export default function Datasets({
                         {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
                         {/* <SignalTable /> */}
                         <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', paddingRight:'1em', paddingLeft:'0.25em',
-                            
+                            backgroundColor: '#FAFAFB',
                             justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
                             
                             {displayUsers && displayUsers.length > 0 ? displayUsers : <div style={{display:'flex', flexDirection:'column',
