@@ -43,7 +43,7 @@ export default function DatasetCard(props){
     return (
         <div style={{display:"flex", flexDirection:'column',maxWidth:"100%", minWidth:"100%", borderRadius:9,
              backgroundColor:"#FAFAFB",font:'roboto', fontSize:'0.9em',overflow: 'hidden',display:"flex", flexDirection:'row',
-              minHeight:'7rem',maxHeight:'7rem',
+              minHeight:'8rem',maxHeight:'8rem',
              justifyContent:'space-around', alignItems:'center' ,backgroundColor:'#fff',borderRadius:9, margin:6,
              textOverflow:'clip', paddingTop:"2vh", paddingBottom:'2vh'
               }}>
