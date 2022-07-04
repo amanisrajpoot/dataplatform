@@ -572,9 +572,9 @@ export default function Dashboard({
                                                 {datasetTopics && datasetTopics.length > 0 ?
                                                     datasetTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
                                                     index < 3 && <Button sx={{
-                                                    borderRadius:4, border:1, fontSize:"0.9em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
+                                                    borderRadius:4, border:1, fontSize:"1.1em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
                                                     color:'#5A00E2',marginBottom:'0.5rem',color: '#5A00E2',
-                                                    height: '28px',fontStyle: 'normal',fontWeight: '700',fontSize: '14px',
+                                                    height: '28px',fontStyle: 'normal',fontWeight: '700',
                                                     lineHeight: '33px'
                                                     }}
                                                     size="small"

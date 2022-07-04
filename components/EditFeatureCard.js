@@ -41,7 +41,7 @@ export default function FeatureCard(props){
 
     return (
 
-      <div style={{display:"flex", flexDirection:'row', minHeight:'17vh',maxHeight:'17vh', minWidth:"100%",maxWidth:"100%",
+      <div style={{display:"flex", flexDirection:'row', minHeight:'7rem',maxHeight:'7rem', minWidth:"100%",maxWidth:"100%",
               alignItems:'center' ,backgroundColor:'#fff', marginBottom:14, flex:'start', borderRadius:16,
             textOverflow:'clip', font:'roboto', fontSize:'0.9em',
             overflow: 'hidden',

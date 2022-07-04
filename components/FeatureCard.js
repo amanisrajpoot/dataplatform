@@ -53,7 +53,7 @@ export default function FeatureCard(props){
 
     return (
 
-        <div style={{display:"flex", flexDirection:'row', minHeight:'17vh',maxHeight:'17vh', minWidth:"100%",maxWidth:"100%",
+        <div style={{display:"flex", flexDirection:'row', minHeight:'7rem',maxHeight:'7rem', minWidth:"100%",maxWidth:"100%",
                alignItems:'center' ,backgroundColor:'#fff', marginBottom:14, flex:'start', borderRadius:16,
               textOverflow:'clip', font:'roboto', fontSize:'0.9em',
               overflow: 'hidden',
@@ -69,7 +69,8 @@ export default function FeatureCard(props){
               </div>
 
               <div style={{fontSize:"1em", minWidth:"57%", overflow:'hidden', display:'flex', flexDirection:'column',flex:'start'}}>
-                        <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8, paddingRight:'2ch'}}><b>{props.data.title?props.data.title.substring(0,89): "FDA Approved Drugs"}</b></div>
+                        <div style={{textOverflow:'clip', overflow:'hidden',paddingBottom:8, paddingRight:'2ch'}}><b>{props.data.title && props.data.title.length > 84 ?
+                            props.data.title.substring(0,81) + "..": props.data.title}</b></div>
                         <div style={{paddingBottom:8, color:'#939EAA',paddingRight:'4ch'}}>{props.data.description?(router.pathname.includes("/searchresult")?props.data.description.substring(0,119):props.data.description.substring(0,149))+
                             "..":"FDA has been very responsible in controlling drug flow"}</div>
                         <div style={{display:'flex', alignItems:'center', fontSize:"0.9em"}}><div style={{paddingRight:4,paddingBottom:4}}><b>{"Topics:  "}</b></div>
