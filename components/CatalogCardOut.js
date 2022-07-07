@@ -7,6 +7,7 @@ import {deleteUserDataset, getPublicDatasets, updateUserDataset} from "../functi
 import { useRouter } from 'next/router';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
+import Tooltip2 from '@mui/material/Tooltip';
 
 
 export default function CatalogCardOut({token, data, datasetMode, setDatasetMode,localTitle,setLocalTitle,localDescription,
@@ -46,7 +47,7 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                     <div><b>{data.title?data.title:""}</b></div>
                     <div>{data.description?data.description:""} </div>
                       <div style={{display:'flex', alignItems:'center'}}><b>{"Topics:  "}</b>
-                          {data.topic?data.topic.split(',').map((topic, index)=>index < 6 && <Button sx={{borderRadius:4, 
+                          {data.topic?data.topic.split(',').map((topic, index)=>index < 6 && <Tooltip2 title={<h2>{topic}</h2>} arrow><Button sx={{borderRadius:4, 
                             border:1, fontSize:"0.75em", mr:1,textTransform:'capitalize',letterSpacing:'0.1em',
                                     color:'#24BBFF'}} size="small"
                                   onClick={()=>router.push({
@@ -56,7 +57,7 @@ export default function CatalogCardOut({token, data, datasetMode, setDatasetMode
                                           router.pathname.includes('/catalog')?data.title:
                                               router.query.tid
                                   }
-                                  })}>{topic.substring(0,17) +".."}</Button>)
+                                  })}>{topic.substring(0,17) +".."}</Button></Tooltip2 >)
                               : "6"}</div>
                       <div style={{display:'flex',width:'100%', }}>
                           <div style={{display:'flex',wordWrap: "break-word",width:'25%',

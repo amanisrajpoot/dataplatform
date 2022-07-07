@@ -10,6 +10,7 @@ import mixpanel from 'mixpanel-browser';
 import {getUser} from "../function/users";
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
+import Tooltip2 from '@mui/material/Tooltip';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -17,7 +18,7 @@ export default function DatasetCard(props){
     const [show, setShow] = React.useState(false);
     const router = useRouter();
     const[added, setAdded] = React.useState(false);
-    const [topicCount, setTopicCount] = React.useState(0);
+    const [topicCount, setTopicCount] = React.useState(0);    
 
     useEffect(() => {
         if(props.data.topic){
@@ -61,7 +62,8 @@ export default function DatasetCard(props){
                             </div>
                         <div style={{color:'gray'}}>{props.data.description?props.data.description.substring(0,129)+"..": "Dataset Description"}</div>
                         <div style={{fontSize:'0.9em',display:'flex', alignItems:'center', }}><div style={{paddingRight:4, paddingTop:4}}><b>{"Topics:  "}</b></div>
-                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{
+                            {props.data.topic && props.data.topic.split(',').map((topic, index)=>index < 3 ? <Tooltip2 title={<h2>{topic}</h2>} arrow>
+                              <Button sx={{
                               borderRadius:4, border:1, fontSize:"0.9em", mr:1,
                               color:'#24BBFF', marginTop:1,textTransform:'capitalize',letterSpacing:'0.1em',
                                     marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small"
@@ -72,10 +74,18 @@ export default function DatasetCard(props){
                                             router.pathname.includes('/catalog')?data.title:
                                                 router.query.tid
                                     }
-                                    })}>{topic.substring(0,14) + ".."}</Button>)
-                            : "6"} {topicCount-3 > 0 ?<Button sx={{borderRadius:4, border:1, fontSize:"0.9em", mr:1,
-                                    color:'#24BBFF', marginTop:1,textTransform:'capitalize',letterSpacing:'0.1em',
-                                    marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small">{topicCount-3 + " more"}</Button>: null}
+                                    })}>{topic.substring(0,14) + ".."}</Button></Tooltip2>
+                                    
+                                    :null)}
+
+                                    {props.data.topic.split(',').length >3 && <Tooltip2 title={<h2>{props.data.topic.split(',').map((topic, index)=>index > 2 && 
+                                      <div>{topic}</div>)}</h2>} arrow>
+                                        <Button sx={{borderRadius:4, border:1, fontSize:"0.9em", mr:1,
+                                        color:'#24BBFF', marginTop:1,textTransform:'capitalize',letterSpacing:'0.1em',
+                                        marginRight:1, margin:"1 2 3 4", color:'#24BBFF'}} size="small">{topicCount-3 + " more"}</Button>
+                                      </Tooltip2>}
+
+
                           </div>
                     </div>
                     {/*<div style={{fontSize:14, width:"18%", wordWrap: "break-word", whiteSpace: "pre-wrap", wordBreak: "break-word",*/}

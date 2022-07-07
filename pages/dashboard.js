@@ -6,6 +6,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 // import Modal from '@mui/material/Modal';
+import Modal from 'react-bootstrap/Modal';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
 import TopicDetails from '../components/topicDetails';
 import {useRouter} from 'next/router';
@@ -34,8 +35,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from '@mui/material/TextField';
 import ReactPaginate from "react-paginate";
-import { ModalHover } from 'react-modal-hover'
-import Modal from 'react-modal';
+//import { ModalHover } from 'react-modal-hover'
+//import Modal from 'react-modal';
+import Tooltip2 from '@mui/material/Tooltip';
+
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 import {
     CartesianGrid,
@@ -442,7 +445,7 @@ export default function Dashboard({
 
                         </Box>
 
-                        {showDraft && <div style={{ minWidth:"100%", minWidth:'100%',bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                        {showDraft && <div style={{ minWidth:"100%", minWidth:'100%',backgroundColor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start',paddingTop:1}}>
 
                             <div style={{height:'22ch', minWidth:'69%', maxWidth:'69%', backgroundColor:'#E4F7FF',
@@ -465,9 +468,15 @@ export default function Dashboard({
                                 <div style={{marginTop:12, cursor:'pointer', width:'20%', display:'flex', justifyContent:"center",alignItems:'center'}}
                                      onClick={()=>{
                                         setOpenDetails(true)
+                                        console.log("clicked on opendetails")
                                      }} >
-                                    <div><CelebrationIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
-                                    }}/></div>
+                                    <div>
+                                        <Tooltip2 title="Add" arrow>
+                                        <CelebrationIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
+                                        }}> Lulli</CelebrationIcon>
+                                        </Tooltip2>
+                                    
+                                    </div>
 
                                 </div>
                                 
@@ -520,7 +529,7 @@ export default function Dashboard({
 
                         </Box>
 
-                        {showDraft && <div style={{ width:"100%", bgcolor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
+                        {showDraft && <div style={{ width:"100%", backgroundColor: 'gray-900', display:'flex', flexDirection:'row', flex:'start',
                             alignItems:'start', paddingTop:1}}>
 
                             {/*<NewsUpdate title={"Big Data is essential to every significant healthcare undertaking."} 
@@ -604,7 +613,7 @@ export default function Dashboard({
                                                 
                                                 {datasetTopics && datasetTopics.length > 0 ?
                                                     datasetTopics.sort((a,b)=>b.Catalogs - a.Catalogs).map((topic, index) => 
-                                                    index < 3 && <Button sx={{
+                                                    index < 3 && <Tooltip2 title={<h2>{topic.split(",")[0]}</h2>} arrow><Button sx={{
                                                     borderRadius:4, border:1, fontSize:"1.1em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
                                                     color:'#5A00E2',marginBottom:'0.5rem',color: '#5A00E2',
                                                     height: '28px',fontStyle: 'normal',fontWeight: '700',
@@ -625,7 +634,7 @@ export default function Dashboard({
                                                     }
                                                 })}>
                                                      { topic.split(",")[0].substring(0,29) + ".."}
-                                                    </Button>
+                                                    </Button></Tooltip2>
                                             ) : <div style={{display:'flex', flexDirection:'column',
                                                     justifyContent:'center', alignItems:'center', paddingTop:'0.25em', paddingBottom:'2em'}}
                                                     onClick={()=>router.push('/searchresult')}>
@@ -835,12 +844,29 @@ export default function Dashboard({
                         </div>
                     
 
-                    <Modal open={openDetails} onClose={handleCloseDetails}>
-                        <Box sx={style2}>
-                            <TopicDetails user={user} handleCloseDetails={handleCloseDetails}
-                                                data={items}/>
-                        </Box>
-                    </Modal>
+                        <Modal
+                            //{...props}
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                            >
+                            <Modal.Header closeButton>
+                                <Modal.Title id="contained-modal-title-vcenter">
+                                Modal heading
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <h4>Centered Modal</h4>
+                                <p>
+                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                                dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                                consectetur ac, vestibulum at eros.
+                                </p>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button onClick={handleCloseDetails}>Close</Button>
+                            </Modal.Footer>
+                            </Modal>
 
                 </div>
 

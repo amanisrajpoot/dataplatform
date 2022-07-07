@@ -9,6 +9,7 @@ import mixpanel from 'mixpanel-browser';
 import {getUser} from "../function/users";
 import Divider from '@mui/material/Divider';
 import Button from "@mui/material/Button";
+import Tooltip2 from '@mui/material/Tooltip';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true}); 
 
@@ -74,7 +75,8 @@ export default function FeatureCard(props){
                         <div style={{paddingBottom:8, color:'#939EAA',paddingRight:'4ch'}}>{props.data.description?(router.pathname.includes("/searchresult")?props.data.description.substring(0,119):props.data.description.substring(0,149))+
                             "..":"FDA has been very responsible in controlling drug flow"}</div>
                         <div style={{display:'flex', alignItems:'center', fontSize:"0.9em"}}><div style={{paddingRight:4,paddingBottom:4}}><b>{"Topics:  "}</b></div>
-                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Button sx={{
+                            {props.data.topic?props.data.topic.split(',').map((topic, index)=>index < 3 && <Tooltip2 title={<h2>{topic}</h2>} arrow>
+                                <Button sx={{
                                     borderRadius:4, border:1, fontSize:"0.9em", mr:1, textTransform:'capitalize',letterSpacing:'0.1em',
                                     color:'#24BBFF'}}
                                     size="small"
@@ -91,7 +93,7 @@ export default function FeatureCard(props){
                                                 router.query.tid
                                         }
                                     })
-                                    }>{topic.substring(0,17) + ".."}</Button>)
+                                    }>{topic.substring(0,17) + ".."}</Button></Tooltip2>)
                                 : "6"}</div>
                     </div>
 
