@@ -334,9 +334,9 @@ export default function ManageDataset({
                     </Box>
                 </Modal>
 
-                <Box sx={{ display: 'flex', minHeight: '23vh', bgcolor:'#FAFAFB',pt:4, width:'100%'}}>
+                <div style={{ display: 'flex', minHeight: '23vh', backgroundColor:'#FAFAFB',pt:4, width:'100%'}}>
 
-                    <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%', }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '12vh',mb:4, width:'100%', }}>
 
                         <Box component="main" sx={{display:'flex', justifyContent:'space-between',
                             py: 2, width:'100%', }}>
@@ -347,10 +347,11 @@ export default function ManageDataset({
 
                         </Box>
 
-                        <Box sx={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,paddingLeft:'0.75em',paddingRight:'0.75em',
+                        <div style={{ minWidth: 275, display:'flex', flexDirection:'column', pt:1,paddingLeft:'0.75em',paddingRight:'0.75em',
                             alignItems:'center' }}>
-                            <Box sx={{ width:"100%",  display:'flex', flexDirection:'column',paddingLeft:'0.75em',paddingRight:'0.75em',
-                                justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:4, pt:1}}>
+                            <div style={{ width:"100%",  display:'flex', flexDirection:'column',paddingLeft:'0.75em',paddingRight:'0.75em',
+                                justifyContent:"center",alignItems:'center', border:'1px solid #E2E2EA', borderRadius:'1rem', paddingTop:'0.75rem',
+                                backgroundColor:'#FAFAFB'}}>
                                 {       filteredDataSources !== null && filteredDataSources !== undefined &&
                                                 filteredDataSources.filter((data)=> String(data.ID) !== String(catalogID)).length === 0 || 
                                                 filteredDataSources.filter((data)=> String(data.ID) !== String(catalogID)).length < 0 ? 
@@ -373,14 +374,14 @@ export default function ManageDataset({
                                                         index < 5 &&
                                                         <div>We are working on adding more catalogs to our platform.</div> )
                                 }
-                            </Box>
+                            </div>
 
-                        </Box>
+                        </div>
 
-                    </Box>
+                    </div>
 
 
-                </Box>
+                </div>
 
                 {/*<Modal*/}
                 {/*    open={open}*/}

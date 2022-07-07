@@ -231,58 +231,69 @@ export default function TopicBrowser({
 
         <div style={{height:'100%', display:'flex',minWidth:'100%', maxWidth:'100%',}}>
             {/*<Navbar token={token} setToken={setToken}/>*/}
-            <div style={{display:'flex', fontStyle:'roboto', minWidth:'100%', maxWidth:'100%'}}>
                 {/* <Box sx={{width:"18%"}}>
                     <Box sx={{width:"18%", position:'fixed'}}>
                         <LeftNav token={token} userdatasets={userdatasets} setUserdatasets={setUserdatasets}/>
                     </Box>
                 </Box> */}
-                <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', fontStyle:'roboto',}}>
-                                        <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2,justifyContent:'space-between',
-                        paddingTop:10, width:'100%', alignItems:'center' }}>
+                <div style={{ display: 'flex', minWidth:'100%', maxWidth:'100%',flexDirection:'column',backgroundColor: '#FAFAFB', 
+                        fontStyle:'roboto',paddingLeft:'0.7rem', paddingRight:'0.7rem', paddingTop:'5.5rem', paddingBottom:'0.7rem',}}>
+                        <div style={{ display: 'flex', flexDirection:'row', justifyContent:'space-between',
+                        paddingLeft:'0.7rem', paddingRight:'0.7rem', paddingTop:'0.7rem',
+                         width:'100%', alignItems:'center' }}>
 
-                        <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', width:'100%',marginRight:2,
-                            color:'gray-700',justifyContent:'space-between', alignItems:'center'}}>
-                            <div style={{display:'flex', alignItems:'center', width:'44%'}}>
-                                <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
-                                justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
-                                {"Back"}</Button>
-                                <Divider variant="middle" orientation="vertical" flexItem />
-                                <div style={{paddingLeft:8,paddingRight:2,textTransform:'capitalize'}}>Go Back to {router.query.currentRouteTitle}</div>
+                            <div style={{ display: 'flex', flexDirection:'row', font:'roboto', width:'100%',marginRight:2,
+                                color:'gray-700',justifyContent:'space-between', alignItems:'center',
+                                paddingLeft:'0.7rem', paddingRight:'0.7rem',}}>
+                                <div style={{display:'flex', alignItems:'center', width:'44%'}}>
+                                    <Button  size="medium" sx={{display:'flex', alignItems:'center',paddingRight:2,
+                                    justifyContent:'center'}} startIcon={<ArrowBackIcon />} onClick={()=>router.back()}>
+                                    {"Back"}</Button>
+                                    <Divider variant="middle" orientation="vertical" flexItem />
+                                    <div style={{paddingLeft:8,paddingRight:2,textTransform:'capitalize'}}>Go Back to {router.query.currentRouteTitle}</div>
+                                </div>
+
+                                <div style={{display:'flex', width:'55%', alignItems:'center', }}>
+                                        <div style={{fontSize:28,}}>Topic &nbsp;</div>
+                                        
+                                </div>
+
                             </div>
 
-                            <div style={{display:'flex', width:'55%', alignItems:'center', }}>
-                                    <div style={{fontSize:28,}}>Topic &nbsp;</div>
-                                    <div style={{fontSize:18, color:'gray', textTransform:'capitalize'}}>{topic_id}</div>
+                        </div>
 
-                            </div>
+                    <div>
 
-                        </Box>
-
-                    </Box>
-
-                    <Box>
-
-                        <Box sx={{ display: 'flex', flexDirection:'row', py: 2,px:2, bgcolor: 'gray-900', width:'100%',
+                        <div style={{ display: 'flex', flexDirection:'row', backgroundColor: 'gray-900', width:'100%',
+                            paddingLeft:'0.7rem', paddingRight:'0.7rem', paddingTop:'0.7rem', paddingBottom:'0.7rem',
                             justifyContent:'space-between'}}>
 
-                            <Box sx={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
+                            <div style={{ display: 'flex', flexDirection:'row', font:'roboto', fontSize:18,
                                 color:'gray-700',justifyContent:'space-around', alignItems:'center'}}>
                                 <div><TableViewOutlinedIcon fontSize="large"/>&nbsp;&nbsp;</div>
                                 <div>Data Catalogs &nbsp;</div>
                                 {topicDatasources !== null && topicDatasources !== undefined && <div>{"("+ topicDatasources.length+")"}</div>}
                                 <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
 
-                            </Box>
+                            </div>
                             <div style={{color:'gray'}}><Divider variant="middle" flexItem/></div>
+                            <div style={{display:'flex', width:'54.7%',}}>
+                                    
+                                    <div style={{fontSize:18, color:'gray', textTransform:'capitalize',
+                                        paddingTop:'0.5rem'}}>{topic_id && topic_id.length > 39 ? topic_id.substring(0, 39) + "..." : topic_id}</div>
+                                        
+
+                            </div>
                             {/* <SettingsIcon fontSize="large" sx={{cursor:'pointer', color:"gray"}}/> */}
 
-                        </Box>
+                        </div>
 
                         {/* <Paper sx={{ width: '100%', overflow: 'hidden' }}> */}
                         {/* <SignalTable /> */}
-                        <Box sx={{  display:'flex', flexDirection:'column', borderRadius:3, mx:2,
-                            justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',}}>
+                        <div style={{  display:'flex', flexDirection:'column', borderRadius:'1rem', paddingTop:'0.5rem',
+                            justifyContent:"center",alignItems:'center', flexWrap:'wrap',border:'0.5px solid #bfbfbf',
+                            backgroundColor: '#FAFAFB',
+                            }}>
                             
                                 {/* {topicDatasources && topicDatasources.map((data,index)=><FeatureCard
                                     openDetails={openDetails}
@@ -300,7 +311,7 @@ export default function TopicBrowser({
 
                                 {displayUsers}
                                 
-                        </Box>
+                        </div>
 
                         {users && users.length > 5 && <div style={{ display:'flex', flexDirection:'column', borderRadius:'0.75em', 
                             paddingRight:'3em', paddingTop:'1em',
@@ -319,7 +330,7 @@ export default function TopicBrowser({
                         {/* </Paper> */}
                         </div>}
 
-                    </Box>
+                    </div>
 
                     <Modal open={openDetails} onClose={handleCloseDetails}>
                         <Box sx={style2}>
@@ -330,7 +341,6 @@ export default function TopicBrowser({
 
                 </div>
 
-            </div>
             {/*<Footer />*/}
 
         </div>

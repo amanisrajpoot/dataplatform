@@ -5,9 +5,9 @@ import Link from '@mui/material/Link';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-import Modal from '@mui/material/Modal';
+// import Modal from '@mui/material/Modal';
 import { confirmSignUp, signIn, signOut } from '../function/checkAuth';
-import DataSourcesDetails from '../components/datasourcesdetails';
+import TopicDetails from '../components/topicDetails';
 import {useRouter} from 'next/router';
 import {getPublicDatasets, getDatasets, getUser} from '../function/users';
 import LeftNav from "../components/LeftNav";
@@ -35,6 +35,7 @@ import MenuItem from "@mui/material/MenuItem";
 import TextField from '@mui/material/TextField';
 import ReactPaginate from "react-paginate";
 import { ModalHover } from 'react-modal-hover'
+import Modal from 'react-modal';
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});
 import {
     CartesianGrid,
@@ -181,6 +182,7 @@ export default function Dashboard({
     const [keywordFilteredDataSources, setKeywordFilteredDataSources] = useState([])
     const [catalogCount, setCatalogCount] = useState(0)
     const [datasetTopics, setDatasetTopics] = useState([])
+    const [modalIsOpen, setIsOpen] = React.useState(false);
 
     const handleOpenDetails = (data) => {
         setOpenDetails(true);
@@ -189,6 +191,31 @@ export default function Dashboard({
     const handleCloseDetails = () => {
         setOpenDetails(false);
     };
+
+    function openModal() {
+        setIsOpen(true);
+      }
+    
+      function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        
+      }
+
+      const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
+      
+    
+      function closeModal() {
+        setIsOpen(false);
+      }
 
     const [keyword, setKeyword] = useState('');
     useEffect( async (event) => {
@@ -428,16 +455,22 @@ export default function Dashboard({
 
                                     <div>
                                         <div style={{color:'black', fontSize:20,}}>Announcement </div>
-                                        <div style={{paddingTop:12,color:'gray'}}>The health data platform is in public beta, for a limited time period we are offering our professional version of the platform for free to the early adopters. Please take our product for a test drive and let us know what you think.</div>
+                                            <div style={{paddingTop:12,color:'gray'}}>The health data platform is in public beta, for a limited time period we are offering our professional version of the platform for free to the early adopters. 
+                                            Please take our product for a test drive and let us know what you think.</div>
                                     </div>
                                     <div style={{paddingTop:12,color:'gray', paddingBottom:24}}>{today.toLocaleDateString("en-US", options)}</div>
                                 </div>
+
+                                
                                 <div style={{marginTop:12, cursor:'pointer', width:'20%', display:'flex', justifyContent:"center",alignItems:'center'}}
-                                     onClick={()=>router.push('/searchresult')} >
+                                     onClick={()=>{
+                                        setOpenDetails(true)
+                                     }} >
                                     <div><CelebrationIcon sx={{fontSize:124, color: "#FFC542", opacity:0.4, pb:1,
                                     }}/></div>
 
                                 </div>
+                                
                             </div>
 
                             <div style={{height:'22ch', minWidth:'29.5%', maxWidth:'29.5%', backgroundColor:'#FFF4E4',
@@ -804,8 +837,8 @@ export default function Dashboard({
 
                     <Modal open={openDetails} onClose={handleCloseDetails}>
                         <Box sx={style2}>
-                            <DataSourcesDetails user={user} handleCloseDetails={handleCloseDetails}
-                                                data={dsDetails}/>
+                            <TopicDetails user={user} handleCloseDetails={handleCloseDetails}
+                                                data={items}/>
                         </Box>
                     </Modal>
 
