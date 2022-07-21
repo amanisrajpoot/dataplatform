@@ -24,6 +24,9 @@ import {signIn} from "../function/checkAuth";
 import mixpanel from 'mixpanel-browser';
 import {EMAIL_VALIDATOR} from "../function/constants";
 import { MailRounded } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -102,6 +105,10 @@ const Login =({token, setToken}) => {
     const [isLoading, setisLoading] = useState(false);
     const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+    const [passwordType, setPasswordType] = useState('password');
 
     async function signInF(){
         const err = await signIn({email, password});
@@ -140,7 +147,6 @@ const Login =({token, setToken}) => {
   }
 
   return (
-    <>
       <div className= "login" style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
         height: '100%', font:'roboto' }}>
         {/* <div style={{ height:'100%', minWidth:'50%', maxWidth:'50%',backgroundColor:'#0DB1A1', display:'flex', 
@@ -254,7 +260,7 @@ const Login =({token, setToken}) => {
                       sx={{width:"100%"}}
                       name="password"
                       label="Enter Password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       autoComplete="current-password"
                       onChange={(e) => setPassword(e.target.value)}
@@ -264,7 +270,18 @@ const Login =({token, setToken}) => {
                                   <LockIcon />
                               </InputAdornment>
                           ),
-                          placeholder:"Enter Password"
+                          placeholder:"Enter Password",
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                              >
+                                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                              </IconButton>
+                            </InputAdornment>
+                          )
                       }}
                     />
                   }
@@ -310,7 +327,6 @@ const Login =({token, setToken}) => {
 
         </div>
       </div>
-      </>
     
   );
 }

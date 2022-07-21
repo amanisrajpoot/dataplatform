@@ -29,6 +29,9 @@ import mixpanel from 'mixpanel-browser';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import OtpInput from "react-otp-input";
 import {forgotPasswordSubmit} from "../function/checkAuth"
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
 
@@ -114,7 +117,11 @@ const ResetPassword =(props) => {
     const [error, setError] = useState("");
     const [isLoading, setisLoading] = useState(false);
     const [mode, setMode] = useState(0);
-    const [top, setTop] = useState(36);
+    const [top, setTop] = useState("10rem");
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+    const [passwordType, setPasswordType] = useState('password');
 
     async function signInF(){
         const err = await signIn({email, password});
@@ -141,7 +148,7 @@ const ResetPassword =(props) => {
             } else {
                 setError("")
                 setMode(1);
-                setTop(24)
+                setTop("12rem");
             }
         } else if(mode===1){
             const erro = await forgotPasswordSubmit({email, otp, password})
@@ -156,50 +163,32 @@ const ResetPassword =(props) => {
 
     }
 
-  return (
-    <ThemeProvider theme={theme}>
+  return (<>
+    <div style={{ display:'flex',minWidth:'100%', maxWidth:'100%',
+      height: '100vh', font:'roboto', justifyContent:'center', }}>
 
-      <Grid container component="main" sx={{ height: '100vh', font:'roboto' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={6}
-          sx={{
-            backgroundImage: 'url(/login-background.jpg)',
-            // backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            // backgroundPosition: 'left',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square sx={{display:'flex',
-            flexDirection:'column', justifyContent:'space-between', alignItems:'space-between'}}>
-
-            {mode===2?()=>setTop(56):null}
-          <Box
-            sx={{
-              pt: top,
+          <div
+            style={{
+              
               display: 'flex',
+              justifyContent:'center',
               flexDirection: 'column',
               // justifyContent: 'center',
-                width:'100%',
+                width:'47%',
                 height:'100%'
 
             }}
           >
 
-              {mode===0?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
+              {mode===0?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%',  }}>
                       <div style={{marginLeft:125}}>
                           <div style={{fontSize:30}}>Enter the Password Reset OTP</div>
                           <div style={{fontSize:14}}>The OTP will be of at-least 6 digits.</div>
 
                       </div>
                   </div>
-                  :mode===1?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', }}>
-                <div style={{marginLeft:125}}>
+                  :mode===1?<div style={{display:'flex',flexDirection:'column', alignItems:'start',width:'100%', paddingTop:"14rem"}}>
+                <div style={{marginLeft:125, }}>
                     <div style={{fontSize:30}}>Set New Password?</div>
                     <div style={{fontSize:14}}>Your Password Must have</div>
                     <div style={{fontSize:14, display:'flex'}}><CheckCircleIcon
@@ -212,7 +201,7 @@ const ResetPassword =(props) => {
             </div>
                   :mode===2?<>
 
-                  <div style={{color:"#5A00E2", alignSelf:'center',marginBottom:35}}>
+                  <div style={{color:"#5A00E2", alignSelf:'center',marginBottom:35,paddingTop:"14rem" }}>
                       <LockIcon sx={{transform: "scale(4)"}} />
                   </div>
 
@@ -258,7 +247,7 @@ const ResetPassword =(props) => {
                     id="password"
                     label="Password"
                     name="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     autoComplete="password"
                     autoFocus
                     onChange={(e) => setPassword(e.target.value)}
@@ -268,7 +257,18 @@ const ResetPassword =(props) => {
                                 <LockIcon />
                             </InputAdornment>
                         ),
-                        placeholder:"Enter Password"
+                        placeholder:"Enter Password",
+                        endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                              >
+                                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                              </IconButton>
+                            </InputAdornment>
+                          )
                     }}
                   />
                         <PasswordStrengthBar style={{width:"65%"}} password={password} minLength={6} />
@@ -327,7 +327,7 @@ const ResetPassword =(props) => {
                         </Button>
                         :null}
 
-                {mode===1?<div style={{paddingTop:12,paddingRight:76,width:'100%',display:'flex',justifyContent:'start'}}>
+                {mode===1?<div style={{paddingRight:76,width:'100%',display:'flex',justifyContent:'start'}}>
                     <Link  href="/login" variant="body2" >
                         <a style={{display:'flex', alignItems:'center',
                             justifyContent:'center', paddingLeft:128}}>
@@ -362,12 +362,11 @@ const ResetPassword =(props) => {
                     <Copyright sx={{ pt: 1 }} /></>
                     :null}
             </Box>
-          </Box>
-
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+          </div>
+        </div>
+    </>
   );
+
 }
 
 export default ResetPassword;

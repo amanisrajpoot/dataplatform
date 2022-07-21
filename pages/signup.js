@@ -30,6 +30,9 @@ import OTPForm from "../components/OtpScreen";
 import {EMAIL_VALIDATOR} from "../function/constants";
 import { Auth } from 'aws-amplify';
 import {useEffect} from "react";
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 mixpanel.init('d4ba2a4d19d51d9d4f19903db6a1a396', {debug: true,ignore_dnt: true});  
@@ -122,6 +125,11 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
     const [confirmPasswordError, setConfirmPasswordError] = useState(false)
     const [companyError, setCompanyError] = useState(false)
     const [user, setUser] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+    const [passwordType, setPasswordType] = useState('password');
+    
 
     async function signInFK(){
         setMode(1);
@@ -501,7 +509,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 sx={{width: "100%"}}
                                                 name="password"
                                                 label="Enter Password"
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}s
                                                 id="password"
                                                 autoComplete="current-password"
                                                 helperText="Invalid Password"
@@ -512,7 +520,18 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                             <LockIcon/>
                                                         </InputAdornment>
                                                     ),
-                                                    placeholder: "Enter Password"
+                                                    placeholder: "Enter Password",
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                          <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                          >
+                                                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                                          </IconButton>
+                                                        </InputAdornment>
+                                                      )
                                                 }}
                                             /> : <TextField
                                                 margin="normal"
@@ -520,7 +539,7 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                 sx={{width: "100%"}}
                                                 name="password"
                                                 label="Enter Password"
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}
                                                 id="password"
                                                 autoComplete="current-password"
                                                 onChange={(e) => setPassword(e.target.value)}
@@ -530,7 +549,18 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                             <LockIcon/>
                                                         </InputAdornment>
                                                     ),
-                                                    placeholder: "Enter Password"
+                                                    placeholder: "Enter Password",
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                          <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                          >
+                                                            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                                          </IconButton>
+                                                        </InputAdornment>
+                                                      )
                                                 }}
                                             />}
 
@@ -570,7 +600,8 @@ const SignUp =({token, setToken, name, setName, email, setEmail, company, setCom
                                                             <LockIcon/>
                                                         </InputAdornment>
                                                     ),
-                                                    placeholder: "Confirm Password"
+                                                    placeholder: "Confirm Password",
+                                                    
                                                 }}
                                             />}
                                         <div style={{color:'red'}}>{error? <>{error}</>:null}</div>

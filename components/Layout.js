@@ -11,7 +11,8 @@ export default function Layout({ children, user, Auth, userdatasets }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const router = useRouter();
   const showNav = router.pathname === '/login' ? false : router.pathname === '/signup'? false: 
-        router.asPath === '/'?false:router.asPath === '/forgetpassword'?false:router.asPath === '/'?false:true;
+        router.asPath === '/'?false:router.asPath === '/forgetpassword'?false:router.asPath === '/'?false:
+        router.pathname.includes("/resetpassword")?false:true;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
